@@ -8,7 +8,7 @@ function SVGDot({ className }: SVGDot) {
       className={className}
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
-      viewBox="0 0 300 300"
+      viewBox="0 0 1200 1200"
     >
       <g fill="#171717" clipPath="url(#clip0_2003_2)">
         <circle cx="1" cy="1" r="1"></circle>

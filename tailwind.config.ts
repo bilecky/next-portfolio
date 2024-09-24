@@ -21,8 +21,12 @@ const config: Config = {
         secondBackground: "#B1B1B1",
         foreground: "var(--foreground)",
       },
+      fontSize: {
+        "section-header": "10rem", // Dodanie niestandardowej wielkości czcionki
+      },
     },
   },
   plugins: [],
 };
+
 export default config;

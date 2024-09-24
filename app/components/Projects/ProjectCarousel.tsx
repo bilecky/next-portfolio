@@ -3,7 +3,7 @@
 import { useGSAP } from "@gsap/react";
 import React, { useRef, useState } from "react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { projects } from "../data/data";
+import { projects } from "../../data/data";
 import gsap from "gsap";
 import clsx from "clsx";
 
@@ -105,7 +105,7 @@ const ProjectCarousel = (props: projectCarouselProps) => {
   };
 
   return (
-    <div className="carousel w-1/2">
+    <div className="carousel w-2/5">
       <div className="relative flex h-full flex-col items-end justify-evenly font-extralight uppercase">
         <div className="main-line opacity-1 absolute h-full w-1.5 bg-mainFontColor">
           <div
@@ -118,8 +118,8 @@ const ProjectCarousel = (props: projectCarouselProps) => {
             key={index}
             id={`project-${index}`}
             className={clsx(
-              "cursor-pointer px-8 py-4",
-              index === currentProject && "text-gray-300 transition-colors",
+              "cursor-pointer px-8 py-4 transition-colors hover:text-gray-300",
+              index === currentProject && "text-gray-300",
             )}
             ref={(el) => setProjectRef(el, index)}
             onClick={() => handleProjectClick(index)}

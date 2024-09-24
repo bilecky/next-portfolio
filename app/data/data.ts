@@ -1,4 +1,10 @@
-export const projects = [
+export type Project = {
+  title: string;
+  description: string;
+  image: string;
+};
+
+export const projects: Project[] = [
   {
     title: "Project Onish",
     description:
@@ -29,4 +35,29 @@ export const projects = [
       "Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?",
     image: "/project4.png",
   },
+];
+
+export const technologies: string[] = [
+  "Next.js ",
+  "TailwindCSS ",
+  "GSAP ",
+  "React",
+  "TypeScript",
+  "JavaScript",
+  "HTML",
+  "CSS",
+  "Node.js",
+  "Express",
+  "MongoDB",
+  "Redux",
+  "React Router",
+  "Material UI",
+  "Ember.js",
+  "Angular",
+  "Vue.js",
+  "Sass",
+  "Less",
+  "PostCSS",
+  "Webpack",
+  "Babel",
 ];

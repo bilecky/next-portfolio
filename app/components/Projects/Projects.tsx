@@ -2,14 +2,17 @@
 
 import React, { useState } from "react";
 import { useGSAP } from "@gsap/react";
-import Splitter from "../utils/Splitter";
+import Splitter from "../../utils/Splitter";
 import gsap from "gsap";
-import { projects } from "../data/data";
+import { projects } from "../../data/data";
 
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import SvgDot from "../utils/SVGDots";
+import SvgDot from "../../utils/SVGDots";
 import ProjectCarousel from "./ProjectCarousel";
-import { reuseTexTsplitterFn } from "../utils/ReusableGSAPAnimations";
+import {
+  reuseSectionDescriptionAnimation,
+  reuseTexTsplitterFn,
+} from "../../utils/ReusableGSAPAnimations";
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 type Props = {};
@@ -50,18 +53,16 @@ const Projects = (props: Props) => {
 
     reuseTexTsplitterFn({ timeline: textArea, selector: ".header-text" });
 
-    textArea
-      .from(".projects-description", {
-        y: -50,
-        duration: 5,
-        opacity: 0,
-        ease: "back.out",
-      })
-      .from(".project_details", {
-        opacity: 0,
-        ease: "back.out",
-        duration: 10,
-      });
+    reuseSectionDescriptionAnimation({
+      timeline: textArea,
+      selector: ".projects-description",
+    });
+
+    textArea.from(".project_details", {
+      opacity: 0,
+      ease: "back.out",
+      duration: 10,
+    });
 
     const herodissapear = gsap.timeline({
       scrollTrigger: {
@@ -105,8 +106,8 @@ const Projects = (props: Props) => {
 
   return (
     <section className="projects overflow-hidden py-28 text-background lg:flex">
-      <div className="overview flex h-full flex-col lg:w-3/4">
-        <h2 className="projects-header mb-6 text-6xl uppercase lg:text-9xl">
+      <div className="overview lg:w-3/5">
+        <h2 className="projects-header lg:text-section-header uppercase">
           <Splitter className="header-text" text="Projects" />
         </h2>
 
