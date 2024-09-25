@@ -22,6 +22,7 @@ const config: Config = {
         foreground: "var(--foreground)",
       },
       fontSize: {
+        mobile: "3.8rem",
         "section-header": "10rem", // Dodanie niestandardowej wielkości czcionki
       },
     },

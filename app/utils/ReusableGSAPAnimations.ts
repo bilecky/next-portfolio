@@ -27,7 +27,7 @@ export const reuseSectionDescriptionAnimation = ({
   selector,
   options = {},
 }: ReusableAnimationsProps) => {
-  const defaultOptions = { y: -50, duration: 5, opacity: 0, ease: "back.out" };
+  const defaultOptions = { x: -150, duration: 5, opacity: 0, ease: "back.out" };
 
   timeline.from(selector, { ...defaultOptions, ...options });
 };

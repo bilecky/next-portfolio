@@ -26,12 +26,13 @@ const ProjectCarousel = (props: projectCarouselProps) => {
   };
 
   useGSAP(() => {
+    if (!lineRef.current) return;
     const mainComponentAnimationsLine = gsap.timeline({
       scrollTrigger: {
         trigger: ".projects", // Zainicjujemy animację, gdy element `.projects` wejdzie w viewport
         start: "top center", // Animacja rozpocznie się, gdy górna część `.projects` blabla
         end: "bottom bottom",
-        scrub: 2, // Synchronizacja animacji z przewijaniem
+        scrub: 3, // Synchronizacja animacji z przewijaniem
       },
     });
 
@@ -46,10 +47,11 @@ const ProjectCarousel = (props: projectCarouselProps) => {
     mainComponentAnimationsLine.fromTo(
       lineRef.current,
       { height: 0 }, // Startowe ustawienie item-line
-      { height: projectRefs.current[currentProject]?.offsetTop || 0 }, // Animacja do pełnej wysokości item-line
+      {
+        height: projectRefs.current[currentProject]?.offsetTop,
+      }, // Animacja do pełnej wysokości item-line
       "-=0.5", // Animacja item-line rozpoczyna się pół sekundy przed zakończeniem animacji main-line
     );
-
     // 3. Animacja pojawiania się projektów jeden po drugim (stagger)
     mainComponentAnimationsLine.fromTo(
       projectRefs.current,
@@ -78,7 +80,7 @@ const ProjectCarousel = (props: projectCarouselProps) => {
 
     lineTl.to(lineRef.current, {
       duration: 0.5,
-      y: projectRefs.current[currentProject]?.offsetTop || 0,
+      y: projectRefs.current[currentProject]?.offsetTop || 10,
       ease: "power3.out",
     });
 
@@ -105,7 +107,7 @@ const ProjectCarousel = (props: projectCarouselProps) => {
   };
 
   return (
-    <div className="carousel w-2/5">
+    <div className="carousel lg:w-2/5">
       <div className="relative flex h-full flex-col items-end justify-evenly font-extralight uppercase">
         <div className="main-line opacity-1 absolute h-full w-1.5 bg-mainFontColor">
           <div
@@ -124,7 +126,7 @@ const ProjectCarousel = (props: projectCarouselProps) => {
             ref={(el) => setProjectRef(el, index)}
             onClick={() => handleProjectClick(index)}
           >
-            <h3 className="text-4xl"> {project.title}</h3>
+            <h3 className="text-right text-4xl"> {project.title}</h3>
           </div>
         ))}
       </div>

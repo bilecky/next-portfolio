@@ -47,15 +47,20 @@ const Projects = (props: Props) => {
         trigger: ".projects", // Make sure this class exists on the element
         start: "top center", // Rozpocznij, gdy górna krawędź sekcji dotknie dolnej krawędzi widoku
         end: "bottom bottom",
-        scrub: 2, // Sync the animation with scrolling smoothly
+        scrub: 3, // Sync the animation with scrolling smoothly
+        markers: true,
       },
     });
+    textArea.set(".projects", { opacity: 1 });
 
     reuseTexTsplitterFn({ timeline: textArea, selector: ".header-text" });
 
     reuseSectionDescriptionAnimation({
       timeline: textArea,
       selector: ".projects-description",
+      options: {
+        stagger: 1,
+      },
     });
 
     textArea.from(".project_details", {
@@ -69,7 +74,7 @@ const Projects = (props: Props) => {
         trigger: ".projects", // Make sure this class exists on the element
         start: "top center", // Rozpocznij, gdy górna krawędź sekcji dotknie dolnej krawędzi widoku
         end: "bottom bottom",
-        scrub: 2, // Sync the animation with scrolling smoothly
+        scrub: 3, // Sync the animation with scrolling smoothly
       },
     });
 
@@ -105,9 +110,9 @@ const Projects = (props: Props) => {
   });
 
   return (
-    <section className="projects overflow-hidden py-28 text-background lg:flex">
-      <div className="overview lg:w-3/5">
-        <h2 className="projects-header lg:text-section-header uppercase">
+    <section className="projects h-full overflow-hidden text-background opacity-0 md:py-28 xl:flex xl:flex-row">
+      <div className="overview xl:w-3/5">
+        <h2 className="projects-header text-mobile lg:text-section-header uppercase">
           <Splitter className="header-text" text="Projects" />
         </h2>
 
@@ -117,13 +122,15 @@ const Projects = (props: Props) => {
           since the 1500s, when an unknown printer took a galley of type and
           scrambled it to make a type specimen book." Lorem Ipsum is simply
           dummy text of the printing and typesetting industry. Lorem Ipsum has
+        </p>
+        <p className="projects-description py-4 text-sm lg:text-xl">
           been the industry's standard dummy text ever since the 1500s, when an
           unknown printer took a galley of type and scrambled it to make a type
           specimen book."
         </p>
         {/* <SvgDot className="svg-dots opacity-1 absolute right-0 top-0 hidden h-[200%] lg:block" /> */}
 
-        <div className="project_details mt-auto max-w-full overflow-hidden rounded-lg bg-white shadow-lg">
+        <div className="project_details mt-auto hidden max-w-full overflow-hidden rounded-lg bg-white shadow-lg lg:block">
           <img
             className="h-48 w-full object-cover"
             src={projects[currentProject].image}
