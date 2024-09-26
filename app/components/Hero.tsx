@@ -44,7 +44,7 @@ const Hero = (props: Props) => {
         { opacity: 0, y: 20, duration: 0.5, stagger: 0.2 },
         "-=0.3",
       )
-      .from(".logo", { opacity: 0, y: -50, duration: 0.5 }, "-=0.3")
+      .from(".logo", { opacity: 0, y: -50, duration: 0.5 })
       .from(".white-line", { width: 0, duration: 0.5 })
       .from(".header-nav li", {
         opacity: 0,
@@ -52,7 +52,6 @@ const Hero = (props: Props) => {
         duration: 0.5,
         stagger: 0.3,
         ease: "power2.out",
-        delay: 0.3,
       });
   });
 

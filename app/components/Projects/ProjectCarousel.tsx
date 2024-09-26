@@ -27,6 +27,10 @@ const ProjectCarousel = (props: projectCarouselProps) => {
 
   useGSAP(() => {
     if (!lineRef.current) return;
+
+    const currentProjectHeight =
+      projectRefs.current[currentProject]?.clientHeight;
+
     const mainComponentAnimationsLine = gsap.timeline({
       scrollTrigger: {
         trigger: ".projects", // Zainicjujemy animację, gdy element `.projects` wejdzie w viewport
@@ -36,22 +40,28 @@ const ProjectCarousel = (props: projectCarouselProps) => {
       },
     });
 
-    // 1. Animacja pojawienia się main-line
-    mainComponentAnimationsLine.fromTo(
-      ".main-line",
-      { height: 0, transformOrigin: "top", opacity: 0 }, // Startowe ustawienie main-line
-      { height: "100%", duration: 1.5, ease: "power3.out", opacity: 1 }, // Animacja do pełnej wysokości
-    );
+    mainComponentAnimationsLine.set(lineRef.current, { height: 0, opacity: 0 });
 
-    // 2. Animacja item-line po main-line
-    mainComponentAnimationsLine.fromTo(
-      lineRef.current,
-      { height: 0 }, // Startowe ustawienie item-line
-      {
-        height: projectRefs.current[currentProject]?.offsetTop,
-      }, // Animacja do pełnej wysokości item-line
-      "-=0.5", // Animacja item-line rozpoczyna się pół sekundy przed zakończeniem animacji main-line
-    );
+    // 1. Animacja pojawienia się main-line
+    mainComponentAnimationsLine
+      .fromTo(
+        ".main-line",
+        { height: 0, transformOrigin: "top", opacity: 0 }, // Startowe ustawienie main-line
+        { height: "100%", duration: 1.5, ease: "power3.out", opacity: 1 }, // Animacja do pełnej wysokości
+      )
+      .to(
+        lineRef.current,
+        {
+          height: currentProjectHeight || 0,
+          duration: 1.5,
+          ease: "power3.out",
+          opacity: 1,
+        },
+        "-=0.5",
+        // Animacja do pełnej wysokości item-line
+        // Animacja item-line rozpoczyna się pół sekundy przed zakończeniem animacji main-line
+      );
+
     // 3. Animacja pojawiania się projektów jeden po drugim (stagger)
     mainComponentAnimationsLine.fromTo(
       projectRefs.current,
@@ -80,7 +90,7 @@ const ProjectCarousel = (props: projectCarouselProps) => {
 
     lineTl.to(lineRef.current, {
       duration: 0.5,
-      y: projectRefs.current[currentProject]?.offsetTop || 10,
+      y: projectRefs.current[currentProject]?.offsetTop || 0,
       ease: "power3.out",
     });
 
@@ -92,17 +102,17 @@ const ProjectCarousel = (props: projectCarouselProps) => {
 
     singleProjectTl
       .to(".project_details", {
-        duration: 0.3,
+        duration: 0.4,
         opacity: 0,
-        x: 10,
-        ease: "power2.out",
+        x: -150,
+        ease: "back.out",
       })
       .set({}, { onComplete: () => setCurrentProject(index) })
       .to(".project_details", {
-        duration: 0.3,
+        duration: 0.4,
         opacity: 1,
         x: 0,
-        ease: "power2.out",
+        ease: "back.out",
       });
   };
 

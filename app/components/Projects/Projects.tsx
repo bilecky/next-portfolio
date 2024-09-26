@@ -13,6 +13,7 @@ import {
   reuseSectionDescriptionAnimation,
   reuseTexTsplitterFn,
 } from "../../utils/ReusableGSAPAnimations";
+import AnimatedLink from "@/app/utils/AnimatedLink";
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 type Props = {};
@@ -48,7 +49,6 @@ const Projects = (props: Props) => {
         start: "top center", // Rozpocznij, gdy górna krawędź sekcji dotknie dolnej krawędzi widoku
         end: "bottom bottom",
         scrub: 3, // Sync the animation with scrolling smoothly
-        markers: true,
       },
     });
     textArea.set(".projects", { opacity: 1 });
@@ -110,7 +110,7 @@ const Projects = (props: Props) => {
   });
 
   return (
-    <section className="projects h-full overflow-hidden text-background opacity-0 md:py-28 xl:flex xl:flex-row">
+    <section className="projects h-full text-background opacity-0 md:py-28 xl:flex xl:flex-row">
       <div className="overview xl:w-3/5">
         <h2 className="projects-header text-mobile lg:text-section-header uppercase">
           <Splitter className="header-text" text="Projects" />
@@ -130,18 +130,20 @@ const Projects = (props: Props) => {
         </p>
         {/* <SvgDot className="svg-dots opacity-1 absolute right-0 top-0 hidden h-[200%] lg:block" /> */}
 
-        <div className="project_details mt-auto hidden max-w-full overflow-hidden rounded-lg bg-white shadow-lg lg:block">
-          <img
-            className="h-48 w-full object-cover"
-            src={projects[currentProject].image}
-            alt="Project image"
-          />
-          <div className="p-6">
-            <p className="text-base text-gray-700">
-              {projects[currentProject].description}
-            </p>
+        <AnimatedLink href={`/projects/${projects[currentProject].title}`}>
+          <div className="project_details mt-auto hidden max-w-full overflow-hidden rounded-lg bg-white shadow-lg lg:block">
+            <img
+              className="h-48 w-full object-cover"
+              src={projects[currentProject].image}
+              alt="Project image"
+            />
+            <div className="p-6">
+              <p className="text-base text-gray-700">
+                {projects[currentProject].description}
+              </p>
+            </div>
           </div>
-        </div>
+        </AnimatedLink>
       </div>
 
       <ProjectCarousel selectedProject={setCurrentProject} />

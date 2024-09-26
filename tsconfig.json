@@ -26,7 +26,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "app/utils/horizontalLoop.ts"
+    "app/utils/horizontalLoop.js"
   ],
   "exclude": ["node_modules"]
 }
