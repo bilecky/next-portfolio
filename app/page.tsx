@@ -6,7 +6,7 @@ import Tech from "./components/Tech";
 export default function Home() {
   return (
     <main className="">
-      <div className="scroll-area container">
+      <div className="scroll-area w-full overflow-hidden">
         <Hero />
         <Projects />
       </div>

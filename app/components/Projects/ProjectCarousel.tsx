@@ -6,6 +6,8 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { projects } from "../../data/data";
 import gsap from "gsap";
 import clsx from "clsx";
+import useMediaQuery from "@/app/utils/hooks/useMediaQuery";
+import AnimatedLink from "@/app/utils/AnimatedLink";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -14,6 +16,8 @@ type projectCarouselProps = {
 };
 
 const ProjectCarousel = (props: projectCarouselProps) => {
+  const isMobile = useMediaQuery("(max-width: 768px)");
+
   const { selectedProject } = props;
   const [currentProject, setCurrentProject] = useState<number>(0);
   const lineRef = React.useRef<HTMLDivElement>(null);
@@ -90,6 +94,7 @@ const ProjectCarousel = (props: projectCarouselProps) => {
 
     lineTl.to(lineRef.current, {
       duration: 0.5,
+      overwrite: "auto",
       y: projectRefs.current[currentProject]?.offsetTop || 0,
       ease: "power3.out",
     });
@@ -99,7 +104,7 @@ const ProjectCarousel = (props: projectCarouselProps) => {
 
   const handleProjectClick = (index: number) => {
     const singleProjectTl = gsap.timeline();
-
+    console.log("klik");
     singleProjectTl
       .to(".project_details", {
         duration: 0.4,
@@ -117,7 +122,7 @@ const ProjectCarousel = (props: projectCarouselProps) => {
   };
 
   return (
-    <div className="carousel lg:w-2/5">
+    <div className="carousel xl:w-2/5">
       <div className="relative flex h-full flex-col items-end justify-evenly font-extralight uppercase">
         <div className="main-line opacity-1 absolute h-full w-1.5 bg-mainFontColor">
           <div
@@ -136,7 +141,16 @@ const ProjectCarousel = (props: projectCarouselProps) => {
             ref={(el) => setProjectRef(el, index)}
             onClick={() => handleProjectClick(index)}
           >
-            <h3 className="text-right text-4xl"> {project.title}</h3>
+            {isMobile ? (
+              <AnimatedLink
+                key={`project-${index}`}
+                href={`projects/${project.title}`}
+              >
+                <h3 className="text-right text-4xl"> {project.title}</h3>
+              </AnimatedLink>
+            ) : (
+              <h3 className="text-right text-4xl"> {project.title}</h3>
+            )}
           </div>
         ))}
       </div>

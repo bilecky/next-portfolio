@@ -17,14 +17,12 @@ const Hero = (props: Props) => {
     // Animate overlay
     introTl
       // we're taking header section from HEADER component to be opacity like others from hero section
-      .set([".hero", ".header"], { opacity: 1, duration: 2 })
-      .fromTo(
-        ".black-overlay",
-        {
-          yPercent: -100,
-        },
-        { yPercent: 0, duration: 1, ease: "power2.inOut" },
-      )
+      .set([".hero", ".header"], { opacity: 1, duration: 1 })
+      .from(".black-overlay", {
+        duration: 1,
+        yPercent: -100,
+        ease: "power2.inOut",
+      })
       // Animate menu items
       .from(
         "nav .split-char",
@@ -44,21 +42,23 @@ const Hero = (props: Props) => {
         { opacity: 0, y: 20, duration: 0.5, stagger: 0.2 },
         "-=0.3",
       )
-      .from(".logo", { opacity: 0, y: -50, duration: 0.5 })
+      .from(".logo", { opacity: 0, y: -50, duration: 0.4 })
       .from(".white-line", { width: 0, duration: 0.5 })
       .from(".header-nav li", {
         opacity: 0,
         y: -50,
-        duration: 0.5,
+        duration: 0.4,
         stagger: 0.3,
         ease: "power2.out",
       });
   });
 
   return (
-    <section className="hero flex w-full flex-col py-32 font-[family-name:var(--font-geist-sans)] text-mainFontColor opacity-0 md:h-screen md:flex-row-reverse md:items-end lg:flex">
-      <div className="white-overlay opacity-1 bg-secondBackground absolute left-0 top-0 z-0 h-screen w-full"></div>
-      <div className="black-overlay z-1 absolute left-0 top-0 h-screen w-full bg-background"></div>
+    <section className="hero container flex w-full flex-col py-32 font-[family-name:var(--font-geist-sans)] text-mainFontColor opacity-0 md:h-screen md:flex-row-reverse md:items-end lg:flex">
+      {/* <div className="white-overlay opacity-1 bg-secondBackground absolute left-0 top-0 z-0 h-screen w-full"></div>
+      <div className="black-overlay z-1 absolute left-0 top-0 h-screen w-full bg-background"></div> */}
+      <div className="white-overlay opacity-1 bg-secondBackground absolute inset-0 z-0"></div>
+      <div className="black-overlay z-1 absolute inset-0 bg-background"></div>
       {/* ABOUT SECTION */}
       <div className="section-left relative z-0 lg:w-[30%] lg:text-right">
         <h1 className="main-header mb-3 text-xl uppercase">PAWEŁ BILSKI</h1>

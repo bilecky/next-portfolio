@@ -110,7 +110,7 @@ const Projects = (props: Props) => {
   });
 
   return (
-    <section className="projects h-full text-background opacity-0 md:py-28 xl:flex xl:flex-row">
+    <section className="projects container h-full text-background opacity-0 md:py-28 xl:flex xl:flex-row">
       <div className="overview xl:w-3/5">
         <h2 className="projects-header text-mobile lg:text-section-header uppercase">
           <Splitter className="header-text" text="Projects" />
@@ -131,7 +131,7 @@ const Projects = (props: Props) => {
         {/* <SvgDot className="svg-dots opacity-1 absolute right-0 top-0 hidden h-[200%] lg:block" /> */}
 
         <AnimatedLink href={`/projects/${projects[currentProject].title}`}>
-          <div className="project_details mt-auto hidden max-w-full overflow-hidden rounded-lg bg-white shadow-lg lg:block">
+          <div className="project_details mt-auto hidden max-w-full overflow-hidden rounded-lg bg-white shadow-lg xl:block">
             <img
               className="h-48 w-full object-cover"
               src={projects[currentProject].image}

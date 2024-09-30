@@ -5,9 +5,11 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import PageTransition from "@/app/utils/PageTransition";
 
+gsap.registerPlugin(useGSAP);
+
 type ProjectPageProps = {
   params: {
-    title: string;
+    name: string;
   };
 };
 
@@ -17,10 +19,16 @@ export default function ProjectPage({ params }: ProjectPageProps) {
   useGSAP(
     () => {
       if (!pageRef.current) return;
-      gsap.from(pageRef.current.children, {
+
+      const projectTl = gsap.timeline();
+
+      projectTl.set(pageRef.current, { opacity: 1 });
+
+      projectTl.from(pageRef.current.children, {
         duration: 0.5,
-        x: 250,
+        y: 250,
         opacity: 0,
+        delay: 0.5,
         stagger: 0.1,
         ease: "power2.out",
       });
@@ -33,10 +41,12 @@ export default function ProjectPage({ params }: ProjectPageProps) {
   return (
     <PageTransition>
       <div
-        className="project_details bg-secondBackground h-screen w-full"
+        className="project_details container relative z-10 h-[200vh] overflow-hidden py-36 opacity-0"
         ref={pageRef}
       >
-        <h1 className="text-8xl">Project {params.name}</h1>
+        <h1 className="font-[family-name:var(--font-geist-sans)] text-6xl font-extralight uppercase md:text-[6rem] lg:text-[8rem] 2xl:text-[10rem]">
+          Project {params.name}
+        </h1>
         {/* Reszta zawartości strony projektu */}
       </div>
     </PageTransition>

@@ -8,19 +8,32 @@ type PageTransitionProps = {
   children: React.ReactNode;
 };
 
+gsap.registerPlugin(useGSAP);
+
 const PageTransition = ({ children }: PageTransitionProps) => {
   const transitionRef = useRef(null);
 
-  useGSAP(
-    () => {
-      gsap.from(transitionRef.current, {
-        duration: 1.5,
-        y: "-100%",
+  useGSAP(() => {
+    const pageTl = gsap.timeline();
+
+    pageTl
+      .set(".header", { opacity: 1, duration: 1 })
+
+      .from(transitionRef.current, {
+        duration: 1,
+        yPercent: -100,
         ease: "power2.inOut",
+      })
+      .from(".logo", { opacity: 0, y: -50, duration: 0.4 })
+      .from(".white-line", { width: 0, duration: 0.5 })
+      .from(".header-nav li", {
+        opacity: 0,
+        y: -50,
+        duration: 0.4,
+        stagger: 0.3,
+        ease: "power2.out",
       });
-    },
-    { scope: transitionRef },
-  );
+  });
 
   return (
     <div className="relative">

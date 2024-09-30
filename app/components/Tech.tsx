@@ -121,9 +121,7 @@ function Tech({}: Props) {
   );
 
   return (
-    <section className="tech relative py-28 text-background">
-      <div className="arrows absolute left-0 top-0 h-20 w-20 bg-foreground"></div>
-
+    <section className="tech relative overflow-hidden py-28 text-background">
       <div className="overview-wrapper container pb-16">
         <div className="overview text-mobile relative ml-auto text-right lg:w-3/5">
           <h2 className="tech-header lg:text-section-header uppercase">

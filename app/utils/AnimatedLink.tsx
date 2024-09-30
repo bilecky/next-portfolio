@@ -2,27 +2,27 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { gsap } from "gsap";
+import gsap from "gsap";
+import clsx from "clsx";
 
 type AnimatedLinkProps = {
   href: string;
   children: React.ReactNode;
+  className?: string;
 };
+import useMediaQuery from "@/app/utils/hooks/useMediaQuery";
 
-const AnimatedLink = ({ href, children }: AnimatedLinkProps) => {
+const AnimatedLink = ({ href, children, className }: AnimatedLinkProps) => {
   const router = useRouter();
-  const [isAnimating, setIsAnimating] = useState(false);
+  const isMobile = useMediaQuery("(max-width: 768px)");
 
-  const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    if (!isAnimating) {
-      setIsAnimating(true);
-
+  const handleClick = () => {
+    const runAnimation = () => {
       const tl = gsap.timeline();
       tl.to(
         ".overview",
         {
-          duration: 1,
+          duration: 0.5,
           x: "-100%",
           opacity: 0,
         },
@@ -31,19 +31,27 @@ const AnimatedLink = ({ href, children }: AnimatedLinkProps) => {
         .to(
           ".carousel",
           {
-            duration: 1,
+            duration: 0.5,
             x: "100%",
             ease: "power2.inOut",
             opacity: 0,
           },
           0, // start at the same time
         )
-        .to({}, { onComplete: () => router.push(href) });
+        .to({}, { onStart: () => router.push(href) });
+    };
+
+    if (isMobile) {
+      setTimeout(() => {
+        runAnimation();
+      }, 650);
+    } else {
+      runAnimation();
     }
   };
 
   return (
-    <div onClick={handleClick} style={{ cursor: "pointer" }}>
+    <div className={clsx("cursor-pointer", className)} onClick={handleClick}>
       {children}
     </div>
   );
