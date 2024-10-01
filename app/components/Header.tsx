@@ -10,7 +10,7 @@ const Header = () => {
           href="/"
           className="font-[family-name:var(--font-geist-mono)] hover:text-gray-300"
         >
-          pawelbilski.com
+          pb.com
         </Link>
       </div>
 

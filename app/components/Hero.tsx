@@ -57,7 +57,7 @@ const Hero = (props: Props) => {
     <section className="hero container flex w-full flex-col py-32 font-[family-name:var(--font-geist-sans)] text-mainFontColor opacity-0 md:h-screen md:flex-row-reverse md:items-end lg:flex">
       {/* <div className="white-overlay opacity-1 bg-secondBackground absolute left-0 top-0 z-0 h-screen w-full"></div>
       <div className="black-overlay z-1 absolute left-0 top-0 h-screen w-full bg-background"></div> */}
-      <div className="white-overlay opacity-1 bg-secondBackground absolute inset-0 z-0"></div>
+      <div className="white-overlay opacity-1 absolute inset-0 z-0 bg-secondBackground"></div>
       <div className="black-overlay z-1 absolute inset-0 bg-background"></div>
       {/* ABOUT SECTION */}
       <div className="section-left relative z-0 lg:w-[30%] lg:text-right">
@@ -73,13 +73,21 @@ const Hero = (props: Props) => {
 
       {/* NAV */}
       <div className="section-right pt-10 md:flex-grow md:pt-0">
-        <nav className="max-fold:text-5xl relative z-0 flex font-[family-name:var(--font-geist-sans)] text-6xl font-extralight md:text-[6rem] lg:text-[8rem] 2xl:text-[10rem]">
+        <nav className="relative z-0 flex font-[family-name:var(--font-power-grotesk)] text-6xl font-[400] tracking-wide max-fold:text-5xl md:text-[6rem] lg:text-[8rem] 2xl:text-[10.5rem]">
           <ul className="nav space-y-2 uppercase">
             <li className="flex">
               <div className="splitter-wrapper group inline-block cursor-pointer transition-colors hover:text-gray-400">
                 <div className="nav_item flex items-center">
                   <span className="mr-0 inline-block h-0 w-[0.2rem] bg-gray-400 transition-all duration-300 group-hover:mr-5 group-hover:h-[40px] md:group-hover:h-[55px] lg:w-[0.35rem] lg:group-hover:h-[80px] xl:group-hover:h-[100px]"></span>
                   <Splitter text="projects" />
+                </div>
+              </div>
+            </li>
+            <li className="flex items-center justify-start">
+              <div className="splitter-wrapper group inline-block cursor-pointer transition-colors hover:text-gray-400">
+                <div className="nav_item flex items-center">
+                  <span className="mr-0 inline-block h-0 w-[0.2rem] bg-gray-400 transition-all duration-300 group-hover:mr-5 group-hover:h-[40px] md:group-hover:h-[55px] lg:w-[0.35rem] lg:group-hover:h-[80px] xl:group-hover:h-[100px]"></span>
+                  <Splitter text="TECH" />
                 </div>
               </div>
             </li>
@@ -93,14 +101,6 @@ const Hero = (props: Props) => {
               </div>
             </li>
 
-            <li className="flex items-center justify-start">
-              <div className="splitter-wrapper group inline-block cursor-pointer transition-colors hover:text-gray-400">
-                <div className="nav_item flex items-center">
-                  <span className="mr-0 inline-block h-0 w-[0.2rem] bg-gray-400 transition-all duration-300 group-hover:mr-5 group-hover:h-[40px] md:group-hover:h-[55px] lg:w-[0.35rem] lg:group-hover:h-[80px] xl:group-hover:h-[100px]"></span>
-                  <Splitter text="TECH" />
-                </div>
-              </div>
-            </li>
             <li className="flex items-center justify-start">
               <div className="splitter-wrapper group inline-block cursor-pointer transition-colors hover:text-gray-400">
                 <div className="nav_item flex items-center">
