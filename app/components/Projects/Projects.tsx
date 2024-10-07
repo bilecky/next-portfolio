@@ -1,10 +1,9 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { Suspense, useState } from "react";
 import { useGSAP } from "@gsap/react";
 import Splitter from "../../utils/Splitter";
 import gsap from "gsap";
-import { projects } from "../../data/data";
 
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import SvgDot from "../../utils/SVGDots";
@@ -14,6 +13,9 @@ import {
   reuseTexTsplitterFn,
 } from "../../utils/ReusableGSAPAnimations";
 import AnimatedLink from "@/app/utils/AnimatedLink";
+import { Canvas } from "@react-three/fiber";
+import ThreeModel from "../3DModel/ThreeModel";
+import { Environment, OrbitControls } from "@react-three/drei";
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 type Props = {};
@@ -34,7 +36,7 @@ const Projects = (props: Props) => {
 
     bgArea.fromTo(
       ["body", ".black-overlay"],
-      { backgroundColor: "#171717" }, // Start color
+      { backgroundColor: "#222222" }, // Start color
       {
         backgroundColor: "#B1B1B1", // End color
         overwrite: "auto",
@@ -53,7 +55,11 @@ const Projects = (props: Props) => {
     });
     textArea.set(".projects", { opacity: 1 });
 
-    reuseTexTsplitterFn({ timeline: textArea, selector: ".header-text" });
+    reuseTexTsplitterFn({
+      timeline: textArea,
+      selector: ".header-text",
+      options: { stagger: 1 },
+    });
 
     reuseSectionDescriptionAnimation({
       timeline: textArea,
@@ -72,7 +78,7 @@ const Projects = (props: Props) => {
     const herodissapear = gsap.timeline({
       scrollTrigger: {
         trigger: ".projects", // Make sure this class exists on the element
-        start: "top center", // Rozpocznij, gdy górna krawędź sekcji dotknie dolnej krawędzi widoku
+        start: "top 80%", // Rozpocznij, gdy górna krawędź sekcji dotknie dolnej krawędzi widoku
         end: "bottom bottom",
         scrub: 3, // Sync the animation with scrolling smoothly
       },
@@ -80,15 +86,18 @@ const Projects = (props: Props) => {
 
     herodissapear.to(".section-left", {
       opacity: 0,
-      ease: "expo.out",
-      duration: 1,
+      ease: "power3.inOut",
+      x: 500,
+      duration: 0.5,
     });
     herodissapear.to(
-      ".section-right",
+      ".nav-hero li",
       {
         opacity: 0,
-        ease: "expo.out",
-        duration: 1,
+        ease: "power3.inOut",
+        duration: 0.5,
+        stagger: -0.1,
+        x: -500,
       },
       0,
     );
@@ -112,7 +121,7 @@ const Projects = (props: Props) => {
   return (
     <section className="projects container h-full text-background opacity-0 md:py-28 xl:flex xl:flex-row">
       <div className="overview xl:w-3/5">
-        <h2 className="projects-header text-mobile lg:text-section-header uppercase">
+        <h2 className="projects-header font-[family-name:var(--font-power-grotesk)] text-mobile uppercase leading-none lg:text-section-header">
           <Splitter className="header-text" text="Projects" />
         </h2>
 
@@ -123,14 +132,21 @@ const Projects = (props: Props) => {
           scrambled it to make a type specimen book." Lorem Ipsum is simply
           dummy text of the printing and typesetting industry. Lorem Ipsum has
         </p>
-        <p className="projects-description py-4 text-sm lg:text-xl">
+        {/* <p className="projects-description py-4 text-sm lg:text-xl">
           been the industry's standard dummy text ever since the 1500s, when an
           unknown printer took a galley of type and scrambled it to make a type
           specimen book."
-        </p>
-        {/* <SvgDot className="svg-dots opacity-1 absolute right-0 top-0 hidden h-[200%] lg:block" /> */}
+        </p> */}
+        <div className="model3d h-[60vh] w-full">
+          <Canvas className="h-2xl w-2xl">
+            <Suspense fallback={null}>
+              <ThreeModel />
+            </Suspense>
+            <OrbitControls autoRotate={true} maxZoom={1} />
+          </Canvas>
+        </div>
 
-        <AnimatedLink href={`/projects/${projects[currentProject].title}`}>
+        {/* <AnimatedLink href={`/projects/${projects[currentProject].title}`}>
           <div className="project_details mt-auto hidden max-w-full overflow-hidden rounded-lg bg-white shadow-lg xl:block">
             <img
               className="h-48 w-full object-cover"
@@ -143,10 +159,10 @@ const Projects = (props: Props) => {
               </p>
             </div>
           </div>
-        </AnimatedLink>
+        </AnimatedLink> */}
       </div>
 
-      <ProjectCarousel selectedProject={setCurrentProject} />
+      <ProjectCarousel setSelectedProject={setCurrentProject} />
     </section>
   );
 };

@@ -12,11 +12,10 @@ export const reuseTexTsplitterFn = ({
   options = {},
 }: ReusableAnimationsProps) => {
   const defaultOptions = {
-    x: -20,
-    stagger: 1,
+    x: -40,
     opacity: 0,
-    delay: 0.3,
-    duration: 2,
+    delay: 0.2,
+    duration: 2.5,
     ease: "expo.out",
   };
   timeline.from(selector, { ...defaultOptions, ...options });

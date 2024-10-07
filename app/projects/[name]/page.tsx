@@ -44,7 +44,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
         className="project_details container relative z-10 h-[200vh] overflow-hidden py-36 opacity-0"
         ref={pageRef}
       >
-        <h1 className="font-[family-name:var(--font-geist-sans)] text-6xl font-extralight uppercase md:text-[6rem] lg:text-[8rem] 2xl:text-[10rem]">
+        <h1 className="font-[family-name:var(--font-geist-sans)] text-6xl font-extralight uppercase text-mainFontColor md:text-[6rem] lg:text-[8rem] 2xl:text-[10rem]">
           Project {params.name}
         </h1>
         {/* Reszta zawartości strony projektu */}

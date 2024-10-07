@@ -22,18 +22,30 @@ const reversedTechnologies = [...technologies].reverse();
 function Tech({}: Props) {
   // MAIN GSAP ANIMATIONS
   useGSAP(() => {
+    // gsap.timeline({
+    //   scrollTrigger: {
+    //     trigger: ".tech",
+    //     start: "top top", // Start pinning when Tech section hits the top of viewport
+    //     end: "bottom bottom", // Pin it until the next section enters
+    //     scrub: true,
+    //     pin: true, // Pin the Tech section
+    //     anticipatePin: 1,
+    //   },
+    // });
+
     const mainTechLine = gsap.timeline({
       scrollTrigger: {
         trigger: ".tech", // Make sure this class exists on the element
         start: "top center", // Rozpocznij, gdy górna krawędź sekcji dotknie dolnej krawędzi widoku
         end: "bottom bottom",
-        scrub: 3, // Sync the animation with scrolling smoothly
+        scrub: 3, // Sync the animation with scrolling smoothly,
       },
     });
+    mainTechLine.set(".tech", { opacity: 1 });
 
     reuseTexTsplitterFn({
       timeline: mainTechLine,
-      selector: ".tech-header-text",
+      selector: ".tech-text",
       options: { stagger: -1 },
     });
 
@@ -61,7 +73,6 @@ function Tech({}: Props) {
       const tlMarqueLoop = horizontalLoop(".tech-item", {
         speed: 1,
         repeat: -1,
-        paddingRight: 10,
       });
       const tlMarqueReverseLoop = horizontalLoop(".tech-item-reverse", {
         repeat: -1,
@@ -71,7 +82,7 @@ function Tech({}: Props) {
 
       Observer.create({
         target: window,
-        type: "wheel, touchmove",
+        type: "wheel, touch",
         onChangeY(self) {
           let factor = 1.5;
           if (self.deltaY < 0) {
@@ -82,7 +93,7 @@ function Tech({}: Props) {
             .timeline({ defaults: { ease: "none" } })
             .to(tlMarqueLoop, {
               timeScale: factor * 2.5,
-              duration: 0.2,
+              duration: 0.5,
             }) // Ujemny factor dla odwróconego loopa
             .to(
               tlMarqueLoop,
@@ -94,7 +105,7 @@ function Tech({}: Props) {
 
       Observer.create({
         target: window,
-        type: "wheel, touchmove",
+        type: "wheel, touch",
         onChangeY(self) {
           let factor = 1.5;
           if (self.deltaY < 0) {
@@ -105,7 +116,7 @@ function Tech({}: Props) {
             .timeline({ defaults: { ease: "none" } })
             .to(tlMarqueReverseLoop, {
               timeScale: -factor * 2.5,
-              duration: 0.2,
+              duration: 0.5,
             }) // Ujemny factor dla odwróconego loopa
             .to(
               tlMarqueReverseLoop,
@@ -121,11 +132,11 @@ function Tech({}: Props) {
   );
 
   return (
-    <section className="tech relative overflow-hidden py-28 text-background">
-      <div className="overview-wrapper container pb-16">
-        <div className="overview text-mobile relative ml-auto text-right lg:w-3/5">
-          <h2 className="tech-header lg:text-section-header uppercase">
-            <Splitter className="tech-header-text" text="TECH" />
+    <section className="tech relative -z-10 overflow-hidden py-28 text-background opacity-0">
+      <div className="overview-wrapper container">
+        <div className="overview relative ml-auto text-right text-mobile lg:w-3/5">
+          <h2 className="tech-header uppercase lg:text-section-header">
+            <Splitter className="tech-text" text="TECH" />
           </h2>
 
           <p className="tech-description text-sm lg:text-xl">
@@ -144,7 +155,7 @@ function Tech({}: Props) {
         </div>
       </div>
 
-      <div className="tech-items overflow-hidden whitespace-nowrap">
+      <div className="tech-items overflow-hidden whitespace-nowrap py-20">
         <div className="marquee gsap-marquee flex">
           {technologies.map((tech, index) => {
             return (

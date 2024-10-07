@@ -5,12 +5,15 @@ import { RiLinkedinFill, RiTwitterXFill } from "react-icons/ri";
 const Header = () => {
   return (
     <header className="header bg-white-800 container absolute left-0 right-0 z-20 flex w-full items-center justify-between overflow-hidden py-5 text-mainFontColor opacity-0">
-      <div className="logo text-xl font-bold">
+      <div className="logo group cursor-pointer text-xl font-light">
         <Link
           href="/"
-          className="font-[family-name:var(--font-geist-mono)] hover:text-gray-300"
+          className="font-[family-name:var(--font-geist-mono)] transition-colors group-hover:text-gray-400"
         >
-          pb.com
+          paweł
+          <span className="text-gray-400 transition-colors group-hover:text-mainFontColor">
+            {"<bilski>"}
+          </span>
         </Link>
       </div>
 

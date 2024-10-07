@@ -1,16 +1,16 @@
 import clsx from "clsx";
 import React from "react";
 
-type Props = { text: string; className?: string };
+type Props = { text: string; className?: string; splitType?: string };
 
 function Splitter(props: Props) {
-  const { text, className } = props;
+  const { text, className, splitType = "" } = props;
 
   if (!text) {
     return;
   }
 
-  const characters = text.split("");
+  const characters = text.split(splitType);
 
   return (
     <>

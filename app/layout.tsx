@@ -16,7 +16,7 @@ const geistMono = localFont({
 });
 
 const powerGrotesk = localFont({
-  src: "./fonts/PowerGrotesk-Regular.ttf",
+  src: "./fonts/PowerGrotesk-Regular.woff",
   variable: "--font-power-grotesk",
   weight: "100 200 300 400 500 600 700 800 900",
 });

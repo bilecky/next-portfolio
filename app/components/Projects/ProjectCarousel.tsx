@@ -12,13 +12,13 @@ import AnimatedLink from "@/app/utils/AnimatedLink";
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 type projectCarouselProps = {
-  selectedProject: (index: number) => void;
+  setSelectedProject: (index: number) => void;
 };
 
 const ProjectCarousel = (props: projectCarouselProps) => {
   const isMobile = useMediaQuery("(max-width: 768px)");
 
-  const { selectedProject } = props;
+  const { setSelectedProject } = props;
   const [currentProject, setCurrentProject] = useState<number>(0);
   const lineRef = React.useRef<HTMLDivElement>(null);
   const projectRefs = React.useRef<(HTMLDivElement | null)[]>([]);
@@ -38,7 +38,7 @@ const ProjectCarousel = (props: projectCarouselProps) => {
     const mainComponentAnimationsLine = gsap.timeline({
       scrollTrigger: {
         trigger: ".projects", // Zainicjujemy animację, gdy element `.projects` wejdzie w viewport
-        start: "top center", // Animacja rozpocznie się, gdy górna część `.projects` blabla
+        start: "top 60%", // Animacja rozpocznie się, gdy górna część `.projects` blabla
         end: "bottom bottom",
         scrub: 3, // Synchronizacja animacji z przewijaniem
       },
@@ -77,7 +77,7 @@ const ProjectCarousel = (props: projectCarouselProps) => {
         ease: "power3.out",
         stagger: 0.2, // Projekty będą się pojawiać jeden po drugim z odstępem 0.2s
       },
-      "-=0.3", // Rozpocznij tę animację nieco wcześniej
+      "-=0.5", // Rozpocznij tę animację nieco wcześniej
     );
   }, []);
 
@@ -99,26 +99,28 @@ const ProjectCarousel = (props: projectCarouselProps) => {
       ease: "power3.out",
     });
 
-    selectedProject(currentProject);
+    setSelectedProject(currentProject);
   }, [currentProject]);
 
   const handleProjectClick = (index: number) => {
-    const singleProjectTl = gsap.timeline();
-    console.log("klik");
-    singleProjectTl
-      .to(".project_details", {
-        duration: 0.4,
-        opacity: 0,
-        x: -150,
-        ease: "back.out",
-      })
-      .set({}, { onComplete: () => setCurrentProject(index) })
-      .to(".project_details", {
-        duration: 0.4,
-        opacity: 1,
-        x: 0,
-        ease: "back.out",
-      });
+    // const singleProjectTl = gsap.timeline();
+    // console.log("klik");
+    // singleProjectTl
+    //   .to(".project_details", {
+    //     duration: 0.4,
+    //     opacity: 0,
+    //     x: -150,
+    //     ease: "back.out",
+    //   })
+    //   .set({}, { onComplete: () => setCurrentProject(index) })
+    //   .to(".project_details", {
+    //     duration: 0.4,
+    //     opacity: 1,
+    //     x: 0,
+    //     ease: "back.out",
+    //   });
+
+    if (isMobile) return;
   };
 
   return (
