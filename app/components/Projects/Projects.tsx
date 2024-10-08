@@ -143,10 +143,7 @@ const Projects = (props: Props) => {
         {!isMobile && (
           <div ref={ref} className="model3d relative h-[55vh] w-full">
             {inView && (
-              <AnimatedLink
-                href={`/projects/${projects[currentProject].title}`}
-                className="absolute h-[65vh] w-[50vw]"
-              >
+              <div className="absolute -bottom-24 h-[75vh] w-full overflow-hidden">
                 <Suspense fallback={null}>
                   <Canvas>
                     <ThreeModel
@@ -156,7 +153,7 @@ const Projects = (props: Props) => {
                   </Canvas>
                 </Suspense>
                 <Loader />
-              </AnimatedLink>
+              </div>
             )}
           </div>
         )}

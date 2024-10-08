@@ -9,10 +9,16 @@ type AnimatedLinkProps = {
   href: string;
   children: React.ReactNode;
   className?: string;
+  as?: React.ElementType;
 };
 import useMediaQuery from "@/app/utils/hooks/useMediaQuery";
 
-const AnimatedLink = ({ href, children, className }: AnimatedLinkProps) => {
+const AnimatedLink = ({
+  href,
+  children,
+  className,
+  as: Component = "div",
+}: AnimatedLinkProps) => {
   const router = useRouter();
   const isMobile = useMediaQuery("(max-width: 768px)");
 
@@ -51,9 +57,12 @@ const AnimatedLink = ({ href, children, className }: AnimatedLinkProps) => {
   };
 
   return (
-    <div className={clsx("cursor-pointer", className)} onClick={handleClick}>
+    <Component
+      className={clsx("cursor-pointer", className)}
+      onClick={handleClick}
+    >
       {children}
-    </div>
+    </Component>
   );
 };
 

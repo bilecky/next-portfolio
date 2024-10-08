@@ -10,6 +10,8 @@ import {
   useTexture,
 } from "@react-three/drei";
 import * as THREE from "three";
+import { projects } from "@/app/data/data";
+import AnimatedLink from "@/app/utils/AnimatedLink";
 
 useGLTF.preload("/computer_monitor_low-poly/scene.gltf");
 
@@ -45,11 +47,20 @@ const ThreeModel = forwardRef<THREE.Group, ThreeModelProps>(
       >
         <Float floatIntensity={0.1} speed={1} rotationIntensity={1}>
           {/* Model 3D */}
-          <Detailed>
-            <group ref={ref} position={[0, 0, 0]} rotation={[0, 5, 0]}>
+          <AnimatedLink
+            as="group"
+            href={`/projects/${projects[currentProject].title}`}
+          >
+            <group
+              onPointerOut={(e) => (document.body.style.cursor = "default")}
+              onPointerOver={(e) => (document.body.style.cursor = "pointer")}
+              ref={ref}
+              position={[0, 0, 0]}
+              rotation={[0, 5, 0]}
+            >
               <primitive object={scene} scale={1.5} />
             </group>
-          </Detailed>
+          </AnimatedLink>
         </Float>
 
         {/* Scena HDR dla realistycznych odbić */}

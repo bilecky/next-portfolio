@@ -110,6 +110,11 @@ const ProjectCarousel = (props: projectCarouselProps) => {
     // console.log("klik");
 
     if (isMobile || !monitorModelRef.current) return;
+    singleProjectTl.set(monitorModelRef.current?.rotation, {
+      x: 0,
+      y: 5,
+      z: 0,
+    });
 
     singleProjectTl
       .to(monitorModelRef.current.rotation, {
