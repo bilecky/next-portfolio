@@ -6,22 +6,21 @@ import Splitter from "../../utils/Splitter";
 import gsap from "gsap";
 
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import SvgDot from "../../utils/SVGDots";
 import ProjectCarousel from "./ProjectCarousel";
 import {
   reuseSectionDescriptionAnimation,
   reuseTexTsplitterFn,
 } from "../../utils/ReusableGSAPAnimations";
-import AnimatedLink from "@/app/utils/AnimatedLink";
 import { Canvas } from "@react-three/fiber";
 import ThreeModel from "../3DModel/ThreeModel";
-import { Environment, OrbitControls } from "@react-three/drei";
+import { Loader, OrbitControls } from "@react-three/drei";
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 type Props = {};
 
 const Projects = (props: Props) => {
-  const [currentProject, setCurrentProject] = useState(0);
+  const [currentProject, setCurrentProject] = useState<number>(0);
+
   useGSAP(() => {
     const bgArea = gsap.timeline({
       scrollTrigger: {
@@ -101,21 +100,6 @@ const Projects = (props: Props) => {
       },
       0,
     );
-
-    // const dotsAppears = gsap.timeline({
-    //   scrollTrigger: {
-    //     trigger: ".projects", // Make sure this class exists on the element
-    //     start: "top 80%", // Rozpocznij, gdy górna krawędź sekcji dotknie dolnej krawędzi widoku
-    //     end: "bottom bottom",
-    //     scrub: 2, // Sync the animation with scrolling smoothly
-    //   },
-    // });
-
-    // dotsAppears.from(".svg-dots", {
-    //   opacity: 0,
-    //   x: 200,
-    //   duration: 3,
-    // });
   });
 
   return (
@@ -142,8 +126,9 @@ const Projects = (props: Props) => {
             <Suspense fallback={null}>
               <ThreeModel />
             </Suspense>
-            <OrbitControls autoRotate={true} maxZoom={1} />
+            {/* <OrbitControls /> */}
           </Canvas>
+          <Loader />
         </div>
 
         {/* <AnimatedLink href={`/projects/${projects[currentProject].title}`}>
@@ -162,7 +147,10 @@ const Projects = (props: Props) => {
         </AnimatedLink> */}
       </div>
 
-      <ProjectCarousel setSelectedProject={setCurrentProject} />
+      <ProjectCarousel
+        currentProject={currentProject}
+        setCurrentProject={setCurrentProject}
+      />
     </section>
   );
 };

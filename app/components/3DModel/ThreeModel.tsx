@@ -1,13 +1,17 @@
-import React, { useRef, useEffect } from "react";
+"use client";
+
+import React, { useRef } from "react";
 import {
   ContactShadows,
   Environment,
+  Float,
   Stage,
   useGLTF,
   useTexture,
 } from "@react-three/drei";
-import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
+
+useGLTF.preload("/computer_monitor_low-poly/scene.gltf");
 
 const ThreeModel = () => {
   const { scene, materials, nodes } = useGLTF(
@@ -33,10 +37,17 @@ const ThreeModel = () => {
       adjustCamera={true} // Automatyczne dostosowanie kamery
       preset="portrait" // Styl oświetlenia (inny to np. 'portrait' lub 'studio')
     >
-      {/* Model 3D */}
-      <group ref={groupRef} position={[0, 0, 0]} rotation={[0, 5, 0]} scale={3}>
-        <primitive object={scene} />
-      </group>
+      <Float>
+        {/* Model 3D */}
+        <group
+          ref={groupRef}
+          position={[0, 0, 0]}
+          rotation={[0, 5, 0]}
+          scale={3}
+        >
+          <primitive object={scene} />
+        </group>
+      </Float>
 
       {/* Cienie pod modelem */}
       <ContactShadows

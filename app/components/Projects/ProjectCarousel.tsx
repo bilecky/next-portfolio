@@ -12,14 +12,14 @@ import AnimatedLink from "@/app/utils/AnimatedLink";
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 type projectCarouselProps = {
-  setSelectedProject: (index: number) => void;
+  setCurrentProject: (index: number) => void;
+  currentProject: number;
 };
 
 const ProjectCarousel = (props: projectCarouselProps) => {
+  const { setCurrentProject, currentProject } = props;
   const isMobile = useMediaQuery("(max-width: 768px)");
 
-  const { setSelectedProject } = props;
-  const [currentProject, setCurrentProject] = useState<number>(0);
   const lineRef = React.useRef<HTMLDivElement>(null);
   const projectRefs = React.useRef<(HTMLDivElement | null)[]>([]);
 
@@ -98,8 +98,9 @@ const ProjectCarousel = (props: projectCarouselProps) => {
       y: projectRefs.current[currentProject]?.offsetTop || 0,
       ease: "power3.out",
     });
-
-    setSelectedProject(currentProject);
+    //TO DO WYJEBANIA PAWCIU BEDZIE CHYBA
+    // !!!!
+    // setCurrentProject(currentProject);
   }, [currentProject]);
 
   const handleProjectClick = (index: number) => {
@@ -119,8 +120,7 @@ const ProjectCarousel = (props: projectCarouselProps) => {
     //     x: 0,
     //     ease: "back.out",
     //   });
-
-    if (isMobile) return;
+    // if (isMobile) return;
   };
 
   return (
