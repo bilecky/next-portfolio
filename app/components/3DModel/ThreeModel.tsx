@@ -14,14 +14,11 @@ import * as THREE from "three";
 useGLTF.preload("/computer_monitor_low-poly/scene.gltf");
 
 const ThreeModel = () => {
-  const { scene, materials, nodes } = useGLTF(
-    "/computer_monitor_low-poly/scene.gltf",
-  );
+  const { scene, materials } = useGLTF("/computer_monitor_low-poly/scene.gltf");
   const groupRef = useRef<THREE.Group>(null!);
 
   // Ładowanie nowej tekstury na ekran
-  const newScreenTexture = useTexture("https://i.imgur.com/sD0Tepv.png");
-  console.log(nodes, materials);
+  const newScreenTexture = useTexture("/project3.png");
   // Przypisz teksturę do materiału ekranu (Material.005 w tym wypadku)
   if (materials["Material.001"]) {
     materials["Material.001"].emissiveMap = newScreenTexture; // Opcjonalnie dla efektu emisji

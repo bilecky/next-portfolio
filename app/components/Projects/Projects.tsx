@@ -1,6 +1,6 @@
 "use client";
 
-import React, { Suspense, useState } from "react";
+import React, { Suspense, useState, useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import Splitter from "../../utils/Splitter";
 import gsap from "gsap";
@@ -13,13 +13,19 @@ import {
 } from "../../utils/ReusableGSAPAnimations";
 import { Canvas } from "@react-three/fiber";
 import ThreeModel from "../3DModel/ThreeModel";
-import { Loader, OrbitControls } from "@react-three/drei";
+import { Loader } from "@react-three/drei";
+import { useInView } from "react-intersection-observer";
+
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 type Props = {};
 
 const Projects = (props: Props) => {
   const [currentProject, setCurrentProject] = useState<number>(0);
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
 
   useGSAP(() => {
     const bgArea = gsap.timeline({
@@ -121,14 +127,14 @@ const Projects = (props: Props) => {
           unknown printer took a galley of type and scrambled it to make a type
           specimen book."
         </p> */}
-        <div className="model3d h-[60vh] w-full">
-          <Canvas className="h-2xl w-2xl">
+        <div ref={ref} className="model3d h-[60vh] w-full">
+          {inView && (
             <Suspense fallback={null}>
-              <ThreeModel />
+              <Canvas className="h-2xl w-2xl">
+                <ThreeModel />
+              </Canvas>
             </Suspense>
-            {/* <OrbitControls /> */}
-          </Canvas>
-          <Loader />
+          )}
         </div>
 
         {/* <AnimatedLink href={`/projects/${projects[currentProject].title}`}>
