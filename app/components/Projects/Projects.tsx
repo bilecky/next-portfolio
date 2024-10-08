@@ -26,9 +26,9 @@ gsap.registerPlugin(useGSAP, ScrollTrigger);
 type Props = {};
 
 const Projects = (props: Props) => {
-  const [currentProject, setCurrentProject] = useState<number>(0);
   const monitorModelRef = useRef<THREE.Group>(null);
   const isMobile = useMediaQuery("(max-width: 768px)");
+  const [currentProject, setCurrentProject] = useState<number>(0);
 
   const [ref, inView] = useInView({
     triggerOnce: true,

@@ -100,9 +100,6 @@ const ProjectCarousel = (props: projectCarouselProps) => {
       y: projectRefs.current[currentProject]?.offsetTop || 0,
       ease: "power3.out",
     });
-    //TO DO WYJEBANIA PAWCIU BEDZIE CHYBA
-    // !!!!
-    // setCurrentProject(currentProject);
   }, [currentProject]);
 
   const handleProjectClick = (index: number) => {
@@ -153,7 +150,12 @@ const ProjectCarousel = (props: projectCarouselProps) => {
                 key={`project-${index}`}
                 href={`projects/${project.title}`}
               >
-                <h3 className="text-right text-4xl"> {project.title}</h3>
+                <h3
+                  onClick={() => setCurrentProject(index)}
+                  className="text-right text-4xl"
+                >
+                  {project.title}
+                </h3>
               </AnimatedLink>
             ) : (
               <h3 className="text-right text-4xl"> {project.title}</h3>
