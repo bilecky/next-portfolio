@@ -15,7 +15,6 @@ const About = () => {
         start: "top top",
         pinSpacing: false,
         pin: true,
-        anticipatePin: 1,
         scrub: 3,
       },
     });

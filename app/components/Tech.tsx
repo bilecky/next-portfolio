@@ -22,17 +22,6 @@ const reversedTechnologies = [...technologies].reverse();
 function Tech({}: Props) {
   // MAIN GSAP ANIMATIONS
   useGSAP(() => {
-    // gsap.timeline({
-    //   scrollTrigger: {
-    //     trigger: ".tech",
-    //     start: "top top", // Start pinning when Tech section hits the top of viewport
-    //     end: "bottom bottom", // Pin it until the next section enters
-    //     scrub: true,
-    //     pin: true, // Pin the Tech section
-    //     anticipatePin: 1,
-    //   },
-    // });
-
     const mainTechLine = gsap.timeline({
       scrollTrigger: {
         trigger: ".tech", // Make sure this class exists on the element
@@ -135,7 +124,7 @@ function Tech({}: Props) {
     <section className="tech relative -z-10 overflow-hidden py-28 text-background opacity-0">
       <div className="overview-wrapper container">
         <div className="overview relative ml-auto text-right text-mobile lg:w-3/5">
-          <h2 className="tech-header uppercase lg:text-section-header">
+          <h2 className="tech-header font-[family-name:var(--font-power-grotesk)] uppercase lg:text-section-header">
             <Splitter className="tech-text" text="TECH" />
           </h2>
 

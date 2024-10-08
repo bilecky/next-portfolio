@@ -2,7 +2,7 @@
 
 import React, { forwardRef } from "react";
 import {
-  ContactShadows,
+  Detailed,
   Environment,
   Float,
   Stage,
@@ -13,16 +13,19 @@ import * as THREE from "three";
 
 useGLTF.preload("/computer_monitor_low-poly/scene.gltf");
 
-type ThreeModelProps = {};
+type ThreeModelProps = {
+  currentProject: number;
+};
 
 const ThreeModel = forwardRef<THREE.Group, ThreeModelProps>(
   (props: ThreeModelProps, ref) => {
+    const { currentProject } = props;
     const { scene, materials } = useGLTF(
       "/computer_monitor_low-poly/scene.gltf",
     );
 
     // Ładowanie nowej tekstury na ekran
-    const newScreenTexture = useTexture("/project5.png");
+    const newScreenTexture = useTexture(`/project-${currentProject}.png`);
     // Przypisz teksturę do materiału ekranu (Material.005 w tym wypadku)
     if (materials["Material.001"]) {
       materials["Material.001"].map = newScreenTexture;
@@ -42,9 +45,11 @@ const ThreeModel = forwardRef<THREE.Group, ThreeModelProps>(
       >
         <Float floatIntensity={0.1} speed={1} rotationIntensity={1}>
           {/* Model 3D */}
-          <group ref={ref} rotation={[0, 5, 0]}>
-            <primitive object={scene} scale={1.7} />
-          </group>
+          <Detailed>
+            <group ref={ref} position={[0, 0, 0]} rotation={[0, 5, 0]}>
+              <primitive object={scene} scale={1.5} />
+            </group>
+          </Detailed>
         </Float>
 
         {/* Scena HDR dla realistycznych odbić */}

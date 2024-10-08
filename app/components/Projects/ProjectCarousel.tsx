@@ -19,7 +19,7 @@ type projectCarouselProps = {
 };
 
 const ProjectCarousel = (props: projectCarouselProps) => {
-  const { setCurrentProject, currentProject } = props;
+  const { setCurrentProject, currentProject, monitorModelRef } = props;
   const isMobile = useMediaQuery("(max-width: 768px)");
 
   const lineRef = useRef<HTMLDivElement>(null);
@@ -106,23 +106,21 @@ const ProjectCarousel = (props: projectCarouselProps) => {
   }, [currentProject]);
 
   const handleProjectClick = (index: number) => {
-    // const singleProjectTl = gsap.timeline();
+    const singleProjectTl = gsap.timeline();
     // console.log("klik");
-    // singleProjectTl
-    //   .to(".project_details", {
-    //     duration: 0.4,
-    //     opacity: 0,
-    //     x: -150,
-    //     ease: "back.out",
-    //   })
-    //   .set({}, { onComplete: () => setCurrentProject(index) })
-    //   .to(".project_details", {
-    //     duration: 0.4,
-    //     opacity: 1,
-    //     x: 0,
-    //     ease: "back.out",
-    //   });
-    // if (isMobile) return;
+
+    if (isMobile || !monitorModelRef.current) return;
+
+    singleProjectTl
+      .to(monitorModelRef.current.rotation, {
+        y:
+          index > currentProject
+            ? `-=${Math.PI * 2 * 2}`
+            : `+=${Math.PI * 2 * 2}`,
+        duration: 1,
+        ease: "power2.inOut",
+      })
+      .to({}, { onStart: () => setCurrentProject(index) }, "-=.7");
   };
 
   return (

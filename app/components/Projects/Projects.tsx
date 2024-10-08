@@ -16,6 +16,10 @@ import ThreeModel from "../3DModel/ThreeModel";
 import { Loader } from "@react-three/drei";
 import { useInView } from "react-intersection-observer";
 import * as THREE from "three";
+import { is } from "@react-three/fiber/dist/declarations/src/core/utils";
+import useMediaQuery from "@/app/utils/hooks/useMediaQuery";
+import AnimatedLink from "@/app/utils/AnimatedLink";
+import { projects } from "@/app/data/data";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -24,6 +28,7 @@ type Props = {};
 const Projects = (props: Props) => {
   const [currentProject, setCurrentProject] = useState<number>(0);
   const monitorModelRef = useRef<THREE.Group>(null);
+  const isMobile = useMediaQuery("(max-width: 768px)");
 
   const [ref, inView] = useInView({
     triggerOnce: true,
@@ -53,7 +58,7 @@ const Projects = (props: Props) => {
       },
     );
 
-    const textArea = gsap.timeline({
+    const leftSectionArea = gsap.timeline({
       scrollTrigger: {
         trigger: ".projects", // Make sure this class exists on the element
         start: "top center", // Rozpocznij, gdy górna krawędź sekcji dotknie dolnej krawędzi widoku
@@ -61,20 +66,25 @@ const Projects = (props: Props) => {
         scrub: 3, // Sync the animation with scrolling smoothly
       },
     });
-    textArea.set(".projects", { opacity: 1 });
+    leftSectionArea.set(".projects", { opacity: 1 });
 
     reuseTexTsplitterFn({
-      timeline: textArea,
+      timeline: leftSectionArea,
       selector: ".header-text",
       options: { stagger: 1 },
     });
 
     reuseSectionDescriptionAnimation({
-      timeline: textArea,
+      timeline: leftSectionArea,
       selector: ".projects-description",
       options: {
         stagger: 1,
       },
+    });
+    leftSectionArea.from(".model3d", {
+      opacity: 0,
+      ease: "back.out",
+      duration: 10,
     });
 
     // textArea.from(".project_details", {
@@ -112,7 +122,7 @@ const Projects = (props: Props) => {
   });
 
   return (
-    <section className="projects container h-full text-background opacity-0 md:py-28 xl:flex xl:flex-row">
+    <section className="projects container relative h-full text-background opacity-0 md:py-28 xl:flex xl:flex-row">
       <div className="overview xl:w-3/5">
         <h2 className="projects-header font-[family-name:var(--font-power-grotesk)] text-mobile uppercase leading-none lg:text-section-header">
           <Splitter className="header-text" text="Projects" />
@@ -130,18 +140,26 @@ const Projects = (props: Props) => {
           unknown printer took a galley of type and scrambled it to make a type
           specimen book."
         </p> */}
-        <div ref={ref} className="model3d h-[60vh] w-full overflow-visible">
-          {inView && (
-            <>
-              <Suspense fallback={null}>
-                <Canvas>
-                  <ThreeModel ref={monitorModelRef} />
-                </Canvas>
-              </Suspense>
-              <Loader />
-            </>
-          )}
-        </div>
+        {!isMobile && (
+          <div ref={ref} className="model3d relative h-[55vh] w-full">
+            {inView && (
+              <AnimatedLink
+                href={`/projects/${projects[currentProject].title}`}
+                className="absolute h-[65vh] w-[50vw]"
+              >
+                <Suspense fallback={null}>
+                  <Canvas>
+                    <ThreeModel
+                      ref={monitorModelRef}
+                      currentProject={currentProject}
+                    />
+                  </Canvas>
+                </Suspense>
+                <Loader />
+              </AnimatedLink>
+            )}
+          </div>
+        )}
 
         {/* <AnimatedLink href={`/projects/${projects[currentProject].title}`}>
           <div className="project_details mt-auto hidden max-w-full overflow-hidden rounded-lg bg-white shadow-lg xl:block">
