@@ -8,20 +8,22 @@ import gsap from "gsap";
 import clsx from "clsx";
 import useMediaQuery from "@/app/utils/hooks/useMediaQuery";
 import AnimatedLink from "@/app/utils/AnimatedLink";
+import { Group } from "three";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 type projectCarouselProps = {
   setCurrentProject: (index: number) => void;
   currentProject: number;
+  monitorModelRef: React.MutableRefObject<Group | null>;
 };
 
 const ProjectCarousel = (props: projectCarouselProps) => {
   const { setCurrentProject, currentProject } = props;
   const isMobile = useMediaQuery("(max-width: 768px)");
 
-  const lineRef = React.useRef<HTMLDivElement>(null);
-  const projectRefs = React.useRef<(HTMLDivElement | null)[]>([]);
+  const lineRef = useRef<HTMLDivElement>(null);
+  const projectRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   const setProjectRef = (ref: HTMLDivElement | null, index: number) => {
     if (projectRefs.current) {

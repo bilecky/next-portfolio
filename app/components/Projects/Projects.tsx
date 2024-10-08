@@ -15,6 +15,7 @@ import { Canvas } from "@react-three/fiber";
 import ThreeModel from "../3DModel/ThreeModel";
 import { Loader } from "@react-three/drei";
 import { useInView } from "react-intersection-observer";
+import * as THREE from "three";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -22,6 +23,8 @@ type Props = {};
 
 const Projects = (props: Props) => {
   const [currentProject, setCurrentProject] = useState<number>(0);
+  const monitorModelRef = useRef<THREE.Group>(null);
+
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
@@ -74,11 +77,11 @@ const Projects = (props: Props) => {
       },
     });
 
-    textArea.from(".project_details", {
-      opacity: 0,
-      ease: "back.out",
-      duration: 10,
-    });
+    // textArea.from(".project_details", {
+    //   opacity: 0,
+    //   ease: "back.out",
+    //   duration: 10,
+    // });
 
     const herodissapear = gsap.timeline({
       scrollTrigger: {
@@ -115,7 +118,7 @@ const Projects = (props: Props) => {
           <Splitter className="header-text" text="Projects" />
         </h2>
 
-        <p className="projects-description text-sm lg:text-xl">
+        <p className="projects-description py-4 text-sm lg:text-xl">
           Lorem Ipsum is simply dummy text of the printing and typesetting
           industry. Lorem Ipsum has been the industry's standard dummy text ever
           since the 1500s, when an unknown printer took a galley of type and
@@ -127,13 +130,16 @@ const Projects = (props: Props) => {
           unknown printer took a galley of type and scrambled it to make a type
           specimen book."
         </p> */}
-        <div ref={ref} className="model3d h-[60vh] w-full">
+        <div ref={ref} className="model3d h-[60vh] w-full overflow-visible">
           {inView && (
-            <Suspense fallback={null}>
-              <Canvas className="h-2xl w-2xl">
-                <ThreeModel />
-              </Canvas>
-            </Suspense>
+            <>
+              <Suspense fallback={null}>
+                <Canvas>
+                  <ThreeModel ref={monitorModelRef} />
+                </Canvas>
+              </Suspense>
+              <Loader />
+            </>
           )}
         </div>
 
@@ -154,6 +160,7 @@ const Projects = (props: Props) => {
       </div>
 
       <ProjectCarousel
+        monitorModelRef={monitorModelRef}
         currentProject={currentProject}
         setCurrentProject={setCurrentProject}
       />
