@@ -11,7 +11,7 @@ type PageTransitionProps = {
 gsap.registerPlugin(useGSAP);
 
 const PageTransition = ({ children }: PageTransitionProps) => {
-  const transitionRef = useRef(null);
+  const transitionRef = useRef<HTMLDivElement | null>(null);
 
   useGSAP(() => {
     const pageTl = gsap.timeline();

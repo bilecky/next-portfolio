@@ -148,7 +148,7 @@ const ProjectCarousel = (props: projectCarouselProps) => {
             {isMobile ? (
               <AnimatedLink
                 key={`project-${index}`}
-                href={`projects/${project.title}`}
+                href={`projects/${project.id}`}
               >
                 <h3
                   onClick={() => setCurrentProject(index)}

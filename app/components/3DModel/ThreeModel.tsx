@@ -41,7 +41,7 @@ const ThreeModel = forwardRef<THREE.Group, ThreeModelProps>(
     return (
       <Stage
         adjustCamera={false}
-        intensity={0.5}
+        intensity={0.1}
         shadows="contact"
         environment="city"
       >
@@ -49,7 +49,7 @@ const ThreeModel = forwardRef<THREE.Group, ThreeModelProps>(
           {/* Model 3D */}
           <AnimatedLink
             as="group"
-            href={`/projects/${projects[currentProject].title}`}
+            href={`/projects/${projects[currentProject].id}`}
           >
             <group
               onPointerOut={(e) => (document.body.style.cursor = "default")}
@@ -58,13 +58,10 @@ const ThreeModel = forwardRef<THREE.Group, ThreeModelProps>(
               position={[0, 0, 0]}
               rotation={[0, 5, 0]}
             >
-              <primitive object={scene} scale={1.5} />
+              <primitive object={scene} scale={1.2} />
             </group>
           </AnimatedLink>
         </Float>
-
-        {/* Scena HDR dla realistycznych odbić */}
-        <Environment preset="lobby" />
       </Stage>
     );
   },

@@ -9,13 +9,14 @@ gsap.registerPlugin(useGSAP);
 
 type ProjectPageProps = {
   params: {
+    id: number;
     name: string;
   };
 };
 
 export default function ProjectPage({ params }: ProjectPageProps) {
   const pageRef = useRef<HTMLDivElement>(null);
-
+  console.log(params);
   useGSAP(
     () => {
       if (!pageRef.current) return;
@@ -40,8 +41,6 @@ export default function ProjectPage({ params }: ProjectPageProps) {
     { scope: pageRef },
   );
 
-  console.log(params);
-
   return (
     <PageTransition>
       <div
@@ -49,7 +48,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
         ref={pageRef}
       >
         <h1 className="font-[family-name:var(--font-geist-sans)] text-6xl font-extralight uppercase text-mainFontColor md:text-[6rem] lg:text-[8rem] 2xl:text-[10rem]">
-          Project {params.name}
+          Project {}
         </h1>
         {/* Reszta zawartości strony projektu */}
       </div>

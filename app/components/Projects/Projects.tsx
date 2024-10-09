@@ -122,7 +122,7 @@ const Projects = (props: Props) => {
   });
 
   return (
-    <section className="projects container relative h-full text-background opacity-0 md:py-28 xl:flex xl:flex-row">
+    <section className="projects container relative z-10 text-background opacity-0 md:py-28 xl:flex xl:flex-row">
       <div className="overview xl:w-3/5">
         <h2 className="projects-header font-[family-name:var(--font-power-grotesk)] text-mobile uppercase leading-none lg:text-section-header">
           <Splitter className="header-text" text="Projects" />
@@ -141,9 +141,12 @@ const Projects = (props: Props) => {
           specimen book."
         </p> */}
         {!isMobile && (
-          <div ref={ref} className="model3d relative h-[55vh] w-full">
+          <div
+            ref={ref}
+            className="model3d relative h-[55vh] w-full overflow-visible"
+          >
             {inView && (
-              <div className="absolute -bottom-32 h-[80vh] w-full">
+              <div className="absolute -bottom-24 z-50 h-[80vh] w-[50vw] overflow-visible 2xl:-bottom-72 2xl:h-[105vh]">
                 <Suspense fallback={null}>
                   <Canvas>
                     <ThreeModel
