@@ -19,7 +19,7 @@ const Hero = (props: Props) => {
       // we're taking header section from HEADER component to be opacity like others from hero section
       .set([".hero", ".header"], { opacity: 1, duration: 1 })
       .from(".black-overlay", {
-        duration: 1,
+        duration: 1.3,
         yPercent: -100,
         ease: "power2.inOut",
       })
@@ -33,7 +33,7 @@ const Hero = (props: Props) => {
           ease: "expo.out",
           duration: 1,
         },
-        "-=0.3",
+        "-=0.5",
       )
       .from(".main-header", { opacity: 0, y: 20, duration: 0.5 }, "-=0.7")
       .from(".subheader", { opacity: 0, y: 20, duration: 0.5 }, "-=0.5")

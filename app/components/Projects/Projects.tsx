@@ -143,7 +143,7 @@ const Projects = (props: Props) => {
         {!isMobile && (
           <div ref={ref} className="model3d relative h-[55vh] w-full">
             {inView && (
-              <div className="absolute -bottom-24 h-[75vh] w-full overflow-hidden">
+              <div className="absolute -bottom-32 h-[80vh] w-full">
                 <Suspense fallback={null}>
                   <Canvas>
                     <ThreeModel
@@ -154,7 +154,7 @@ const Projects = (props: Props) => {
                 </Suspense>
                 <Loader />
               </div>
-            )}
+            )}{" "}
           </div>
         )}
 

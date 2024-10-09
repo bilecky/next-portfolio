@@ -8,7 +8,7 @@ import Contact from "./components/Contact";
 export default function Home() {
   return (
     <main className="">
-      <div className="scroll-area w-full overflow-x-hidden">
+      <div className="scroll-area relative w-full overflow-hidden">
         <Hero />
         <Projects />
       </div>

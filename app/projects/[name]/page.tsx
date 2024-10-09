@@ -24,14 +24,18 @@ export default function ProjectPage({ params }: ProjectPageProps) {
 
       projectTl.set(pageRef.current, { opacity: 1 });
 
-      projectTl.from(pageRef.current.children, {
-        duration: 0.5,
-        y: 250,
-        opacity: 0,
-        delay: 0.5,
-        stagger: 0.1,
-        ease: "power2.out",
-      });
+      projectTl.from(
+        pageRef.current.children,
+        {
+          duration: 0.5,
+          y: 250,
+          opacity: 0,
+          delay: 0.5,
+          stagger: 0.1,
+          ease: "power2.out",
+        },
+        "+=0.1",
+      );
     },
     { scope: pageRef },
   );
