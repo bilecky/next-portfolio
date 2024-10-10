@@ -4,6 +4,7 @@ import React from "react";
 import { useGSAP } from "@gsap/react";
 import Splitter from "../utils/Splitter";
 import gsap from "gsap";
+import { reuseHeaderLineAnimation } from "../utils/ReusableGSAPAnimations";
 
 gsap.registerPlugin(useGSAP);
 
@@ -18,6 +19,7 @@ const Hero = (props: Props) => {
     introTl
       // we're taking header section from HEADER component to be opacity like others from hero section
       .set([".hero", ".header"], { opacity: 1, duration: 1 })
+
       .from(".black-overlay", {
         duration: 1.3,
         yPercent: -100,
@@ -50,13 +52,19 @@ const Hero = (props: Props) => {
         duration: 0.4,
         stagger: 0.3,
         ease: "power2.out",
-      });
+      })
+      .to(
+        {},
+        {
+          onStart: reuseHeaderLineAnimation,
+        },
+      );
   });
 
   return (
     <section className="hero container flex w-full flex-col py-32 font-[family-name:var(--font-geist-sans)] text-mainFontColor opacity-0 md:h-screen md:flex-row-reverse md:items-end lg:flex">
       <div className="white-overlay opacity-1 absolute inset-0 z-0 bg-secondBackground"></div>
-      <div className="black-overlay z-1 absolute inset-0"></div>
+      <div className="black-overlay absolute inset-0"></div>
       {/* ABOUT SECTION */}
       <div className="section-left relative z-0 lg:w-[30%] lg:text-right">
         <h1 className="gsap-group-hero main-header mb-3 text-xl uppercase">

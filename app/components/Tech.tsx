@@ -56,69 +56,60 @@ function Tech({}: Props) {
 
   //TECHNOLOGIES GSAP ANIMATONS
 
-  useGSAP(
-    () => {
-      // Tworzenie pętli dla marquee
-      const tlMarqueLoop = horizontalLoop(".tech-item", {
-        speed: 1,
-        repeat: -1,
-      });
-      const tlMarqueReverseLoop = horizontalLoop(".tech-item-reverse", {
-        repeat: -1,
-        reversed: true,
-        speed: 1,
-      });
+  useGSAP(() => {
+    // Tworzenie pętli dla marquee
+    const tlMarqueLoop = horizontalLoop(".tech-item", {
+      speed: 1,
+      repeat: -1,
+    });
+    const tlMarqueReverseLoop = horizontalLoop(".tech-item-reverse", {
+      repeat: -1,
+      reversed: true,
+      speed: 1,
+    });
 
-      Observer.create({
-        target: window,
-        type: "wheel, touch",
-        onChangeY(self) {
-          let factor = 1.5;
-          if (self.deltaY < 0) {
-            factor *= -1; // Analogicznie, dla marqueeReverse
-          }
+    Observer.create({
+      target: window,
+      type: "wheel, touch",
+      onChangeY(self) {
+        let factor = 1.5;
+        if (self.deltaY < 0) {
+          factor *= -1; // Analogicznie, dla marqueeReverse
+        }
 
-          gsap
-            .timeline({ defaults: { ease: "none" } })
-            .to(tlMarqueLoop, {
-              timeScale: factor * 2.5,
-              duration: 0.5,
-            }) // Ujemny factor dla odwróconego loopa
-            .to(
-              tlMarqueLoop,
-              { timeScale: factor / 2.5, duration: 1 },
-              "+=0.3",
-            );
-        },
-      });
+        gsap
+          .timeline({ defaults: { ease: "none" } })
+          .to(tlMarqueLoop, {
+            timeScale: factor * 2.5,
+            duration: 0.5,
+          }) // Ujemny factor dla odwróconego loopa
+          .to(tlMarqueLoop, { timeScale: factor / 2.5, duration: 1 }, "+=0.3");
+      },
+    });
 
-      Observer.create({
-        target: window,
-        type: "wheel, touch",
-        onChangeY(self) {
-          let factor = 1.5;
-          if (self.deltaY < 0) {
-            factor *= -1; // Analogicznie, dla marqueeReverse
-          }
+    Observer.create({
+      target: window,
+      type: "wheel, touch",
+      onChangeY(self) {
+        let factor = 1.5;
+        if (self.deltaY < 0) {
+          factor *= -1; // Analogicznie, dla marqueeReverse
+        }
 
-          gsap
-            .timeline({ defaults: { ease: "none" } })
-            .to(tlMarqueReverseLoop, {
-              timeScale: -factor * 2.5,
-              duration: 0.5,
-            }) // Ujemny factor dla odwróconego loopa
-            .to(
-              tlMarqueReverseLoop,
-              { timeScale: -factor / 2.5, duration: 1 },
-              "+=0.3",
-            );
-        },
-      });
-    },
-    {
-      scope: ".tech",
-    },
-  );
+        gsap
+          .timeline({ defaults: { ease: "none" } })
+          .to(tlMarqueReverseLoop, {
+            timeScale: -factor * 2.5,
+            duration: 0.5,
+          }) // Ujemny factor dla odwróconego loopa
+          .to(
+            tlMarqueReverseLoop,
+            { timeScale: -factor / 2.5, duration: 1 },
+            "+=0.3",
+          );
+      },
+    });
+  });
 
   return (
     <section className="tech relative -z-10 overflow-hidden py-28 text-background opacity-0">

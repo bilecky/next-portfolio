@@ -146,7 +146,7 @@ const Projects = (props: Props) => {
             className="model3d relative h-[55vh] w-full overflow-visible"
           >
             {inView && (
-              <div className="absolute -bottom-24 z-50 h-[80vh] w-[50vw] overflow-visible 2xl:-bottom-72 2xl:h-[105vh]">
+              <div className="absolute -bottom-24 z-50 h-[80vh] w-[110%] overflow-visible 2xl:-bottom-72 2xl:h-[105vh]">
                 <Suspense fallback={null}>
                   <Canvas>
                     <ThreeModel

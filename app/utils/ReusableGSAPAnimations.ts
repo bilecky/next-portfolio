@@ -30,3 +30,15 @@ export const reuseSectionDescriptionAnimation = ({
 
   timeline.from(selector, { ...defaultOptions, ...options });
 };
+
+export const reuseHeaderLineAnimation = () => {
+  gsap.to(".pulse-line", {
+    boxShadow: "0 0 13px 6px rgba(255, 255, 255, 0.6)",
+    opacity: 0.8,
+    duration: 1.8,
+    repeat: -1,
+    yoyo: true,
+    ease: "circ.out",
+    repeatDelay: 0.4,
+  });
+};

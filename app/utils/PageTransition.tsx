@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import { reuseHeaderLineAnimation } from "./ReusableGSAPAnimations";
 
 type PageTransitionProps = {
   children: React.ReactNode;
@@ -32,7 +33,13 @@ const PageTransition = ({ children }: PageTransitionProps) => {
         duration: 0.4,
         stagger: 0.3,
         ease: "power2.out",
-      });
+      })
+      .to(
+        {},
+        {
+          onStart: reuseHeaderLineAnimation,
+        },
+      );
   });
 
   return (
