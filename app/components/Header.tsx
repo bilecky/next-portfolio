@@ -1,64 +1,57 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { RiLinkedinFill, RiTwitterXFill } from "react-icons/ri";
 import { gsap } from "gsap";
+import { useGSAP } from "@gsap/react";
 
 const Header = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
   const menuRef = useRef<HTMLDivElement | null>(null);
-  const buttonRef = useRef<HTMLButtonElement | null>(null); // Zmieniono na HTMLButtonElement
+  const menuContainerRef = useRef<HTMLDivElement | null>(null);
 
-  gsap.set(menuRef.current, { height: "0px" });
+  useGSAP(() => {
+    gsap.set(menuRef.current, { height: 0, opacity: 0 });
+    const closeMenu = (e: MouseEvent) => {
+      if (!menuContainerRef.current) return;
 
-  const closeMenu = () => {
+      if (!menuContainerRef.current.contains(e.target as Node)) {
+        setIsOpen(false);
+        gsap.to(menuRef.current, {
+          height: 0,
+          opacity: 0,
+          duration: 0.4,
+          ease: "power3.out",
+        });
+      }
+    };
+
+    document.addEventListener("click", closeMenu);
+  }, []);
+
+  const handleToggle = () => {
     if (!menuRef.current) return;
-    gsap.to(menuRef.current, {
-      height: "0px",
-      duration: 0.4,
-      ease: "power3.out",
-    });
-    menuRef.current.classList.remove("visible");
-  };
+    setIsOpen(!isOpen);
+    console.log(isOpen);
 
-  const handleClick = () => {
-    // Użyj GSAP do animacji
-    if (!menuRef.current) return;
-
-    const isVisible = menuRef.current.classList.contains("visible");
-
-    if (!isVisible) {
+    if (!isOpen) {
       gsap.to(menuRef.current, {
         height: "200px",
+        opacity: 1,
         duration: 0.8,
-        ease: "back.out(3, .7)",
+        ease: "back.out(1.7)",
       });
-      menuRef.current.classList.add("visible");
     } else {
-      closeMenu();
+      gsap.to(menuRef.current, {
+        height: 0,
+        opacity: 0,
+        duration: 0.4,
+        ease: "power3.out",
+      });
     }
   };
-
-  const handleOutsideClick = (event: MouseEvent) => {
-    if (
-      menuRef.current &&
-      !menuRef.current.contains(event.target as Node) &&
-      buttonRef.current &&
-      !buttonRef.current.contains(event.target as Node)
-    ) {
-      closeMenu();
-    }
-  };
-
-  useEffect(() => {
-    // Dodaj listener na kliknięcia
-    document.addEventListener("mousedown", handleOutsideClick);
-
-    // Usuń listener przy demontażu komponentu
-    return () => {
-      document.removeEventListener("mousedown", handleOutsideClick);
-    };
-  }, []);
 
   return (
     <header className="header bg-white-800 container absolute left-0 right-0 z-20 flex w-full items-center justify-between py-5 text-mainFontColor opacity-0">
@@ -74,17 +67,24 @@ const Header = () => {
         </Link>
       </div>
 
-      <button
-        ref={buttonRef}
-        onClick={handleClick}
-        className="white-line relative mx-4 w-[30%] cursor-pointer p-5"
+      <div
+        ref={menuContainerRef}
+        className="white-line-container relative mx-4 w-[30%]"
       >
-        <div className="pulse-line h-[2px] w-full bg-white"></div>
+        <button
+          aria-label="Otwórz menu"
+          type="button"
+          onClick={handleToggle}
+          className="white-line relative block w-full cursor-pointer p-5"
+        >
+          <div className="pulse-line h-[2px] w-full bg-white opacity-95"></div>
+        </button>
+
         <div
           ref={menuRef}
-          className="menu-container absolute left-0 top-10 w-full rounded-lg bg-white opacity-95"
+          className="menu-container absolute left-0 right-0 top-10 w-full rounded-lg bg-white"
         ></div>
-      </button>
+      </div>
       <nav className="header-nav">
         <ul className="flex space-x-6">
           <li>

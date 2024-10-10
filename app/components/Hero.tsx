@@ -45,7 +45,10 @@ const Hero = (props: Props) => {
         "-=0.3",
       )
       .from(".logo", { opacity: 0, y: -50, duration: 0.4 })
-      .from(".white-line", { width: 0, duration: 0.5 })
+      .from(".white-line", {
+        scaleX: 0,
+        duration: 0.5,
+      })
       .from(".header-nav li", {
         opacity: 0,
         y: -50,
