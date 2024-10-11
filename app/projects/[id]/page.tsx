@@ -8,8 +8,9 @@ import { projects } from "@/app/data/data";
 import Image from "next/image";
 import { RiGithubFill } from "react-icons/ri";
 import Splitter from "@/app/utils/Splitter";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-gsap.registerPlugin(useGSAP);
+gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 type ProjectPageProps = {
   params: {
@@ -88,12 +89,53 @@ export default function ProjectPage({ params }: ProjectPageProps) {
     });
   });
   useGSAP(() => {
+    const whiteLine = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".projects_screens", // Make sure this class exists on the element
+        start: "top top", // Rozpocznij, gdy górna krawędź sekcji dotknie dolnej krawędzi widoku
+        end: "bottom bottom",
+        scrub: 3, // Sync the animation with scrolling smoothly,
+      },
+    });
+    whiteLine.from(".horizontal_line", {
+      xPercent: -100,
+      opacity: 0,
+      duration: 1,
+      ease: "power2.inOut",
+    });
+
     const descriptionTl = gsap.timeline({
       scrollTrigger: {
-        trigger: ".description-wrapper",
+        trigger: ".splitted-description",
         start: "top bottom",
-        scrub: 3,
+        end: "top 45%",
+        scrub: 3, // Mniej intensywny scrub
       },
+    });
+
+    descriptionTl.to(".splitted-description .split-char", {
+      color: "#FBFCF8",
+      stagger: 0.2, // Mniejsza wartość stagger
+      duration: 1.5,
+      ease: "power2.inOut",
+    });
+
+    const techTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".description_wrapper ",
+        start: "top 85%", // animacja rozpocznie się, gdy górna część elementu docelowego (w tym przypadku .project_details) osiągnie 90% wysokości widoku (viewportu).
+        end: "bottom bottom", // Animacja kończy się na dolnej krawędzi strony
+        scrub: 3, // Mniej intensywny scrub
+      },
+    });
+
+    techTl.from(".technology_item", {
+      opacity: 0,
+      stagger: 2,
+      duration: 2.5,
+      ease: "power2.inOut",
+      scale: 0,
+      transformOrigin: "left center",
     });
   });
 
@@ -105,7 +147,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
         </h1>
         <div
           ref={containerRef}
-          className="projects-screens flex h-[70vh] w-full flex-col lg:flex-row"
+          className="projects_screens flex h-[70vh] w-full flex-col lg:flex-row"
         >
           {projects.map((item, index) => (
             <div
@@ -114,7 +156,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
               className="image-item relative cursor-zoom-in overflow-hidden border-[4px] border-background"
               // className="image-item relative h-full cursor-zoom-in overflow-hidden border-[1px] grayscale transition-all duration-500 ease-in-out hover:grayscale-0"
             >
-              <div className="item-overlay absolute inset-0 z-10 bg-background bg-opacity-20 grayscale-[80%] backdrop-blur-[2px] transition-all duration-1000 ease-in-out hover:grayscale-0 hover:backdrop-blur-0"></div>
+              <div className="item_overlay absolute inset-0 z-10 bg-background bg-opacity-20 grayscale-[80%] backdrop-blur-[2px] transition-all duration-1000 ease-in-out hover:grayscale-0 hover:backdrop-blur-0"></div>
               <Image
                 src={item.image}
                 alt={`Image ${index + 1}`}
@@ -124,9 +166,9 @@ export default function ProjectPage({ params }: ProjectPageProps) {
             </div>
           ))}
         </div>
-        <div className="line my-20 h-1 w-1/2 bg-gradient-to-r from-white to-transparent"></div>
+        <div className="horizontal_line my-20 h-1 w-1/2 bg-gradient-to-r from-white to-transparent"></div>
         <div className="description container px-2 xl:max-w-screen-xl">
-          <div className="description-wrapper grid gap-14 xl:grid-cols-[5fr_2fr] xl:gap-24">
+          <div className="description_wrapper grid gap-14 xl:grid-cols-[5fr_2fr] xl:gap-24">
             <div className="description_section__left">
               <h2 className="description_title py-2 text-xl text-gray-400">
                 _description
@@ -137,7 +179,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
                   text={projects[paramsProject - 1].description}
                 />
               </p>
-              <div className="button-wrapper inline-block pt-10">
+              <div className="button_wrapper inline-block pt-10">
                 <a
                   href="https://github.com" // Podaj odpowiedni adres URL
                   className="borer-2 flex transform cursor-pointer items-center rounded-sm border-2 border-mainFontColor border-opacity-30 bg-transparent px-6 py-4 text-mainFontColor transition-transform duration-300 hover:translate-y-[-4px] hover:text-mainFontColor"
@@ -152,12 +194,12 @@ export default function ProjectPage({ params }: ProjectPageProps) {
               <h2 className="description_title py-2 text-xl text-gray-400">
                 _tech stack
               </h2>
-              <ul className="flex flex-wrap items-start gap-5 pt-5 xl:flex-col">
+              <ul className="technology_wrapper flex flex-wrap items-start gap-5 pt-5 xl:flex-col">
                 {projects[paramsProject - 1].technologiesUsed.map(
                   (item, index) => (
                     <li
                       key={index + "-tech"}
-                      className="description_text whitespace-nowrap rounded-3xl border-[1px] border-mainFontColor border-opacity-30 px-5 py-1 text-center text-lg text-mainFontColor"
+                      className="technology_item description_text whitespace-nowrap rounded-3xl border-[1px] border-mainFontColor border-opacity-30 px-5 py-1 text-center text-lg text-mainFontColor"
                     >
                       {item}
                     </li>
