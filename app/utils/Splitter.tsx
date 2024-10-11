@@ -1,29 +1,35 @@
 import clsx from "clsx";
 import React from "react";
 
-type Props = { text: string; className?: string; splitType?: string };
+type Props = { text: string; className?: string };
 
 function Splitter(props: Props) {
-  const { text, className, splitType = "" } = props;
+  const { text, className } = props;
 
   if (!text) {
-    return;
+    return null;
   }
 
-  const characters = text.split(splitType);
+  const words = text.split(" ");
 
   return (
     <>
-      {characters.map((character, index) => {
-        return (
-          <span
-            key={index}
-            className={clsx("split-char inline-block", className)}
-          >
-            {character === " " ? "\u00A0" : character}
-          </span>
-        );
-      })}
+      {words.map((word, index) => (
+        <span
+          key={index}
+          className={clsx("split-word", className)}
+          style={{ whiteSpace: "nowrap" }}
+        >
+          {Array.from(word).map((character, charIndex) => (
+            <span key={charIndex} className="split-char inline-block">
+              {character}
+            </span>
+          ))}
+          {index < words.length - 1 && (
+            <span className="split-char inline-block">{"\u00A0"}</span>
+          )}
+        </span>
+      ))}
     </>
   );
 }

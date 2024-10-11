@@ -34,7 +34,7 @@ function Tech({}: Props) {
 
     reuseTexTsplitterFn({
       timeline: mainTechLine,
-      selector: ".tech-text",
+      selector: ".tech-text .split-char",
       options: { stagger: -1 },
     });
 

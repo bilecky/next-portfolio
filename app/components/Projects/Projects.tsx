@@ -70,7 +70,7 @@ const Projects = (props: Props) => {
 
     reuseTexTsplitterFn({
       timeline: leftSectionArea,
-      selector: ".header-text",
+      selector: ".header-text .split-char",
       options: { stagger: 1 },
     });
 

@@ -5,8 +5,9 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import PageTransition from "@/app/utils/PageTransition";
 import { projects } from "@/app/data/data";
-import { useParams } from "next/navigation";
 import Image from "next/image";
+import { RiGithubFill } from "react-icons/ri";
+import Splitter from "@/app/utils/Splitter";
 
 gsap.registerPlugin(useGSAP);
 
@@ -125,14 +126,26 @@ export default function ProjectPage({ params }: ProjectPageProps) {
         </div>
         <div className="line my-20 h-1 w-1/2 bg-gradient-to-r from-white to-transparent"></div>
         <div className="description container px-2 xl:max-w-screen-xl">
-          <div className="description-wrapper gap-24 xl:grid xl:grid-cols-[5fr_2fr]">
+          <div className="description-wrapper grid gap-14 xl:grid-cols-[5fr_2fr] xl:gap-24">
             <div className="description_section__left">
               <h2 className="description_title py-2 text-xl text-gray-400">
                 _description
               </h2>
               <p className="description_text pt-5 text-xl text-gray-500">
-                {projects[paramsProject - 1].description}
+                <Splitter
+                  className="splitted-description"
+                  text={projects[paramsProject - 1].description}
+                />
               </p>
+              <div className="button-wrapper inline-block pt-10">
+                <a
+                  href="https://github.com" // Podaj odpowiedni adres URL
+                  className="borer-2 flex transform cursor-pointer items-center rounded-sm border-2 border-mainFontColor border-opacity-30 bg-transparent px-6 py-4 text-mainFontColor transition-transform duration-300 hover:translate-y-[-4px] hover:text-mainFontColor"
+                >
+                  <span className="">visit github</span>
+                  <RiGithubFill className="ml-3 text-2xl" />
+                </a>
+              </div>
             </div>
 
             <div className="description_section__right">
@@ -144,7 +157,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
                   (item, index) => (
                     <li
                       key={index + "-tech"}
-                      className="description_text inline-block w-auto whitespace-nowrap rounded-3xl border-[1px] border-mainFontColor border-opacity-30 px-5 py-1 text-center text-lg text-mainFontColor"
+                      className="description_text whitespace-nowrap rounded-3xl border-[1px] border-mainFontColor border-opacity-30 px-5 py-1 text-center text-lg text-mainFontColor"
                     >
                       {item}
                     </li>
