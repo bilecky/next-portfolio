@@ -55,7 +55,21 @@ export const projects: Project[] = [
     description:
       "It is a well-known truth in the field of web development that users often find themselves distracted by the visual elements of a page when they first encounter its layout. This phenomenon highlights the importance of using effective placeholder text during the design phase. One such popular option is Lorem Ipsum, which provides a text sample with a distribution of letters and words that closely resembles that of standard English. This makes it an ideal choice for designers and developers who wish to present a realistic appearance to their layouts without relying on actual content that may not yet be available.Many contemporary desktop publishing applications and web page editors incorporate Lorem Ipsum as their standard model text. This practice allows developers to focus on the aesthetic aspects of their projects, such as typography, spacing, and alignment, without the interference of meaningful content that might shift their attention away from the design elements. A simple search for 'lorem ipsum' reveals a plethora of websites still in the early stages of development, utilizing this placeholder text to create a visually appealing interface while they work on generating actual content.",
     image: "/project-4.png",
-    technologiesUsed: ["Django", "Python", "PostgreSQL", "Nginx"],
+    technologiesUsed: [
+      "Django",
+      "Python",
+      "PostgreSQL",
+      "Nginx",
+      "HTML",
+      "CSS",
+      "Node.js",
+      "Express",
+      "MongoDB",
+      "Redux",
+      "React Router",
+      "Material UI",
+      "Ember.js",
+    ],
   },
 ];
 

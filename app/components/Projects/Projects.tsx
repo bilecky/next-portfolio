@@ -16,10 +16,7 @@ import ThreeModel from "../3DModel/ThreeModel";
 import { Loader } from "@react-three/drei";
 import { useInView } from "react-intersection-observer";
 import * as THREE from "three";
-import { is } from "@react-three/fiber/dist/declarations/src/core/utils";
 import useMediaQuery from "@/app/utils/hooks/useMediaQuery";
-import AnimatedLink from "@/app/utils/AnimatedLink";
-import { projects } from "@/app/data/data";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 

@@ -9,6 +9,7 @@ import Image from "next/image";
 import { RiGithubFill } from "react-icons/ri";
 import Splitter from "@/app/utils/Splitter";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import useMediaQuery from "@/app/utils/hooks/useMediaQuery";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -19,6 +20,8 @@ type ProjectPageProps = {
 };
 
 export default function ProjectPage({ params }: ProjectPageProps) {
+  const isMobile = useMediaQuery("(max-width: 768px)");
+
   const containerRef = useRef<HTMLDivElement>(null);
   const imageRefs = useRef<(HTMLDivElement | null)[]>([]);
 
@@ -108,7 +111,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
       scrollTrigger: {
         trigger: ".splitted-description",
         start: "top bottom",
-        end: "top 45%",
+        end: "top 44%",
         scrub: 3, // Mniej intensywny scrub
       },
     });
@@ -123,8 +126,8 @@ export default function ProjectPage({ params }: ProjectPageProps) {
     const techTl = gsap.timeline({
       scrollTrigger: {
         trigger: ".description_wrapper ",
-        start: "top 85%", // animacja rozpocznie się, gdy górna część elementu docelowego (w tym przypadku .project_details) osiągnie 90% wysokości widoku (viewportu).
-        end: "bottom bottom", // Animacja kończy się na dolnej krawędzi strony
+        start: "top 90%", // animacja rozpocznie się, gdy górna część elementu docelowego (w tym przypadku .project_details) osiągnie 90% wysokości widoku (viewportu).
+        end: "bottom 90% ", // Animacja kończy się na dolnej krawędzi strony
         scrub: 3, // Mniej intensywny scrub
       },
     });
@@ -142,7 +145,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
   return (
     <PageTransition>
       <section className="project_details relative z-10 cursor-default py-40 opacity-0">
-        <h1 className="project_details_title mb-24 text-center font-[family-name:var(--font-power-grotesk)] text-6xl font-extralight uppercase text-mainFontColor md:text-[6rem] lg:text-[8rem] 2xl:text-[8rem]">
+        <h1 className="project_details_title mb-24 text-center font-[family-name:var(--font-power-grotesk)] text-6xl font-extralight uppercase text-mainFontColor max-fold:text-5xl md:text-[6rem] lg:text-[8rem] 2xl:text-[8rem]">
           {projects[paramsProject - 1].title}
         </h1>
         <div
@@ -160,8 +163,8 @@ export default function ProjectPage({ params }: ProjectPageProps) {
               <Image
                 src={item.image}
                 alt={`Image ${index + 1}`}
-                layout="fill"
-                objectFit="cover"
+                fill={true}
+                objectFit={isMobile ? "none" : "cover"}
               />
             </div>
           ))}
