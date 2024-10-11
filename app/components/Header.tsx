@@ -8,7 +8,6 @@ import { useGSAP } from "@gsap/react";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
-
   const menuRef = useRef<HTMLDivElement | null>(null);
   const menuContainerRef = useRef<HTMLDivElement | null>(null);
 
@@ -34,7 +33,6 @@ const Header = () => {
   const handleToggle = () => {
     if (!menuRef.current) return;
     setIsOpen(!isOpen);
-    console.log(isOpen);
 
     if (!isOpen) {
       gsap.to(menuRef.current, {
@@ -77,7 +75,13 @@ const Header = () => {
           onClick={handleToggle}
           className="white-line relative block w-full cursor-pointer p-5"
         >
-          <div className="pulse-line h-[2px] w-full bg-white opacity-95"></div>
+          <div
+            style={{
+              background:
+                "linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0) 100%)",
+            }}
+            className="pulse-line h-[3px] w-full"
+          ></div>
         </button>
 
         <div

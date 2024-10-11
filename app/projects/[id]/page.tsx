@@ -87,25 +87,24 @@ export default function ProjectPage({ params }: ProjectPageProps) {
     });
   });
   useGSAP(() => {
-    // const imagesTl = gsap.timeline();
-    // imagesTl.from(imageElements, {
-    //   duration: 0.5,
-    //   opacity: 0,
-    //   y: 100,
-    //   stagger: 0.1,
-    //   ease: "power2.out",
-    // });
+    const descriptionTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".description-wrapper",
+        start: "top bottom",
+        scrub: 3,
+      },
+    });
   });
 
   return (
     <PageTransition>
-      <section className="project_details relative z-10 h-[200vh] cursor-default py-36 opacity-0">
-        <h1 className="project_details_title mb-20 text-center font-[family-name:var(--font-power-grotesk)] text-6xl font-extralight uppercase text-mainFontColor md:text-[6rem] lg:text-[8rem] 2xl:text-[8rem]">
+      <section className="project_details relative z-10 cursor-default py-40 opacity-0">
+        <h1 className="project_details_title mb-24 text-center font-[family-name:var(--font-power-grotesk)] text-6xl font-extralight uppercase text-mainFontColor md:text-[6rem] lg:text-[8rem] 2xl:text-[8rem]">
           {projects[paramsProject - 1].title}
         </h1>
         <div
           ref={containerRef}
-          className="projects-screens flex h-[67vh] w-full flex-col lg:flex-row"
+          className="projects-screens flex h-[70vh] w-full flex-col lg:flex-row"
         >
           {projects.map((item, index) => (
             <div
@@ -123,6 +122,37 @@ export default function ProjectPage({ params }: ProjectPageProps) {
               />
             </div>
           ))}
+        </div>
+        <div className="line my-20 h-1 w-1/2 bg-gradient-to-r from-white to-transparent"></div>
+        <div className="description container max-w-screen-xl">
+          <div className="description-wrapper gap-20 xl:grid xl:grid-cols-[5fr_2fr]">
+            <div className="description_section__left">
+              <h2 className="description_title py-2 text-xl text-gray-400">
+                _description
+              </h2>
+              <p className="description_text pt-5 text-xl text-gray-500">
+                {projects[paramsProject - 1].description}
+              </p>
+            </div>
+
+            <div className="description_section__right">
+              <h2 className="description_title py-2 text-xl text-gray-400">
+                _tech stack
+              </h2>
+              <ul className="flex flex-wrap items-start gap-5 pt-5 xl:flex-col">
+                {projects[paramsProject - 1].technologiesUsed.map(
+                  (item, index) => (
+                    <li
+                      key={index + "-tech"}
+                      className="description_text inline-block w-auto whitespace-nowrap rounded-3xl border-[1px] border-mainFontColor border-opacity-30 px-5 py-1 text-center text-lg text-mainFontColor"
+                    >
+                      {item}
+                    </li>
+                  ),
+                )}
+              </ul>
+            </div>
+          </div>
         </div>
       </section>
     </PageTransition>

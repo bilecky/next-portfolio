@@ -131,7 +131,7 @@ const ProjectCarousel = (props: projectCarouselProps) => {
         <div className="main-line opacity-1 absolute h-full w-1.5 bg-mainFontColor">
           <div
             ref={lineRef}
-            className="item-line absolute left-0 top-0 w-2 bg-[#444444]"
+            className="item-line absolute left-0 top-0 w-1.5 bg-[#444444]"
           ></div>
         </div>
         {projects.map((project, index) => (
