@@ -92,53 +92,112 @@ export default function ProjectPage({ params }: ProjectPageProps) {
     });
   });
   useGSAP(() => {
-    const whiteLine = gsap.timeline({
-      scrollTrigger: {
-        trigger: ".projects_screens", // Make sure this class exists on the element
-        start: "top top", // Rozpocznij, gdy górna krawędź sekcji dotknie dolnej krawędzi widoku
-        end: "bottom bottom",
-        scrub: 3, // Sync the animation with scrolling smoothly,
-      },
-    });
-    whiteLine.from(".horizontal_line", {
-      xPercent: -100,
-      opacity: 0,
-      duration: 1,
-      ease: "power2.inOut",
+    const mm = gsap.matchMedia();
+
+    // Desktop animations (no changes, just as reference)
+    mm.add("(min-width: 768px)", () => {
+      const whiteLine = gsap.timeline({
+        scrollTrigger: {
+          trigger: ".projects_screens",
+          start: "top top",
+          end: "bottom bottom",
+          scrub: 3,
+        },
+      });
+      whiteLine.from(".horizontal_line", {
+        xPercent: -100,
+        opacity: 0,
+        duration: 1,
+        ease: "power2.inOut",
+      });
+      // -----------------------------------
+      const descriptionTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: ".description_section__left",
+          start: "top 90%",
+          end: "top 40%",
+          scrub: 3,
+        },
+      });
+
+      descriptionTl.to(".splitted-description .split-char", {
+        color: "#FBFCF8",
+        stagger: 0.2,
+        duration: 1.5,
+        ease: "power2.inOut",
+      });
+
+      const techTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: ".description_section__right",
+          start: "top 90%",
+          end: "bottom 90%",
+          scrub: 3,
+        },
+      });
+
+      techTl.from(".technology_item", {
+        opacity: 0,
+        stagger: 2,
+        duration: 2.5,
+        ease: "power2.inOut",
+        scale: 0,
+        transformOrigin: "left center",
+      });
     });
 
-    const descriptionTl = gsap.timeline({
-      scrollTrigger: {
-        trigger: ".splitted-description",
-        start: "top bottom",
-        end: "top 44%",
-        scrub: 3, // Mniej intensywny scrub
-      },
-    });
+    //MOBILE
 
-    descriptionTl.to(".splitted-description .split-char", {
-      color: "#FBFCF8",
-      stagger: 0.2, // Mniejsza wartość stagger
-      duration: 1.5,
-      ease: "power2.inOut",
-    });
+    mm.add("(max-width: 767px)", () => {
+      const whiteLine = gsap.timeline({
+        scrollTrigger: {
+          trigger: ".projects_screens",
+          start: "top center", // Start when the section is in the middle of the viewport
+          end: "bottom center", // End when the section is fully in the viewport
+          scrub: 3, // Slower scrub for better control
+        },
+      });
+      whiteLine.from(".horizontal_line", {
+        xPercent: -100,
+        opacity: 0,
+        duration: 0.8, // Slightly faster than desktop but visible
+        ease: "power2.inOut",
+      });
+      // mobile SPLIT CHARS ------------------------------------
+      const descriptionTl = gsap.timeline({
+        scrollTrigger: {
+          markers: true,
+          trigger: ".description_section__left",
+          start: "top 90%", // Animacja zaczyna się, gdy element ma 10% widoczności
+          end: "bottom 65%", // Animacja kończy się, gdy sekcja jest prawie całkowicie przewinięta
+          scrub: 3, // Slower scrub for smoother animation
+        },
+      });
 
-    const techTl = gsap.timeline({
-      scrollTrigger: {
-        trigger: ".description_wrapper ",
-        start: "top 90%", // animacja rozpocznie się, gdy górna część elementu docelowego (w tym przypadku .project_details) osiągnie 90% wysokości widoku (viewportu).
-        end: "bottom 90% ", // Animacja kończy się na dolnej krawędzi strony
-        scrub: 3, // Mniej intensywny scrub
-      },
-    });
+      descriptionTl.to(".splitted-description .split-char", {
+        color: "#FBFCF8",
+        stagger: 0.15, // Faster but still noticeable stagger
+        duration: 1.2, // Shorter duration but visible
+        ease: "power2.inOut",
+      });
+      // MOBILE TECHNOLOGIES
+      const techTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: "description_section__right",
+          start: "center center", // Trigger closer to center for better timing
+          end: "bottom bottom", // End closer to the top for visibility
+          scrub: 3,
+        },
+      });
 
-    techTl.from(".technology_item", {
-      opacity: 0,
-      stagger: 2,
-      duration: 2.5,
-      ease: "power2.inOut",
-      scale: 0,
-      transformOrigin: "left center",
+      techTl.from(".technology_item", {
+        opacity: 0,
+        stagger: 1.5, // Stagger reduced for quicker animations
+        duration: 1.8, // Shortened duration to keep animations within view
+        ease: "power2.inOut",
+        scale: 0.9, // Smaller initial scale for better visibility
+        transformOrigin: "left center",
+      });
     });
   });
 
