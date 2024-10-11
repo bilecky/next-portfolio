@@ -101,7 +101,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
           trigger: ".projects_screens",
           start: "top top",
           end: "bottom bottom",
-          scrub: 3,
+          scrub: 2,
         },
       });
       whiteLine.from(".horizontal_line", {
@@ -116,7 +116,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
           trigger: ".description_section__left",
           start: "top 90%",
           end: "top 40%",
-          scrub: 3,
+          scrub: 2,
         },
       });
 
@@ -132,7 +132,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
           trigger: ".description_section__right",
           start: "top 90%",
           end: "bottom 90%",
-          scrub: 3,
+          scrub: 2,
         },
       });
 
@@ -154,7 +154,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
           trigger: ".projects_screens",
           start: "top center", // Start when the section is in the middle of the viewport
           end: "bottom center", // End when the section is fully in the viewport
-          scrub: 3, // Slower scrub for better control
+          scrub: 2, // Slower scrub for better control
         },
       });
       whiteLine.from(".horizontal_line", {
@@ -170,7 +170,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
           trigger: ".description_section__left",
           start: "top 90%", // Animacja zaczyna się, gdy element ma 10% widoczności
           end: "bottom 65%", // Animacja kończy się, gdy sekcja jest prawie całkowicie przewinięta
-          scrub: 3, // Slower scrub for smoother animation
+          scrub: 2, // Slower scrub for smoother animation
         },
       });
 
@@ -186,7 +186,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
           trigger: "description_section__right",
           start: "center center", // Trigger closer to center for better timing
           end: "bottom bottom", // End closer to the top for visibility
-          scrub: 3,
+          scrub: 2,
         },
       });
 
