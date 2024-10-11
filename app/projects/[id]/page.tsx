@@ -124,8 +124,8 @@ export default function ProjectPage({ params }: ProjectPageProps) {
           ))}
         </div>
         <div className="line my-20 h-1 w-1/2 bg-gradient-to-r from-white to-transparent"></div>
-        <div className="description container max-w-screen-xl">
-          <div className="description-wrapper gap-20 xl:grid xl:grid-cols-[5fr_2fr]">
+        <div className="description container px-2 xl:max-w-screen-xl">
+          <div className="description-wrapper gap-24 xl:grid xl:grid-cols-[5fr_2fr]">
             <div className="description_section__left">
               <h2 className="description_title py-2 text-xl text-gray-400">
                 _description

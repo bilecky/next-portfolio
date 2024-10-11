@@ -5,6 +5,7 @@ import Link from "next/link";
 import { RiLinkedinFill, RiTwitterXFill } from "react-icons/ri";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
+import { RiGithubFill } from "react-icons/ri";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
