@@ -16,13 +16,19 @@ const CursorFollower: React.FC = () => {
     const handleMouseMove = (e: MouseEvent) => {
       if (!cursorRef.current) return;
       const { clientX: x, clientY: y } = e;
-      const xTo = gsap.quickTo(cursorRef.current, "x");
-      const yTo = gsap.quickTo(cursorRef.current, "y");
-      const opacityTo = gsap.quickTo(cursorRef.current, "opacity");
 
-      opacityTo(1); // Ustawia przezroczystość na 1
-      xTo(x - cursorRef.current.offsetWidth / 2); // Ustawia pozycję X
-      yTo(y - cursorRef.current.offsetHeight / 2); // Ustawia pozycję Y
+      gsap.set(cursorRef.current, {
+        opacity: 1,
+        x: x - cursorRef.current.offsetWidth / 2,
+        y: y - cursorRef.current.offsetHeight / 2,
+      });
+      gsap.to(cursorRef.current, {
+        x: x - cursorRef.current.offsetWidth / 2,
+        y: y - cursorRef.current.offsetHeight / 2,
+        duration: 0.5,
+        ease: "power3.out",
+        delay: 0.05,
+      });
     };
 
     window.addEventListener("mousemove", handleMouseMove);

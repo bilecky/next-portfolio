@@ -18,7 +18,7 @@ const About = () => {
         start: "top top",
         pinSpacing: false,
         pin: true,
-        scrub: 2,
+        scrub: 2.5,
       },
     });
     pinnedArea.from(".about", {
@@ -46,7 +46,7 @@ const About = () => {
           trigger: ".overview_section",
           start: "top 65%",
           end: "bottom bottom",
-          scrub: 2,
+          scrub: 2.5,
         },
       });
 
@@ -69,7 +69,7 @@ const About = () => {
           {
             opacity: 0,
             ease: "power3.out",
-            duration: 7,
+            duration: 10,
             rotateX: -100,
           },
           0.1,
@@ -77,14 +77,15 @@ const About = () => {
         .from(
           ".corner-el",
           {
-            scale: 1.6,
+            scale: 0.8,
             ease: "ease",
             duration: 10,
             opacity: 0,
             stagger: 3,
           },
           0,
-        );
+        ),
+        1;
     });
 
     mm.add("(max-width: 767px)", () => {
@@ -142,7 +143,7 @@ const About = () => {
               alt="Description of image"
               width={400}
               height={800}
-              className="block"
+              className="block shadow-lg"
             />
             <div className="pointer-events-none absolute inset-0 border-b-4 border-l-4 border-r-4 border-t-4 border-transparent">
               <div className="corner-el absolute -left-2 -top-2 -z-10 h-10 w-10 bg-white"></div>
