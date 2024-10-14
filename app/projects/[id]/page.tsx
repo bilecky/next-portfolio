@@ -107,7 +107,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
       whiteLine.from(".horizontal_line", {
         xPercent: -100,
         opacity: 0,
-        duration: 1,
+        duration: 2,
         ease: "power2.inOut",
       });
       // -----------------------------------
@@ -120,7 +120,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
         },
       });
 
-      descriptionTl.to(".splitted-description .split-char", {
+      descriptionTl.to(".splitted_description .split-char", {
         color: "#FBFCF8",
         stagger: 0.2,
         duration: 1.5,
@@ -166,7 +166,6 @@ export default function ProjectPage({ params }: ProjectPageProps) {
       // mobile SPLIT CHARS ------------------------------------
       const descriptionTl = gsap.timeline({
         scrollTrigger: {
-          markers: true,
           trigger: ".description_section__left",
           start: "top 90%", // Animacja zaczyna się, gdy element ma 10% widoczności
           end: "bottom 65%", // Animacja kończy się, gdy sekcja jest prawie całkowicie przewinięta
@@ -174,7 +173,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
         },
       });
 
-      descriptionTl.to(".splitted-description .split-char", {
+      descriptionTl.to(".splitted_description .split-char", {
         color: "#FBFCF8",
         stagger: 0.15, // Faster but still noticeable stagger
         duration: 1.2, // Shorter duration but visible
@@ -183,8 +182,9 @@ export default function ProjectPage({ params }: ProjectPageProps) {
       // MOBILE TECHNOLOGIES
       const techTl = gsap.timeline({
         scrollTrigger: {
+          markers: true,
           trigger: "description_section__right",
-          start: "center center", // Trigger closer to center for better timing
+          start: "top center", // Trigger closer to center for better timing
           end: "bottom bottom", // End closer to the top for visibility
           scrub: 2,
         },
@@ -237,16 +237,22 @@ export default function ProjectPage({ params }: ProjectPageProps) {
               </h2>
               <p className="description_text pt-5 text-xl text-gray-500">
                 <Splitter
-                  className="splitted-description"
+                  className="splitted_description"
                   text={projects[paramsProject - 1].description}
                 />
               </p>
               <div className="button_wrapper inline-block pt-10">
                 <a
-                  href="https://github.com" // Podaj odpowiedni adres URL
-                  className="borer-2 flex transform cursor-pointer items-center rounded-sm border-2 border-mainFontColor border-opacity-30 bg-transparent px-6 py-4 text-mainFontColor transition-transform duration-300 hover:translate-y-[-4px] hover:text-mainFontColor"
+                  target="_blank"
+                  href="https://github.com"
+                  className="borer-2 group flex cursor-pointer items-center rounded-sm border-2 border-mainFontColor border-opacity-30 bg-transparent px-6 py-4 text-mainFontColor transition-all duration-300 hover:translate-y-[-4px]"
                 >
-                  <span className="">visit github</span>
+                  <span className="first_text transition-all duration-300 group-hover:translate-y-[-100%] group-hover:opacity-0">
+                    visit github
+                  </span>
+                  <span className="second_text absolute translate-y-[100%] opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+                    visit github
+                  </span>
                   <RiGithubFill className="ml-3 text-2xl" />
                 </a>
               </div>
@@ -254,9 +260,9 @@ export default function ProjectPage({ params }: ProjectPageProps) {
 
             <div className="description_section__right">
               <h2 className="description_title py-2 text-xl text-gray-400">
-                _tech stack
+                _tech-stack
               </h2>
-              <ul className="technology_wrapper flex flex-wrap items-start gap-5 pt-5 xl:flex-col">
+              <ul className="technology_wrapper flex flex-wrap items-start gap-3 pt-5 xl:flex-col">
                 {projects[paramsProject - 1].technologiesUsed.map(
                   (item, index) => (
                     <li
