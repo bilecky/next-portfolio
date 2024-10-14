@@ -1,10 +1,14 @@
 "use client";
-import React from "react";
+import React, { Suspense } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Splitter from "../utils/Splitter";
 import Image from "next/image";
+import {
+  reuseSectionDescriptionAnimation,
+  reuseTexTsplitterFn,
+} from "../utils/ReusableGSAPAnimations";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -41,29 +45,30 @@ const About = () => {
     // ___________________________________________
 
     mm.add("(min-width: 768px)", () => {
-      const aboutTl = gsap.timeline({
+      const mainAboutLn = gsap.timeline({
         scrollTrigger: {
-          trigger: ".overview_section",
-          start: "top 65%",
+          trigger: ".about", // Make sure this class exists on the element
+          start: "top center", // Rozpocznij, gdy górna krawędź sekcji dotknie dolnej krawędzi widoku
           end: "bottom bottom",
-          scrub: 2.5,
+          scrub: 3, // Sync the animation with scrolling smoothly,
         },
       });
+      mainAboutLn.set(".about", { opacity: 1 });
 
-      aboutTl
-        .from(
-          ".about_description .split-word",
-          {
-            x: -50,
-            y: 20,
-            scale: 1.2,
-            duration: 1,
-            ease: "power3.out",
-            stagger: 0.1,
-            opacity: 0,
-          },
-          0,
-        )
+      reuseTexTsplitterFn({
+        timeline: mainAboutLn,
+        selector: ".about_header .split-char",
+        options: { stagger: 1, rotateY: 180 },
+      });
+
+      reuseSectionDescriptionAnimation({
+        timeline: mainAboutLn,
+        selector: ".about_description",
+        options: {
+          stagger: 1,
+        },
+      });
+      mainAboutLn
         .from(
           ".image_wrapper",
           {
@@ -113,27 +118,35 @@ const About = () => {
       <div className="about_wrapper text-blackSectionText container grid grid-cols-1 place-items-center gap-10 lg:grid-cols-2">
         <div className="overview_section relative text-mobile">
           <h2 className="about_header font-mainHeaderFont uppercase leading-none tracking-wide text-mainFontColor lg:text-section-header">
-            About
+            <Splitter text="About" />
           </h2>
 
           <p className="about_description pt-8 text-sm lg:text-xl">
-            <Splitter
-              className="about_description_text"
-              text="I am a frontend developer with over 3 years of commercial experience, specializing in building dynamic and responsive web applications. With a strong focus on Next.js and React, I create high-performance, user-friendly interfaces that are optimized for speed and scalability. My proficiency in TypeScript allows me to write clean, maintainable code, ensuring projects are efficient and free from runtime errors."
-            />
+            I am a frontend developer with over 3 years of commercial
+            experience, specializing in building dynamic and responsive web
+            applications. With a strong focus on Next.js and React, I create
+            high-performance, user-friendly interfaces that are optimized for
+            speed and scalability. My proficiency in TypeScript allows me to
+            write clean, maintainable code, ensuring projects are efficient and
+            free from runtime errors.
           </p>
 
           <p className="about_description py-4 text-sm lg:text-xl">
-            <Splitter
-              className="about_description_text"
-              text="In addition to my work with modern JavaScript frameworks, I have extensive experience with WordPress, enabling me to develop custom websites/themes and plugins tailored to client needs. I am passionate about creating intuitive and visually appealing digital experiences, always keeping the end user in mind. Throughout my career, I’ve worked on a range of projects, from small business websites to complex web applications, constantly refining my skills and staying up-to-date with the latest industry trends."
-            />
+            In addition to my work with modern JavaScript frameworks, I have
+            extensive experience with WordPress, enabling me to develop custom
+            websites/themes and plugins tailored to client needs. I am
+            passionate about creating intuitive and visually appealing digital
+            experiences, always keeping the end user in mind. Throughout my
+            career, I’ve worked on a range of projects, from small business
+            websites to complex web applications, constantly refining my skills
+            and staying up-to-date with the latest industry trends.
           </p>
           <p className="about_description text-sm lg:text-xl">
-            <Splitter
-              className="about_description_text"
-              text="As a developer, I thrive in collaborative environments where I can contribute to solving challenges and improving workflows. I enjoy learning new technologies and finding innovative ways to enhance web development processes, always aiming for the best results for both clients and users."
-            />
+            As a developer, I thrive in collaborative environments where I can
+            contribute to solving challenges and improving workflows. I enjoy
+            learning new technologies and finding innovative ways to enhance web
+            development processes, always aiming for the best results for both
+            clients and users.
           </p>
         </div>
         <div className="image_section">

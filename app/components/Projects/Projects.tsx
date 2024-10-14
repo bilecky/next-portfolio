@@ -68,7 +68,7 @@ const Projects = (props: Props) => {
     reuseTexTsplitterFn({
       timeline: leftSectionArea,
       selector: ".header-text .split-char",
-      options: { stagger: 1 },
+      options: { stagger: 1, rotateY: 180 },
     });
 
     reuseSectionDescriptionAnimation({

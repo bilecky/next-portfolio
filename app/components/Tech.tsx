@@ -35,7 +35,7 @@ function Tech({}: Props) {
     reuseTexTsplitterFn({
       timeline: mainTechLine,
       selector: ".tech-text .split-char",
-      options: { stagger: -1 },
+      options: { stagger: -1, rotateY: 180 },
     });
 
     reuseSectionDescriptionAnimation({
