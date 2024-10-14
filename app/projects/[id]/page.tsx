@@ -168,8 +168,8 @@ export default function ProjectPage({ params }: ProjectPageProps) {
         scrollTrigger: {
           trigger: ".description_section__left",
           start: "top 90%", // Animacja zaczyna się, gdy element ma 10% widoczności
-          end: "bottom 65%", // Animacja kończy się, gdy sekcja jest prawie całkowicie przewinięta
-          scrub: 2, // Slower scrub for smoother animation
+          end: "bottom 65%",
+          scrub: 2,
         },
       });
 

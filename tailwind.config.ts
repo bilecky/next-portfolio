@@ -24,7 +24,8 @@ const config: Config = {
         mainFontColor: "#FBFCF8",
         background: "#222222",
         secondBackground: "#B1B1B1",
-        foreground: "var(--foreground)",
+        // foreground: "var(--foreground)",
+        blackSectionText: "#b8b8b8",
       },
       fontSize: {
         mobile: "3.8rem",

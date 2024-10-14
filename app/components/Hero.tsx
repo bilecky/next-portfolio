@@ -65,7 +65,7 @@ const Hero = (props: Props) => {
   });
 
   return (
-    <section className="hero font-mainFont container flex w-full flex-col py-32 text-mainFontColor opacity-0 md:h-screen md:flex-row-reverse md:items-end lg:flex">
+    <section className="hero font-mainFont container flex w-full flex-col py-40 text-mainFontColor opacity-0 md:h-screen md:flex-row-reverse md:items-end lg:flex lg:py-20">
       <div className="white-overlay opacity-1 absolute inset-0 z-0 bg-secondBackground"></div>
       <div className="black-overlay absolute inset-0"></div>
       {/* ABOUT SECTION */}
