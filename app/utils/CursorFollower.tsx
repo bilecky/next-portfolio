@@ -26,10 +26,6 @@ const CursorFollower: React.FC = () => {
     };
 
     window.addEventListener("mousemove", handleMouseMove);
-
-    return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-    };
   }, [isTouchDevice]);
 
   if (isTouchDevice) return null; // Ukryj kursor na urządzeniach dotykowych
