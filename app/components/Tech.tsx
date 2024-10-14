@@ -115,7 +115,7 @@ function Tech({}: Props) {
     <section className="tech relative -z-10 overflow-hidden py-28 text-background opacity-0">
       <div className="overview-wrapper container">
         <div className="overview relative ml-auto text-right text-mobile lg:w-3/5">
-          <h2 className="tech-header font-[family-name:var(--font-power-grotesk)] uppercase lg:text-section-header">
+          <h2 className="tech-header font-mainHeaderFont uppercase lg:text-section-header">
             <Splitter className="tech-text" text="TECH" />
           </h2>
 
@@ -141,7 +141,7 @@ function Tech({}: Props) {
             return (
               <div
                 key={index}
-                className="tech-item flex items-center justify-center text-7xl font-extrabold uppercase lg:text-[9rem]"
+                className="tech-item flex items-center justify-center text-7xl font-extrabold uppercase lg:text-[10rem]"
               >
                 {tech}
                 <span className="tech-item-separator mx-4 h-4 w-4 bg-mainFontColor"></span>

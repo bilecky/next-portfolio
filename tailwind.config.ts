@@ -12,6 +12,11 @@ const config: Config = {
       padding: ".5rem",
     },
     extend: {
+      fontFamily: {
+        mainHeaderFont: ["var(--font-power-grotesk)", "sans-serif"],
+        mainFont: ["var(--font-geist-sans)", "sans-serif"],
+        mono: ["var(--font-geist-mono)", "monospace"],
+      },
       screens: {
         fold: "345px",
       },

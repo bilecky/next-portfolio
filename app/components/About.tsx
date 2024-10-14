@@ -41,7 +41,7 @@ const About = () => {
     <section className="about relative z-[999] min-h-screen bg-gray-100 p-8 shadow-xl">
       <div className="about-wrapper container pb-16">
         <div className="overview relative text-mobile lg:w-3/6">
-          <h2 className="about-header uppercase lg:text-section-header">
+          <h2 className="about-header font-mainHeaderFont uppercase lg:text-section-header">
             ABOUT{" "}
           </h2>
 

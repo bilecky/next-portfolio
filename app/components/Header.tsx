@@ -56,7 +56,7 @@ const Header = () => {
       <div className="logo group text-xl font-light">
         <Link
           href="/"
-          className="cursor-pointer font-[family-name:var(--font-geist-mono)] transition-colors group-hover:text-gray-400"
+          className="cursor-pointer font-mono transition-colors group-hover:text-gray-400"
         >
           paweł
           <span className="text-gray-400 transition-colors group-hover:text-mainFontColor">

@@ -121,7 +121,7 @@ const Projects = (props: Props) => {
   return (
     <section className="projects container relative z-10 text-background opacity-0 md:py-28 xl:flex xl:flex-row">
       <div className="overview xl:w-3/5">
-        <h2 className="projects-header font-[family-name:var(--font-power-grotesk)] text-mobile uppercase leading-none lg:text-section-header">
+        <h2 className="projects-header font-mainHeaderFont text-mobile uppercase leading-none lg:text-section-header">
           <Splitter className="header-text" text="Projects" />
         </h2>
 
