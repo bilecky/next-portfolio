@@ -16,41 +16,28 @@ const About = () => {
   const mm = gsap.matchMedia();
 
   useGSAP(() => {
-    const pinnedArea = gsap.timeline({
+    const aboutTl = gsap.timeline({
       scrollTrigger: {
         trigger: ".tech",
-        start: "top top",
-        pinSpacing: false,
+        start: "top top", // Animacja zacznie się, kiedy górna krawędź elementu (top) dotknie dolnej krawędzi widoku (bottom)
         pin: true,
         scrub: 2.5,
+        anticipatePin: 1,
+        pinSpacing: false,
       },
     });
-    pinnedArea.from(".about", {
-      yPercent: 50,
-      duration: 1,
-      ease: "power3.out",
-    });
-    const pinnedBottomContact = gsap.timeline({
-      scrollTrigger: {
-        trigger: ".pinning-area",
-        end: "bottom bottom",
-        scrub: true,
-      },
-    });
-    pinnedBottomContact.from(".contact", {
-      yPercent: -100,
-      ease: "none",
-    });
-
-    // ___________________________________________
+    aboutTl.to(".about", { yPercent: -100 });
+    // // ___________________________________________
 
     mm.add("(min-width: 768px)", () => {
       const mainAboutLn = gsap.timeline({
         scrollTrigger: {
-          trigger: ".about", // Make sure this class exists on the element
-          start: "top center", // Rozpocznij, gdy górna krawędź sekcji dotknie dolnej krawędzi widoku
-          end: "bottom bottom",
+          trigger: ".about_wrapper", // Make sure this class exists on the element
+          start: "top bottom", // Rozpocznij, gdy górna krawędź sekcji dotknie dolnej krawędzi viewportu
+          // inne opcje...
+          end: "70% center", // Koniec zakończyłoby trigger, gdy 70% sekcji byłoby widoczne.
           scrub: 3, // Sync the animation with scrolling smoothly,
+          markers: true,
         },
       });
       mainAboutLn.set(".about", { opacity: 1 });
@@ -75,9 +62,9 @@ const About = () => {
             opacity: 0,
             ease: "power3.out",
             duration: 10,
-            rotateX: -100,
+            rotateX: -90,
           },
-          0.1,
+          0,
         )
         .from(
           ".corner-el",
@@ -89,32 +76,60 @@ const About = () => {
             stagger: 3,
           },
           0,
-        ),
-        1;
+        );
     });
 
     mm.add("(max-width: 767px)", () => {
-      const aboutTl = gsap.timeline({
+      const mainAboutLn = gsap.timeline({
         scrollTrigger: {
-          trigger: ".overview_section",
-          start: "top top", // Animacja zaczyna się, gdy element ma 10% widoczności
-          end: "bottom  top",
-          scrub: 2, // Slower scrub for smoother animation
+          trigger: ".about_wrapper", // Make sure this class exists on the element
+          start: "top bottom", // Rozpocznij, gdy górna krawędź sekcji dotknie dolnej krawędzi viewportu
+          // inne opcje...
+          scrub: 3, // Sync the animation with scrolling smoothly,
+          markers: true,
         },
       });
-      aboutTl.from(".about_description .split-word", {
-        x: -50,
-        y: 20,
-        scale: 1.2,
-        duration: 1,
-        ease: "power3.out",
-        stagger: 0.1,
-        opacity: 0,
+      mainAboutLn.set(".about", { opacity: 1 });
+
+      reuseTexTsplitterFn({
+        timeline: mainAboutLn,
+        selector: ".about_header .split-char",
+        options: { stagger: 1, rotateY: 180 },
       });
+
+      reuseSectionDescriptionAnimation({
+        timeline: mainAboutLn,
+        selector: ".about_description",
+        options: {
+          stagger: 1,
+        },
+      });
+      mainAboutLn
+        .from(
+          ".image_wrapper",
+          {
+            opacity: 0,
+            ease: "power3.out",
+            duration: 10,
+            rotateX: -90,
+          },
+          0,
+        )
+        .from(
+          ".corner-el",
+          {
+            scale: 0.8,
+            ease: "ease",
+            duration: 10,
+            opacity: 0,
+            stagger: 3,
+          },
+          0,
+        );
     });
   });
   return (
-    <section className="about relative z-[999] w-full bg-background py-20 shadow-xl lg:py-36">
+    <section className="about absolute z-10 w-full bg-background py-20 shadow-xl will-change-transform lg:py-36">
       <div className="about_wrapper text-blackSectionText container grid grid-cols-1 place-items-center gap-10 lg:grid-cols-2">
         <div className="overview_section relative text-mobile">
           <h2 className="about_header font-mainHeaderFont uppercase leading-none tracking-wide text-mainFontColor lg:text-section-header">

@@ -25,7 +25,7 @@ function Tech({}: Props) {
     const mainTechLine = gsap.timeline({
       scrollTrigger: {
         trigger: ".tech", // Make sure this class exists on the element
-        start: "top center", // Rozpocznij, gdy górna krawędź sekcji dotknie dolnej krawędzi widoku
+        start: "top center",
         end: "bottom bottom",
         scrub: 3, // Sync the animation with scrolling smoothly,
       },
@@ -112,7 +112,7 @@ function Tech({}: Props) {
   });
 
   return (
-    <section className="tech relative -z-10 overflow-hidden py-28 text-background opacity-0">
+    <section className="tech -z-10 overflow-hidden py-28 text-background opacity-0 will-change-auto">
       <div className="overview-wrapper container">
         <div className="overview relative ml-auto text-right lg:w-3/5">
           <h2 className="tech-header font-mainHeaderFont text-mobile uppercase leading-none lg:text-section-header">
