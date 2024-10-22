@@ -245,12 +245,12 @@ export default function ProjectPage({ params }: ProjectPageProps) {
                 <a
                   target="_blank"
                   href="https://github.com"
-                  className="borer-2 group flex cursor-pointer items-center rounded-sm border-2 border-mainFontColor border-opacity-30 bg-transparent px-6 py-4 text-mainFontColor transition-all duration-300 hover:translate-y-[-4px]"
+                  className="group inline-flex cursor-pointer items-center overflow-hidden rounded-sm border-2 border-mainFontColor border-opacity-30 bg-transparent px-6 py-4 leading-none text-mainFontColor transition-all duration-300"
                 >
-                  <span className="first_text transition-all duration-300 group-hover:translate-y-[-100%] group-hover:opacity-0">
+                  <span className="first_text overflow-hidden transition-all duration-300 group-hover:translate-y-[-100%] group-hover:opacity-0">
                     visit github
                   </span>
-                  <span className="second_text absolute translate-y-[100%] opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+                  <span className="second_text absolute translate-y-[100%] overflow-hidden whitespace-nowrap opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
                     visit github
                   </span>
                   <RiGithubFill className="ml-3 text-2xl" />
