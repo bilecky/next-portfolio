@@ -7,11 +7,22 @@ import gsap from "gsap";
 
 const Contact = () => {
   return (
-    <section className="contact panel relative flex h-[85vh] w-full items-start justify-start bg-red-500 py-8 will-change-transform">
+    <section className="contact panel sticky bottom-0 flex h-[50vh] w-full items-start justify-start bg-red-500 py-12 will-change-transform">
       <div className="container">
         <h2 className="contact-header font-mainHeaderFont text-mobile uppercase leading-none tracking-wide text-mainFontColor lg:text-section-header">
           Contact
         </h2>
+        <div className="relative h-10 w-10 bg-slate-200"> </div>
+        <div className="relative h-10 w-10 bg-slate-200"> </div>
+
+        <div className="relative h-10 w-10 bg-slate-200"> </div>
+
+        <div className="relative h-10 w-10 bg-slate-200"> </div>
+
+        <div className="relative h-10 w-10 bg-slate-200"> </div>
+
+        <div className="relative h-10 w-10 bg-slate-200"> </div>
+
         <div className="relative h-10 w-10 bg-slate-200"> </div>
       </div>
     </section>

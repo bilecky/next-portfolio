@@ -13,8 +13,8 @@ export default function Home() {
         <Projects />
       </div>
 
-      <Tech />
       <div className="pinning-area relative">
+        <Tech />
         <About />
         <Contact />
       </div>

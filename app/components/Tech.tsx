@@ -11,9 +11,8 @@ import {
   reuseTexTsplitterFn,
 } from "../utils/ReusableGSAPAnimations";
 import { horizontalLoop } from "../utils/horizontalLoop";
-import { Observer } from "gsap/all";
 
-gsap.registerPlugin(useGSAP, ScrollTrigger, Observer);
+gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 type Props = {};
 
@@ -57,62 +56,71 @@ function Tech({}: Props) {
   //TECHNOLOGIES GSAP ANIMATONS
 
   useGSAP(() => {
-    // Tworzenie pętli dla marquee
-    const tlMarqueLoop = horizontalLoop(".tech-item", {
-      speed: 1,
-      repeat: -1,
-    });
-    const tlMarqueReverseLoop = horizontalLoop(".tech-item-reverse", {
-      repeat: -1,
-      reversed: true,
-      speed: 1,
-    });
+    document.fonts.ready.then(() => {
+      const firstLoopArr = gsap.utils.toArray(".tech-item");
+      const secondLoopArr = gsap.utils.toArray(".tech-item-reverse");
 
-    Observer.create({
-      target: window,
-      type: "wheel, touch",
-      onChangeY(self) {
-        let factor = 1.5;
-        if (self.deltaY < 0) {
-          factor *= -1; // Analogicznie, dla marqueeReverse
-        }
+      // Tworzenie pętli dla marquee
+      const tlMarqueLoop = horizontalLoop(firstLoopArr, {
+        speed: 1,
+        repeat: -1,
+      });
+      const tlMarqueReverseLoop = horizontalLoop(secondLoopArr, {
+        repeat: -1,
+        reversed: true,
+        speed: 1,
+      });
 
-        gsap
-          .timeline({ defaults: { ease: "none" } })
-          .to(tlMarqueLoop, {
-            timeScale: factor * 2.5,
-            duration: 0.5,
-          }) // Ujemny factor dla odwróconego loopa
-          .to(tlMarqueLoop, { timeScale: factor / 2.5, duration: 1 }, "+=0.3");
-      },
-    });
+      ScrollTrigger.observe({
+        target: ".tech",
+        type: "wheel, touch",
+        onChangeY(self) {
+          let factorOne = 1.5;
+          if (self.deltaY < 0) {
+            factorOne *= -1; // Analogicznie, dla marqueeReverse
+          }
 
-    Observer.create({
-      target: window,
-      type: "wheel, touch",
-      onChangeY(self) {
-        let factor = 1.5;
-        if (self.deltaY < 0) {
-          factor *= -1; // Analogicznie, dla marqueeReverse
-        }
+          gsap
+            .timeline({ defaults: { ease: "none" } })
+            .to(tlMarqueLoop, {
+              timeScale: factorOne * 2.5,
+              duration: 1,
+            }) // Ujemny factorOne dla odwróconego loopa
+            .to(
+              tlMarqueLoop,
+              { timeScale: factorOne / 2.5, duration: 1 },
+              "+=0.3",
+            );
+        },
+      });
 
-        gsap
-          .timeline({ defaults: { ease: "none" } })
-          .to(tlMarqueReverseLoop, {
-            timeScale: -factor * 2.5,
-            duration: 0.5,
-          }) // Ujemny factor dla odwróconego loopa
-          .to(
-            tlMarqueReverseLoop,
-            { timeScale: -factor / 2.5, duration: 1 },
-            "+=0.3",
-          );
-      },
+      ScrollTrigger.observe({
+        target: ".tech",
+        type: "wheel, touch",
+        onChangeY(self) {
+          let factorTwo = 1.5;
+          if (self.deltaY < 0) {
+            factorTwo *= -1; // Analogicznie, dla marqueeReverse
+          }
+
+          gsap
+            .timeline({ defaults: { ease: "none" } })
+            .to(tlMarqueReverseLoop, {
+              timeScale: -factorTwo * 2.5,
+              duration: 1,
+            }) // Ujemny factorTwo dla odwróconego loopa
+            .to(
+              tlMarqueReverseLoop,
+              { timeScale: -factorTwo / 2.5, duration: 1 },
+              "+=0.3",
+            );
+        },
+      });
     });
   });
 
   return (
-    <section className="tech -z-10 overflow-hidden py-28 text-background opacity-0 will-change-auto">
+    <section className="tech -z-10 py-28 text-background opacity-0 will-change-auto">
       <div className="overview-wrapper container">
         <div className="overview relative ml-auto text-right lg:w-3/5">
           <h2 className="tech-header font-mainHeaderFont text-mobile uppercase leading-none lg:text-section-header">
@@ -141,7 +149,7 @@ function Tech({}: Props) {
             return (
               <div
                 key={index}
-                className="tech-item flex items-center justify-center text-7xl font-extrabold uppercase lg:text-[10rem]"
+                className="tech-item flex items-center justify-center text-7xl font-extrabold uppercase will-change-transform lg:text-[10rem]"
               >
                 {tech}
                 <span className="tech-item-separator mx-4 h-4 w-4 bg-mainFontColor"></span>

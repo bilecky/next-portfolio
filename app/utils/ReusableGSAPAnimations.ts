@@ -14,7 +14,6 @@ export const reuseTexTsplitterFn = ({
   const defaultOptions = {
     x: -40,
     opacity: 0,
-    delay: 0.2,
     duration: 2.5,
     ease: "expo.out",
   };
@@ -26,7 +25,7 @@ export const reuseSectionDescriptionAnimation = ({
   selector,
   options = {},
 }: ReusableAnimationsProps) => {
-  const defaultOptions = { x: 100, duration: 5, opacity: 0, ease: "back.out" };
+  const defaultOptions = { x: 100, duration: 4, opacity: 0, ease: "back.out" };
 
   timeline.from(selector, { ...defaultOptions, ...options });
 };
