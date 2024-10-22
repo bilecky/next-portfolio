@@ -16,16 +16,15 @@ const About = () => {
   const mm = gsap.matchMedia();
 
   useGSAP(() => {
-    gsap.timeline({
-      scrollTrigger: {
-        trigger: ".panel",
-        start: "top top",
-        pin: true,
-        pinSpacing: false,
-        scrub: 2.5,
-      },
-    });
-
+    // gsap.timeline({
+    //   scrollTrigger: {
+    //     trigger: ".panel",
+    //     start: "top top",
+    //     pin: true,
+    //     pinSpacing: false,
+    //     scrub: 2.5,
+    //   },
+    // });
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: ".pinning-area",
@@ -36,93 +35,94 @@ const About = () => {
     });
 
     tl.to(".about", { yPercent: -100 });
-
     // ___________________________________________
-
-    // mm.add("(min-width: 768px)", () => {
-    const mainAboutLn = gsap.timeline({
-      scrollTrigger: {
-        trigger: ".about_header",
-        start: "top bottom", // Zaczyna, gdy dół sekcji dotknie dołu ekranu
-        end: "top 80%", // Animacja kończy się, zanim sekcja dojdzie do środka
-        scrub: 2,
-      },
-    });
-    reuseTexTsplitterFn({
-      timeline: mainAboutLn,
-      selector: ".about_header .split-char",
-      options: { stagger: 1, rotateY: 180 },
-    });
-
-    // mainAboutLn
-    //   .from(
-    //     ".image_wrapper",
-    //     {
-    //       opacity: 0,
-    //       ease: "power3.out",
-    //       duration: 10,
-    //       rotateX: -90,
-    //     },
-    //     0,
-    //   )
-    //   .from(
-    //     ".corner-el",
-    //     {
-    //       scale: 0.8,
-    //       ease: "ease",
-    //       duration: 10,
-    //       opacity: 0,
-    //       stagger: 3,
-    //     },
-    //     0,
-    //   );
+    // ___________________________________________
+    // ___________________________________________
   });
 
-  mm.add("(max-width: 767px)", () => {
-    const mainAboutLn = gsap.timeline({
-      scrollTrigger: {
-        trigger: ".about_header", // Make sure this class exists on the element
-        start: "top bottom", // Rozpocznij, gdy górna krawędź sekcji dotknie dolnej krawędzi viewportu
-        // inne opcje...
-        scrub: 3, // Sync the animation with scrolling smoothly,
+  useGSAP(() => {
+    mm.add("(min-width: 768px)", () => {
+      const mainAboutLn = gsap.timeline({
+        scrollTrigger: {
+          trigger: ".about", // Make sure this class exists on the element
+          start: "top bottom", // Rozpocznij, gdy górna krawędź sekcji dotknie dolnej krawędzi viewportu
+          // inne opcje...
+          scrub: 3, // Sync the animation with scrolling smoothly,
+          end: "+=25%", // Animacja trwa przez 25% wysokości viewportu od momentu, gdy się rozpocznie
+        },
+      });
 
-        markers: true,
-      },
+      mainAboutLn
+        .from(
+          ".about_header .split-char",
+          {
+            x: -40,
+            opacity: 0,
+            duration: 2.5,
+            ease: "expo.out",
+            stagger: 1,
+            rotateY: 180,
+          },
+          0,
+        )
+        .from(
+          ".about_description",
+          {
+            stagger: 1,
+            x: 100,
+            duration: 4,
+            opacity: 0,
+            ease: "back.out",
+          },
+          "-=.5",
+        )
+        .from(
+          ".image_wrapper",
+          { rotateX: 90, duration: 5, ease: "ease-in", opacity: 0 },
+          "-=1.5",
+        );
     });
-    reuseTexTsplitterFn({
-      timeline: mainAboutLn,
-      selector: ".about_header .split-char",
-      options: { stagger: 1, rotateY: 180 },
+
+    mm.add("(max-width: 767px)", () => {
+      const mainMobileAboutLn = gsap.timeline({
+        scrollTrigger: {
+          trigger: ".about", // Make sure this class exists on the element
+          start: "top bottom", // Rozpocznij, gdy górna krawędź sekcji dotknie dolnej krawędzi viewportu
+          // inne opcje...
+          scrub: 3, // Sync the animation with scrolling smoothly,
+          end: "+=25%", // Animacja trwa przez 25% wysokości viewportu od momentu, gdy się rozpocznie
+        },
+      });
+      mainMobileAboutLn
+        .from(
+          ".about_header .split-char",
+          {
+            x: -40,
+            opacity: 0,
+            duration: 2.5,
+            ease: "expo.out",
+            stagger: 1,
+            rotateY: 180,
+          },
+          0,
+        )
+        .from(
+          ".about_description",
+          {
+            stagger: 1,
+            x: 100,
+            duration: 4,
+            opacity: 0,
+            ease: "back.out",
+          },
+          "-=.5",
+        )
+        .from(
+          ".image_wrapper",
+          { rotateX: 90, duration: 5, ease: "ease-in", opacity: 0 },
+          "-=1.5",
+        );
     });
-    // reuseSectionDescriptionAnimation({
-    //   timeline: mainAboutLn,
-    //   selector: ".about_description",
-    //   options: {
-    //     stagger: 1,
-    //   },
-    // });
-    // mainAboutLn
-    //   .from(
-    //     ".image_wrapper",
-    //     {
-    //       opacity: 0,
-    //       ease: "power3.out",
-    //       duration: 10,
-    //       rotateX: -90,
-    //     },
-    //     0,
-    //   )
-    //   .from(
-    //     ".corner-el",
-    //     {
-    //       scale: 0.8,
-    //       ease: "ease",
-    //       duration: 10,
-    //       opacity: 0,
-    //       stagger: 3,
-    //     },
-    //     0,
-    //   );
   });
   return (
     <section className="about panel absolute z-10 w-full overflow-hidden bg-background py-20 shadow-xl will-change-transform lg:py-36">
