@@ -16,8 +16,8 @@ export default function Home() {
       </div>
       <div className="tech-wrapper relative">
         <Tech />
-        <div className="wrapper absolute w-full">
-          <div className="overlap grid grid-cols-1 grid-rows-1 place-items-center gap-0">
+        <div className="wrapper absolute h-screen w-full">
+          <div className="overlap relative grid h-full w-full grid-cols-1 grid-rows-1 place-items-center gap-0">
             <About />
             <Contact />
           </div>

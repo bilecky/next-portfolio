@@ -21,7 +21,7 @@ const About = () => {
       scrollTrigger: {
         trigger: ".tech-wrapper",
         start: "top top",
-        end: "+=200%",
+        end: "+=250%",
         scrub: 2,
         pin: true,
       },
@@ -130,8 +130,8 @@ const About = () => {
     // });
   });
   return (
-    <section className="about panel relative z-10 col-start-1 col-end-2 row-start-1 row-end-2 h-screen w-full overflow-hidden bg-background py-20 opacity-50 shadow-xl will-change-transform lg:py-36">
-      <div className="about_wrapper text-blackSectionText container box-border grid max-h-full grid-cols-1 place-items-center gap-10 lg:grid-cols-2">
+    <section className="about panel absolute left-0 top-0 z-10 col-start-1 col-end-2 row-start-1 row-end-2 w-full overflow-hidden bg-background py-20 shadow-xl will-change-transform lg:py-36">
+      <div className="about_wrapper container box-border grid max-h-full grid-cols-1 place-items-center gap-10 text-blackSectionText lg:grid-cols-2">
         <div className="overview_section relative text-mobile">
           <h2 className="about_header font-mainHeaderFont uppercase leading-none tracking-wide text-mainFontColor lg:text-section-header">
             <Splitter text="About" />
