@@ -118,22 +118,23 @@ function Tech({}: Props) {
             );
         },
       });
+      [".wrapper", "footer"].forEach((el) => {
+        ScrollTrigger.create({
+          trigger: el,
+          start: "top bottom",
+          end: "bottom top",
+          toggleActions: "play pause play pause", // onEnter onLeave onEnterBack onLeaveBack
 
-      ScrollTrigger.create({
-        trigger: ".wrapper",
-        start: "top bottom",
-        end: "bottom top",
-        toggleActions: "play pause play pause", // onEnter onLeave onEnterBack onLeaveBack
-
-        onToggle: (self) => {
-          if (self.isActive) {
-            firstObserver.disable();
-            secondObserver.disable();
-          } else {
-            firstObserver.enable();
-            secondObserver.enable();
-          }
-        },
+          onToggle: (self) => {
+            if (self.isActive) {
+              firstObserver.disable();
+              secondObserver.disable();
+            } else {
+              firstObserver.enable();
+              secondObserver.enable();
+            }
+          },
+        });
       });
     });
   });
