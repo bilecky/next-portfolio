@@ -56,6 +56,8 @@ function Tech({}: Props) {
   //TECHNOLOGIES GSAP ANIMATONS
 
   useGSAP(() => {
+    let firstObserver: any, secondObserver: any;
+
     document.fonts.ready.then(() => {
       const firstLoopArr = gsap.utils.toArray(".tech-item");
       const secondLoopArr = gsap.utils.toArray(".tech-item-reverse");
@@ -71,8 +73,8 @@ function Tech({}: Props) {
         speed: 1,
       });
 
-      ScrollTrigger.observe({
-        target: ".tech",
+      firstObserver = ScrollTrigger.observe({
+        target: window,
         type: "wheel, touch",
         onChangeY(self) {
           let factorOne = 1.5;
@@ -94,8 +96,8 @@ function Tech({}: Props) {
         },
       });
 
-      ScrollTrigger.observe({
-        target: ".tech",
+      secondObserver = ScrollTrigger.observe({
+        target: window,
         type: "wheel, touch",
         onChangeY(self) {
           let factorTwo = 1.5;
@@ -116,11 +118,28 @@ function Tech({}: Props) {
             );
         },
       });
+
+      ScrollTrigger.create({
+        trigger: ".wrapper",
+        start: "top bottom",
+        end: "bottom top",
+        toggleActions: "play pause play pause", // onEnter onLeave onEnterBack onLeaveBack
+
+        onToggle: (self) => {
+          if (self.isActive) {
+            firstObserver.disable();
+            secondObserver.disable();
+          } else {
+            firstObserver.enable();
+            secondObserver.enable();
+          }
+        },
+      });
     });
   });
 
   return (
-    <section className="tech -z-10 py-28 text-background opacity-0 will-change-auto">
+    <section className="tech relative -z-10 py-28 text-background opacity-0 will-change-transform">
       <div className="overview-wrapper container">
         <div className="overview relative ml-auto text-right lg:w-3/5">
           <h2 className="tech-header font-mainHeaderFont text-mobile uppercase leading-none lg:text-section-header">
