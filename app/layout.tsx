@@ -43,7 +43,7 @@ export default function RootLayout({
         <Header />
         {children}
         <CursorFollower />
-        <Footer />
+        {/* <Footer /> */}
         {/* </Lenis> */}
       </body>
     </html>

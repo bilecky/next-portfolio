@@ -48,7 +48,7 @@ const Projects = (props: Props) => {
       ["body", ".black-overlay"],
       { backgroundColor: "#222222" }, // Start color
       {
-        backgroundColor: "#B1B1B1", // End color
+        backgroundColor: "#FBFCF8", // End color
         overwrite: "auto",
 
         ease: "power3.inOut", // Smooth transition for background color

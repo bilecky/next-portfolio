@@ -15,18 +15,22 @@ gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 const About = () => {
   const mm = gsap.matchMedia();
-
   const isMobile = useMediaQuery("(max-width: 768px)");
 
   useGSAP(() => {
+    const techElement = document.querySelector(".tech") as HTMLElement;
+    const techHeight = techElement.offsetHeight;
+    console.log(techHeight);
     // Pierwszy timeline
     const master = gsap.timeline({
       scrollTrigger: {
         trigger: ".tech-wrapper",
-        start: "top top",
+        start: () => `top+=${techHeight} bottom`,
         end: "+=250%",
         scrub: 2,
         pin: true,
+        markers: true,
+        invalidateOnRefresh: true, // ensures recalculation on resize
       },
     });
 
@@ -92,57 +96,10 @@ const About = () => {
       ease: "ease-in",
       opacity: 0,
     });
-
-    // Media queries
-    // mm.add("(min-width: 768px)", () => {
-    //   const mainAboutLn = gsap.timeline({
-    //     scrollTrigger: {
-    //       trigger: ".overview_section",
-    //       start: "top bottom",
-    //       scrub: 3,
-    //       end: "+=25%",
-    //     },
-    //   });
-
-    //   mainAboutLn
-    //     .from(
-    //       ".about_header .split-char",
-    //       {
-    //         x: -40,
-    //         opacity: 0,
-    //         duration: 2.5,
-    //         ease: "expo.out",
-    //         stagger: 1,
-    //         rotateY: 180,
-    //       },
-    //       0,
-    //     )
-    //     .from(
-    //       ".about_description",
-    //       {
-    //         stagger: 1,
-    //         x: 100,
-    //         duration: 4,
-    //         opacity: 0,
-    //         ease: "back.out",
-    //       },
-    //       "-=.5",
-    //     )
-    //     .from(
-    //       ".image_wrapper",
-    //       {
-    //         rotateX: 90,
-    //         duration: 5,
-    //         ease: "ease-in",
-    //         opacity: 0,
-    //       },
-    //       "-=1.5",
-    //     );
-    // });
   });
   return (
-    <section className="about panel absolute left-0 top-0 z-10 col-start-1 col-end-2 row-start-1 row-end-2 w-full overflow-hidden bg-background py-20 shadow-xl will-change-transform lg:py-36">
-      <div className="about_wrapper container box-border grid max-h-full grid-cols-1 place-items-center gap-10 text-blackSectionText lg:grid-cols-2">
+    <section className="about panel absolute left-0 top-0 z-10 col-start-1 col-end-2 row-start-1 row-end-2 h-full w-full overflow-hidden bg-background py-20 shadow-xl will-change-transform lg:py-36">
+      <div className="about_wrapper container box-border grid max-h-full grid-cols-1 place-items-center gap-10 text-blackSectionText xl:grid-cols-2">
         <div className="overview_section relative text-mobile">
           <h2 className="about_header font-mainHeaderFont uppercase leading-none tracking-wide text-mainFontColor lg:text-section-header">
             <Splitter text="About" />

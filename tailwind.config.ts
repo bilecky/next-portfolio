@@ -23,7 +23,7 @@ const config: Config = {
       colors: {
         mainFontColor: "#FBFCF8",
         background: "#222222",
-        secondBackground: "#B1B1B1",
+        secondBackground: "#FBFCF8",
         // foreground: "var(--foreground)",
         blackSectionText: "#b8b8b8",
       },

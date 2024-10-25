@@ -128,10 +128,10 @@ const ProjectCarousel = (props: projectCarouselProps) => {
   return (
     <div className="carousel xl:w-2/5">
       <div className="relative flex h-full flex-col items-end justify-evenly font-extralight uppercase">
-        <div className="main-line opacity-1 absolute h-full w-1.5 bg-mainFontColor">
+        <div className="main-line opacity-1 absolute h-full w-1.5 bg-gray-300">
           <div
             ref={lineRef}
-            className="item-line absolute left-0 top-0 w-1.5 bg-[#444444]"
+            className="item-line absolute left-0 top-0 w-1.5 bg-background"
           ></div>
         </div>
         {projects.map((project, index) => (
@@ -139,8 +139,8 @@ const ProjectCarousel = (props: projectCarouselProps) => {
             key={index}
             id={`project-${index}`}
             className={clsx(
-              "cursor-pointer px-8 py-4 transition-colors hover:text-gray-300",
-              index === currentProject && "text-gray-300",
+              "cursor-pointer px-8 py-4 transition-colors hover:text-gray-500",
+              index === currentProject && "text-gray-600",
             )}
             ref={(el) => setProjectRef(el, index)}
             onClick={() => handleProjectClick(index)}
