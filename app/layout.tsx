@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "./components/Header";
 import CursorFollower from "./utils/CursorFollower";
 import Footer from "./components/Footer";
+import Lenis from "./utils/Lenis";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -37,10 +38,13 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${powerGrotesk.variable} bg-secondBackground font-mainFont antialiased`}
       >
+        {" "}
+        {/* <Lenis> */}
         <Header />
         {children}
         <CursorFollower />
-        {/* <Footer /> */}
+        <Footer />
+        {/* </Lenis> */}
       </body>
     </html>
   );

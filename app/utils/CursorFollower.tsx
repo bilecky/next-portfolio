@@ -39,9 +39,11 @@ const CursorFollower: React.FC = () => {
   return (
     <div
       ref={cursorRef}
-      className="pointer-events-none fixed left-0 top-0 z-[9999] flex h-14 w-14 items-center justify-center rounded-full border border-white opacity-0 mix-blend-difference md:flex"
+      style={{ filter: "blur(1px)" }}
+      className="pointer-events-none fixed left-0 top-0 z-[9999] flex h-14 w-14 items-center justify-center rounded-full border border-mainFontColor opacity-0 mix-blend-difference md:flex"
     >
-      <div className="h-1 w-1 rounded-full bg-white" /> {/* Kropka w środku */}
+      <div className="h-1 w-1 rounded-full bg-mainFontColor" />{" "}
+      {/* Kropka w środku */}
     </div>
   );
 };

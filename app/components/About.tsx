@@ -9,11 +9,14 @@ import {
   reuseSectionDescriptionAnimation,
   reuseTexTsplitterFn,
 } from "../utils/ReusableGSAPAnimations";
+import useMediaQuery from "@/app/utils/hooks/useMediaQuery";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 const About = () => {
   const mm = gsap.matchMedia();
+
+  const isMobile = useMediaQuery("(max-width: 768px)");
 
   useGSAP(() => {
     // Pierwszy timeline
@@ -40,10 +43,10 @@ const About = () => {
     const mainAboutLn = gsap.timeline({
       scrollTrigger: {
         trigger: ".overview_section",
-        start: "top center",
+        start: "top 75%",
         scrub: 2,
         end: "+=80%",
-        refreshPriority: 1, // Ensures this is refreshed after the parent trigger
+        // refreshPriority: 2, // Ensures this is refreshed after the parent trigger
       },
     });
 
@@ -69,18 +72,26 @@ const About = () => {
           opacity: 0,
           ease: "back.out",
         },
-        "-=.5",
-      )
-      .from(
-        ".image_wrapper",
-        {
-          rotateX: 90,
-          duration: 5,
-          ease: "ease-in",
-          opacity: 0,
-        },
-        "-=1.5",
+        "-=.3",
       );
+
+    // New timeline for the image_wrapper inside image_section
+    const imageWrapperTimeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".image_section", // Trigger when .image_section is in view
+        start: "top 55%", // Adjust the start value as needed
+        end: "center top", // End when the section leaves the viewport
+        scrub: 2,
+        // refreshPriority: 1, // Ensures this is refreshed after the parent trigger
+      },
+    });
+
+    imageWrapperTimeline.from(".image_wrapper", {
+      rotateX: 90,
+      duration: 3,
+      ease: "ease-in",
+      opacity: 0,
+    });
 
     // Media queries
     // mm.add("(min-width: 768px)", () => {
@@ -166,13 +177,14 @@ const About = () => {
           </p>
         </div>
         <div className="image_section">
-          <div className="image_wrapper relative">
+          <div className="image_wrapper relative will-change-transform">
             <Image
               src="/profile-picture.jpeg"
               alt="Description of image"
               width={400}
               height={800}
               className="block shadow-lg"
+              quality={50}
             />
             <div className="pointer-events-none absolute inset-0 border-b-4 border-l-4 border-r-4 border-t-4 border-transparent">
               <div className="corner-el absolute -left-2 -top-2 -z-10 h-10 w-10 bg-white"></div>
