@@ -12,6 +12,31 @@ const config: Config = {
       padding: ".5rem",
     },
     extend: {
+      keyframes: {
+        "modal-open": {
+          "0%": {
+            opacity: "0",
+            transform: "translate(0, -10px)",
+          },
+          "100%": {
+            opacity: "1",
+            transform: "translate(0, 0)",
+          },
+        },
+        "modal-overlay-open": {
+          "0%": {
+            opacity: "0",
+          },
+          "100%": {
+            opacity: "1",
+          },
+        },
+      },
+      animation: {
+        "modal-open": "modal-open 0.3s ease-out",
+        "modal-overlay-open": "modal-overlay-open 0.3s ease-out",
+      },
+
       fontFamily: {
         mainHeaderFont: ["var(--font-power-grotesk)", "sans-serif"],
         mainFont: ["var(--font-geist-sans)", "sans-serif"],

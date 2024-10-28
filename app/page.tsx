@@ -12,7 +12,7 @@ export default function Home() {
         <Hero />
         <Projects />
       </div>
-      <div className="tech-wrapper relative">
+      <div className="tech-wrapper sticky">
         <Tech />
         <div className="wrapper absolute h-screen w-full">
           <div className="overlap relative grid h-full w-full grid-cols-1 grid-rows-1 place-items-center gap-0">

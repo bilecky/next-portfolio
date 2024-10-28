@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import PageTransition from "@/app/utils/PageTransition";
+import PageTransition from "@/app/utils/helpers/PageTransition";
 import { projects } from "@/app/data/data";
 import Image from "next/image";
 import { RiGithubFill } from "react-icons/ri";
@@ -204,7 +204,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
   return (
     <PageTransition>
       <section className="project_details relative z-10 cursor-default py-40 opacity-0">
-        <h1 className="project_details_title font-mainHeaderFont mb-24 text-center text-6xl font-extralight uppercase text-mainFontColor max-fold:text-5xl md:text-[6rem] lg:text-[8rem] 2xl:text-[8rem]">
+        <h1 className="project_details_title mb-24 text-center font-mainHeaderFont text-6xl font-extralight uppercase text-mainFontColor max-fold:text-5xl md:text-[6rem] lg:text-[8rem] 2xl:text-[8rem]">
           {projects[paramsProject - 1].title}
         </h1>
         <div
