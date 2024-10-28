@@ -25,7 +25,7 @@ const Contact = () => {
 
   const [hoveredPin, setHoveredPin] = useState<UserPin | null>(null); // Ustal typ stanu
 
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null); // Ensure this is defined
 
   useEffect(() => {
     const loadPins = async () => {
@@ -72,13 +72,13 @@ const Contact = () => {
 
     try {
       await createPin(newPin);
-      console.log("Pomyslnie dodano pinek", newPin);
       setPins((prevPins) => [...prevPins, newPin]);
       setClickPosition(null);
       setIsModalOpen(false);
     } catch (error) {
-      console.error("Database Error/contact-component:", error);
-      throw new Error("Nieprawidlowe blad");
+      if (error instanceof Error) {
+        setError(error.message || "Nieprawidłowy błąd"); // Set the error message from the caught error
+      }
     }
   };
 
@@ -116,7 +116,7 @@ const Contact = () => {
                     }}
                   >
                     <PiPushPinFill
-                      size={25}
+                      className="pin text-lg md:text-xl"
                       style={{
                         color: pin.pallette,
                       }}
@@ -140,6 +140,8 @@ const Contact = () => {
               onClose={() => setIsModalOpen(false)}
               onSubmit={handleAddPin}
               position={clickPosition}
+              error={error}
+              setError={setError}
             />
           </div>
 

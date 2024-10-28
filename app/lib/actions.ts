@@ -16,6 +16,14 @@ export async function createPin(pin: UserPin) {
         )
       `;
 
+    const checkIfPinExists = await sql`
+      SELECT * FROM pins WHERE name = ${pin.name}
+    `;
+
+    if (checkIfPinExists?.rowCount && checkIfPinExists.rowCount > 0) {
+      throw new Error("Pin with this name already exists");
+    }
+
     // Wstaw dane do tabeli
     await sql`
         INSERT INTO pins (id, name, positionX, positionY, pallette)
@@ -30,15 +38,5 @@ export async function createPin(pin: UserPin) {
     } else {
       throw new Error("An unknown error occurred/pawel");
     }
-  }
-}
-
-export async function checkIfPinExists(name: string): Promise<boolean> {
-  try {
-    const result = await sql`SELECT * FROM pins WHERE name = ${name}`;
-    return (result?.rowCount ?? 0) > 0;
-  } catch (error) {
-    console.error("Database Error/checkIfPinExists:", error);
-    throw new Error("Failed to check if pin exists in the database");
   }
 }

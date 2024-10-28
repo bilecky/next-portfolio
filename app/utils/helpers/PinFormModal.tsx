@@ -3,13 +3,14 @@
 import { useState } from "react";
 import { Modal } from "./Modal";
 import clsx from "clsx";
-import { checkIfPinExists } from "@/app/lib/actions";
 
 interface PinFormModalProps {
   isOpen: boolean;
   onClose: () => void;
   onSubmit: (name: string) => void;
   position: { x: number; y: number } | null;
+  error?: string | null;
+  setError: (error: string | null) => void; // Ensure this matches your parent's signature
 }
 
 export const PinFormModal = ({
@@ -17,35 +18,26 @@ export const PinFormModal = ({
   onClose,
   onSubmit,
   position,
+  error,
+  setError,
 }: PinFormModalProps) => {
   const [name, setName] = useState("");
-  const [error, setError] = useState<string | null>(null); // Stan na błąd
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!name.trim()) {
-      setError("Podaj nazwe pinu.");
+    if (!name) {
+      setError("Pole imienia jest wymagane.");
       return;
     }
 
+    setError(null);
+
     try {
-      // Sprawdź, czy pin o tej nazwie istnieje
-      const exists = await checkIfPinExists(name.trim());
-
-      if (exists) {
-        setError("Pin z taką nazwą już istnieje.");
-        return; // Przerwij wysyłanie formularza, jeśli pin istnieje
-      }
-
-      // Jeśli pin nie istnieje, kontynuuj wywołanie `onSubmit`
-      setError(null); // Reset błędu
-      setName("");
-      onSubmit(name.trim());
-      onClose();
+      onSubmit(name.trim()); // Await the onSubmit call
+      setName(""); // Clear the input
     } catch (error) {
       console.error("Error checking pin existence:", error);
-      setError("Wystąpił błąd podczas sprawdzania pinu."); // Obsłuż inne błędy
     }
   };
 
