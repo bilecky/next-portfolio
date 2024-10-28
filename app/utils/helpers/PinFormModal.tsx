@@ -7,17 +7,20 @@ interface PinFormModalProps {
   isOpen: boolean;
   onClose: () => void;
   onSubmit: (name: string) => void;
+  position: { x: number; y: number };
 }
 
 export const PinFormModal = ({
   isOpen,
   onClose,
   onSubmit,
+  position,
 }: PinFormModalProps) => {
   const [name, setName] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
     if (name.trim()) {
       onSubmit(name.trim());
       setName("");
@@ -45,7 +48,10 @@ export const PinFormModal = ({
             autoFocus
           />
         </div>
-        <div className="flex justify-end gap-2">
+        <div className="flex justify-end gap-3">
+          <span className="error order-first mr-auto self-center text-sm text-red-500">
+            Twój pin już istnieje
+          </span>
           <button
             type="button"
             onClick={onClose}

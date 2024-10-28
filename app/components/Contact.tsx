@@ -1,11 +1,13 @@
 "use client";
-
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { RiMailSendFill } from "react-icons/ri";
 import { PinFormModal } from "../utils/helpers/PinFormModal";
 import { PiPushPinFill } from "react-icons/pi";
+import { sql } from "@vercel/postgres";
+import { createPin } from "../lib/actions";
+import { fetchPins } from "../lib/data";
 
-interface UserPin {
+export interface UserPin {
   id: string;
   name: string;
   position: { x: number; y: number };
@@ -23,6 +25,19 @@ const Contact = () => {
 
   const [hoveredPin, setHoveredPin] = useState<UserPin | null>(null); // Ustal typ stanu
 
+  useEffect(() => {
+    const loadPins = async () => {
+      try {
+        const fetchedPins = await fetchPins();
+        setPins(fetchedPins);
+        console.log(fetchedPins);
+      } catch (error) {
+        console.error("Database Error/contact-component:", error);
+        throw new Error("Nieprawidlowe blad");
+      }
+    };
+    loadPins();
+  }, []);
   const handleClick = (e: React.MouseEvent) => {
     const rect = e.currentTarget.getBoundingClientRect();
     const x = e.clientX - rect.left;
@@ -32,20 +47,28 @@ const Contact = () => {
     setIsModalOpen(true);
   };
 
-  const handleAddPin = (name: string) => {
+  const handleAddPin = async (name: string) => {
     const newPin = {
       id: Date.now().toString(),
       name,
       position: clickPosition!,
       pallette: color,
     };
-    setPins((prevPins) => [...prevPins, newPin]);
-    setClickPosition(null);
-    setIsModalOpen(false);
+
+    try {
+      await createPin(newPin);
+      console.log("Pomyslnie dodano pinek", newPin);
+      setPins((prevPins) => [...prevPins, newPin]);
+      setClickPosition(null);
+      setIsModalOpen(false);
+    } catch (error) {
+      console.error("Database Error/contact-component:", error);
+      throw new Error("Nieprawidlowe blad");
+    }
   };
 
   return (
-    <section className="contact panel z-5 relative left-0 top-0 col-start-1 col-end-2 row-start-1 row-end-2 flex h-screen w-full bg-secondBackground py-20 will-change-transform lg:py-36">
+    <section className="contact panel z-5 relative left-0 top-0 col-start-1 col-end-2 row-start-1 row-end-2 flex h-screen w-full bg-secondBackground py-20 will-change-transform lg:py-28">
       <div className="container">
         <h2 className="contact_header text-center font-mainHeaderFont text-mobile uppercase leading-none tracking-wide text-background lg:text-section-header">
           Let's connect
@@ -56,7 +79,8 @@ const Contact = () => {
             <p className="about_description text-sm lg:text-xl">
               Whether you have a project you want to work on together or just
               want us to meet and have a chat, you are in the right place: let's
-              get in touch.
+              get in touch. We are always looking for new and exciting projects
+              and collaborations.
             </p>
 
             <div className="user_pinning_wrapper mt-auto flex min-h-52 w-full flex-grow flex-col pt-8">
@@ -100,6 +124,7 @@ const Contact = () => {
               isOpen={isModalOpen}
               onClose={() => setIsModalOpen(false)}
               onSubmit={handleAddPin}
+              position={clickPosition}
             />
           </div>
 
