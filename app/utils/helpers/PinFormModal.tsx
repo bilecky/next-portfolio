@@ -2,12 +2,14 @@
 
 import { useState } from "react";
 import { Modal } from "./Modal";
+import clsx from "clsx";
+import { checkIfPinExists } from "@/app/lib/actions";
 
 interface PinFormModalProps {
   isOpen: boolean;
   onClose: () => void;
   onSubmit: (name: string) => void;
-  position: { x: number; y: number };
+  position: { x: number; y: number } | null;
 }
 
 export const PinFormModal = ({
@@ -17,14 +19,33 @@ export const PinFormModal = ({
   position,
 }: PinFormModalProps) => {
   const [name, setName] = useState("");
+  const [error, setError] = useState<string | null>(null); // Stan na błąd
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (name.trim()) {
-      onSubmit(name.trim());
+    if (!name.trim()) {
+      setError("Podaj nazwe pinu.");
+      return;
+    }
+
+    try {
+      // Sprawdź, czy pin o tej nazwie istnieje
+      const exists = await checkIfPinExists(name.trim());
+
+      if (exists) {
+        setError("Pin z taką nazwą już istnieje.");
+        return; // Przerwij wysyłanie formularza, jeśli pin istnieje
+      }
+
+      // Jeśli pin nie istnieje, kontynuuj wywołanie `onSubmit`
+      setError(null); // Reset błędu
       setName("");
+      onSubmit(name.trim());
       onClose();
+    } catch (error) {
+      console.error("Error checking pin existence:", error);
+      setError("Wystąpił błąd podczas sprawdzania pinu."); // Obsłuż inne błędy
     }
   };
 
@@ -43,14 +64,18 @@ export const PinFormModal = ({
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className="w-full rounded-sm border-b-2 border-gray-300 bg-transparent px-4 py-4 focus:border-b-background focus:outline-none focus:ring-0"
+            className={clsx(
+              "w-full rounded-sm border-b-2 px-4 py-4 focus:outline-none focus:ring-0",
+              error ? "border-b-red-500" : "border-b-gray-300",
+              "bg-transparent focus:border-b-background",
+            )}
             placeholder="Wpisz swoje imię..."
             autoFocus
           />
         </div>
         <div className="flex justify-end gap-3">
           <span className="error order-first mr-auto self-center text-sm text-red-500">
-            Twój pin już istnieje
+            {error}{" "}
           </span>
           <button
             type="button"

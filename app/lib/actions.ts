@@ -32,3 +32,13 @@ export async function createPin(pin: UserPin) {
     }
   }
 }
+
+export async function checkIfPinExists(name: string): Promise<boolean> {
+  try {
+    const result = await sql`SELECT * FROM pins WHERE name = ${name}`;
+    return (result?.rowCount ?? 0) > 0;
+  } catch (error) {
+    console.error("Database Error/checkIfPinExists:", error);
+    throw new Error("Failed to check if pin exists in the database");
+  }
+}

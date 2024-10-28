@@ -25,6 +25,8 @@ const Contact = () => {
 
   const [hoveredPin, setHoveredPin] = useState<UserPin | null>(null); // Ustal typ stanu
 
+  const [error, setError] = useState<string | null>(null);
+
   useEffect(() => {
     const loadPins = async () => {
       try {
@@ -40,16 +42,29 @@ const Contact = () => {
   }, []);
   const handleClick = (e: React.MouseEvent) => {
     const rect = e.currentTarget.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
+    const xPercent = ((e.clientX - rect.left) / rect.width) * 100;
+    const yPercent = ((e.clientY - rect.top) / rect.height) * 100;
     setColor(`#${Math.floor(Math.random() * 16777215).toString(16)}`);
-    setClickPosition({ x, y });
+
+    // Sprawdzamy, czy istnieje już pin w tej pozycji
+    const isDuplicate = pins.some(
+      (pin) =>
+        Math.abs(pin.position.x - xPercent) < 4 && // Porównujemy z xPercent
+        Math.abs(pin.position.y - yPercent) < 4, // Porównujemy z yPercent
+    );
+
+    if (isDuplicate) {
+      return;
+    }
+
+    // Jeśli nie ma duplikatu, ustawiamy pozycję i otwieramy modal
+    setClickPosition({ x: xPercent, y: yPercent });
     setIsModalOpen(true);
   };
 
   const handleAddPin = async (name: string) => {
     const newPin = {
-      id: Date.now().toString(),
+      id: name,
       name,
       position: clickPosition!,
       pallette: color,
@@ -95,8 +110,8 @@ const Contact = () => {
                     onMouseLeave={() => setHoveredPin(null)}
                     style={{
                       position: "absolute",
-                      top: pin.position.y,
-                      left: pin.position.x,
+                      top: `${pin.position.y}%`,
+                      left: `${pin.position.x}%`,
                       transform: "translate(-25%, -50%)",
                     }}
                   >
