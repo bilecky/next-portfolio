@@ -51,7 +51,7 @@ const ContactWrapperClient = ({ children }: ContactWrapperProps) => {
   return (
     <section
       ref={wrapperRef}
-      className="contact panel z-5 relative left-0 top-0 col-start-1 col-end-2 row-start-2 row-end-2 h-full w-full bg-secondBackground py-20 will-change-transform lg:py-28"
+      className="contact panel z-5 relative left-0 top-0 col-start-1 col-end-2 row-start-2 row-end-2 h-screen w-full bg-secondBackground py-20 will-change-transform lg:py-28"
     >
       {children}
     </section>

@@ -3,8 +3,10 @@
 import { sql } from "@vercel/postgres";
 import { headers } from "next/headers";
 import { UserPin } from "../components/Contact/PinningComponent";
+import { sanitizePinName } from "../utils/helpers/helperFunctions";
 
 export async function createPin(pin: UserPin) {
+  const sanitizedName = sanitizePinName(pin.name);
   try {
     // Sprawdź, czy tabela istnieje
     await sql`
@@ -18,8 +20,13 @@ export async function createPin(pin: UserPin) {
       `;
 
     const checkIfPinExists = await sql`
-      SELECT * FROM pins WHERE name = ${pin.name}
+      SELECT * FROM pins WHERE name = ${sanitizedName}
     `;
+    const checkIfPinIsTooLong = sanitizedName.length > 6;
+
+    if (checkIfPinIsTooLong) {
+      throw new Error("Pin name is too long (max 6 characters)");
+    }
 
     if (checkIfPinExists?.rowCount && checkIfPinExists.rowCount > 0) {
       throw new Error("Pin with this name already exists");
@@ -28,7 +35,7 @@ export async function createPin(pin: UserPin) {
     // Wstaw dane do tabeli
     await sql`
         INSERT INTO pins (id, name, positionX, positionY, pallette)
-        VALUES (${pin.id}, ${pin.name}, ${pin.position.x}, ${pin.position.y}, ${pin.pallette})
+        VALUES (${pin.id}, ${sanitizedName}, ${pin.position.x}, ${pin.position.y}, ${pin.pallette})
       `;
   } catch (error) {
     console.error("Database Error/pawel:", error);
