@@ -1,16 +1,14 @@
-import { useState } from "react";
 import { RiMailSendFill } from "react-icons/ri";
-import { PinFormModal } from "../../utils/helpers/PinFormModal";
-import { createPin, getClientIP } from "../../lib/actions";
-import PinningWraper from "./PinningComponent";
+
 import PinningComponent from "./PinningComponent";
 import { fetchPins } from "@/app/lib/data";
+import ContactWrapperClient from "./ContactWrapperClient";
 
 const Contact = async () => {
   const pins = await fetchPins();
 
   return (
-    <section className="contact panel z-5 relative left-0 top-0 col-start-1 col-end-2 row-start-1 row-end-2 flex h-screen w-full bg-secondBackground py-20 will-change-transform lg:py-28">
+    <ContactWrapperClient>
       <div className="container">
         <h2 className="contact_header text-center font-mainHeaderFont text-mobile uppercase leading-none tracking-wide text-background lg:text-section-header">
           Let's connect
@@ -66,7 +64,7 @@ const Contact = async () => {
           </div>
         </div>
       </div>
-    </section>
+    </ContactWrapperClient>
   );
 };
 

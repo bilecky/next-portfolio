@@ -5,44 +5,11 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Splitter from "../utils/Splitter";
 import Image from "next/image";
-import {
-  reuseSectionDescriptionAnimation,
-  reuseTexTsplitterFn,
-} from "../utils/ReusableGSAPAnimations";
-import useMediaQuery from "@/app/utils/hooks/useMediaQuery";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 const About = () => {
-  const mm = gsap.matchMedia();
-  const isMobile = useMediaQuery("(max-width: 768px)");
-
   useGSAP(() => {
-    const techElement = document.querySelector(".tech") as HTMLElement;
-    const techHeight = techElement.offsetHeight;
-    console.log(techHeight);
-    // Pierwszy timeline
-    const master = gsap.timeline({
-      scrollTrigger: {
-        trigger: ".tech-wrapper",
-        start: () => `top+=${techHeight} bottom`,
-        end: "+=250%",
-        scrub: 2,
-        pin: true,
-        invalidateOnRefresh: true, // ensures recalculation on resize
-      },
-    });
-
-    master
-      .to(".wrapper", {
-        yPercent: -100,
-        ease: "none",
-      })
-      .to(".about", {
-        yPercent: -100,
-        ease: "none",
-      });
-
     const mainAboutLn = gsap.timeline({
       scrollTrigger: {
         trigger: ".overview_section",
