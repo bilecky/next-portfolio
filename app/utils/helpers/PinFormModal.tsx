@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Modal } from "./Modal";
 import clsx from "clsx";
+import { sanitizePinName } from "./helperFunctions";
 
 interface PinFormModalProps {
   isOpen: boolean;
@@ -32,7 +33,7 @@ export const PinFormModal = ({
     }
 
     try {
-      onSubmit(name.trim()); // Await the onSubmit call
+      onSubmit(sanitizePinName(name)); // Await the onSubmit call
       setName(""); // Clear the input
       setError(null);
     } catch (error) {

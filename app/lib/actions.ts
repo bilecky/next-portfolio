@@ -3,7 +3,10 @@
 import { sql } from "@vercel/postgres";
 import { headers } from "next/headers";
 import { UserPin } from "../components/Contact/PinningComponent";
-import { sanitizePinName } from "../utils/helpers/helperFunctions";
+import {
+  containsForbiddenWords,
+  sanitizePinName,
+} from "../utils/helpers/helperFunctions";
 
 export async function createPin(pin: UserPin) {
   const sanitizedName = sanitizePinName(pin.name);
@@ -30,6 +33,9 @@ export async function createPin(pin: UserPin) {
 
     if (checkIfPinExists?.rowCount && checkIfPinExists.rowCount > 0) {
       throw new Error("Pin with this name already exists");
+    }
+    if (containsForbiddenWords(sanitizedName)) {
+      throw new Error("Pin name contains forbidden words");
     }
 
     // Wstaw dane do tabeli
