@@ -19,8 +19,8 @@ const PinningComponent = ({ fetchedPins }: { fetchedPins: UserPin[] }) => {
   } | null>(null);
   const [color, setColor] = useState("#000000");
   const [pins, setPins] = useState<UserPin[]>(fetchedPins);
-
-  const [error, setError] = useState<string | null>(null); // Ensure this is defined
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const handleClick = (e: React.MouseEvent) => {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -45,6 +45,8 @@ const PinningComponent = ({ fetchedPins }: { fetchedPins: UserPin[] }) => {
   };
 
   const handleAddPin = async (name: string) => {
+    setLoading(true);
+
     //   const ip = await getClientIP();
     //JUTRO SOBIE OGARNIJ TO POZYSKIWANIE IP ZEBY NIE BYLO SPAMU
     const newPin = {
@@ -55,13 +57,18 @@ const PinningComponent = ({ fetchedPins }: { fetchedPins: UserPin[] }) => {
     };
 
     try {
+      await new Promise((resolve) => setTimeout(resolve, 3000));
+
       await createPin(newPin);
       setPins((prevPins) => [...prevPins, newPin]);
       setClickPosition(null);
       setIsModalOpen(false);
+      setError(null);
+      setLoading(false);
     } catch (error) {
       if (error instanceof Error) {
-        setError(error.message || "Nieprawidłowy błąd"); // Set the error message from the caught error
+        setError(error.message || "Nieprawidłowy błąd"); // Set the error message from the caught
+        setLoading(false); // Set loading to false if there's an error
       }
     }
   };
@@ -87,9 +94,9 @@ const PinningComponent = ({ fetchedPins }: { fetchedPins: UserPin[] }) => {
           setError(null);
         }}
         onSubmit={handleAddPin}
-        position={clickPosition}
         error={error}
         setError={setError}
+        loading={loading}
       />
     </>
   );

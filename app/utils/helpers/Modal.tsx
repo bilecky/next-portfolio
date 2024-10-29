@@ -2,15 +2,23 @@
 
 import { useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
+import PropagateLoader from "react-spinners/PropagateLoader";
 
 interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
   children: React.ReactNode;
   title?: string;
+  loading?: boolean;
 }
 
-export const Modal = ({ isOpen, onClose, children, title }: ModalProps) => {
+export const Modal = ({
+  isOpen,
+  onClose,
+  children,
+  title,
+  loading,
+}: ModalProps) => {
   const overlayRef = useRef<HTMLDivElement>(null);
   const modalRef = useRef<HTMLDivElement>(null);
 
@@ -53,6 +61,11 @@ export const Modal = ({ isOpen, onClose, children, title }: ModalProps) => {
         aria-modal="true"
         aria-labelledby={title ? "modal-title" : undefined}
       >
+        {loading && (
+          <div className="absolute inset-0 z-[100] flex items-center justify-center bg-black/[0.35]">
+            <PropagateLoader size={20} color="#212121" />
+          </div>
+        )}
         {title && (
           <div className="border-b px-6 py-4">
             <h2 id="modal-title" className="text-lg font-semibold">

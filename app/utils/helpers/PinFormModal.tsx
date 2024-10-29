@@ -8,18 +8,18 @@ interface PinFormModalProps {
   isOpen: boolean;
   onClose: () => void;
   onSubmit: (name: string) => void;
-  position: { x: number; y: number } | null;
   error?: string | null;
   setError: (error: string | null) => void; // Ensure this matches your parent's signature
+  loading?: boolean;
 }
 
 export const PinFormModal = ({
   isOpen,
   onClose,
   onSubmit,
-  position,
   error,
   setError,
+  loading,
 }: PinFormModalProps) => {
   const [name, setName] = useState("");
 
@@ -41,7 +41,12 @@ export const PinFormModal = ({
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} title="Dodaj pinezkę">
+    <Modal
+      loading={loading}
+      isOpen={isOpen}
+      onClose={onClose}
+      title="Dodaj pinezkę"
+    >
       <form onSubmit={handleSubmit} className="flex flex-col gap-4 p-6">
         <div className="mb-4">
           <label
