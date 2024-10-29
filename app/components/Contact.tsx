@@ -4,7 +4,7 @@ import { RiMailSendFill } from "react-icons/ri";
 import { PinFormModal } from "../utils/helpers/PinFormModal";
 import { PiPushPinFill } from "react-icons/pi";
 import { sql } from "@vercel/postgres";
-import { createPin } from "../lib/actions";
+import { createPin, getClientIP } from "../lib/actions";
 import { fetchPins } from "../lib/data";
 
 export interface UserPin {
@@ -63,6 +63,9 @@ const Contact = () => {
   };
 
   const handleAddPin = async (name: string) => {
+    const ip = await getClientIP();
+    //JUTRO SOBIE OGARNIJ TO POZYSKIWANIE IP ZEBY NIE BYLO SPAMU
+    console.log(ip);
     const newPin = {
       id: name,
       name,
@@ -137,7 +140,11 @@ const Contact = () => {
             </div>
             <PinFormModal
               isOpen={isModalOpen}
-              onClose={() => setIsModalOpen(false)}
+              onClose={() => {
+                setClickPosition(null);
+                setIsModalOpen(false);
+                setError(null);
+              }}
               onSubmit={handleAddPin}
               position={clickPosition}
               error={error}

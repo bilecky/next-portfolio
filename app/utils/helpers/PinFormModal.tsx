@@ -31,11 +31,10 @@ export const PinFormModal = ({
       return;
     }
 
-    setError(null);
-
     try {
       onSubmit(name.trim()); // Await the onSubmit call
       setName(""); // Clear the input
+      setError(null);
     } catch (error) {
       console.error("Error checking pin existence:", error);
     }

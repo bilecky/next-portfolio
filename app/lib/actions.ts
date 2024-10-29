@@ -2,6 +2,7 @@
 
 import { sql } from "@vercel/postgres";
 import { UserPin } from "../components/Contact";
+import { headers } from "next/headers";
 
 export async function createPin(pin: UserPin) {
   try {
@@ -39,4 +40,13 @@ export async function createPin(pin: UserPin) {
       throw new Error("An unknown error occurred/pawel");
     }
   }
+}
+
+export async function getClientIP() {
+  const headers = await import("next/headers").then((mod) => mod.headers());
+  const forwardedFor = headers.get("x-forwarded-for");
+  const ip = forwardedFor
+    ? forwardedFor.split(",")[0]
+    : headers.get("x-real-ip");
+  return ip || "unknown";
 }
