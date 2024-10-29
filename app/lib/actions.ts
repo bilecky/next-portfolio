@@ -1,7 +1,7 @@
 "use server";
 
 import { sql } from "@vercel/postgres";
-import { UserPin } from "../components/Contact";
+import { UserPin } from "../components/Contact/Contact";
 import { headers } from "next/headers";
 
 export async function createPin(pin: UserPin) {

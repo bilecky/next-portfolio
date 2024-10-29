@@ -3,7 +3,7 @@ import Hero from "./components/Hero";
 import Projects from "./components/Projects/Projects";
 import Tech from "./components/Tech";
 import About from "./components/About";
-import Contact from "./components/Contact";
+import Contact from "./components/Contact/Contact";
 
 export default function Home() {
   return (

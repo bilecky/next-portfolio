@@ -1,6 +1,5 @@
-"use server";
 import { sql } from "@vercel/postgres";
-import { UserPin } from "../components/Contact";
+import { UserPin } from "../components/Contact/PinningComponent";
 
 export async function fetchPins() {
   try {
