@@ -17,6 +17,7 @@ import { Loader } from "@react-three/drei";
 import { useInView } from "react-intersection-observer";
 import * as THREE from "three";
 import useMediaQuery from "@/app/utils/hooks/useMediaQuery";
+import clsx from "clsx";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -25,7 +26,7 @@ type Props = {};
 const Projects = (props: Props) => {
   const monitorModelRef = useRef<THREE.Group>(null);
   const isMobile = useMediaQuery("(max-width: 768px)");
-  const [currentProject, setCurrentProject] = useState<number>(0);
+  const [currentProject, setCurrentProject] = useState<number>(1);
 
   const [ref, inView] = useInView({
     triggerOnce: true,
@@ -59,7 +60,7 @@ const Projects = (props: Props) => {
       scrollTrigger: {
         trigger: ".projects", // Make sure this class exists on the element
         start: "top center", // Rozpocznij, gdy górna krawędź sekcji dotknie dolnej krawędzi widoku
-        end: "bottom bottom",
+        end: "+=30%",
         scrub: 3, // Sync the animation with scrolling smoothly
       },
     });
@@ -74,14 +75,21 @@ const Projects = (props: Props) => {
     reuseSectionDescriptionAnimation({
       timeline: leftSectionArea,
       selector: ".projects-description",
-      options: {
-        stagger: 1,
+    });
+    const model3dTimeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".projects",
+        start: "top 30%",
+        end: "bottom bottom",
+        scrub: 3,
       },
     });
-    leftSectionArea.from(".model3d", {
+
+    model3dTimeline.from(".model3d", {
       opacity: 0,
       ease: "back.out",
-      duration: 10,
+      duration: 5,
+      delay: 0.5,
     });
 
     // textArea.from(".project_details", {
@@ -119,59 +127,41 @@ const Projects = (props: Props) => {
   });
 
   return (
-    <section className="projects container relative z-10 text-background opacity-0 md:py-28 xl:flex xl:flex-row">
+    <section className="projects relative z-10 text-background opacity-0 md:container md:py-28 xl:flex xl:flex-row">
       <div className="overview xl:w-3/5">
-        <h2 className="projects-header font-mainHeaderFont text-mobile uppercase leading-none lg:text-section-header">
-          <Splitter className="header-text" text="Projects" />
-        </h2>
+        <div className={clsx(isMobile && "container")}>
+          <h2 className="projects-header font-mainHeaderFont text-mobile uppercase leading-none lg:text-section-header">
+            <Splitter className="header-text" text="Projects" />
+          </h2>
 
-        <p className="projects-description py-4 text-sm lg:text-xl">
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s, when an unknown printer took a galley of type and
-          scrambled it to make a type specimen book." Lorem Ipsum is simply
-          dummy text of the printing and typesetting industry. Lorem Ipsum has
-        </p>
-        {/* <p className="projects-description py-4 text-sm lg:text-xl">
-          been the industry's standard dummy text ever since the 1500s, when an
-          unknown printer took a galley of type and scrambled it to make a type
-          specimen book."
-        </p> */}
-        {!isMobile && (
-          <div
-            ref={ref}
-            className="model3d relative h-[55vh] w-full overflow-visible"
-          >
-            {inView && (
-              <div className="absolute -bottom-24 z-50 h-[80vh] w-full overflow-visible 2xl:-bottom-72 2xl:h-[105vh] 2xl:w-[110%]">
-                <Suspense fallback={null}>
-                  <Canvas>
-                    <ThreeModel
-                      ref={monitorModelRef}
-                      currentProject={currentProject}
-                    />
-                  </Canvas>
-                </Suspense>
-                <Loader />
-              </div>
-            )}{" "}
-          </div>
-        )}
+          <p className="projects-description py-4 text-sm lg:text-xl">
+            Lorem Ipsum is simply dummy text of the printing and typesetting
+            industry. Lorem Ipsum has been the industry's standard dummy text
+            ever since the 1500s, when an unknown printer took a galley of type
+            and scrambled it to make a type specimen book." Lorem Ipsum is
+            simply dummy text of the printing and typesetting industry. Lorem
+            Ipsum has
+          </p>
+        </div>
 
-        {/* <AnimatedLink href={`/projects/${projects[currentProject].title}`}>
-          <div className="project_details mt-auto hidden max-w-full overflow-hidden rounded-lg bg-white shadow-lg xl:block">
-            <img
-              className="h-48 w-full object-cover"
-              src={projects[currentProject].image}
-              alt="Project image"
-            />
-            <div className="p-6">
-              <p className="text-base text-gray-700">
-                {projects[currentProject].description}
-              </p>
+        <div
+          ref={ref}
+          className="model3d relative -top-10 h-[50vh] w-full overflow-visible md:-top-20 lg:h-[55vh] xl:-top-0"
+        >
+          {inView && (
+            <div className="absolute z-10 h-[50vh] w-full overflow-visible lg:h-[80vh] 2xl:-bottom-72 2xl:h-[105vh] 2xl:w-[110%]">
+              <Suspense fallback={null}>
+                <Canvas>
+                  <ThreeModel
+                    ref={monitorModelRef}
+                    currentProject={currentProject}
+                  />
+                </Canvas>
+              </Suspense>
+              <Loader />
             </div>
-          </div>
-        </AnimatedLink> */}
+          )}{" "}
+        </div>
       </div>
 
       <ProjectCarousel

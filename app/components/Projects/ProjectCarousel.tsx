@@ -9,6 +9,8 @@ import clsx from "clsx";
 import useMediaQuery from "@/app/utils/hooks/useMediaQuery";
 import AnimatedLink from "@/app/utils/AnimatedLink";
 import { Group } from "three";
+import { useEffect } from "react";
+import { is } from "@react-three/fiber/dist/declarations/src/core/utils";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -21,9 +23,9 @@ type projectCarouselProps = {
 const ProjectCarousel = (props: projectCarouselProps) => {
   const { setCurrentProject, currentProject, monitorModelRef } = props;
   const isMobile = useMediaQuery("(max-width: 768px)");
-
   const lineRef = useRef<HTMLDivElement>(null);
   const projectRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const mobileCarouselRef = useRef<HTMLDivElement>(null);
 
   const setProjectRef = (ref: HTMLDivElement | null, index: number) => {
     if (projectRefs.current) {
@@ -85,12 +87,26 @@ const ProjectCarousel = (props: projectCarouselProps) => {
 
   // CURRENT PROJECT HANDLER
   useGSAP(() => {
+    // handle center of current project on mobile
+    if (projectRefs.current[currentProject] && mobileCarouselRef.current) {
+      console.log("kod");
+      const projectCenterX =
+        projectRefs.current[currentProject].offsetLeft +
+        projectRefs.current[currentProject].clientWidth / 2;
+      const carouselCenterX = mobileCarouselRef.current!.clientWidth / 2;
+      mobileCarouselRef.current?.scrollTo({
+        left: projectCenterX - carouselCenterX,
+        behavior: "smooth",
+      });
+    }
+
+    //  handle center of current project on desktop
     if (!lineRef.current || !projectRefs.current[currentProject]) return;
 
     const currentProjectHeight =
       projectRefs.current[currentProject].clientHeight;
 
-    lineRef.current.style.height = `${currentProjectHeight}px`;
+    // lineRef.current.style.height = `${currentProjectHeight}px`;
 
     const lineTl = gsap.timeline();
 
@@ -100,13 +116,13 @@ const ProjectCarousel = (props: projectCarouselProps) => {
       y: projectRefs.current[currentProject]?.offsetTop || 0,
       ease: "power3.out",
     });
-  }, [currentProject]);
+  }, [currentProject, isMobile]);
 
   const handleProjectClick = (index: number) => {
     const singleProjectTl = gsap.timeline();
     // console.log("klik");
 
-    if (isMobile || !monitorModelRef.current) return;
+    if (!monitorModelRef.current) return;
     singleProjectTl.set(monitorModelRef.current?.rotation, {
       x: 0,
       y: 5,
@@ -127,42 +143,73 @@ const ProjectCarousel = (props: projectCarouselProps) => {
 
   return (
     <div className="carousel xl:w-2/5">
-      <div className="relative flex h-full flex-col items-end justify-evenly font-extralight uppercase">
-        <div className="main-line opacity-1 absolute h-full w-1.5 bg-gray-300">
-          <div
-            ref={lineRef}
-            className="item-line absolute left-0 top-0 w-1.5 bg-background"
-          ></div>
-        </div>
-        {projects.map((project, index) => (
-          <div
-            key={index}
-            id={`project-${index}`}
-            className={clsx(
-              "cursor-pointer px-8 py-4 transition-colors hover:text-gray-500",
-              index === currentProject && "text-gray-600",
-            )}
-            ref={(el) => setProjectRef(el, index)}
-            onClick={() => handleProjectClick(index)}
-          >
-            {isMobile ? (
-              <AnimatedLink
-                key={`project-${index}`}
-                href={`projects/${project.id}`}
-              >
-                <h3
-                  onClick={() => setCurrentProject(index)}
-                  className="text-right text-4xl"
-                >
-                  {project.title}
-                </h3>
-              </AnimatedLink>
-            ) : (
-              <h3 className="text-right text-4xl"> {project.title}</h3>
-            )}
+      {!isMobile ? (
+        <div className="relative flex h-full flex-col items-end justify-evenly font-extralight uppercase">
+          <div className="main-line opacity-1 absolute h-full w-1.5 bg-gray-300">
+            <div
+              ref={lineRef}
+              className="item-line absolute left-0 top-0 w-1.5 bg-background"
+            ></div>
           </div>
-        ))}
-      </div>
+          {projects.map((project, index) => (
+            <div
+              key={index}
+              id={`project-${index}`}
+              className={clsx(
+                "cursor-pointer px-8 py-4 transition-colors hover:text-gray-500",
+                index === currentProject && "text-gray-600",
+              )}
+              ref={(el) => setProjectRef(el, index)}
+              onClick={() => handleProjectClick(index)}
+            >
+              {isMobile ? (
+                <AnimatedLink
+                  key={`project-${index}`}
+                  href={`projects/${project.id}`}
+                >
+                  <h3
+                    onClick={() => setCurrentProject(index)}
+                    className="text-right text-4xl"
+                  >
+                    {project.title}
+                  </h3>
+                </AnimatedLink>
+              ) : (
+                <h3 className="text-right text-4xl"> {project.title}</h3>
+              )}
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div className="container-wrapper relative">
+          <div
+            style={{
+              background:
+                "linear-gradient(90deg, rgba(251,252,248,1) 0%, rgba(251,252,248,0.25) 3%, rgba(251,252,248,0) 50%, rgba(251,252,248,0.25) 97%, rgba(251,252,248,1) 100%)",
+            }}
+            className="overlay pointer-events-none absolute left-0 top-0 z-20 h-full w-full"
+          ></div>
+          <div
+            ref={mobileCarouselRef}
+            className="relative -mt-14 flex h-full w-full items-center overflow-hidden overflow-x-auto bg-gradient-to-r from-white via-transparent to-white uppercase"
+          >
+            {projects.map((project, index) => (
+              <div
+                key={index}
+                id={`project-${index}`}
+                className={clsx(
+                  "relative z-10 mx-2 h-full cursor-pointer whitespace-nowrap rounded-full border-[1px] border-background bg-secondBackground px-6 py-3 text-background transition-colors",
+                  index === currentProject && "bg-black text-mainFontColor",
+                )}
+                ref={(el) => setProjectRef(el, index)}
+                onClick={() => handleProjectClick(index)}
+              >
+                <h3 className=""> {project.title}</h3>
+              </div>
+            ))}
+          </div>{" "}
+        </div>
+      )}
     </div>
   );
 };

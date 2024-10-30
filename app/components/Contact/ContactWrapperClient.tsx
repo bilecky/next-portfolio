@@ -48,8 +48,6 @@ const ContactWrapperClient = ({ children }: ContactWrapperProps) => {
                   contactElement.clientHeight + 1;
 
                 if (isScrolledToEnd) {
-                  console.log("AUTO");
-
                   gsap.to(".footer", {
                     opacity: 1,
                     duration: 0.5,
