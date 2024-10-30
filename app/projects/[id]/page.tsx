@@ -182,7 +182,6 @@ export default function ProjectPage({ params }: ProjectPageProps) {
       // MOBILE TECHNOLOGIES
       const techTl = gsap.timeline({
         scrollTrigger: {
-          markers: true,
           trigger: "description_section__right",
           start: "top center", // Trigger closer to center for better timing
           end: "bottom bottom", // End closer to the top for visibility

@@ -78,7 +78,7 @@ const PinningComponent = ({ fetchedPins }: { fetchedPins: UserPin[] }) => {
       <div className="user_pinning_wrapper mt-auto flex min-h-52 w-full flex-grow flex-col pt-8">
         <div
           onClick={handleClick}
-          className="user_pinning magicpattern relative w-full flex-grow rounded-sm border-background"
+          className="user_pinning magicpattern relative w-full flex-grow cursor-pointer rounded-sm border-background"
         >
           {pins.map((pin) => (
             <Pin key={pin.id} pin={pin} />

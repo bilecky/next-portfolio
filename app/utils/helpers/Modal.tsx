@@ -56,7 +56,7 @@ export const Modal = ({
     >
       <div
         ref={modalRef}
-        className="animate-modal-open relative mx-4 w-full max-w-md rounded-sm bg-white shadow-xl"
+        className="animate-modal-open relative mx-4 w-full max-w-md rounded-md bg-white shadow-xl"
         role="dialog"
         aria-modal="true"
         aria-labelledby={title ? "modal-title" : undefined}

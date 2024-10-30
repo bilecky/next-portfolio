@@ -3,13 +3,14 @@ import { RiMailSendFill } from "react-icons/ri";
 import PinningComponent from "./PinningComponent";
 import { fetchPins } from "@/app/lib/data";
 import ContactWrapperClient from "./ContactWrapperClient";
+import Footer from "../Footer";
 
 const Contact = async () => {
   const pins = await fetchPins();
 
   return (
     <ContactWrapperClient>
-      <div className="container">
+      <div className="container py-20 will-change-transform lg:py-28">
         <h2 className="contact_header text-center font-mainHeaderFont text-mobile uppercase leading-none tracking-wide text-background lg:text-section-header">
           Let's connect
         </h2>

@@ -86,7 +86,7 @@ const Header = () => {
 
         <div
           ref={menuRef}
-          className="menu-container absolute left-0 right-0 top-10 w-full rounded-lg bg-white"
+          className="menu-container absolute left-0 right-0 top-10 w-full rounded-md bg-white"
         ></div>
       </div>
       <nav className="header-nav">

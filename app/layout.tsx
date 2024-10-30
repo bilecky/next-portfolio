@@ -3,8 +3,8 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Header from "./components/Header";
 import CursorFollower from "./utils/CursorFollower";
-import Footer from "./components/Footer";
 import Lenis from "./utils/Lenis";
+import Footer from "./components/Footer";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -36,14 +36,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${powerGrotesk.variable} bg-secondBackground font-mainFont antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${powerGrotesk.variable} flex flex-col bg-secondBackground font-mainFont antialiased`}
       >
         {" "}
         {/* <Lenis> */}
         <Header />
         {children}
+        <Footer />
         <CursorFollower />
-        {/* <Footer /> */}
         {/* </Lenis> */}
       </body>
     </html>

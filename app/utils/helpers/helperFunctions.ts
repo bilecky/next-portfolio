@@ -101,3 +101,5 @@ export const containsForbiddenWords = (text: string): boolean => {
     lowerCaseText.includes(forbiddenWord.toLowerCase()),
   );
 };
+
+export const currentYear = new Date().getFullYear();

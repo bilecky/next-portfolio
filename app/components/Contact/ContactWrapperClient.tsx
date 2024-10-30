@@ -35,13 +35,34 @@ const ContactWrapperClient = ({ children }: ContactWrapperProps) => {
         yPercent: -100,
         ease: "none",
         onUpdate: () => {
-          if (wrapperRef.current) {
-            const contactElement = wrapperRef.current;
-            if (contactElement) {
-              const progress = master.progress();
+          const contactElement = wrapperRef.current;
+          if (contactElement) {
+            const progress = master.progress();
 
-              contactElement.style.overflowY =
-                progress > 0.99 ? "auto" : "hidden";
+            contactElement.style.overflowY =
+              progress > 0.99 ? "auto" : "hidden";
+            if (contactElement.style.overflowY === "auto") {
+              contactElement.addEventListener("scroll", () => {
+                const isScrolledToEnd =
+                  contactElement.scrollHeight - contactElement.scrollTop <=
+                  contactElement.clientHeight + 1;
+
+                if (isScrolledToEnd) {
+                  console.log("AUTO");
+
+                  gsap.to(".footer", {
+                    opacity: 1,
+                    duration: 0.5,
+                    ease: "power2.inOut",
+                  });
+                } else {
+                  gsap.to(".footer", {
+                    opacity: 0,
+                    duration: 0.15,
+                    ease: "power2.inOut",
+                  });
+                }
+              });
             }
           }
         },
@@ -51,7 +72,7 @@ const ContactWrapperClient = ({ children }: ContactWrapperProps) => {
   return (
     <section
       ref={wrapperRef}
-      className="contact panel z-5 relative left-0 top-0 col-start-1 col-end-2 row-start-2 row-end-2 h-screen w-full bg-secondBackground py-20 will-change-transform lg:py-28"
+      className="contact panel z-5 relative left-0 top-0 col-start-1 col-end-2 row-start-2 row-end-2 h-screen w-full bg-secondBackground"
     >
       {children}
     </section>
