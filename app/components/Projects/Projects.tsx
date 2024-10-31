@@ -13,7 +13,12 @@ import {
 } from "../../utils/ReusableGSAPAnimations";
 import { Canvas } from "@react-three/fiber";
 import ThreeModel from "../3DModel/ThreeModel";
-import { Loader } from "@react-three/drei";
+import {
+  AdaptiveDpr,
+  AdaptiveEvents,
+  Loader,
+  Preload,
+} from "@react-three/drei";
 import { useInView } from "react-intersection-observer";
 import * as THREE from "three";
 import useMediaQuery from "@/app/utils/hooks/useMediaQuery";
@@ -88,7 +93,7 @@ const Projects = (props: Props) => {
     leftSectionArea.from(".model3d", {
       opacity: 0,
       ease: "back.out",
-      duration: 5,
+      duration: 10,
     });
 
     // textArea.from(".project_details", {
@@ -149,17 +154,20 @@ const Projects = (props: Props) => {
         >
           {inView && (
             <div className="absolute z-10 h-[50vh] w-full overflow-visible lg:h-[80vh] 2xl:-bottom-72 2xl:h-[105vh] 2xl:w-[110%]">
-              <Suspense fallback={null}>
-                <Canvas>
+              <Canvas shadows>
+                <Suspense fallback={null}>
                   <ThreeModel
                     ref={monitorModelRef}
                     currentProject={currentProject}
                   />
-                </Canvas>
-              </Suspense>
+                  <AdaptiveDpr pixelated />
+                  <AdaptiveEvents /> // Optymalizacja zdarzeń
+                  <Preload all />
+                </Suspense>
+              </Canvas>
               <Loader />
             </div>
-          )}{" "}
+          )}
         </div>
       </div>
 

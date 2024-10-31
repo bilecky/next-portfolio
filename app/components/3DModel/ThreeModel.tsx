@@ -5,6 +5,7 @@ import {
   Detailed,
   Environment,
   Float,
+  PerformanceMonitor,
   Stage,
   useGLTF,
   useTexture,
@@ -13,7 +14,7 @@ import * as THREE from "three";
 import { projects } from "@/app/data/data";
 import AnimatedLink from "@/app/utils/AnimatedLink";
 
-useGLTF.preload("/computer_monitor_low-poly/scene.gltf");
+useGLTF.preload("/computer_monitor_low-poly/scene-transformed.glb");
 
 type ThreeModelProps = {
   currentProject: number;
@@ -23,28 +24,23 @@ const ThreeModel = forwardRef<THREE.Group, ThreeModelProps>(
   (props: ThreeModelProps, ref) => {
     const { currentProject } = props;
     const { scene, materials } = useGLTF(
-      "/computer_monitor_low-poly/scene.gltf",
+      "/computer_monitor_low-poly/scene-transformed.glb",
     );
 
     // Ładowanie nowej tekstury na ekran
-    const newScreenTexture = useTexture(`/project-${currentProject}.png`);
+    const newScreenTexture = useTexture(`/project-${currentProject}.webp`);
     // Przypisz teksturę do materiału ekranu (Material.005 w tym wypadku)
     if (materials["Material.001"]) {
       materials["Material.001"].map = newScreenTexture;
-      materials["Material.001"].emissiveMap = newScreenTexture; // Opcjonalnie dla efektu emisji
+      // materials["Material.001"].emissiveMap = newScreenTexture;
       materials["Material.001"].emissive.set(0x000000); // Brak emisji
-      materials["Material.001"].needsUpdate = true; // Aby tekstura została odświeżona
+      // materials["Material.001"].needsUpdate = true; // Aby tekstura została odświeżona
     }
 
     // Animacja obracania (opcjonalna)
 
     return (
-      <Stage
-        adjustCamera={false}
-        intensity={0.1}
-        shadows="contact"
-        environment="city"
-      >
+      <Stage environment={"city"} adjustCamera={false} intensity={0.5}>
         <Float floatIntensity={0.1} speed={1} rotationIntensity={1}>
           {/* Model 3D */}
           <AnimatedLink

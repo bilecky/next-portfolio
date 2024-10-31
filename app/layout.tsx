@@ -6,6 +6,7 @@ import CursorFollower from "./utils/CursorFollower";
 import Lenis from "./utils/Lenis";
 import Footer from "./components/Footer";
 import GoUpBtn from "./utils/GoUpBtn";
+import { Loader } from "@react-three/drei";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
