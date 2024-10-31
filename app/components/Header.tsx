@@ -52,7 +52,10 @@ const Header = () => {
   };
 
   return (
-    <header className="header bg-white-800 container absolute left-0 right-0 z-20 flex w-full items-center justify-between py-5 text-mainFontColor opacity-0">
+    <header
+      id="header"
+      className="header bg-white-800 container absolute left-0 right-0 z-20 flex w-full items-center justify-between py-5 text-mainFontColor opacity-0"
+    >
       <div className="logo group text-xl font-light">
         <Link
           href="/"
@@ -86,7 +89,7 @@ const Header = () => {
 
         <div
           ref={menuRef}
-          className="menu-container absolute left-0 right-0 top-10 w-full rounded-md bg-white"
+          className="menu-container glassmorphism absolute left-0 right-0 top-10 w-full rounded-md"
         ></div>
       </div>
       <nav className="header-nav">
