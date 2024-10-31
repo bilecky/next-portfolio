@@ -34,17 +34,17 @@ const ProjectCarousel = (props: projectCarouselProps) => {
   };
 
   useGSAP(() => {
-    if (!lineRef.current) return;
+    if (!lineRef.current || !projectRefs.current) return;
 
     const currentProjectHeight =
       projectRefs.current[currentProject]?.clientHeight;
 
     const mainComponentAnimationsLine = gsap.timeline({
       scrollTrigger: {
-        trigger: ".projects", // Zainicjujemy animację, gdy element `.projects` wejdzie w viewport
-        start: "top 60%", // Animacja rozpocznie się, gdy górna część `.projects` blabla
+        trigger: ".projects",
+        start: "top 60%",
         end: "bottom bottom",
-        scrub: 3, // Synchronizacja animacji z przewijaniem
+        scrub: 3,
       },
     });
 
@@ -54,8 +54,8 @@ const ProjectCarousel = (props: projectCarouselProps) => {
     mainComponentAnimationsLine
       .fromTo(
         ".main-line",
-        { height: 0, transformOrigin: "top", opacity: 0 }, // Startowe ustawienie main-line
-        { height: "100%", duration: 1.5, ease: "power3.out", opacity: 1 }, // Animacja do pełnej wysokości
+        { height: 0, transformOrigin: "top", opacity: 0 },
+        { height: "100%", duration: 1.5, ease: "power3.out", opacity: 1 },
       )
       .to(
         lineRef.current,
@@ -66,30 +66,56 @@ const ProjectCarousel = (props: projectCarouselProps) => {
           opacity: 1,
         },
         "-=0.5",
-        // Animacja do pełnej wysokości item-line
-        // Animacja item-line rozpoczyna się pół sekundy przed zakończeniem animacji main-line
       );
-
     // 3. Animacja pojawiania się projektów jeden po drugim (stagger)
-    mainComponentAnimationsLine.fromTo(
-      projectRefs.current,
-      { opacity: 0, y: 50 }, // Początkowe wartości projektów
-      {
-        opacity: 1,
-        y: 0, // Każdy projekt wraca na swoją pozycję
-        duration: 0.5,
-        ease: "power3.out",
-        stagger: 0.2, // Projekty będą się pojawiać jeden po drugim z odstępem 0.2s
-      },
-      "-=0.5", // Rozpocznij tę animację nieco wcześniej
-    );
+
+    const mm = gsap.matchMedia();
+    mm.add("(max-width: 768px)", () => {
+      gsap.delayedCall(0, () => {
+        console.log("mobil");
+        const mobilEProjectsstagger = gsap.timeline({
+          scrollTrigger: {
+            trigger: ".carousel",
+            start: "top bottom",
+            // "top" triggera dotknie "bottom" przeglądarki
+            end: "+=25%",
+            scrub: 3,
+          },
+        });
+        mobilEProjectsstagger.fromTo(
+          projectRefs.current,
+          { opacity: 0, scale: 0 },
+          {
+            opacity: 1,
+            duration: 0.5,
+            ease: "power3.out",
+            scale: 1,
+          },
+        );
+      });
+    });
+
+    mm.add("(min-width: 768px)", () => {
+      console.log("desktop");
+      mainComponentAnimationsLine.fromTo(
+        projectRefs.current,
+        { opacity: 0, y: 50 }, // Początkowe wartości projektów
+        {
+          opacity: 1,
+          y: 0, // Każdy projekt wraca na swoją pozycję
+          duration: 0.5,
+          ease: "power3.out",
+          stagger: 0.2, // Projekty będą się pojawiać jeden po drugim z odstępem 0.2s
+        },
+        "-=2", // Rozpocznij tę animację nieco wcześniej
+      );
+    });
   }, []);
 
   // CURRENT PROJECT HANDLER
   useGSAP(() => {
     // handle center of current project on mobile
     if (projectRefs.current[currentProject] && mobileCarouselRef.current) {
-      console.log("kod");
       const projectCenterX =
         projectRefs.current[currentProject].offsetLeft +
         projectRefs.current[currentProject].clientWidth / 2;
@@ -103,8 +129,8 @@ const ProjectCarousel = (props: projectCarouselProps) => {
     //  handle center of current project on desktop
     if (!lineRef.current || !projectRefs.current[currentProject]) return;
 
-    const currentProjectHeight =
-      projectRefs.current[currentProject].clientHeight;
+    // const currentProjectHeight =
+    //   projectRefs.current[currentProject].clientHeight;
 
     // lineRef.current.style.height = `${currentProjectHeight}px`;
 
@@ -162,21 +188,7 @@ const ProjectCarousel = (props: projectCarouselProps) => {
               ref={(el) => setProjectRef(el, index)}
               onClick={() => handleProjectClick(index)}
             >
-              {isMobile ? (
-                <AnimatedLink
-                  key={`project-${index}`}
-                  href={`projects/${project.id}`}
-                >
-                  <h3
-                    onClick={() => setCurrentProject(index)}
-                    className="text-right text-4xl"
-                  >
-                    {project.title}
-                  </h3>
-                </AnimatedLink>
-              ) : (
-                <h3 className="text-right text-4xl"> {project.title}</h3>
-              )}
+              <h3 className="text-right text-4xl"> {project.title}</h3>
             </div>
           ))}
         </div>
@@ -191,15 +203,16 @@ const ProjectCarousel = (props: projectCarouselProps) => {
           ></div>
           <div
             ref={mobileCarouselRef}
-            className="relative -mt-14 flex h-full w-full items-center overflow-hidden overflow-x-auto bg-gradient-to-r from-white via-transparent to-white uppercase"
+            className="no-scrollbar relative -mt-14 flex h-full w-full items-center overflow-hidden overflow-x-auto bg-gradient-to-r from-white via-transparent to-white uppercase"
           >
             {projects.map((project, index) => (
               <div
                 key={index}
                 id={`project-${index}`}
                 className={clsx(
-                  "relative z-10 mx-2 h-full cursor-pointer whitespace-nowrap rounded-full border-[1px] border-background bg-secondBackground px-6 py-3 text-background transition-colors",
-                  index === currentProject && "bg-black text-mainFontColor",
+                  "mobile-item-stagger relative z-10 mx-2 h-full cursor-pointer whitespace-nowrap rounded-full border-[1px] border-background bg-secondBackground px-6 py-3 text-background transition-colors",
+                  index === currentProject &&
+                    "bg-gray-950 text-secondBackground",
                 )}
                 ref={(el) => setProjectRef(el, index)}
                 onClick={() => handleProjectClick(index)}

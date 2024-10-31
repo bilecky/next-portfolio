@@ -59,8 +59,8 @@ const Projects = (props: Props) => {
     const leftSectionArea = gsap.timeline({
       scrollTrigger: {
         trigger: ".projects", // Make sure this class exists on the element
-        start: "top center", // Rozpocznij, gdy górna krawędź sekcji dotknie dolnej krawędzi widoku
-        end: "+=30%",
+        start: "top 60%", // Rozpocznij, gdy górna krawędź sekcji dotknie dolnej krawędzi widoku
+        end: "+=40%",
         scrub: 3, // Sync the animation with scrolling smoothly
       },
     });
@@ -76,20 +76,19 @@ const Projects = (props: Props) => {
       timeline: leftSectionArea,
       selector: ".projects-description",
     });
-    const model3dTimeline = gsap.timeline({
-      scrollTrigger: {
-        trigger: ".projects",
-        start: "top 30%",
-        end: "bottom bottom",
-        scrub: 3,
-      },
-    });
+    // const model3dTimeline = gsap.timeline({
+    //   scrollTrigger: {
+    //     trigger: ".projects",
+    //     start: "top 20%",
+    //     end: "bottom bottom",
+    //     scrub: 3,
+    //   },
+    // });
 
-    model3dTimeline.from(".model3d", {
+    leftSectionArea.from(".model3d", {
       opacity: 0,
       ease: "back.out",
       duration: 5,
-      delay: 0.5,
     });
 
     // textArea.from(".project_details", {
