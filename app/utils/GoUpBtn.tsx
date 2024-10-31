@@ -38,7 +38,7 @@ const GoUpBtn = () => {
   });
 
   return (
-    <div className="goUp glassmorphism-goUpBtn group fixed bottom-5 right-5 z-50 cursor-pointer rounded-md opacity-0 shadow-2xl">
+    <div className="goUp glassmorphism-goUpBtn group fixed bottom-5 right-5 z-50 cursor-pointer rounded-md opacity-0 mix-blend-difference shadow-2xl transition-colors hover:bg-secondBackground/90">
       <a href="#header" className="block p-3 lg:p-4">
         <TfiAngleDoubleUp size={25} />
       </a>

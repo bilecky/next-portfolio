@@ -40,7 +40,6 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${powerGrotesk.variable} flex flex-col bg-secondBackground font-mainFont antialiased`}
       >
-        {" "}
         {/* <Lenis> */}
         <Header />
         {children}

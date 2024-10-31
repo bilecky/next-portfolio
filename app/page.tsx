@@ -4,13 +4,15 @@ import Tech from "./components/Tech";
 import About from "./components/About";
 import Contact from "./components/Contact/Contact";
 import { Suspense } from "react";
+import WaitForModel from "./utils/helpers/WaitForModel";
 
 export default function Home() {
   return (
     <main className="w-full overflow-hidden">
       <div className="scroll-area relative">
-        <Hero />
-        <Projects />
+        {/* <Hero />
+        <Projects /> */}
+        <WaitForModel />
       </div>
       <div className="tech-wrapper sticky">
         <Tech />

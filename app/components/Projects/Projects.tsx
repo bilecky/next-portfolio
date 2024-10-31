@@ -19,24 +19,20 @@ import {
   Loader,
   Preload,
 } from "@react-three/drei";
-import { useInView } from "react-intersection-observer";
 import * as THREE from "three";
 import useMediaQuery from "@/app/utils/hooks/useMediaQuery";
 import clsx from "clsx";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
-type Props = {};
+type ProjectsProps = {
+  isIntroComplete: boolean;
+};
 
-const Projects = (props: Props) => {
+const Projects = ({ isIntroComplete }: ProjectsProps) => {
   const monitorModelRef = useRef<THREE.Group>(null);
   const isMobile = useMediaQuery("(max-width: 768px)");
   const [currentProject, setCurrentProject] = useState<number>(1);
-
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  });
 
   useGSAP(() => {
     const bgArea = gsap.timeline({
@@ -148,11 +144,8 @@ const Projects = (props: Props) => {
           </p>
         </div>
 
-        <div
-          ref={ref}
-          className="model3d relative -top-10 h-[50vh] w-full overflow-visible md:-top-20 lg:h-[55vh] xl:-top-0"
-        >
-          {inView && (
+        <div className="model3d relative -top-10 h-[50vh] w-full overflow-visible md:-top-20 lg:h-[55vh] xl:-top-0">
+          {isIntroComplete && (
             <div className="absolute z-10 h-[50vh] w-full overflow-visible lg:h-[80vh] 2xl:-bottom-72 2xl:h-[105vh] 2xl:w-[110%]">
               <Canvas shadows>
                 <Suspense fallback={null}>
@@ -160,9 +153,8 @@ const Projects = (props: Props) => {
                     ref={monitorModelRef}
                     currentProject={currentProject}
                   />
-                  <AdaptiveDpr pixelated />
-                  <AdaptiveEvents /> // Optymalizacja zdarzeń
-                  <Preload all />
+                  <AdaptiveDpr pixelated /> <AdaptiveEvents />
+                  {/* Optymalizacja zdarzeń */} <Preload all />
                 </Suspense>
               </Canvas>
               <Loader />
