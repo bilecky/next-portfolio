@@ -13,17 +13,7 @@ interface HeroProps {
 }
 const Hero = ({ setIntroComplete }: HeroProps) => {
   useGSAP(() => {
-    const introTl = gsap.timeline({
-      onStart: () => {
-        document.body.classList.add("no-scroll");
-        document.body.classList.add("no-pointer-events");
-      },
-      onComplete: () => {
-        document.body.classList.remove("no-scroll");
-        document.body.classList.remove("no-pointer-events");
-        setIntroComplete(true);
-      },
-    });
+    const introTl = gsap.timeline({});
 
     // Animate  overlay
     // Animate overlay

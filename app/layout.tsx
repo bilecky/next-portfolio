@@ -3,10 +3,8 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Header from "./components/Header";
 import CursorFollower from "./utils/CursorFollower";
-import Lenis from "./utils/Lenis";
 import Footer from "./components/Footer";
 import GoUpBtn from "./utils/GoUpBtn";
-import { Loader } from "@react-three/drei";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -41,11 +39,11 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} ${powerGrotesk.variable} flex flex-col bg-secondBackground font-mainFont antialiased`}
       >
         {/* <Lenis> */}
+        <CursorFollower />
         <Header />
         {children}
-        <Footer />
-        <CursorFollower />
-        <GoUpBtn />
+        {/* <Footer /> */}
+        {/* <GoUpBtn /> */}
         {/* </Lenis> */}
       </body>
     </html>

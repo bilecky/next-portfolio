@@ -4,16 +4,14 @@ import Hero from "@/app/components/Hero";
 import Projects from "@/app/components/Projects/Projects";
 import { useState } from "react";
 
-type Props = {};
-
-const WaitForModel = (props: Props) => {
+const WaitForModel = () => {
   const [isIntroComplete, setIsIntroComplete] = useState<boolean>(false);
 
   return (
-    <>
+    <div className="scroll-area relative">
       <Hero setIntroComplete={setIsIntroComplete} />
       <Projects isIntroComplete={isIntroComplete} />
-    </>
+    </div>
   );
 };
 

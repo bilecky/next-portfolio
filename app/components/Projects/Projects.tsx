@@ -144,30 +144,29 @@ const Projects = ({ isIntroComplete }: ProjectsProps) => {
           </p>
         </div>
 
-        <div className="model3d relative -top-10 h-[50vh] w-full overflow-visible md:-top-20 lg:h-[55vh] xl:-top-0">
-          {isIntroComplete && (
-            <div className="absolute z-10 h-[50vh] w-full overflow-visible lg:h-[80vh] 2xl:-bottom-72 2xl:h-[105vh] 2xl:w-[110%]">
-              <Canvas shadows>
-                <Suspense fallback={null}>
-                  <ThreeModel
-                    ref={monitorModelRef}
-                    currentProject={currentProject}
-                  />
-                  <AdaptiveDpr pixelated /> <AdaptiveEvents />
-                  {/* Optymalizacja zdarzeń */} <Preload all />
-                </Suspense>
-              </Canvas>
-              <Loader />
-            </div>
-          )}
+        <div className="model3d relative h-[50vh] w-full overflow-visible lg:h-[55vh]">
+          <div className="absolute z-10 h-[50vh] w-full overflow-visible lg:h-[80vh] 2xl:-bottom-72 2xl:h-[105vh] 2xl:w-[110%]">
+            {/* {isIntroComplete && ( */}
+            <Canvas shadows>
+              <ThreeModel
+                ref={monitorModelRef}
+                currentProject={currentProject}
+              />
+              <AdaptiveDpr pixelated /> <AdaptiveEvents />
+              {/* Optymalizacja zdarzeń */} <Preload all />
+            </Canvas>
+            {/* )} */}
+          </div>
         </div>
       </div>
 
-      <ProjectCarousel
-        monitorModelRef={monitorModelRef}
-        currentProject={currentProject}
-        setCurrentProject={setCurrentProject}
-      />
+      <Suspense fallback={<div>Loading...</div>}>
+        <ProjectCarousel
+          monitorModelRef={monitorModelRef}
+          currentProject={currentProject}
+          setCurrentProject={setCurrentProject}
+        />
+      </Suspense>
     </section>
   );
 };

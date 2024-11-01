@@ -71,32 +71,28 @@ const ProjectCarousel = (props: projectCarouselProps) => {
 
     const mm = gsap.matchMedia();
     mm.add("(max-width: 768px)", () => {
-      gsap.delayedCall(0, () => {
-        console.log("mobil");
-        const mobilEProjectsstagger = gsap.timeline({
-          scrollTrigger: {
-            trigger: ".carousel",
-            start: "top bottom",
-            // "top" triggera dotknie "bottom" przeglądarki
-            end: "+=25%",
-            scrub: 3,
-          },
-        });
-        mobilEProjectsstagger.fromTo(
-          projectRefs.current,
-          { opacity: 0, scale: 0 },
-          {
-            opacity: 1,
-            duration: 0.5,
-            ease: "power3.out",
-            scale: 1,
-          },
-        );
+      const mobilEProjectsstagger = gsap.timeline({
+        scrollTrigger: {
+          trigger: ".carousel",
+          start: "top bottom",
+          // "top" triggera dotknie "bottom" przeglądarki
+          end: "+=25%",
+          scrub: 3,
+        },
       });
+      mobilEProjectsstagger.fromTo(
+        projectRefs.current,
+        { opacity: 0, scale: 0 },
+        {
+          opacity: 1,
+          duration: 0.5,
+          ease: "power3.out",
+          scale: 1,
+        },
+      );
     });
 
     mm.add("(min-width: 768px)", () => {
-      console.log("desktop");
       mainComponentAnimationsLine.fromTo(
         projectRefs.current,
         { opacity: 0, y: 50 }, // Początkowe wartości projektów
@@ -168,61 +164,51 @@ const ProjectCarousel = (props: projectCarouselProps) => {
   };
 
   return (
-    <div className="carousel xl:w-2/5">
-      {!isMobile ? (
-        <div className="relative flex h-full flex-col items-end justify-evenly font-extralight uppercase">
-          <div className="main-line opacity-1 absolute h-full w-1.5 bg-gray-300">
-            <div
-              ref={lineRef}
-              className="item-line absolute left-0 top-0 w-1.5 bg-background"
-            ></div>
-          </div>
+    <div className="carousel md:pt-20 xl:w-2/5 xl:pt-0">
+      <div className="relative flex h-full w-full lg:flex-row-reverse">
+        {/* Linia dla wersji desktop */}
+        <div className="main-line absolute hidden h-full w-1.5 bg-gray-300 lg:block">
+          <div
+            ref={lineRef}
+            className="item-line absolute left-0 top-0 w-1.5 bg-background"
+          ></div>
+        </div>
+
+        {/* Overlay dla wersji mobilnej */}
+        <div
+          style={{
+            background:
+              "linear-gradient(90deg, rgba(251,252,248,1) 0%, rgba(251,252,248,0.25) 3%, rgba(251,252,248,0) 50%, rgba(251,252,248,0.25) 97%, rgba(251,252,248,1) 100%)",
+          }}
+          className="pointer-events-none absolute left-0 top-0 z-20 h-full w-full lg:hidden"
+        ></div>
+
+        {/* Kontener dla projektów */}
+        <div
+          ref={mobileCarouselRef}
+          className="no-scrollbar relative flex h-full w-full items-center overflow-hidden overflow-x-auto lg:flex-col lg:items-end lg:justify-evenly lg:overflow-visible lg:font-extralight lg:uppercase"
+        >
           {projects.map((project, index) => (
             <div
               key={index}
               id={`project-${index}`}
               className={clsx(
-                "cursor-pointer px-8 py-4 transition-colors hover:text-gray-500",
-                index === currentProject && "text-gray-600",
+                // Style mobilne
+                "relative z-10 mx-2 flex cursor-pointer items-center whitespace-nowrap rounded-full border-[1px] border-background bg-secondBackground px-6 py-3 text-background transition-colors",
+                index === currentProject &&
+                  "bg-[#222222] text-secondBackground",
+                // Style desktopowe
+                "lg:border-none lg:bg-transparent lg:px-8 lg:py-4 lg:hover:text-gray-500",
+                index === currentProject && "lg:text-gray-600",
               )}
               ref={(el) => setProjectRef(el, index)}
               onClick={() => handleProjectClick(index)}
             >
-              <h3 className="text-right text-4xl"> {project.title}</h3>
+              <h3 className="lg:text-right lg:text-4xl">{project.title}</h3>
             </div>
           ))}
         </div>
-      ) : (
-        <div className="container-wrapper relative">
-          <div
-            style={{
-              background:
-                "linear-gradient(90deg, rgba(251,252,248,1) 0%, rgba(251,252,248,0.25) 3%, rgba(251,252,248,0) 50%, rgba(251,252,248,0.25) 97%, rgba(251,252,248,1) 100%)",
-            }}
-            className="overlay pointer-events-none absolute left-0 top-0 z-20 h-full w-full"
-          ></div>
-          <div
-            ref={mobileCarouselRef}
-            className="no-scrollbar relative -mt-14 flex h-full w-full items-center overflow-hidden overflow-x-auto bg-gradient-to-r from-white via-transparent to-white uppercase"
-          >
-            {projects.map((project, index) => (
-              <div
-                key={index}
-                id={`project-${index}`}
-                className={clsx(
-                  "mobile-item-stagger relative z-10 mx-2 h-full cursor-pointer whitespace-nowrap rounded-full border-[1px] border-background bg-secondBackground px-6 py-3 text-background transition-colors",
-                  index === currentProject &&
-                    "bg-gray-950 text-secondBackground",
-                )}
-                ref={(el) => setProjectRef(el, index)}
-                onClick={() => handleProjectClick(index)}
-              >
-                <h3 className=""> {project.title}</h3>
-              </div>
-            ))}
-          </div>{" "}
-        </div>
-      )}
+      </div>
     </div>
   );
 };
