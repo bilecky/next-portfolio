@@ -157,7 +157,7 @@ function Tech({}: Props) {
             return (
               <div
                 key={index}
-                className="tech-item flex items-center justify-center text-7xl font-extrabold uppercase will-change-transform lg:text-[10rem]"
+                className="tech-item flex items-center justify-center text-7xl font-extrabold uppercase will-change-transform lg:text-[11rem]"
               >
                 {tech}
                 <span className="tech-item-separator mx-4 h-5 w-5 bg-gray-400"></span>
@@ -170,7 +170,7 @@ function Tech({}: Props) {
             return (
               <div
                 key={index}
-                className="tech-item-reverse flex items-center justify-center text-7xl font-extrabold uppercase will-change-transform lg:text-[10rem]"
+                className="tech-item-reverse flex items-center justify-center text-7xl font-extrabold uppercase will-change-transform lg:text-[11rem]"
               >
                 {tech}
                 <span className="tech-item-separator mx-4 h-5 w-5 bg-gray-400"></span>

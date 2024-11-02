@@ -18,7 +18,7 @@ const Lenis = ({ children }: PropsWithChildren) => {
   }, []);
 
   return (
-    <ReactLenis ref={lenisRef} options={{ duration: 2.5 }} root>
+    <ReactLenis ref={lenisRef} autoRaf={false} options={{ duration: 2.5 }} root>
       {children}
     </ReactLenis>
   );
