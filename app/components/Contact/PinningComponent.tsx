@@ -1,9 +1,11 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Pin from "./Pin";
 import { createPin } from "@/app/lib/actions";
 import { PinFormModal } from "@/app/utils/helpers/PinFormModal";
+import { fetchPins } from "@/app/lib/data";
+import { useRouter } from "next/navigation";
 
 export interface UserPin {
   id: string;

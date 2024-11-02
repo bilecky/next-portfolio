@@ -3,8 +3,9 @@
 import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import useMediaQuery from "@/app/utils/hooks/useMediaQuery";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
+gsap.registerPlugin(useGSAP, ScrollTrigger);
 interface ContactWrapperProps {
   children: React.ReactNode;
 }
@@ -12,9 +13,16 @@ interface ContactWrapperProps {
 const ContactWrapperClient = ({ children }: ContactWrapperProps) => {
   const wrapperRef = useRef<HTMLDivElement>(null);
   useGSAP(() => {
-    const techElement = document.querySelector(".tech") as HTMLElement;
-    const techHeight = techElement.offsetHeight;
+    // only fire callbacks when the active state toggles
+    ScrollTrigger.config({
+      limitCallbacks: true,
+      ignoreMobileResize: true,
+    });
 
+    ScrollTrigger.refresh();
+
+    const techElement = document.querySelector(".tech") as HTMLElement;
+    const techHeight = techElement?.offsetHeight || 0;
     const master = gsap.timeline({
       scrollTrigger: {
         trigger: ".tech-wrapper",
@@ -22,10 +30,13 @@ const ContactWrapperClient = ({ children }: ContactWrapperProps) => {
         end: "+=250%",
         scrub: 2,
         pin: true,
-        invalidateOnRefresh: true,
+        pinSpacing: true, // Zostawiamy true, aby animacja działała
+        preventOverlaps: true,
+        pinReparent: true,
+        refreshPriority: 1,
+        anticipatePin: 1, // Dodanie anticipatePin, aby wygładzić początek/koniec przypinania
       },
     });
-
     master
       .to(".wrapper", {
         yPercent: -100,
@@ -34,6 +45,7 @@ const ContactWrapperClient = ({ children }: ContactWrapperProps) => {
       .to(".about", {
         yPercent: -100,
         ease: "none",
+
         onUpdate: () => {
           const contactElement = wrapperRef.current;
           if (contactElement) {
@@ -50,13 +62,13 @@ const ContactWrapperClient = ({ children }: ContactWrapperProps) => {
                 if (isScrolledToEnd) {
                   gsap.to(".footer", {
                     opacity: 1,
-                    duration: 0.5,
+                    duration: 0.4,
                     ease: "power2.inOut",
                   });
                 } else {
                   gsap.to(".footer", {
                     opacity: 0,
-                    duration: 0.15,
+                    duration: 0.3,
                     ease: "power2.inOut",
                   });
                 }
@@ -70,7 +82,7 @@ const ContactWrapperClient = ({ children }: ContactWrapperProps) => {
   return (
     <section
       ref={wrapperRef}
-      className="contact panel z-5 relative left-0 top-0 col-start-1 col-end-2 row-start-2 row-end-2 h-screen w-full bg-secondBackground"
+      className="contact no-scrollbar panel z-5 relative col-start-1 col-end-2 row-start-2 row-end-2 h-screen w-full bg-secondBackground will-change-transform"
     >
       {children}
     </section>

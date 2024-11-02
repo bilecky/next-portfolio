@@ -5,6 +5,7 @@ import Header from "./components/Header";
 import CursorFollower from "./utils/CursorFollower";
 import Footer from "./components/Footer";
 import GoUpBtn from "./utils/GoUpBtn";
+import Lenis from "./utils/Lenis";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -42,8 +43,8 @@ export default function RootLayout({
         <CursorFollower />
         <Header />
         {children}
-        {/* <Footer /> */}
-        {/* <GoUpBtn /> */}
+        <GoUpBtn />
+        <Footer />
         {/* </Lenis> */}
       </body>
     </html>

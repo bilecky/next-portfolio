@@ -1,7 +1,7 @@
 "use server";
 
 import { sql } from "@vercel/postgres";
-import { headers } from "next/headers";
+import { revalidatePath } from "next/cache";
 import { UserPin } from "../components/Contact/PinningComponent";
 import {
   containsForbiddenWords,
@@ -43,6 +43,8 @@ export async function createPin(pin: UserPin) {
         INSERT INTO pins (id, name, positionX, positionY, pallette)
         VALUES (${pin.id}, ${sanitizedName}, ${pin.position.x}, ${pin.position.y}, ${pin.pallette})
       `;
+
+    revalidatePath("/");
   } catch (error) {
     console.error("Database Error/pawel:", error);
 

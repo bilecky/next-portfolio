@@ -10,7 +10,7 @@ const Contact = async () => {
 
   return (
     <ContactWrapperClient>
-      <div className="container py-20 will-change-transform lg:py-28">
+      <div className="container py-20 lg:py-28">
         <h2 className="contact_header text-center font-mainHeaderFont text-mobile uppercase leading-none tracking-wide text-background lg:text-section-header">
           Let's connect
         </h2>

@@ -13,7 +13,11 @@ interface HeroProps {
 }
 const Hero = ({ setIntroComplete }: HeroProps) => {
   useGSAP(() => {
-    const introTl = gsap.timeline({});
+    const introTl = gsap.timeline({
+      onComplete: () => {
+        setIntroComplete(true);
+      },
+    });
 
     // Animate  overlay
     // Animate overlay
@@ -22,7 +26,7 @@ const Hero = ({ setIntroComplete }: HeroProps) => {
       .set([".hero", ".header"], { opacity: 1, duration: 1 })
 
       .from(".black-overlay", {
-        duration: 1.3,
+        duration: 1.7,
         yPercent: -100,
         ease: "power2.inOut",
       })

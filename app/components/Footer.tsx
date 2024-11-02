@@ -9,10 +9,10 @@ function Footer() {
   const isMobile = useMediaQuery("(max-width: 768px)");
 
   return (
-    <footer className="relative">
+    <footer className="relative left-0 top-0">
       <div
         className={clsx(
-          "footer container absolute -top-[5vh] bottom-0 left-0 right-0 h-[5vh]",
+          "footer container absolute -top-[4vh] bottom-0 left-0 right-0 z-10 h-[4vh] overflow-hidden",
           { "opacity-0": isMobile, "opacity-1": !isMobile },
         )}
       >
@@ -24,7 +24,7 @@ function Footer() {
           }}
         ></div>
         <div className="text-secondary text-center text-sm font-light">
-          <p className="mt-2">
+          <p className="py-2">
             © {currentYear} | by
             <a href="https://github.com/krzysztofzyszkowski"> Paweł Bilski </a>
           </p>

@@ -146,27 +146,25 @@ const Projects = ({ isIntroComplete }: ProjectsProps) => {
 
         <div className="model3d relative h-[50vh] w-full overflow-visible lg:h-[55vh]">
           <div className="absolute z-10 h-[50vh] w-full overflow-visible lg:h-[80vh] 2xl:-bottom-72 2xl:h-[105vh] 2xl:w-[110%]">
-            {/* {isIntroComplete && ( */}
-            <Canvas shadows>
-              <ThreeModel
-                ref={monitorModelRef}
-                currentProject={currentProject}
-              />
-              <AdaptiveDpr pixelated /> <AdaptiveEvents />
-              {/* Optymalizacja zdarzeń */} <Preload all />
-            </Canvas>
-            {/* )} */}
+            {isIntroComplete && (
+              <Canvas shadows>
+                <ThreeModel
+                  ref={monitorModelRef}
+                  currentProject={currentProject}
+                />
+                <AdaptiveDpr pixelated /> <AdaptiveEvents />
+                {/* Optymalizacja zdarzeń */} <Preload all />
+              </Canvas>
+            )}
           </div>
         </div>
       </div>
 
-      <Suspense fallback={<div>Loading...</div>}>
-        <ProjectCarousel
-          monitorModelRef={monitorModelRef}
-          currentProject={currentProject}
-          setCurrentProject={setCurrentProject}
-        />
-      </Suspense>
+      <ProjectCarousel
+        monitorModelRef={monitorModelRef}
+        currentProject={currentProject}
+        setCurrentProject={setCurrentProject}
+      />
     </section>
   );
 };

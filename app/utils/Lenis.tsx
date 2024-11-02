@@ -18,7 +18,7 @@ const Lenis = ({ children }: PropsWithChildren) => {
   }, []);
 
   return (
-    <ReactLenis ref={lenisRef} options={{ duration: 2 }} root>
+    <ReactLenis ref={lenisRef} options={{ duration: 2.5 }} root>
       {children}
     </ReactLenis>
   );
