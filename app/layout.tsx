@@ -49,7 +49,7 @@ export default async function RootLayout({
       >
         <Lenis>
           <CursorFollower />
-          <Header />
+          <Header locale={locale} />
           <NextIntlClientProvider messages={messages}>
             {children}
           </NextIntlClientProvider>

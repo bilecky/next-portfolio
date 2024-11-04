@@ -15,8 +15,6 @@ interface HeroProps {
 const Hero = ({ setIntroComplete }: HeroProps) => {
   const t = useTranslations("Hero");
 
-  console.log(t);
-
   const heroRef = useRef<HTMLElement>(null);
   const [blockInitialScroll, setBlockInitialScroll] = useState<boolean>(true);
   useEffect(() => {

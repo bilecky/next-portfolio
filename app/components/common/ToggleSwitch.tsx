@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import clsx from "clsx";
 
 interface ToggleSwitchProps {
@@ -15,6 +15,11 @@ const ToggleSwitch = ({
   disabled = false,
 }: ToggleSwitchProps) => {
   const [isActive, setIsActive] = useState(initialState);
+  console.log("renderuje sie raz przed", initialState);
+
+  useEffect(() => {
+    setIsActive(initialState);
+  }, [initialState]);
 
   const handleToggle = () => {
     if (!disabled) {
