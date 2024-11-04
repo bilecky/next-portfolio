@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import gsap from "gsap";
 import clsx from "clsx";
+import { useLenis } from "@studio-freight/react-lenis";
 
 type AnimatedLinkProps = {
   href: string;
@@ -21,6 +22,7 @@ const AnimatedLink = ({
 }: AnimatedLinkProps) => {
   const router = useRouter();
   const isMobile = useMediaQuery("(max-width: 768px)");
+  const lenis = useLenis();
 
   const handleClick = () => {
     const runAnimation = () => {
@@ -44,7 +46,16 @@ const AnimatedLink = ({
           },
           0, // start at the same time
         )
-        .to({}, { onStart: () => router.push(href) });
+        .to(
+          {},
+          {
+            onStart: () => {
+              router.push(href);
+              lenis?.stop();
+              lenis?.start();
+            },
+          },
+        );
     };
 
     if (isMobile) {

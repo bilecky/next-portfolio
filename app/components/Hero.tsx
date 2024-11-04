@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
 import Splitter from "../utils/Splitter";
 import gsap from "gsap";
@@ -12,10 +12,28 @@ interface HeroProps {
   setIntroComplete: (value: boolean) => void;
 }
 const Hero = ({ setIntroComplete }: HeroProps) => {
+  const heroRef = useRef<HTMLElement>(null);
+  const [blockInitialScroll, setBlockInitialScroll] = useState<boolean>(true);
+  useEffect(() => {
+    if (blockInitialScroll && heroRef.current) {
+      document.body.style.overflow = "hidden"; // standard no-scroll implementation
+      document.body.setAttribute("data-lenis-prevent", "true"); // Make sure you pass true as string
+      heroRef.current.style.pointerEvents = "none";
+    } else {
+      document.body.style.overflow = "auto";
+      document.body.removeAttribute("data-lenis-prevent");
+      if (heroRef.current) heroRef.current.style.pointerEvents = "auto";
+    }
+  }, [blockInitialScroll]);
+
   useGSAP(() => {
     const introTl = gsap.timeline({
+      // onStart: () => {
+      //   setBlockInitialScroll(true);
+      // },
       onComplete: () => {
         setIntroComplete(true);
+        setBlockInitialScroll(false);
       },
     });
 
@@ -35,10 +53,11 @@ const Hero = ({ setIntroComplete }: HeroProps) => {
         "nav .split-char",
         {
           x: -100,
+          rotationX: 360,
           opacity: 0,
           stagger: 0.05,
           ease: "expo.out",
-          duration: 1,
+          duration: 1.5,
         },
         "-=0.5",
       )
@@ -67,10 +86,13 @@ const Hero = ({ setIntroComplete }: HeroProps) => {
           onStart: reuseHeaderLineAnimation,
         },
       );
-  });
+  }, []);
 
   return (
-    <section className="hero container flex w-full flex-col py-40 font-mainFont text-mainFontColor opacity-0 md:h-screen md:flex-row-reverse md:items-end lg:flex lg:py-20">
+    <section
+      ref={heroRef}
+      className="hero container flex w-full flex-col py-40 font-mainFont text-mainFontColor opacity-0 md:h-screen md:flex-row-reverse md:items-end lg:flex lg:py-20"
+    >
       <div className="white-overlay opacity-1 absolute inset-0 z-0 bg-secondBackground"></div>
       <div className="black-overlay absolute inset-0"></div>
       {/* ABOUT SECTION */}

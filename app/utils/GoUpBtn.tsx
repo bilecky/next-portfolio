@@ -5,10 +5,12 @@ import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { TfiAngleDoubleUp } from "react-icons/tfi";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-
+import { useLenis } from "@studio-freight/react-lenis";
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 const GoUpBtn = () => {
+  const lenis = useLenis(); // Uzyskaj instancję Lenis
+
   useGSAP(() => {
     gsap.set(".goUp", { opacity: 0, x: 100, rotation: 0 });
 
@@ -37,9 +39,18 @@ const GoUpBtn = () => {
     });
   });
 
+  const handleScrollToTop = (e: React.MouseEvent) => {
+    e.preventDefault(); // Zapobiegaj domyślnemu działaniu linku
+    lenis?.scrollTo(0, { duration: 3.5 }); // Płynne przewijanie do góry
+  };
+
   return (
     <div className="goUp glassmorphism-goUpBtn group fixed bottom-5 right-5 z-50 cursor-pointer rounded-md opacity-0 mix-blend-difference shadow-2xl transition-colors hover:bg-secondBackground/90">
-      <a href="#header" className="block p-3 lg:p-4">
+      <a
+        href="#header"
+        onClick={handleScrollToTop}
+        className="block p-3 lg:p-4"
+      >
         <TfiAngleDoubleUp size={25} />
       </a>
     </div>

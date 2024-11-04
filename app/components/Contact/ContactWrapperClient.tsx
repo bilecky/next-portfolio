@@ -15,7 +15,6 @@ const ContactWrapperClient = ({ children }: ContactWrapperProps) => {
   useGSAP(() => {
     // only fire callbacks when the active state toggles
     ScrollTrigger.config({
-      limitCallbacks: true,
       ignoreMobileResize: true,
     });
 

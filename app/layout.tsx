@@ -39,13 +39,13 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${powerGrotesk.variable} flex flex-col bg-secondBackground font-mainFont antialiased`}
       >
-        {/* <Lenis> */}
-        <CursorFollower />
-        <Header />
-        {children}
-        <GoUpBtn />
-        <Footer />
-        {/* </Lenis> */}
+        <Lenis>
+          <CursorFollower />
+          <Header />
+          {children}
+          <GoUpBtn />
+          <Footer />
+        </Lenis>
       </body>
     </html>
   );

@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import PageTransition from "@/app/utils/helpers/PageTransition";
@@ -37,7 +37,15 @@ export default function ProjectPage({ params }: ProjectPageProps) {
   useGSAP(() => {
     if (!containerRef.current || !imageElements) return;
 
-    const projectTl = gsap.timeline();
+    document.body.classList.add("pointer-events-none");
+
+    const projectTl = gsap.timeline({
+      onComplete: () => {
+        setTimeout(() => {
+          document.body.classList.remove("pointer-events-none");
+        }, 500);
+      },
+    });
 
     projectTl.set(".project_details", { opacity: 1 });
 
@@ -64,20 +72,25 @@ export default function ProjectPage({ params }: ProjectPageProps) {
       });
 
     imageElements.forEach((image, index) => {
-      gsap.set(imageElements[index], { flex: 1 });
+      gsap.set(imageElements[index], {
+        flex: 1,
+        filter: "grayscale(80%) blur(2px)",
+      });
       const handleEnter = () => {
-        gsap.to(imageElements, {
+        gsap.to(image, {
           duration: 1,
-          flexGrow: (i) => (i === index ? 10 : 1),
+          flexGrow: 10,
+          filter: "grayscale(0%) blur(0px)",
           ease: "power2.inOut",
         });
       };
 
       // Funkcja obsługująca animację po opuszczeniu
       const handleLeave = () => {
-        gsap.to(imageElements, {
+        gsap.to(image, {
           duration: 1,
           flexGrow: 1,
+          filter: "grayscale(80%) blur(2px)", // Przywrócenie początkowego stylu
           ease: "power2.inOut",
         });
       };
@@ -214,10 +227,10 @@ export default function ProjectPage({ params }: ProjectPageProps) {
             <div
               key={index}
               ref={(ref) => setProjectRef(ref, index)}
-              className="image-item relative cursor-zoom-in overflow-hidden border-[4px] border-background"
+              className="image-item relative cursor-zoom-in overflow-hidden border-[8px] border-background"
               // className="image-item relative h-full cursor-zoom-in overflow-hidden border-[1px] grayscale transition-all duration-500 ease-in-out hover:grayscale-0"
             >
-              <div className="item_overlay absolute inset-0 z-10 bg-background bg-opacity-20 grayscale-[80%] backdrop-blur-[2px] transition-all duration-1000 ease-in-out hover:grayscale-0 hover:backdrop-blur-0"></div>
+              {/* <div className="item_overlay absolute inset-0 z-10 bg-background bg-opacity-20 grayscale-[80%] backdrop-blur-[2px] transition-all duration-1000 ease-in-out hover:grayscale-0 hover:backdrop-blur-0"></div> */}
               <Image
                 src={item.image}
                 alt={`Image ${index + 1}`}

@@ -7,10 +7,7 @@ import { projects } from "../../data/data";
 import gsap from "gsap";
 import clsx from "clsx";
 import useMediaQuery from "@/app/utils/hooks/useMediaQuery";
-import AnimatedLink from "@/app/utils/AnimatedLink";
 import { Group } from "three";
-import { useEffect } from "react";
-import { is } from "@react-three/fiber/dist/declarations/src/core/utils";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
