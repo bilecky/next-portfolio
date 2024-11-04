@@ -18,7 +18,11 @@ const Lenis = ({ children }: PropsWithChildren) => {
   }, []);
 
   return (
+<<<<<<< HEAD
     <ReactLenis ref={lenisRef} autoRaf={false} options={{ duration: 3 }} root>
+=======
+    <ReactLenis ref={lenisRef} autoRaf={false} options={{ duration: 2.5 }} root>
+>>>>>>> 8032658f7e2b652fab8b80f0237577fcf699402b
       {children}
     </ReactLenis>
   );
