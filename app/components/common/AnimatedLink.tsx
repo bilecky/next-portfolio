@@ -12,7 +12,7 @@ type AnimatedLinkProps = {
   className?: string;
   as?: React.ElementType;
 };
-import useMediaQuery from "@/app/utils/hooks/useMediaQuery";
+import useMediaQuery from "@/app/hooks/useMediaQuery";
 
 const AnimatedLink = ({
   href,

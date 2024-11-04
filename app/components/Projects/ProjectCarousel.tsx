@@ -6,7 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { projects } from "../../data/data";
 import gsap from "gsap";
 import clsx from "clsx";
-import useMediaQuery from "@/app/utils/hooks/useMediaQuery";
+import useMediaQuery from "@/app/hooks/useMediaQuery";
 import { Group } from "three";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);

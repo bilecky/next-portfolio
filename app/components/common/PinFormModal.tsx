@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Modal } from "./Modal";
 import clsx from "clsx";
-import { sanitizePinName } from "./helperFunctions";
+import { sanitizePinName } from "../../utils/helperFunctions";
 
 interface PinFormModalProps {
   isOpen: boolean;

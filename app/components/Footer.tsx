@@ -1,9 +1,9 @@
 "use client";
 
 import React from "react";
-import useMediaQuery from "../utils/hooks/useMediaQuery";
+import useMediaQuery from "../hooks/useMediaQuery";
 import clsx from "clsx";
-import { currentYear } from "../utils/helpers/helperFunctions";
+import { currentYear } from "../utils/helperFunctions";
 
 function Footer() {
   const isMobile = useMediaQuery("(max-width: 768px)");

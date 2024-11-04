@@ -3,13 +3,13 @@
 import { useEffect, useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import PageTransition from "@/app/utils/helpers/PageTransition";
+import PageTransition from "@/app/components/common/PageTransition";
 import { projects } from "@/app/data/data";
 import Image from "next/image";
 import { RiGithubFill } from "react-icons/ri";
 import Splitter from "@/app/utils/Splitter";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import useMediaQuery from "@/app/utils/hooks/useMediaQuery";
+import useMediaQuery from "@/app/hooks/useMediaQuery";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 

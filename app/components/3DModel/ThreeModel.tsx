@@ -12,7 +12,7 @@ import {
 } from "@react-three/drei";
 import * as THREE from "three";
 import { projects } from "@/app/data/data";
-import AnimatedLink from "@/app/utils/AnimatedLink";
+import AnimatedLink from "@/app/components/common/AnimatedLink";
 
 useGLTF.preload("/computer_monitor_low-poly/scene-transformed.glb");
 

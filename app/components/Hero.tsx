@@ -5,6 +5,7 @@ import { useGSAP } from "@gsap/react";
 import Splitter from "../utils/Splitter";
 import gsap from "gsap";
 import { reuseHeaderLineAnimation } from "../utils/ReusableGSAPAnimations";
+import { useTranslations } from "next-intl";
 
 gsap.registerPlugin(useGSAP);
 
@@ -12,6 +13,10 @@ interface HeroProps {
   setIntroComplete: (value: boolean) => void;
 }
 const Hero = ({ setIntroComplete }: HeroProps) => {
+  const t = useTranslations("Hero");
+
+  console.log(t);
+
   const heroRef = useRef<HTMLElement>(null);
   const [blockInitialScroll, setBlockInitialScroll] = useState<boolean>(true);
   useEffect(() => {
@@ -105,7 +110,7 @@ const Hero = ({ setIntroComplete }: HeroProps) => {
         </h2>
 
         <p className="gsap-group-hero description text-wrap text-sm">
-          Currently working full-time as a Frontend developer at Hubra Company
+          {t("description")}
         </p>
       </div>
 
@@ -117,7 +122,7 @@ const Hero = ({ setIntroComplete }: HeroProps) => {
               <div className="splitter-wrapper group inline-block cursor-pointer transition-colors hover:text-gray-400">
                 <div className="nav_item flex items-center">
                   <span className="mr-0 inline-block h-0 w-[0.2rem] bg-gray-400 transition-all duration-300 group-hover:mr-7 group-hover:h-[40px] md:group-hover:h-[55px] lg:w-[0.6rem] lg:group-hover:h-[80px] xl:group-hover:h-[90px]"></span>
-                  <Splitter className="" text="projects" />
+                  <Splitter className="" text={t("MenuItem1")} />
                 </div>
               </div>
             </li>
@@ -125,16 +130,7 @@ const Hero = ({ setIntroComplete }: HeroProps) => {
               <div className="splitter-wrapper group inline-block cursor-pointer transition-colors hover:text-gray-400">
                 <div className="nav_item flex items-center">
                   <span className="mr-0 inline-block h-0 w-[0.2rem] bg-gray-400 transition-all duration-300 group-hover:mr-7 group-hover:h-[40px] md:group-hover:h-[55px] lg:w-[0.6rem] lg:group-hover:h-[80px] xl:group-hover:h-[90px]"></span>
-                  <Splitter text="TECH" />
-                </div>
-              </div>
-            </li>
-
-            <li className="flex items-center justify-start">
-              <div className="splitter-wrapper group inline-block cursor-pointer transition-colors hover:text-gray-400">
-                <div className="nav_item flex items-center">
-                  <span className="mr-0 inline-block h-0 w-[0.2rem] bg-gray-400 transition-all duration-300 group-hover:mr-7 group-hover:h-[40px] md:group-hover:h-[55px] lg:w-[0.6rem] lg:group-hover:h-[80px] xl:group-hover:h-[90px]"></span>
-                  <Splitter text="About" />
+                  <Splitter text={t("MenuItem2")} />
                 </div>
               </div>
             </li>
@@ -143,7 +139,16 @@ const Hero = ({ setIntroComplete }: HeroProps) => {
               <div className="splitter-wrapper group inline-block cursor-pointer transition-colors hover:text-gray-400">
                 <div className="nav_item flex items-center">
                   <span className="mr-0 inline-block h-0 w-[0.2rem] bg-gray-400 transition-all duration-300 group-hover:mr-7 group-hover:h-[40px] md:group-hover:h-[55px] lg:w-[0.6rem] lg:group-hover:h-[80px] xl:group-hover:h-[90px]"></span>
-                  <Splitter text="CONTACT" />
+                  <Splitter text={t("MenuItem3")} />
+                </div>
+              </div>
+            </li>
+
+            <li className="flex items-center justify-start">
+              <div className="splitter-wrapper group inline-block cursor-pointer transition-colors hover:text-gray-400">
+                <div className="nav_item flex items-center">
+                  <span className="mr-0 inline-block h-0 w-[0.2rem] bg-gray-400 transition-all duration-300 group-hover:mr-7 group-hover:h-[40px] md:group-hover:h-[55px] lg:w-[0.6rem] lg:group-hover:h-[80px] xl:group-hover:h-[90px]"></span>
+                  <Splitter text={t("MenuItem4")} />
                 </div>
               </div>
             </li>

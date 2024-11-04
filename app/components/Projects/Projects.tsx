@@ -20,7 +20,7 @@ import {
   Preload,
 } from "@react-three/drei";
 import * as THREE from "three";
-import useMediaQuery from "@/app/utils/hooks/useMediaQuery";
+import useMediaQuery from "@/app/hooks/useMediaQuery";
 import clsx from "clsx";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);

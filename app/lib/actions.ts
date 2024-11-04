@@ -6,7 +6,7 @@ import { UserPin } from "../components/Contact/PinningComponent";
 import {
   containsForbiddenWords,
   sanitizePinName,
-} from "../utils/helpers/helperFunctions";
+} from "../utils/helperFunctions";
 
 export async function createPin(pin: UserPin) {
   const sanitizedName = sanitizePinName(pin.name);

@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import { reuseHeaderLineAnimation } from "../ReusableGSAPAnimations";
+import { reuseHeaderLineAnimation } from "../../utils/ReusableGSAPAnimations";
 
 type PageTransitionProps = {
   children: React.ReactNode;
