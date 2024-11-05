@@ -2,10 +2,14 @@
 
 import Hero from "@/app/components/Hero";
 import Projects from "@/app/components/Projects/Projects";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const WaitForModel = () => {
   const [isIntroComplete, setIsIntroComplete] = useState<boolean>(false);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div className="scroll-area relative">
