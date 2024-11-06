@@ -31,9 +31,6 @@ const Hero = ({ setIntroComplete }: HeroProps) => {
 
   useGSAP(() => {
     const introTl = gsap.timeline({
-      // onStart: () => {
-      //   setBlockInitialScroll(true);
-      // },
       onComplete: () => {
         setIntroComplete(true);
         setBlockInitialScroll(false);

@@ -70,7 +70,9 @@ hr {
   margin: 0;
   padding: 0;
 }
-
+html {
+  scrollbar-gutter: stable;
+}
 html.lenis,
 html.lenis body {
   height: auto;

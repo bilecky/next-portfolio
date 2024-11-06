@@ -11,13 +11,17 @@ import { PiPaintBrushDuotone } from "react-icons/pi";
 import { Locale } from "@/app/i18n/config";
 import { setUserLocale } from "@/app/lib/locale";
 
-const Header = ({ locale }: { locale: string }) => {
+interface HeaderProps {
+  locale: string;
+}
+
+const Header = ({ locale }: HeaderProps) => {
   const [isPending, startTransition] = useTransition();
   const [localLanguage, setLocalLanguage] = useState<boolean>(true);
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement | null>(null);
   const menuContainerRef = useRef<HTMLDivElement | null>(null);
-  console.log(localLanguage);
+
   useEffect(() => {
     if (locale === "en") {
       setLocalLanguage(true);
