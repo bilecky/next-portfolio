@@ -91,9 +91,9 @@ const Hero = ({ setIntroComplete }: HeroProps) => {
   return (
     <section
       ref={heroRef}
-      className="hero container flex w-full flex-col py-40 font-mainFont text-mainFontColor opacity-0 md:h-screen md:flex-row-reverse md:items-end lg:flex lg:py-20"
+      className="hero container flex w-full flex-col py-40 font-mainFont text-background opacity-0 md:h-screen md:flex-row-reverse md:items-end lg:flex lg:py-20 dark:text-mainFontColor"
     >
-      <div className="white-overlay opacity-1 absolute inset-0 z-0 bg-secondBackground"></div>
+      <div className="white-overlay opacity-1 absolute inset-0 z-0 bg-background dark:bg-secondBackground"></div>
       <div className="black-overlay absolute inset-0"></div>
       {/* ABOUT SECTION */}
       <div className="section-left relative z-0 lg:w-[30%] lg:text-right">

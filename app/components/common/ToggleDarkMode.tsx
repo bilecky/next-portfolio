@@ -1,24 +1,30 @@
 import React, { useEffect, useState } from "react";
 import clsx from "clsx";
 
-interface ToggleSwitchProps {
+interface ToggleDarkModeSwitchProps {
   initialState?: boolean;
   onChange?: (isActive: boolean) => void;
   size?: "sm" | "md" | "lg";
   disabled?: boolean;
 }
 
-const ToggleSwitch = ({
+const ToggleDarkModeSwitch = ({
   initialState = false,
   onChange,
   size = "md",
   disabled = false,
-}: ToggleSwitchProps) => {
+}: ToggleDarkModeSwitchProps) => {
+  const [mounted, setMounted] = useState(false);
+
   const [isActive, setIsActive] = useState(initialState);
 
   useEffect(() => {
-    setIsActive(initialState);
-  }, [initialState]);
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return null;
+  }
 
   const handleToggle = () => {
     if (!disabled) {
@@ -89,4 +95,4 @@ const ToggleSwitch = ({
   );
 };
 
-export default ToggleSwitch;
+export default ToggleDarkModeSwitch;

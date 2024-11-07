@@ -56,75 +56,75 @@ function Tech({}: Props) {
   //TECHNOLOGIES GSAP ANIMATONS
 
   useGSAP(() => {
-    // document.fonts.ready.then(() => {
-    const firstLoopArr = gsap.utils.toArray(".tech-item");
-    const secondLoopArr = gsap.utils.toArray(".tech-item-reverse");
+    document.fonts.ready.then(() => {
+      const firstLoopArr = gsap.utils.toArray(".tech-item");
+      const secondLoopArr = gsap.utils.toArray(".tech-item-reverse");
 
-    const tlMarqueLoop = horizontalLoop(firstLoopArr, {
-      speed: 1,
-      repeat: -1,
-    });
-    const tlMarqueReverseLoop = horizontalLoop(secondLoopArr, {
-      repeat: -1,
-      reversed: true,
-      speed: 1,
-    });
+      const tlMarqueLoop = horizontalLoop(firstLoopArr, {
+        speed: 1,
+        repeat: -1,
+      });
+      const tlMarqueReverseLoop = horizontalLoop(secondLoopArr, {
+        repeat: -1,
+        reversed: true,
+        speed: 1,
+      });
 
-    // Te tweeny są przygotowane do spowalniania animacji
-    const slowDownFirst = gsap.to(tlMarqueLoop, {
-      timeScale: 0.5, // docelowa prędkość po zwolnieniu
-      duration: 1.5,
-      ease: "power1.in", // łagodniejsze spowalnianie
-      paused: true, // ważne - tween jest zatrzymany i czeka na użycie
-    });
+      // Te tweeny są przygotowane do spowalniania animacji
+      const slowDownFirst = gsap.to(tlMarqueLoop, {
+        timeScale: 0.5, // docelowa prędkość po zwolnieniu
+        duration: 1.5,
+        ease: "power1.in", // łagodniejsze spowalnianie
+        paused: true, // ważne - tween jest zatrzymany i czeka na użycie
+      });
 
-    const slowDownSecond = gsap.to(tlMarqueReverseLoop, {
-      timeScale: -0.5,
-      duration: 1.5,
-      ease: "power1.in", // łagodniejsze spowalnianie
+      const slowDownSecond = gsap.to(tlMarqueReverseLoop, {
+        timeScale: -0.5,
+        duration: 1.5,
+        ease: "power1.in", // łagodniejsze spowalnianie
 
-      paused: true,
-    });
+        paused: true,
+      });
 
-    // Główny observer do scrollowania
-    const marqueeObserver = ScrollTrigger.observe({
-      target: ".tech",
-      type: "pointer,touch,wheel",
-      wheelSpeed: 0.5,
-      debounce: true,
+      // Główny observer do scrollowania
+      const marqueeObserver = ScrollTrigger.observe({
+        target: ".tech",
+        type: "pointer,touch,wheel",
+        wheelSpeed: 0.5,
+        debounce: true,
 
-      onChangeY(self) {
-        const delta = self.deltaY;
-        const factorOne = delta < 0 ? -1.2 : 1.2; // zmniejszone z 1.5
-        const factorTwo = delta < 0 ? -1.2 : 1.2;
+        onChangeY(self) {
+          const delta = self.deltaY;
+          const factorOne = delta < 0 ? -1.2 : 1.2; // zmniejszone z 1.5
+          const factorTwo = delta < 0 ? -1.2 : 1.2;
 
-        // Natychmiast zmieniamy prędkość podczas scrollowania
-        tlMarqueLoop.timeScale(factorOne * 2.5);
-        tlMarqueReverseLoop.timeScale(-factorTwo * 2.5);
+          // Natychmiast zmieniamy prędkość podczas scrollowania
+          tlMarqueLoop.timeScale(factorOne * 2.5);
+          tlMarqueReverseLoop.timeScale(-factorTwo * 2.5);
 
-        // Po każdym scrollu resetujemy i uruchamiamy animację spowalniania
-        slowDownFirst.invalidate().restart();
-        slowDownSecond.invalidate().restart();
-      },
-    });
-
-    // Observer do zatrzymywania animacji przy wyjściu z sekcji
-    [".wrapper", "footer"].forEach((el) => {
-      ScrollTrigger.create({
-        trigger: el,
-        start: "top bottom",
-        end: "bottom top",
-        toggleActions: "play pause play pause",
-        onToggle: (self) => {
-          if (self.isActive) {
-            marqueeObserver.disable(); // Wyłączamy główny observer
-          } else {
-            marqueeObserver.enable(); // Włączamy główny observer
-          }
+          // Po każdym scrollu resetujemy i uruchamiamy animację spowalniania
+          slowDownFirst.invalidate().restart();
+          slowDownSecond.invalidate().restart();
         },
       });
+
+      // Observer do zatrzymywania animacji przy wyjściu z sekcji
+      [".wrapper", "footer"].forEach((el) => {
+        ScrollTrigger.create({
+          trigger: el,
+          start: "top bottom",
+          end: "bottom top",
+          toggleActions: "play pause play pause",
+          onToggle: (self) => {
+            if (self.isActive) {
+              marqueeObserver.disable(); // Wyłączamy główny observer
+            } else {
+              marqueeObserver.enable(); // Włączamy główny observer
+            }
+          },
+        });
+      });
     });
-    // });
   });
 
   return (

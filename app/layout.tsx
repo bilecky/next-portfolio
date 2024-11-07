@@ -8,6 +8,9 @@ import GoUpBtn from "./components/common/GoUpBtn";
 import Lenis from "./components/common/Lenis";
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages } from "next-intl/server";
+import ThemeProviders from "./context/ThemeProviders";
+import Providers from "./providers";
+import { ThemeProvider } from "./context/ThemeProvider";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -43,19 +46,20 @@ export default async function RootLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale}>
+    <html lang={locale} suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${powerGrotesk.variable} flex flex-col bg-secondBackground font-mainFont antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${powerGrotesk.variable} flex flex-col`}
       >
         <Lenis>
           <CursorFollower />
-          <Header locale={locale} />
-          <NextIntlClientProvider messages={messages}>
-            {children}
-          </NextIntlClientProvider>
-
-          <GoUpBtn />
-          <Footer />
+          <ThemeProvider>
+            <Header locale={locale} />
+            <NextIntlClientProvider messages={messages}>
+              {children}
+            </NextIntlClientProvider>
+            <GoUpBtn />
+            <Footer />
+          </ThemeProvider>
         </Lenis>
       </body>
     </html>

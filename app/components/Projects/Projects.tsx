@@ -22,6 +22,7 @@ import {
 import * as THREE from "three";
 import useMediaQuery from "@/app/hooks/useMediaQuery";
 import clsx from "clsx";
+import { useTheme } from "@/app/context/ThemeProvider";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -33,30 +34,39 @@ const Projects = ({ isIntroComplete }: ProjectsProps) => {
   const monitorModelRef = useRef<THREE.Group>(null);
   const isMobile = useMediaQuery("(max-width: 768px)");
   const [currentProject, setCurrentProject] = useState<number>(1);
+  const { theme } = useTheme();
 
   useGSAP(() => {
+    // const lightBgColor = "#FBFCF8";
+    // const lightEndColor = "#BDFF0F";
+
+    // const darkBgColor = "#222222";
+    // const darkEndColor = "#FBFCF8";
+    // ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+
+    const bgColor = theme === "dark" ? "#222222" : "#FBFCF8";
+    const endColor = theme === "dark" ? "#FBFCF8" : "#BDFF0F";
+    ScrollTrigger.getById("bgScrollTrigger")?.kill();
     const bgArea = gsap.timeline({
       scrollTrigger: {
-        trigger: ".scroll-area", // Make sure this class exists on the element
-        start: "top top", // Start when the section is fully visible at the top
-        end: "bottom bottom", // End when the section is out of view
-        scrub: 2, // Sync the animation with scrolling smoothly
+        id: "bgScrollTrigger",
+        trigger: ".scroll-area", // Upewnij się, że ta klasa istnieje na elemencie
+        start: "top top",
+        end: "bottom bottom",
+        scrub: 2,
       },
     });
 
-    // Smooth background color change
+    // Opóźnienie zmiany tła
 
     bgArea.fromTo(
       ["body", ".black-overlay"],
-      { backgroundColor: "#222222" }, // Start color
-      {
-        backgroundColor: "#FBFCF8", // End color
-        overwrite: "auto",
-
-        ease: "power3.inOut", // Smooth transition for background color
-      },
+      { backgroundColor: bgColor },
+      { backgroundColor: endColor, overwrite: "auto", ease: "power3.inOut" },
     );
+  }, [theme]);
 
+  useGSAP(() => {
     const leftSectionArea = gsap.timeline({
       scrollTrigger: {
         trigger: ".projects", // Make sure this class exists on the element
@@ -124,7 +134,7 @@ const Projects = ({ isIntroComplete }: ProjectsProps) => {
       },
       0,
     );
-  });
+  }, []);
 
   return (
     <section className="projects relative z-10 text-background opacity-0 md:container md:py-28 xl:flex xl:flex-row">

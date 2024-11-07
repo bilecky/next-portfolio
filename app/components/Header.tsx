@@ -10,6 +10,8 @@ import { LiaLanguageSolid } from "react-icons/lia";
 import { PiPaintBrushDuotone } from "react-icons/pi";
 import { Locale } from "@/app/i18n/config";
 import { setUserLocale } from "@/app/lib/locale";
+import { useTheme } from "@/app/context/ThemeProvider";
+import ToggleDarkModeSwitch from "./common/ToggleDarkMode";
 
 interface HeaderProps {
   locale: string;
@@ -21,6 +23,7 @@ const Header = ({ locale }: HeaderProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement | null>(null);
   const menuContainerRef = useRef<HTMLDivElement | null>(null);
+  const { theme, setTheme } = useTheme();
 
   useEffect(() => {
     if (locale === "en") {
@@ -80,7 +83,7 @@ const Header = ({ locale }: HeaderProps) => {
   return (
     <header
       id="header"
-      className="header bg-white-800 container absolute left-0 right-0 z-20 flex w-full items-center justify-between py-5 text-mainFontColor opacity-0"
+      className="header bg-white-800 container absolute left-0 right-0 z-20 flex w-full items-center justify-between py-5 text-background opacity-0 dark:text-mainFontColor"
     >
       <div className="logo group text-xl font-light">
         <Link
@@ -104,13 +107,7 @@ const Header = ({ locale }: HeaderProps) => {
           onClick={handleToggle}
           className="white-line relative block h-full w-full cursor-pointer p-5"
         >
-          <div
-            style={{
-              background:
-                "linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0) 100%)",
-            }}
-            className="pulse-line h-[3px] w-full"
-          ></div>
+          <div className="pulse-line dark:white-header-line black-header-line h-[3px] w-full"></div>
         </button>
 
         <div
@@ -137,10 +134,13 @@ const Header = ({ locale }: HeaderProps) => {
                 <div className="lg:text-LG flex items-center justify-between">
                   <div className="flex items-center justify-center space-x-3">
                     <PiPaintBrushDuotone className="text-xl" />
-                    <span>dark / tropic</span>
+                    <span>light / dark</span>
                   </div>
                   <div>
-                    <ToggleSwitch />
+                    <ToggleDarkModeSwitch
+                      initialState={theme === "dark" ? true : false}
+                      onChange={(isDark) => setTheme(isDark ? "dark" : "light")}
+                    />
                   </div>
                 </div>
               </li>
