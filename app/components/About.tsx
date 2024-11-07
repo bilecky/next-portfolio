@@ -64,10 +64,10 @@ const About = () => {
     });
   });
   return (
-    <section className="about panel absolute top-0 z-10 col-start-1 col-end-2 row-start-1 row-end-2 min-h-screen w-full overflow-hidden bg-background py-20 shadow-xl will-change-transform lg:py-36">
-      <div className="about_wrapper container box-border grid max-h-full grid-cols-1 place-items-center gap-10 text-blackSectionText xl:grid-cols-2">
+    <section className="about panel absolute top-0 z-10 col-start-1 col-end-2 row-start-1 row-end-2 min-h-screen w-full overflow-hidden bg-secondBackground py-20 shadow-xl will-change-transform lg:py-36 dark:bg-background">
+      <div className="about_wrapper container box-border grid max-h-full grid-cols-1 place-items-center gap-10 text-background xl:grid-cols-2 dark:text-blackSectionText">
         <div className="overview_section relative text-mobile">
-          <h2 className="about_header font-mainHeaderFont uppercase leading-none tracking-wide text-mainFontColor lg:text-section-header">
+          <h2 className="about_header font-mainHeaderFont uppercase leading-none tracking-wide text-background lg:text-section-header dark:text-mainFontColor">
             <Splitter text="About" />
           </h2>
 
@@ -110,10 +110,10 @@ const About = () => {
               quality={50}
             />
             <div className="pointer-events-none absolute inset-0 border-b-4 border-l-4 border-r-4 border-t-4 border-transparent">
-              <div className="corner-el absolute -left-2 -top-2 -z-10 h-10 w-10 bg-white"></div>
-              <div className="corner-el absolute -right-2 -top-2 -z-10 h-10 w-10 bg-white"></div>
-              <div className="corner-el absolute -bottom-2 -left-2 -z-10 h-10 w-10 bg-white"></div>
-              <div className="corner-el absolute -bottom-2 -right-2 -z-10 h-10 w-10 bg-white"></div>
+              <div className="corner-el absolute -left-2 -top-2 -z-10 h-10 w-10 bg-background dark:bg-secondBackground"></div>
+              <div className="corner-el absolute -right-2 -top-2 -z-10 h-10 w-10 bg-background dark:bg-secondBackground"></div>
+              <div className="corner-el absolute -bottom-2 -left-2 -z-10 h-10 w-10 bg-background dark:bg-secondBackground"></div>
+              <div className="corner-el absolute -bottom-2 -right-2 -z-10 h-10 w-10 bg-background dark:bg-secondBackground"></div>
             </div>
           </div>
         </div>

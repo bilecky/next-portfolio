@@ -51,6 +51,7 @@ const config: Config = {
         mainFontColor: "#FBFCF8",
         background: "#222222",
         secondBackground: "#FBFCF8",
+        thirdBackground: "#BDFF0F",
         // foreground: "var(--foreground)",
         blackSectionText: "#b8b8b8",
       },
