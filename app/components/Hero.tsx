@@ -97,14 +97,14 @@ const Hero = ({ setIntroComplete }: HeroProps) => {
       <div className="black-overlay absolute inset-0"></div>
       {/* ABOUT SECTION */}
       <div className="section-left relative z-0 lg:w-[30%] lg:text-right">
-        <h1 className="gsap-group-hero main-header mb-3 text-xl uppercase">
+        <h1 className="gsap-group-hero main-header mb-3 text-xl uppercase will-change-transform">
           PAWEŁ BILSKI
         </h1>
-        <h2 className="gsap-group-hero subheader mb-3 text-sm font-thin">
-          Front-end Developer | Software Engineer | Web Developer
+        <h2 className="gsap-group-hero subheader mb-3 text-sm font-thin will-change-transform">
+          Frontend Developer | Software Engineer
         </h2>
 
-        <p className="gsap-group-hero description text-wrap text-sm">
+        <p className="gsap-group-hero description text-wrap text-sm will-change-transform">
           {t("description")}
         </p>
       </div>
@@ -117,7 +117,10 @@ const Hero = ({ setIntroComplete }: HeroProps) => {
               <div className="splitter-wrapper group inline-block cursor-pointer transition-colors hover:text-gray-400">
                 <div className="nav_item flex items-center">
                   <span className="mr-0 inline-block h-0 w-[0.2rem] bg-gray-400 transition-all duration-300 group-hover:mr-7 group-hover:h-[40px] md:group-hover:h-[55px] lg:w-[0.6rem] lg:group-hover:h-[80px] xl:group-hover:h-[90px]"></span>
-                  <Splitter className="" text={t("MenuItem1")} />
+                  <Splitter
+                    className="will-change-transform"
+                    text={t("MenuItem1")}
+                  />
                 </div>
               </div>
             </li>
@@ -125,7 +128,10 @@ const Hero = ({ setIntroComplete }: HeroProps) => {
               <div className="splitter-wrapper group inline-block cursor-pointer transition-colors hover:text-gray-400">
                 <div className="nav_item flex items-center">
                   <span className="mr-0 inline-block h-0 w-[0.2rem] bg-gray-400 transition-all duration-300 group-hover:mr-7 group-hover:h-[40px] md:group-hover:h-[55px] lg:w-[0.6rem] lg:group-hover:h-[80px] xl:group-hover:h-[90px]"></span>
-                  <Splitter text={t("MenuItem2")} />
+                  <Splitter
+                    className="will-change-transform"
+                    text={t("MenuItem2")}
+                  />
                 </div>
               </div>
             </li>
@@ -134,7 +140,10 @@ const Hero = ({ setIntroComplete }: HeroProps) => {
               <div className="splitter-wrapper group inline-block cursor-pointer transition-colors hover:text-gray-400">
                 <div className="nav_item flex items-center">
                   <span className="mr-0 inline-block h-0 w-[0.2rem] bg-gray-400 transition-all duration-300 group-hover:mr-7 group-hover:h-[40px] md:group-hover:h-[55px] lg:w-[0.6rem] lg:group-hover:h-[80px] xl:group-hover:h-[90px]"></span>
-                  <Splitter text={t("MenuItem3")} />
+                  <Splitter
+                    className="will-change-transform"
+                    text={t("MenuItem3")}
+                  />
                 </div>
               </div>
             </li>
@@ -143,7 +152,10 @@ const Hero = ({ setIntroComplete }: HeroProps) => {
               <div className="splitter-wrapper group inline-block cursor-pointer transition-colors hover:text-gray-400">
                 <div className="nav_item flex items-center">
                   <span className="mr-0 inline-block h-0 w-[0.2rem] bg-gray-400 transition-all duration-300 group-hover:mr-7 group-hover:h-[40px] md:group-hover:h-[55px] lg:w-[0.6rem] lg:group-hover:h-[80px] xl:group-hover:h-[90px]"></span>
-                  <Splitter text={t("MenuItem4")} />
+                  <Splitter
+                    className="will-change-transform"
+                    text={t("MenuItem4")}
+                  />
                 </div>
               </div>
             </li>

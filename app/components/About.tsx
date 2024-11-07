@@ -68,10 +68,10 @@ const About = () => {
       <div className="about_wrapper container box-border grid max-h-full grid-cols-1 place-items-center gap-10 text-background xl:grid-cols-2 dark:text-blackSectionText">
         <div className="overview_section relative text-mobile">
           <h2 className="about_header font-mainHeaderFont uppercase leading-none tracking-wide text-background lg:text-section-header dark:text-mainFontColor">
-            <Splitter text="About" />
+            <Splitter className="will-change-transform" text="About" />
           </h2>
 
-          <p className="about_description pt-4 text-sm lg:text-xl">
+          <p className="about_description pt-4 text-sm will-change-transform lg:text-xl">
             I am a frontend developer with over 3 years of commercial
             experience, specializing in building dynamic and responsive web
             applications. With a strong focus on Next.js and React, I create
@@ -81,7 +81,7 @@ const About = () => {
             free from runtime errors.
           </p>
 
-          <p className="about_description py-4 text-sm lg:text-xl">
+          <p className="about_description py-4 text-sm will-change-transform lg:text-xl">
             In addition to my work with modern JavaScript frameworks, I have
             extensive experience with WordPress, enabling me to develop custom
             websites/themes and plugins tailored to client needs. I am
@@ -91,7 +91,7 @@ const About = () => {
             websites to complex web applications, constantly refining my skills
             and staying up-to-date with the latest industry trends.
           </p>
-          <p className="about_description text-sm lg:text-xl">
+          <p className="about_description text-sm will-change-transform lg:text-xl">
             As a developer, I thrive in collaborative environments where I can
             contribute to solving challenges and improving workflows. I enjoy
             learning new technologies and finding innovative ways to enhance web

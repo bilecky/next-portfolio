@@ -12,12 +12,14 @@ import { Locale } from "@/app/i18n/config";
 import { setUserLocale } from "@/app/lib/locale";
 import { useTheme } from "@/app/context/ThemeProvider";
 import ToggleDarkModeSwitch from "./common/ToggleDarkMode";
+import useMediaQuery from "../hooks/useMediaQuery";
 
 interface HeaderProps {
   locale: string;
 }
 
 const Header = ({ locale }: HeaderProps) => {
+  const ismobile = useMediaQuery("(max-width: 768px)");
   const [isPending, startTransition] = useTransition();
   const [localLanguage, setLocalLanguage] = useState<boolean>(true);
   const [isOpen, setIsOpen] = useState(false);
@@ -85,14 +87,14 @@ const Header = ({ locale }: HeaderProps) => {
       id="header"
       className="header bg-white-800 container absolute left-0 right-0 z-20 flex w-full items-center justify-between py-5 text-background opacity-0 dark:text-mainFontColor"
     >
-      <div className="logo group text-xl font-light">
+      <div className="logo group text-xl font-light will-change-transform">
         <Link
           href="/"
           className="cursor-pointer font-mono transition-colors group-hover:text-gray-400"
         >
-          paweł
+          {ismobile ? "p" : "paweł"}
           <span className="text-gray-400 transition-colors group-hover:text-mainFontColor">
-            {"<bilski>"}
+            {ismobile ? "<b>" : "<bilski>"}
           </span>
         </Link>
       </div>
@@ -107,12 +109,12 @@ const Header = ({ locale }: HeaderProps) => {
           onClick={handleToggle}
           className="white-line relative block h-full w-full cursor-pointer p-5"
         >
-          <div className="pulse-line dark:white-header-line black-header-line h-[3px] w-full"></div>
+          <div className="pulse-line dark:white-header-line black-header-line h-[3px] w-full will-change-transform"></div>
         </button>
 
         <div
           ref={menuRef}
-          className="menu-container glassmorphism absolute left-0 right-0 top-10 mx-auto h-0 w-[85%] overflow-hidden rounded-md text-background"
+          className="menu-container glassmorphism absolute left-1/2 top-12 mx-2 h-0 w-[80vw] -translate-x-1/2 overflow-hidden rounded-md text-background md:left-0 md:right-0 md:top-10 md:mx-auto md:w-[80%] md:-translate-x-0"
         >
           <nav className="h-full w-full p-5">
             <ul className="dropdown-menu space-y-4">
@@ -137,7 +139,7 @@ const Header = ({ locale }: HeaderProps) => {
                     <span>light / dark</span>
                   </div>
                   <div>
-                    <ToggleDarkModeSwitch
+                    <ToggleSwitch
                       initialState={theme === "dark" ? true : false}
                       onChange={(isDark) => setTheme(isDark ? "dark" : "light")}
                     />
@@ -148,7 +150,7 @@ const Header = ({ locale }: HeaderProps) => {
           </nav>
         </div>
       </div>
-      <nav className="header-nav">
+      <nav className="header-nav will-change-transform">
         <ul className="flex space-x-6">
           <li>
             <a

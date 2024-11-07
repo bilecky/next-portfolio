@@ -10,6 +10,7 @@ import { RiGithubFill } from "react-icons/ri";
 import Splitter from "@/app/utils/Splitter";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import useMediaQuery from "@/app/hooks/useMediaQuery";
+import { useTheme } from "@/app/context/ThemeProvider";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -22,6 +23,8 @@ type ProjectPageProps = {
 export default function ProjectPage({ params }: ProjectPageProps) {
   const isMobile = useMediaQuery("(max-width: 768px)");
 
+  const { theme } = useTheme();
+
   const containerRef = useRef<HTMLDivElement>(null);
   const imageRefs = useRef<(HTMLDivElement | null)[]>([]);
 
@@ -33,6 +36,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
 
   const paramsProject = params.id;
   const imageElements = imageRefs.current;
+  const chooseSelectedColor = theme === "dark" ? "#FBFCF8" : "#222222";
 
   useGSAP(() => {
     if (!containerRef.current || !imageElements) return;
@@ -105,6 +109,9 @@ export default function ProjectPage({ params }: ProjectPageProps) {
     });
   });
   useGSAP(() => {
+    ScrollTrigger.getById("project_description")?.kill();
+    ScrollTrigger.getById("project_description_mobile")?.kill();
+
     const mm = gsap.matchMedia();
 
     // Desktop animations (no changes, just as reference)
@@ -126,6 +133,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
       // -----------------------------------
       const descriptionTl = gsap.timeline({
         scrollTrigger: {
+          id: "project_description",
           trigger: ".description_section__left",
           start: "top 90%",
           end: "top 40%",
@@ -134,7 +142,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
       });
 
       descriptionTl.to(".splitted_description .split-char", {
-        color: "#FBFCF8",
+        color: chooseSelectedColor,
         stagger: 0.2,
         duration: 1.5,
         ease: "power2.inOut",
@@ -179,6 +187,8 @@ export default function ProjectPage({ params }: ProjectPageProps) {
       // mobile SPLIT CHARS ------------------------------------
       const descriptionTl = gsap.timeline({
         scrollTrigger: {
+          id: "project_description_mobile",
+
           trigger: ".description_section__left",
           start: "top 90%", // Animacja zaczyna się, gdy element ma 10% widoczności
           end: "bottom 65%",
@@ -187,7 +197,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
       });
 
       descriptionTl.to(".splitted_description .split-char", {
-        color: "#FBFCF8",
+        color: chooseSelectedColor,
         stagger: 0.15, // Faster but still noticeable stagger
         duration: 1.2, // Shorter duration but visible
         ease: "power2.inOut",
@@ -211,12 +221,12 @@ export default function ProjectPage({ params }: ProjectPageProps) {
         transformOrigin: "left center",
       });
     });
-  });
+  }, [theme]);
 
   return (
     <PageTransition>
       <section className="project_details relative z-10 cursor-default py-40 opacity-0">
-        <h1 className="project_details_title mb-24 text-center font-mainHeaderFont text-6xl font-extralight uppercase text-mainFontColor max-fold:text-5xl md:text-[6rem] lg:text-[8rem] 2xl:text-[8rem]">
+        <h1 className="project_details_title mb-24 text-center font-mainHeaderFont text-6xl font-extralight uppercase text-background max-fold:text-5xl md:text-[6rem] lg:text-[8rem] 2xl:text-[8rem] dark:text-mainFontColor">
           {projects[paramsProject - 1].title}
         </h1>
         <div
@@ -227,7 +237,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
             <div
               key={index}
               ref={(ref) => setProjectRef(ref, index)}
-              className="image-item relative cursor-zoom-in overflow-hidden border-[8px] border-background"
+              className="image-item relative cursor-zoom-in overflow-hidden border-[8px] border-secondBackground dark:border-background"
               // className="image-item relative h-full cursor-zoom-in overflow-hidden border-[1px] grayscale transition-all duration-500 ease-in-out hover:grayscale-0"
             >
               {/* <div className="item_overlay absolute inset-0 z-10 bg-background bg-opacity-20 grayscale-[80%] backdrop-blur-[2px] transition-all duration-1000 ease-in-out hover:grayscale-0 hover:backdrop-blur-0"></div> */}
@@ -240,14 +250,15 @@ export default function ProjectPage({ params }: ProjectPageProps) {
             </div>
           ))}
         </div>
-        <div className="horizontal_line my-20 h-1 w-1/2 bg-gradient-to-r from-white to-transparent"></div>
+        <div className="horizontal_line my-20 h-1 w-1/2 bg-gradient-to-r from-black to-transparent dark:from-white dark:to-transparent"></div>
+
         <div className="description container px-2 xl:max-w-screen-xl">
           <div className="description_wrapper grid gap-14 xl:grid-cols-[5fr_2fr] xl:gap-24">
             <div className="description_section__left">
-              <h2 className="description_title py-2 text-xl text-gray-400">
+              <h2 className="description_title py-2 text-xl text-gray-500 dark:text-gray-400">
                 _description
               </h2>
-              <p className="description_text pt-5 text-xl text-gray-500">
+              <p className="description_text pt-5 text-xl text-gray-400 dark:text-gray-500">
                 <Splitter
                   className="splitted_description"
                   text={projects[paramsProject - 1].description}
@@ -257,7 +268,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
                 <a
                   target="_blank"
                   href="https://github.com"
-                  className="group inline-flex cursor-pointer items-center overflow-hidden rounded-sm border-2 border-mainFontColor border-opacity-30 bg-transparent px-6 py-4 leading-none text-mainFontColor transition-all duration-300"
+                  className="group inline-flex cursor-pointer items-center overflow-hidden rounded-sm border-2 border-background border-opacity-30 bg-transparent px-6 py-4 leading-none text-background transition-all duration-300 dark:border-mainFontColor dark:text-mainFontColor"
                 >
                   <span className="first_text overflow-hidden transition-all duration-300 group-hover:translate-y-[-100%] group-hover:opacity-0">
                     visit github
@@ -271,7 +282,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
             </div>
 
             <div className="description_section__right">
-              <h2 className="description_title py-2 text-xl text-gray-400">
+              <h2 className="description_title py-2 text-xl text-gray-500 dark:text-gray-400">
                 _tech-stack
               </h2>
               <ul className="technology_wrapper flex flex-wrap items-start gap-3 pt-5 xl:flex-col">
@@ -279,7 +290,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
                   (item, index) => (
                     <li
                       key={index + "-tech"}
-                      className="technology_item description_text whitespace-nowrap rounded-3xl border-[1px] border-mainFontColor border-opacity-30 px-5 py-1 text-center text-lg text-mainFontColor"
+                      className="technology_item description_text whitespace-nowrap rounded-3xl border-[1px] border-background border-opacity-30 px-5 py-1 text-center text-lg text-background dark:border-mainFontColor dark:text-mainFontColor"
                     >
                       {item}
                     </li>

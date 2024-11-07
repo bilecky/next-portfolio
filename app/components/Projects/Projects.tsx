@@ -141,10 +141,13 @@ const Projects = ({ isIntroComplete }: ProjectsProps) => {
       <div className="overview xl:w-3/5">
         <div className={clsx(isMobile && "container")}>
           <h2 className="projects-header font-mainHeaderFont text-mobile uppercase leading-none lg:text-section-header">
-            <Splitter className="header-text" text="Projects" />
+            <Splitter
+              className="header-text will-change-transform"
+              text="Projects"
+            />
           </h2>
 
-          <p className="projects-description py-4 text-sm lg:text-xl">
+          <p className="projects-description py-4 text-sm will-change-transform lg:text-xl">
             Lorem Ipsum is simply dummy text of the printing and typesetting
             industry. Lorem Ipsum has been the industry's standard dummy text
             ever since the 1500s, when an unknown printer took a galley of type
@@ -154,7 +157,7 @@ const Projects = ({ isIntroComplete }: ProjectsProps) => {
           </p>
         </div>
 
-        <div className="model3d relative h-[50vh] w-full overflow-visible lg:h-[55vh]">
+        <div className="model3d relative h-[50vh] w-full overflow-visible will-change-transform lg:h-[55vh]">
           <div className="absolute z-10 h-[50vh] w-full overflow-visible lg:h-[80vh] 2xl:-bottom-72 2xl:h-[105vh] 2xl:w-[110%]">
             {isIntroComplete && (
               <Canvas shadows>

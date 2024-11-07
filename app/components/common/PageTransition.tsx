@@ -46,7 +46,7 @@ const PageTransition = ({ children }: PageTransitionProps) => {
     <div className="relative">
       <div
         ref={transitionRef}
-        className="page-transition absolute inset-0 bg-background"
+        className="page-transition absolute inset-0 bg-secondBackground dark:bg-background"
       />
       {children}
     </div>
