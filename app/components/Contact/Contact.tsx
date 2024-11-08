@@ -3,7 +3,7 @@ import { RiMailSendFill } from "react-icons/ri";
 import PinningComponent from "./PinningComponent";
 import { fetchPins } from "@/app/lib/data";
 import ContactWrapperClient from "./ContactWrapperClient";
-import Footer from "../Footer";
+import Form from "./Form";
 
 const Contact = async () => {
   const pins = await fetchPins();
@@ -28,40 +28,7 @@ const Contact = async () => {
           </div>
 
           <div className="contact_form">
-            <form method="POST" className="flex flex-col gap-12">
-              <input
-                type="text"
-                name="name"
-                placeholder="Name"
-                className="contact_input border-b-2 bg-transparent px-4 py-4 focus:border-b-background focus:outline-none"
-              />
-              <input
-                type="email"
-                name="email"
-                placeholder="Email"
-                className="contact_input border-b-2 bg-transparent px-4 py-4 focus:border-b-background focus:outline-none"
-              />
-              <textarea
-                rows={5}
-                name="message"
-                placeholder="Message"
-                className="contact_input border-b-2 bg-transparent px-4 py-4 focus:border-b-background focus:outline-none"
-              ></textarea>
-              <div className="btn_wrapper inline-block">
-                <button
-                  type="submit"
-                  className="group inline-flex w-auto cursor-pointer items-center overflow-hidden rounded-sm border-2 border-background bg-background px-6 py-4 leading-none text-mainFontColor transition-all duration-300 hover:bg-mainFontColor hover:text-background"
-                >
-                  <span className="first_text overflow-hidden transition-all duration-300 group-hover:translate-y-[-100%] group-hover:text-mainFontColor group-hover:opacity-0">
-                    submit
-                  </span>
-                  <span className="second_text absolute translate-y-[100%] overflow-hidden whitespace-nowrap opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:text-background group-hover:opacity-100">
-                    submit
-                  </span>
-                  <RiMailSendFill className="ml-3" />
-                </button>
-              </div>
-            </form>
+            <Form />{" "}
           </div>
         </div>
       </div>

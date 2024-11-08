@@ -4,6 +4,7 @@ type ReusableAnimationsProps = {
   timeline: gsap.core.Timeline;
   selector: string;
   options?: gsap.TweenVars;
+  timing?: string;
 };
 
 export const reuseTexTsplitterFn = ({
@@ -24,10 +25,11 @@ export const reuseSectionDescriptionAnimation = ({
   timeline,
   selector,
   options = {},
+  timing = "",
 }: ReusableAnimationsProps) => {
   const defaultOptions = { x: 100, duration: 4, opacity: 0, ease: "back.out" };
 
-  timeline.from(selector, { ...defaultOptions, ...options });
+  timeline.from(selector, { ...defaultOptions, ...options }, timing);
 };
 
 export const reuseHeaderLineAnimation = () => {
