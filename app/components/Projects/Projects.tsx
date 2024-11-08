@@ -96,11 +96,10 @@ const Projects = ({ isIntroComplete }: ProjectsProps) => {
     //   },
     // });
 
-    leftSectionArea.from(".model3d", {
-      opacity: 0,
-      ease: "back.out",
-      duration: 10,
-    });
+    // leftSectionArea.from(".model3d", {
+    //   opacity: 0,
+    //   ease: "none",
+    // });
 
     // textArea.from(".project_details", {
     //   opacity: 0,
@@ -157,16 +156,17 @@ const Projects = ({ isIntroComplete }: ProjectsProps) => {
           </p>
         </div>
 
-        <div className="model3d relative h-[50vh] w-full overflow-visible will-change-transform lg:h-[55vh]">
+        <div className="model3d relative h-[50vh] w-full overflow-visible lg:h-[55vh]">
           <div className="absolute z-10 h-[50vh] w-full overflow-visible lg:h-[80vh] 2xl:-bottom-72 2xl:h-[105vh] 2xl:w-[110%]">
             {isIntroComplete && (
-              <Canvas shadows>
+              <Canvas>
                 <ThreeModel
                   ref={monitorModelRef}
                   currentProject={currentProject}
                 />
-                <AdaptiveDpr pixelated /> <AdaptiveEvents />
-                {/* Optymalizacja zdarzeń */} <Preload all />
+                <AdaptiveDpr pixelated />
+                <AdaptiveEvents />
+                <Preload all />
               </Canvas>
             )}
           </div>

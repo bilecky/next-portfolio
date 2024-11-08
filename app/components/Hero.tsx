@@ -44,7 +44,7 @@ const Hero = ({ setIntroComplete }: HeroProps) => {
       .set([".hero", ".header"], { opacity: 1, duration: 1 })
 
       .from(".black-overlay", {
-        duration: 1.7,
+        duration: 2,
         yPercent: -100,
         ease: "power2.inOut",
       })
@@ -94,7 +94,7 @@ const Hero = ({ setIntroComplete }: HeroProps) => {
       className="hero container flex w-full flex-col py-40 font-mainFont text-background opacity-0 md:h-screen md:flex-row-reverse md:items-end lg:flex lg:py-20 dark:text-mainFontColor"
     >
       <div className="white-overlay opacity-1 absolute inset-0 z-0 bg-background dark:bg-secondBackground"></div>
-      <div className="black-overlay absolute inset-0"></div>
+      <div className="black-overlay absolute inset-0 will-change-transform"></div>
       {/* ABOUT SECTION */}
       <div className="section-left relative z-0 lg:w-[30%] lg:text-right">
         <h1 className="gsap-group-hero main-header mb-3 text-xl uppercase will-change-transform">

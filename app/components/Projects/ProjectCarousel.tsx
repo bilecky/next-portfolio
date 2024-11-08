@@ -172,13 +172,13 @@ const ProjectCarousel = (props: projectCarouselProps) => {
         </div>
 
         {/* Overlay dla wersji mobilnej */}
-        <div
+        {/* <div
           style={{
             background:
               "linear-gradient(90deg, rgba(251,252,248,1) 0%, rgba(251,252,248,0.25) 3%, rgba(251,252,248,0) 50%, rgba(251,252,248,0.25) 97%, rgba(251,252,248,1) 100%)",
           }}
           className="pointer-events-none absolute left-0 top-0 z-20 h-full w-full lg:hidden"
-        ></div>
+        ></div> */}
 
         {/* Kontener dla projektów */}
         <div
@@ -190,10 +190,10 @@ const ProjectCarousel = (props: projectCarouselProps) => {
               key={index}
               id={`project-${index}`}
               className={clsx(
+                index !== currentProject && "bg-secondBackground",
                 // Style mobilne
-                "relative z-10 mx-2 flex cursor-pointer items-center whitespace-nowrap rounded-full border-[1px] border-background bg-secondBackground px-6 py-3 text-background transition-colors",
-                index === currentProject &&
-                  "bg-[#222222] text-secondBackground",
+                "relative z-10 mx-2 flex cursor-pointer items-center whitespace-nowrap rounded-full border-[1px] border-secondBackground px-6 py-3 will-change-transform dark:border-background",
+                index === currentProject && "bg-background text-mainFontColor",
                 // Style desktopowe
                 "lg:border-none lg:bg-transparent lg:px-8 lg:py-4 lg:hover:text-gray-500",
                 index === currentProject && "lg:text-gray-600",
