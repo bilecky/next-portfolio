@@ -157,7 +157,7 @@ const Projects = ({ isIntroComplete }: ProjectsProps) => {
         </div>
 
         <div className="model3d relative h-[50vh] w-full overflow-visible lg:h-[55vh]">
-          <div className="absolute z-10 h-[50vh] w-full overflow-visible lg:h-[80vh] 2xl:-bottom-72 2xl:h-[105vh] 2xl:w-[110%]">
+          <div className="absolute z-10 h-[50vh] w-full overflow-visible lg:h-[80vh] xl:-bottom-72 2xl:h-[105vh] 2xl:w-[110%]">
             {isIntroComplete && (
               <Canvas>
                 <ThreeModel

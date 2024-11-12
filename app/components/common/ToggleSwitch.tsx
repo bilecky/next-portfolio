@@ -14,8 +14,9 @@ const ToggleSwitch = ({
   size = "md",
   disabled = false,
 }: ToggleSwitchProps) => {
-  const [isActive, setIsActive] = useState(initialState);
+  const [isActive, setIsActive] = useState<boolean | null>(null);
 
+  console.log(initialState);
   useEffect(() => {
     setIsActive(initialState);
   }, [initialState]);

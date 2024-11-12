@@ -8,8 +8,6 @@ import GoUpBtn from "./components/common/GoUpBtn";
 import Lenis from "./components/common/Lenis";
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages } from "next-intl/server";
-import ThemeProviders from "./context/ThemeProviders";
-import Providers from "./providers";
 import { ThemeProvider } from "./context/ThemeProvider";
 
 const geistSans = localFont({
