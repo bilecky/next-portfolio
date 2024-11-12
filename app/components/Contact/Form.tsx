@@ -43,9 +43,8 @@ const Form = () => {
         setFormMessage({ status: "error", message: error.message });
       }
     } finally {
+      setIsLoading(false);
       setTimeout(() => {
-        setIsLoading(false);
-
         setFormMessage(null);
       }, 5000);
     }

@@ -7,19 +7,20 @@ interface ThemeContextType {
   setTheme: (theme: string) => void;
 }
 
+const getInitialTheme = (): string => {
+  if (typeof window !== "undefined") {
+    return localStorage.getItem("theme") || "dark";
+  }
+  return "dark";
+};
+
 // Tworzymy kontekst z domyślną wartością null, którą nadpiszemy w providerze
 const ThemeContext = createContext<ThemeContextType | null>(null);
 
 export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
-  const [theme, setTheme] = useState<string>("dark"); // Domyślnie ustawiamy tryb ciemny
+  const [theme, setTheme] = useState<string>(getInitialTheme()); // Domyślnie ustawiamy tryb ciemny
 
   // Pobieramy zapisany motyw z localStorage po załadowaniu komponentu
-  useEffect(() => {
-    const savedTheme = localStorage.getItem("theme") || "dark";
-    if (savedTheme) {
-      setTheme(savedTheme);
-    }
-  }, []);
 
   // Zapisujemy aktualny motyw w localStorage oraz dodajemy odpowiednią klasę do elementu <html>
   useEffect(() => {
