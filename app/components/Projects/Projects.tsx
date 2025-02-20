@@ -33,7 +33,7 @@ type ProjectsProps = {
 const Projects = ({ isIntroComplete }: ProjectsProps) => {
   const monitorModelRef = useRef<THREE.Group>(null);
   const isMobile = useMediaQuery("(max-width: 768px)");
-  const [currentProject, setCurrentProject] = useState<number>(1);
+  const [currentProject, setCurrentProject] = useState<number>(0);
   const { theme } = useTheme();
 
   useGSAP(() => {
