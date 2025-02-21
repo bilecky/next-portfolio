@@ -1,12 +1,13 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { RiMailSendFill } from "react-icons/ri";
 import { set, useForm } from "react-hook-form";
 import { sendEmail } from "@/app/lib/mailer";
 import clsx from "clsx";
 import { PropagateLoader } from "react-spinners";
+import { useTranslations } from "next-intl";
 
-export type FormData = {
+export type contactFormData = {
   name: string;
   email: string;
   message: string;
@@ -22,31 +23,47 @@ const Form = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormData>();
+    clearErrors,
+    reset,
+  } = useForm<contactFormData>();
 
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
   const [formMessage, setFormMessage] = useState<StatusObject | null>(null);
 
-  async function onSubmit(data: FormData) {
-    setIsLoading(true);
+  const tErrors = useTranslations("FormErrors");
 
+  const tPlaceholders = useTranslations("FormPlaceholders");
+
+  useEffect(() => {
+    if (!formMessage) return;
+
+    const timeoutId = setTimeout(() => {
+      setFormMessage(null);
+      clearErrors();
+    }, 5000);
+
+    return () => clearTimeout(timeoutId);
+  }, [formMessage]);
+
+  async function onSubmit(data: contactFormData) {
+    setIsLoading(true);
     setFormMessage(null);
 
     try {
       await sendEmail(data);
       setFormMessage({
         status: "success",
-        message: "Wiadomość została wysłana",
+        message: tErrors("successMessage"),
       });
+      reset();
     } catch (error) {
-      if (error instanceof Error) {
-        setFormMessage({ status: "error", message: error.message });
-      }
+      setFormMessage({
+        status: "error",
+        message: tErrors("errorMessage"),
+      });
     } finally {
       setIsLoading(false);
-      setTimeout(() => {
-        setFormMessage(null);
-      }, 5000);
     }
   }
 
@@ -63,19 +80,19 @@ const Form = () => {
       <div className="relative w-full">
         <input
           {...register("name", {
-            required: "Imię jest wymagane",
+            required: tErrors("nameRequired"),
             minLength: {
               value: 2,
-              message: "Imię musi mieć co najmniej 2 znaki",
+              message: tErrors("nameMinLength"),
             },
             maxLength: {
               value: 15,
-              message: "Imię może mieć maksymalnie 15 znaków",
+              message: tErrors("nameMaxLength"),
             },
           })}
           type="text"
           name="name"
-          placeholder="Name"
+          placeholder={tPlaceholders("name")}
           className={clsx(
             "contact_input w-full border-b-2 bg-transparent px-4 py-4 focus:border-b-background focus:outline-none",
             {
@@ -92,10 +109,10 @@ const Form = () => {
 
       <div className="relative w-full">
         <input
-          {...register("email", { required: "Email jest wymagany" })}
+          {...register("email", { required: tErrors("emailRequired") })}
           type="email"
           name="email"
-          placeholder="Email"
+          placeholder={tPlaceholders("email")}
           className={clsx(
             "contact_input w-full border-b-2 bg-transparent px-4 py-4 focus:border-b-background focus:outline-none",
             {
@@ -112,19 +129,19 @@ const Form = () => {
       <div className="relative w-full">
         <textarea
           {...register("message", {
-            required: "Wiadomość jest wymagana",
+            required: tErrors("messageRequired"),
             minLength: {
               value: 10,
-              message: "Wiadomość musi mieć co najmniej 10 znaków",
+              message: tErrors("messageMinLength"),
             },
             maxLength: {
               value: 500,
-              message: "Wiadomość może mieć maksymalnie 500 znaków",
+              message: tErrors("messageMaxLength"),
             },
           })}
           rows={5}
           name="message"
-          placeholder="Message"
+          placeholder={tPlaceholders("message")}
           className={clsx(
             "contact_input w-full border-b-2 bg-transparent px-4 py-4 focus:border-b-background focus:outline-none",
             {
@@ -150,10 +167,10 @@ const Form = () => {
           )}
         >
           <span className="first_text overflow-hidden transition-all duration-300 group-hover:translate-y-[-100%] group-hover:text-mainFontColor group-hover:opacity-0">
-            submit
+            {tPlaceholders("button")}
           </span>
           <span className="second_text absolute translate-y-[100%] overflow-hidden whitespace-nowrap opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:text-background group-hover:opacity-100">
-            submit
+            {tPlaceholders("button")}
           </span>
           <RiMailSendFill className="ml-3" />
         </button>

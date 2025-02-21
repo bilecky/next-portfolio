@@ -5,5 +5,22 @@
     "MenuItem2": "Tech",
     "MenuItem3": "About",
     "MenuItem4": "Contact"
+  },
+  "FormErrors": {
+    "nameRequired": "Name is required",
+    "nameMinLength": "Name must be at least 2 characters",
+    "nameMaxLength": "Name can be maximum 15 characters",
+    "emailRequired": "Email is required",
+    "messageRequired": "Message is required",
+    "messageMinLength": "Message must be at least 10 characters",
+    "messageMaxLength": "Message can be maximum 500 characters",
+    "successMessage": "Message has been sent",
+    "errorMessage": "An error occurred while sending the message"
+  },
+  "FormPlaceholders": {
+    "name": "Name",
+    "email": "Email",
+    "message": "Message",
+    "button": "submit"
   }
 }

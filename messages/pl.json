@@ -5,5 +5,22 @@
     "MenuItem2": "Technologie",
     "MenuItem3": "O mnie",
     "MenuItem4": "Kontakt"
+  },
+  "FormErrors": {
+    "nameRequired": "Imię jest wymagane",
+    "nameMinLength": "Imię musi mieć co najmniej 2 znaki",
+    "nameMaxLength": "Imię może mieć maksymalnie 15 znaków",
+    "emailRequired": "Email jest wymagany",
+    "messageRequired": "Wiadomość jest wymagana",
+    "messageMinLength": "Wiadomość musi mieć co najmniej 10 znaków",
+    "messageMaxLength": "Wiadomość może mieć maksymalnie 500 znaków",
+    "successMessage": "Wiadomość została wysłana",
+    "errorMessage": "Wystąpił błąd podczas wysyłania wiadomości"
+  },
+  "FormPlaceholders": {
+    "name": "Imię",
+    "email": "Email",
+    "message": "Wiadomość",
+    "button": "wyślij"
   }
 }

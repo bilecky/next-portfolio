@@ -1,6 +1,6 @@
-import { FormData } from "../components/Contact/Form";
+import { contactFormData } from "../components/Contact/Form";
 
-export async function sendEmail(data: FormData) {
+export async function sendEmail(data: contactFormData) {
   const apiEndPoint = "/api/email";
 
   const response = await fetch(apiEndPoint, {
