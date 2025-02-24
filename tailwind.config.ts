@@ -11,9 +11,15 @@ const config: Config = {
   theme: {
     container: {
       center: true,
-      padding: ".5rem",
+      padding: {
+        DEFAULT: ".5rem",
+        md: "1rem",
+      },
     },
     extend: {
+      maxWidth: {
+        contentWidth: "850px", // Własna szerokość dla tekstu
+      },
       keyframes: {
         "modal-open": {
           "0%": {

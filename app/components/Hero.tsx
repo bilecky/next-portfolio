@@ -91,7 +91,7 @@ const Hero = ({ setIntroComplete }: HeroProps) => {
   return (
     <section
       ref={heroRef}
-      className="hero container flex w-full flex-col py-40 font-mainFont text-background opacity-0 md:h-screen md:flex-row-reverse md:items-end lg:flex lg:py-20 dark:text-mainFontColor"
+      className="hero container flex w-full flex-col py-40 font-mainFont text-background opacity-0 md:h-screen lg:flex-row-reverse lg:items-end lg:py-20 dark:text-mainFontColor"
     >
       <div className="white-overlay opacity-1 absolute inset-0 z-0 bg-background dark:bg-secondBackground"></div>
       <div className="black-overlay absolute inset-0 will-change-transform"></div>
@@ -110,7 +110,7 @@ const Hero = ({ setIntroComplete }: HeroProps) => {
       </div>
 
       {/* NAV */}
-      <div className="section-right pt-10 md:flex-grow md:pt-0">
+      <div className="section-right pt-10 md:flex-grow lg:pt-0">
         <nav className="relative z-0 flex font-mainHeaderFont text-6xl font-[400] tracking-wide max-fold:text-5xl md:text-[6rem] lg:text-[8rem] 2xl:text-[10.5rem]">
           <ul className="nav nav-hero space-y-2 uppercase">
             <li className="flex">

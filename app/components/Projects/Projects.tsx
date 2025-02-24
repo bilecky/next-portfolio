@@ -23,6 +23,7 @@ import * as THREE from "three";
 import useMediaQuery from "@/app/hooks/useMediaQuery";
 import clsx from "clsx";
 import { useTheme } from "@/app/context/ThemeProvider";
+import { useTranslations } from "next-intl";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -35,6 +36,8 @@ const Projects = ({ isIntroComplete }: ProjectsProps) => {
   const isMobile = useMediaQuery("(max-width: 768px)");
   const [currentProject, setCurrentProject] = useState<number>(0);
   const { theme } = useTheme();
+
+  const tWork = useTranslations("WorkSection");
 
   useGSAP(() => {
     // const lightBgColor = "#FBFCF8";
@@ -142,17 +145,12 @@ const Projects = ({ isIntroComplete }: ProjectsProps) => {
           <h2 className="projects-header font-mainHeaderFont text-mobile uppercase leading-none lg:text-section-header">
             <Splitter
               className="header-text will-change-transform"
-              text="Projects"
+              text={tWork("title")}
             />
           </h2>
 
-          <p className="projects-description py-4 text-sm will-change-transform lg:text-xl">
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, when an unknown printer took a galley of type
-            and scrambled it to make a type specimen book." Lorem Ipsum is
-            simply dummy text of the printing and typesetting industry. Lorem
-            Ipsum has
+          <p className="projects-description lg:max-w-contentWidth py-4 text-sm will-change-transform lg:text-xl">
+            {tWork("paragraph1")}
           </p>
         </div>
 
