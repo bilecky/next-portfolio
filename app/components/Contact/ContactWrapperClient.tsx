@@ -14,9 +14,9 @@ const ContactWrapperClient = ({ children }: ContactWrapperProps) => {
   const wrapperRef = useRef<HTMLDivElement>(null);
   useGSAP(() => {
     // only fire callbacks when the active state toggles
-    ScrollTrigger.config({
-      ignoreMobileResize: true,
-    });
+    // ScrollTrigger.config({
+    //   ignoreMobileResize: true,
+    // });
 
     ScrollTrigger.refresh();
 
@@ -81,7 +81,7 @@ const ContactWrapperClient = ({ children }: ContactWrapperProps) => {
   return (
     <section
       ref={wrapperRef}
-      className="contact no-scrollbar panel z-5 bg-thirdBackground relative col-start-1 col-end-2 row-start-2 row-end-2 h-screen w-full will-change-transform dark:bg-secondBackground"
+      className="contact no-scrollbar panel z-5 relative col-start-1 col-end-2 row-start-2 row-end-2 h-screen w-full bg-thirdBackground will-change-transform dark:bg-secondBackground"
     >
       {children}
     </section>

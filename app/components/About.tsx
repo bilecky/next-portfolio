@@ -11,62 +11,66 @@ gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 const About = () => {
   const tAbout = useTranslations("AboutSection");
-  useGSAP(() => {
-    const mainAboutLn = gsap.timeline({
-      scrollTrigger: {
-        trigger: ".overview_section",
-        start: "top 75%",
-        scrub: 2,
-        end: "+=80%",
-        // refreshPriority: 2, // Ensures this is refreshed after the parent trigger
-      },
-    });
-
-    mainAboutLn
-      .from(
-        ".about_header .split-char",
-        {
-          x: -40,
-          opacity: 0,
-          duration: 2.5,
-          ease: "expo.out",
-          stagger: 1,
-          rotateY: 180,
+  useGSAP(
+    () => {
+      const mainAboutLn = gsap.timeline({
+        scrollTrigger: {
+          trigger: ".overview_section",
+          start: "top 75%",
+          scrub: 2,
+          end: "+=80%",
+          // refreshPriority: 2, // Ensures this is refreshed after the parent trigger
         },
-        0,
-      )
-      .from(
-        ".about_description",
-        {
-          stagger: 1,
-          x: 100,
-          duration: 4,
-          opacity: 0,
-          ease: "back.out",
+      });
+
+      mainAboutLn
+        .from(
+          ".about_header .split-char",
+          {
+            x: -40,
+            opacity: 0,
+            duration: 2.5,
+            ease: "expo.out",
+            stagger: 1,
+            rotateY: 180,
+          },
+          0,
+        )
+        .from(
+          ".about_description",
+          {
+            stagger: 1,
+            x: 100,
+            duration: 4,
+            opacity: 0,
+            ease: "back.out",
+          },
+          "-=.3",
+        );
+
+      // New timeline for the image_wrapper inside image_section
+      const imageWrapperTimeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: ".image_section", // Trigger when .image_section is in view
+          start: "top 55%", // Adjust the start value as needed
+          end: "center top", // End when the section leaves the viewport
+          scrub: 2,
+          // refreshPriority: 1, // Ensures this is refreshed after the parent trigger
         },
-        "-=.3",
-      );
+      });
 
-    ScrollTrigger.refresh();
-
-    // New timeline for the image_wrapper inside image_section
-    const imageWrapperTimeline = gsap.timeline({
-      scrollTrigger: {
-        trigger: ".image_section", // Trigger when .image_section is in view
-        start: "top 55%", // Adjust the start value as needed
-        end: "center top", // End when the section leaves the viewport
-        scrub: 2,
-        // refreshPriority: 1, // Ensures this is refreshed after the parent trigger
-      },
-    });
-
-    imageWrapperTimeline.from(".image_wrapper", {
-      rotateX: 90,
-      duration: 3,
-      ease: "ease-in",
-      opacity: 0,
-    });
-  }, [tAbout("title")]);
+      imageWrapperTimeline.from(".image_wrapper", {
+        rotateX: 90,
+        duration: 3,
+        ease: "ease-in",
+        opacity: 0,
+      });
+    },
+    {
+      dependencies: [tAbout], // Zmiana języka spowoduje ponowne uruchomienie
+      revertOnUpdate: true, // Cofnij animacje przed ponownym uruchomieniem
+    },
+  );
   return (
     <section className="about panel absolute top-0 z-10 col-start-1 col-end-2 row-start-1 row-end-2 min-h-screen w-full overflow-hidden bg-secondBackground py-20 shadow-xl will-change-transform lg:py-36 dark:bg-background">
       <div className="about_wrapper container box-border grid max-h-full grid-cols-1 place-items-center gap-10 text-background xl:grid-cols-2 dark:text-blackSectionText">
