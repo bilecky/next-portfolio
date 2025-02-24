@@ -22,5 +22,9 @@
     "email": "Email",
     "message": "Wiadomość",
     "button": "wyślij"
+  },
+  "ContactSection": {
+    "title": "Kontakt",
+    "paragraph": "Niezależnie od tego, czy masz projekt, nad którym chcesz wspólnie pracować, czy po prostu chcesz się spotkać i porozmawiać, jesteś we właściwym miejscu: skontaktujmy się. skontaktujmy się. Zawsze szukamy nowych i ekscytujących projektów i współpracy"
   }
 }

@@ -7,9 +7,10 @@ import { useEffect, useState } from "react";
 const WaitForModel = () => {
   const [isIntroComplete, setIsIntroComplete] = useState<boolean>(false);
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+  // POTEM TO WLACZ
+  // useEffect(() => {
+  //   window.scrollTo(0, 0);
+  // }, []);
 
   return (
     <div className="scroll-area relative">

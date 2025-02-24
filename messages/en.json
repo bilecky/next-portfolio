@@ -22,5 +22,9 @@
     "email": "Email",
     "message": "Message",
     "button": "submit"
+  },
+  "ContactSection": {
+    "title": "Let's connect",
+    "paragraph": "Whether you have a project you want to work on together or just want us to meet and have a chat, you are in the right place: let's get in touch. We are always looking for new and exciting projects and collaborations."
   }
 }
