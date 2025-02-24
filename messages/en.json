@@ -26,5 +26,11 @@
   "ContactSection": {
     "title": "Let's connect",
     "paragraph": "Whether you have a project you want to work on together or just want us to meet and have a chat, you are in the right place: let's get in touch. We are always looking for new and exciting projects and collaborations."
+  },
+  "AboutSection": {
+    "title": "About",
+    "paragraph1": "I'm a frontend developer with over 3 years of commercial experience, specializing in creating dynamic and responsive web applications. With a strong focus on Next.js and React, I build efficient, user-friendly interfaces that are optimized for speed and scalability. My proficiency in TypeScript allows me to write clean, maintainable code, ensuring that projects are efficient and free from runtime errors.",
+    "paragraph2": "In addition to working with modern JavaScript frameworks, I have extensive experience with WordPress, which allows me to create custom websites and themes tailored to the client's needs. I'm passionate about creating intuitive and visually appealing digital experiences, always with the end user in mind. Throughout my career, I've worked on many projects, from small business sites to complex web applications, continually improving my skills and staying up-to-date with the latest industry trends.",
+    "paragraph3": "As a developer, I thrive in collaborative environments where I can contribute to solving challenges and improving workflows. I enjoy learning new technologies and finding innovative ways to streamline web development processes, always striving for the best results for clients and users."
   }
 }

@@ -5,10 +5,12 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Splitter from "../utils/Splitter";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 const About = () => {
+  const tAbout = useTranslations("AboutSection");
   useGSAP(() => {
     const mainAboutLn = gsap.timeline({
       scrollTrigger: {
@@ -45,6 +47,8 @@ const About = () => {
         "-=.3",
       );
 
+    ScrollTrigger.refresh();
+
     // New timeline for the image_wrapper inside image_section
     const imageWrapperTimeline = gsap.timeline({
       scrollTrigger: {
@@ -62,41 +66,27 @@ const About = () => {
       ease: "ease-in",
       opacity: 0,
     });
-  });
+  }, [tAbout("title")]);
   return (
     <section className="about panel absolute top-0 z-10 col-start-1 col-end-2 row-start-1 row-end-2 min-h-screen w-full overflow-hidden bg-secondBackground py-20 shadow-xl will-change-transform lg:py-36 dark:bg-background">
       <div className="about_wrapper container box-border grid max-h-full grid-cols-1 place-items-center gap-10 text-background xl:grid-cols-2 dark:text-blackSectionText">
         <div className="overview_section relative text-mobile">
           <h2 className="about_header font-mainHeaderFont uppercase leading-none tracking-wide text-background lg:text-section-header dark:text-mainFontColor">
-            <Splitter className="will-change-transform" text="About" />
+            <Splitter
+              className="will-change-transform"
+              text={tAbout("title")}
+            />
           </h2>
 
           <p className="about_description pt-4 text-sm will-change-transform lg:text-xl">
-            I am a frontend developer with over 3 years of commercial
-            experience, specializing in building dynamic and responsive web
-            applications. With a strong focus on Next.js and React, I create
-            high-performance, user-friendly interfaces that are optimized for
-            speed and scalability. My proficiency in TypeScript allows me to
-            write clean, maintainable code, ensuring projects are efficient and
-            free from runtime errors.
+            {tAbout("paragraph1")}
           </p>
 
           <p className="about_description py-4 text-sm will-change-transform lg:text-xl">
-            In addition to my work with modern JavaScript frameworks, I have
-            extensive experience with WordPress, enabling me to develop custom
-            websites/themes and plugins tailored to client needs. I am
-            passionate about creating intuitive and visually appealing digital
-            experiences, always keeping the end user in mind. Throughout my
-            career, I’ve worked on a range of projects, from small business
-            websites to complex web applications, constantly refining my skills
-            and staying up-to-date with the latest industry trends.
+            {tAbout("paragraph2")}
           </p>
           <p className="about_description text-sm will-change-transform lg:text-xl">
-            As a developer, I thrive in collaborative environments where I can
-            contribute to solving challenges and improving workflows. I enjoy
-            learning new technologies and finding innovative ways to enhance web
-            development processes, always aiming for the best results for both
-            clients and users.
+            {tAbout("paragraph3")}
           </p>
         </div>
         <div className="image_section">
