@@ -2,7 +2,7 @@
   "Hero": {
     "description": "Aktualnie pracuje jako Frontend Developer w Hubra ",
     "MenuItem1": "Projekty",
-    "MenuItem2": "Technologie",
+    "MenuItem2": "Stack",
     "MenuItem3": "O mnie",
     "MenuItem4": "Kontakt"
   },
@@ -32,5 +32,10 @@
     "paragraph1": "Jestem programistą frontendowym z ponad 3-letnim doświadczeniem komercyjnym, specjalizującym się w tworzeniu dynamicznych i responsywnych aplikacji internetowych. Z silnym naciskiem na Next.js i React, tworzę wydajne, przyjazne dla użytkownika interfejsy, które są zoptymalizowane pod kątem szybkości i skalowalności. Moja biegłość w TypeScript pozwala mi pisać czysty, łatwy w utrzymaniu kod, zapewniając, że projekty są wydajne i wolne od błędów wykonawczych.",
     "paragraph2": "Oprócz pracy z nowoczesnymi frameworkami JavaScript, mam duże doświadczenie z WordPressem, co pozwala mi tworzyć niestandardowe strony internetowe / motywy i wtyczki dostosowane do potrzeb klienta. Jestem pasjonatem tworzenia intuicyjnych i atrakcyjnych wizualnie doświadczeń cyfrowych, zawsze mając na uwadze użytkownika końcowego. W trakcie mojej kariery pracowałem nad wieloma projektami, od małych stron biznesowych po złożone aplikacje internetowe, stale doskonaląc swoje umiejętności i będąc na bieżąco z najnowszymi trendami w branży.",
     "paragraph3": "Jako programista rozwijam się w środowiskach współpracy, w których mogę przyczyniać się do rozwiązywania wyzwań i usprawniania przepływów pracy. Lubię uczyć się nowych technologii i znajdować innowacyjne sposoby na usprawnienie procesów tworzenia stron internetowych, zawsze dążąc do najlepszych wyników zarówno dla klientów, jak i użytkowników."
+  },
+  "StackSection": {
+    "title": "Stack",
+    "paragraph1": "Moją wiedzę i umiejętności programistyczne opieram na następujących technologiach i frameworkach programistycznych.  Umiem tez do brze    z technologii i wdrożanie ich w swoich projektach. Wierzę, että ciągłe doskonalenie umieńtności jest kluczowe dla sukcesu w branży IT.",
+    "paragraph2": "Jestem otwarty na naukę nowych technologii i wdrażanie ich w swoich projektach. Wierzę, że ciągłe doskonalenie umiejętności jest kluczowe dla sukcesu w branży IT. Jestem otwarty na nauке nowych technologii i wdrażanie ich w swoich projektach. Wierzę, että ciągłe doskonalenie umieńtności jest kluczowe dla sukcesu w branży IT."
   }
 }

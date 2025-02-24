@@ -11,6 +11,7 @@ import {
   reuseTexTsplitterFn,
 } from "../utils/ReusableGSAPAnimations";
 import horizontalLoop from "../utils/horizontalLoop";
+import { useTranslations } from "next-intl";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -19,6 +20,8 @@ type Props = {};
 const reversedTechnologies = [...technologies].reverse();
 
 function Tech({}: Props) {
+  const tStack = useTranslations("StackSection");
+
   // MAIN GSAP ANIMATIONS
   useGSAP(() => {
     const mainTechLine = gsap.timeline({
@@ -132,21 +135,18 @@ function Tech({}: Props) {
       <div className="overview-wrapper container">
         <div className="overview relative ml-auto text-right lg:w-3/5">
           <h2 className="tech-header font-mainHeaderFont text-mobile uppercase leading-none lg:text-section-header">
-            <Splitter className="tech-text will-change-transform" text="TECH" />
+            <Splitter
+              className="tech-text will-change-transform"
+              text={tStack("title")}
+            />
           </h2>
 
           <p className="tech-description py-4 text-sm will-change-transform lg:text-xl">
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, when an unknown printer took a galley of type
-            and scrambled it to make a type specimen book."
+            {tStack("paragraph1")}
           </p>
 
           <p className="tech-description text-sm will-change-transform lg:text-xl">
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, when an unknown printer took a galley of type
-            and scrambled it to make a type specimen book."
+            {tStack("paragraph2")}
           </p>
         </div>
       </div>
