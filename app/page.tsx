@@ -5,7 +5,7 @@ import WaitForModel from "./components/WaitForModel";
 
 export default function Home() {
   return (
-    <main className="w-full overflow-hidden">
+    <main className="main w-full overflow-hidden">
       <WaitForModel />
       <div className="tech-wrapper">
         <Tech />

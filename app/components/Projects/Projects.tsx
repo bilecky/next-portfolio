@@ -63,7 +63,7 @@ const Projects = ({ isIntroComplete }: ProjectsProps) => {
     // Opóźnienie zmiany tła
 
     bgArea.fromTo(
-      ["body", ".black-overlay"],
+      [".main", ".black-overlay"],
       { backgroundColor: bgColor },
       { backgroundColor: endColor, overwrite: "auto", ease: "power3.inOut" },
     );
@@ -149,7 +149,7 @@ const Projects = ({ isIntroComplete }: ProjectsProps) => {
             />
           </h2>
 
-          <p className="projects-description lg:max-w-contentWidth py-4 text-sm will-change-transform lg:text-xl">
+          <p className="projects-description py-4 text-sm will-change-transform lg:max-w-contentWidth lg:text-xl">
             {tWork("paragraph1")}
           </p>
         </div>
