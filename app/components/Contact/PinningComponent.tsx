@@ -62,8 +62,6 @@ const PinningComponent = ({ fetchedPins }: { fetchedPins: UserPin[] }) => {
     };
 
     try {
-      await new Promise((resolve) => setTimeout(resolve, 3000));
-
       const result = await createPin(newPin);
       if (result.success) {
         setPins((prevPins) => [...prevPins, newPin]);
