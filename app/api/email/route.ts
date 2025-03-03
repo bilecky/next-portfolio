@@ -15,7 +15,7 @@ export async function POST(request: NextRequest) {
 
   if (requestCountByIP[ip] >= IP_REQUEST_LIMIT) {
     return NextResponse.json(
-      { error: "Przekroczono limit wiadomości z tego adresu IP." },
+      { error: "TOO_MANY_REQUESTS_FROM_IP_ERROR" },
       { status: 429 }, // Zwróć kod 429 Too Many Requests
     );
   }
@@ -60,6 +60,9 @@ export async function POST(request: NextRequest) {
     await sendMailPromise();
     return NextResponse.json({ message: "Email sent" });
   } catch (err) {
-    return NextResponse.json({ error: err }, { status: 500 });
+    return NextResponse.json(
+      { error: "DEFAULT_API_ROUTE_MAILER_ERROR" },
+      { status: 500 },
+    );
   }
 }

@@ -1,3 +1,4 @@
+import { error } from "console";
 import { contactFormData } from "../components/Contact/Form";
 
 export async function sendEmail(data: contactFormData) {
@@ -9,10 +10,11 @@ export async function sendEmail(data: contactFormData) {
     body: JSON.stringify(data),
   });
 
+  const result = await response.json();
+
   if (!response.ok) {
-    const { error } = await response.json();
-    throw new Error(`Wystąpił błąd - ${error}`);
+    return { success: false, error: result.error }; // Zwracamy status sukcesu jako false oraz błąd
   }
 
-  return await response.json();
+  return { success: true, message: result.message };
 }

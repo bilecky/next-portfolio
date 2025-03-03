@@ -15,7 +15,8 @@
     "messageMinLength": "Message must be at least 10 characters",
     "messageMaxLength": "Message can be maximum 500 characters",
     "successMessage": "Message has been sent",
-    "errorMessage": "An error occurred while sending the message"
+    "DEFAULT_API_ROUTE_MAILER_ERROR": "An unexpected error occurred",
+    "TOO_MANY_REQUESTS_FROM_IP_ERROR": "You have sent too many requests from this IP address."
   },
   "FormPlaceholders": {
     "name": "Name",

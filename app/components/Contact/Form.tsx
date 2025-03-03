@@ -51,16 +51,24 @@ const Form = () => {
     setFormMessage(null);
 
     try {
-      await sendEmail(data);
-      setFormMessage({
-        status: "success",
-        message: tErrors("successMessage"),
-      });
-      reset();
+      const emailResponse = await sendEmail(data);
+
+      if (emailResponse.success) {
+        setFormMessage({
+          status: "success",
+          message: tErrors("successMessage"),
+        });
+        reset();
+      } else {
+        setFormMessage({
+          status: "error",
+          message: tErrors(emailResponse.error),
+        });
+      }
     } catch (error) {
       setFormMessage({
         status: "error",
-        message: tErrors("errorMessage"),
+        message: tErrors("DEFAULT_API_ROUTE_MAILER_ERROR"),
       });
     } finally {
       setIsLoading(false);

@@ -15,7 +15,8 @@
     "messageMinLength": "Wiadomość musi mieć co najmniej 10 znaków",
     "messageMaxLength": "Wiadomość może mieć maksymalnie 500 znaków",
     "successMessage": "Wiadomość została wysłana",
-    "errorMessage": "Wystąpił błąd podczas wysyłania wiadomości"
+    "DEFAULT_API_ROUTE_MAILER_ERROR": "Wystąpił nieoczekiwany błąd",
+    "TOO_MANY_REQUESTS_FROM_IP_ERROR": "Wysłałeś za dużo zapytań z tego adresu IP."
   },
   "FormPlaceholders": {
     "name": "Imię",
