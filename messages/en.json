@@ -41,5 +41,16 @@
   "WorkSection": {
     "title": "Work",
     "paragraph1": "Here you can find some of my recent projects. I'm passionate about creating intuitive and visually appealing digital experiences, always with the end user in mind. Throughout my career, I've worked on many projects, from small business sites to complex web applications, continually improving my skills and staying up-to-date with the latest industry trends."
+  },
+  "PinSectionForm": {
+    "InputName": "Enter your name",
+    "ModalLabel": "Add a pin",
+    "AddBtn": "Add",
+    "CancelBtn": "Cancel",
+    "EmptyInput": "Field is required",
+    "PIN_NAME_TOO_LONG": "Pin name is too long (max 6 characters)",
+    "PIN_ALREADY_EXISTS": "Pin with this name already exists",
+    "PIN_CONTAINS_FORBIDDEN_WORDS": "Pin name contains forbidden words",
+    "UNKNOWN_ERROR": "An unexpected error occurred"
   }
 }

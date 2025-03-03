@@ -28,14 +28,24 @@ export async function createPin(pin: UserPin) {
     const checkIfPinIsTooLong = sanitizedName.length > 6;
 
     if (checkIfPinIsTooLong) {
-      throw new Error("Pin name is too long (max 6 characters)");
+      return {
+        success: false,
+        code: "PIN_NAME_TOO_LONG",
+      };
     }
 
     if (checkIfPinExists?.rowCount && checkIfPinExists.rowCount > 0) {
-      throw new Error("Pin with this name already exists");
+      return {
+        success: false,
+        code: "PIN_ALREADY_EXISTS",
+      };
     }
+
     if (containsForbiddenWords(sanitizedName)) {
-      throw new Error("Pin name contains forbidden words");
+      return {
+        success: false,
+        code: "PIN_CONTAINS_FORBIDDEN_WORDS",
+      };
     }
 
     // Wstaw dane do tabeli
@@ -45,15 +55,11 @@ export async function createPin(pin: UserPin) {
       `;
 
     revalidatePath("/");
+    return { success: true, data: pin };
   } catch (error) {
     console.error("Database Error/pawel:", error);
 
-    // Sprawdź, czy error jest instancją Error
-    if (error instanceof Error) {
-      throw new Error(error.message || "Failed to create pin in database");
-    } else {
-      throw new Error("An unknown error occurred/pawel");
-    }
+    return { success: false, code: "UNKNOWN_ERROR" };
   }
 }
 

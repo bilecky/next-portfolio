@@ -6,6 +6,7 @@ import { createPin } from "@/app/lib/actions";
 import { PinFormModal } from "@/app/components/common/PinFormModal";
 import { fetchPins } from "@/app/lib/data";
 import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 
 export interface UserPin {
   id: string;
@@ -14,6 +15,8 @@ export interface UserPin {
   pallette: string;
 }
 const PinningComponent = ({ fetchedPins }: { fetchedPins: UserPin[] }) => {
+  const tPinning = useTranslations("PinSectionForm");
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [clickPosition, setClickPosition] = useState<{
     x: number;
@@ -61,17 +64,19 @@ const PinningComponent = ({ fetchedPins }: { fetchedPins: UserPin[] }) => {
     try {
       await new Promise((resolve) => setTimeout(resolve, 3000));
 
-      await createPin(newPin);
-      setPins((prevPins) => [...prevPins, newPin]);
-      setClickPosition(null);
-      setIsModalOpen(false);
-      setError(null);
-      setLoading(false);
-    } catch (error) {
-      if (error instanceof Error) {
-        setError(error.message || "Nieprawidłowy błąd"); // Set the error message from the caught
-        setLoading(false); // Set loading to false if there's an error
+      const result = await createPin(newPin);
+      if (result.success) {
+        setPins((prevPins) => [...prevPins, newPin]);
+        setClickPosition(null);
+        setIsModalOpen(false);
+        setError(null);
+      } else {
+        setError(tPinning(result.code));
       }
+    } catch (error) {
+      setError(tPinning("UNKNOWN_ERROR"));
+    } finally {
+      setLoading(false);
     }
   };
 

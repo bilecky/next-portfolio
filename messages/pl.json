@@ -41,5 +41,16 @@
   "WorkSection": {
     "title": "Projekty",
     "paragraph1": "Tutaj możesz znaleźć niektóre z moich ostatnich projektów. Jestem pasjonatem tworzenia intuicyjnych i atrakcyjnych wizualnie doświadczeń cyfrowych, zawsze mając na uwadze użytkownika końcowego. W trakcie mojej kariery pracowałem nad wieloma projektami, od małych stron biznesowych po złożone aplikacje internetowe, stale doskonaląc swoje umiejętności i będąc na bieżąco z najnowszymi trendami w branży."
+  },
+  "PinSectionForm": {
+    "InputName": "Podaj imię",
+    "ModalLabel": "Dodaj pinezkę",
+    "AddBtn": "dodaj",
+    "CancelBtn": "anuluj",
+    "EmptyInput": "Pole jest wymagane",
+    "PIN_NAME_TOO_LONG": "Nazwa pinu jest za długa (maks. 6 znaków)",
+    "PIN_ALREADY_EXISTS": "Pin o tej nazwie już istnieje",
+    "PIN_CONTAINS_FORBIDDEN_WORDS": "Nazwa pinu zawiera niedozwolone słowa",
+    "UNKNOWN_ERROR": "Wystąpił nieoczekiwany błąd"
   }
 }

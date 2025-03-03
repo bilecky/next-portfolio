@@ -52,11 +52,11 @@ export const Modal = ({
     <div
       ref={overlayRef}
       onClick={handleOverlayClick}
-      className="animate-modal-overlay-open fixed inset-0 z-50 flex items-center justify-center bg-black/50"
+      className="fixed inset-0 z-50 flex animate-modal-overlay-open items-center justify-center bg-black/50"
     >
       <div
         ref={modalRef}
-        className="animate-modal-open relative mx-4 w-full max-w-md rounded-md bg-white shadow-xl"
+        className="relative mx-4 w-full max-w-md animate-modal-open rounded-sm bg-white shadow-xl"
         role="dialog"
         aria-modal="true"
         aria-labelledby={title ? "modal-title" : undefined}
