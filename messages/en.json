@@ -52,6 +52,7 @@
     "PIN_NAME_TOO_LONG": "Pin name is too long (max 6 characters)",
     "PIN_ALREADY_EXISTS": "Pin with this name already exists",
     "PIN_CONTAINS_FORBIDDEN_WORDS": "Pin name contains forbidden words",
-    "UNKNOWN_ERROR": "An unexpected error occurred"
+    "UNKNOWN_ERROR": "An unexpected error occurred",
+    "PIN_ALREADY_ADDED_BY_IP": "You have already added a pin from this IP address"
   }
 }
