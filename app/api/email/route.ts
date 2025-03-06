@@ -14,10 +14,10 @@ export async function POST(request: NextRequest) {
   const { email, name, message } = await request.json();
 
   const checkUserRecordInDB =
-    await sql`SELECT message_count FROM pins WHERE ip_address = ${ip}`;
+    await sql`SELECT message_count FROM message_limits WHERE ip_address = ${ip}`;
 
   if (checkUserRecordInDB.rows.length === 0) {
-    await sql`INSERT INTO pins (ip_address, message_count) VALUES (${ip}, 1)`;
+    await sql`INSERT INTO message_limits (ip_address, message_count) VALUES (${ip}, 1)`;
   } else {
     if (checkUserRecordInDB.rows[0].message_count >= IP_REQUEST_LIMIT) {
       return NextResponse.json(
@@ -26,7 +26,7 @@ export async function POST(request: NextRequest) {
       );
     }
     await sql`
-    UPDATE pins SET message_count = message_count + 1 WHERE ip_address = ${ip}
+    UPDATE message_limits SET message_count = message_count + 1 WHERE ip_address = ${ip}
   `;
   }
 
