@@ -69,74 +69,80 @@ const Projects = ({ isIntroComplete }: ProjectsProps) => {
     );
   }, [theme]);
 
-  useGSAP(() => {
-    const leftSectionArea = gsap.timeline({
-      scrollTrigger: {
-        trigger: ".projects", // Make sure this class exists on the element
-        start: "top 60%", // Rozpocznij, gdy górna krawędź sekcji dotknie dolnej krawędzi widoku
-        end: "+=40%",
-        scrub: 3, // Sync the animation with scrolling smoothly
-      },
-    });
-    leftSectionArea.set(".projects", { opacity: 1 });
+  useGSAP(
+    () => {
+      const leftSectionArea = gsap.timeline({
+        scrollTrigger: {
+          trigger: ".projects", // Make sure this class exists on the element
+          start: "top 60%", // Rozpocznij, gdy górna krawędź sekcji dotknie dolnej krawędzi widoku
+          end: "+=40%",
+          scrub: 3, // Sync the animation with scrolling smoothly
+        },
+      });
+      leftSectionArea.set(".projects", { opacity: 1 });
 
-    reuseTexTsplitterFn({
-      timeline: leftSectionArea,
-      selector: ".header-text .split-char",
-      options: { stagger: 1, rotateY: 180 },
-    });
+      reuseTexTsplitterFn({
+        timeline: leftSectionArea,
+        selector: ".header-text .split-char",
+        options: { stagger: 1, rotateY: 180 },
+      });
 
-    reuseSectionDescriptionAnimation({
-      timeline: leftSectionArea,
-      selector: ".projects-description",
-    });
-    // const model3dTimeline = gsap.timeline({
-    //   scrollTrigger: {
-    //     trigger: ".projects",
-    //     start: "top 20%",
-    //     end: "bottom bottom",
-    //     scrub: 3,
-    //   },
-    // });
+      reuseSectionDescriptionAnimation({
+        timeline: leftSectionArea,
+        selector: ".projects-description",
+      });
+      // const model3dTimeline = gsap.timeline({
+      //   scrollTrigger: {
+      //     trigger: ".projects",
+      //     start: "top 20%",
+      //     end: "bottom bottom",
+      //     scrub: 3,
+      //   },
+      // });
 
-    // leftSectionArea.from(".model3d", {
-    //   opacity: 0,
-    //   ease: "none",
-    // });
+      // leftSectionArea.from(".model3d", {
+      //   opacity: 0,
+      //   ease: "none",
+      // });
 
-    // textArea.from(".project_details", {
-    //   opacity: 0,
-    //   ease: "back.out",
-    //   duration: 10,
-    // });
+      // textArea.from(".project_details", {
+      //   opacity: 0,
+      //   ease: "back.out",
+      //   duration: 10,
+      // });
 
-    const herodissapear = gsap.timeline({
-      scrollTrigger: {
-        trigger: ".projects", // Make sure this class exists on the element
-        start: "top 80%", // Rozpocznij, gdy górna krawędź sekcji dotknie dolnej krawędzi widoku
-        end: "bottom bottom",
-        scrub: 3, // Sync the animation with scrolling smoothly
-      },
-    });
+      const herodissapear = gsap.timeline({
+        scrollTrigger: {
+          trigger: ".projects", // Make sure this class exists on the element
+          start: "top 80%", // Rozpocznij, gdy górna krawędź sekcji dotknie dolnej krawędzi widoku
+          end: "bottom bottom",
+          scrub: 3, // Sync the animation with scrolling smoothly
+        },
+      });
 
-    herodissapear.to(".section-left", {
-      opacity: 0,
-      ease: "power3.inOut",
-      x: 500,
-      duration: 0.5,
-    });
-    herodissapear.to(
-      ".nav-hero li",
-      {
+      herodissapear.to(".section-left", {
         opacity: 0,
         ease: "power3.inOut",
+        x: 500,
         duration: 0.5,
-        stagger: -0.1,
-        x: -500,
-      },
-      0,
-    );
-  }, []);
+      });
+      herodissapear.to(
+        ".nav-hero li",
+        {
+          opacity: 0,
+          ease: "power3.inOut",
+          duration: 0.5,
+          stagger: -0.1,
+          x: -500,
+        },
+        0,
+      );
+    },
+    {
+      dependencies: [tWork], // Zmiana języka spowoduje ponowne uruchomienie
+      revertOnUpdate: true, // Cofnij animacje przed ponownym uruchomieniem
+    },
+  );
 
   return (
     <section className="projects relative z-10 text-background opacity-0 md:container md:py-28 xl:flex xl:flex-row">

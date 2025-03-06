@@ -23,38 +23,44 @@ function Tech({}: Props) {
   const tStack = useTranslations("StackSection");
 
   // MAIN GSAP ANIMATIONS
-  useGSAP(() => {
-    const mainTechLine = gsap.timeline({
-      scrollTrigger: {
-        trigger: ".tech", // Make sure this class exists on the element
-        start: "top center",
-        end: "bottom bottom",
-        scrub: 3, // Sync the animation with scrolling smoothly,
-      },
-    });
-    mainTechLine.set(".tech", { opacity: 1 });
+  useGSAP(
+    () => {
+      const mainTechLine = gsap.timeline({
+        scrollTrigger: {
+          trigger: ".tech", // Make sure this class exists on the element
+          start: "top center",
+          end: "bottom bottom",
+          scrub: 3, // Sync the animation with scrolling smoothly,
+        },
+      });
+      mainTechLine.set(".tech", { opacity: 1 });
 
-    reuseTexTsplitterFn({
-      timeline: mainTechLine,
-      selector: ".tech-text .split-char",
-      options: { stagger: -1, rotateY: 180 },
-    });
+      reuseTexTsplitterFn({
+        timeline: mainTechLine,
+        selector: ".tech-text .split-char",
+        options: { stagger: -1, rotateY: 180 },
+      });
 
-    reuseSectionDescriptionAnimation({
-      timeline: mainTechLine,
-      selector: ".tech-description",
-      options: {
+      reuseSectionDescriptionAnimation({
+        timeline: mainTechLine,
+        selector: ".tech-description",
+        options: {
+          stagger: 1,
+        },
+      });
+
+      mainTechLine.from(".gsap-marquee", {
+        opacity: 0,
+        duration: 10,
         stagger: 1,
-      },
-    });
-
-    mainTechLine.from(".gsap-marquee", {
-      opacity: 0,
-      duration: 10,
-      stagger: 1,
-      ease: "power3.out",
-    });
-  });
+        ease: "power3.out",
+      });
+    },
+    {
+      dependencies: [tStack], // Zmiana języka spowoduje ponowne uruchomienie
+      revertOnUpdate: true, // Cofnij animacje przed ponownym uruchomieniem
+    },
+  );
 
   //TECHNOLOGIES GSAP ANIMATONS
 
@@ -133,7 +139,7 @@ function Tech({}: Props) {
   return (
     <section className="tech -z-10 py-28 text-background opacity-0 will-change-transform">
       <div className="overview-wrapper container">
-        <div className="overview xl:max-w-contentWidth ml-auto text-right lg:w-3/5">
+        <div className="overview ml-auto text-right lg:w-3/5 xl:max-w-contentWidth">
           <h2 className="tech-header font-mainHeaderFont text-mobile uppercase leading-none lg:text-section-header">
             <Splitter
               className="tech-text will-change-transform"
