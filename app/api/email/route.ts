@@ -1,9 +1,9 @@
+import { sql } from "@vercel/postgres";
 import { type NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 import Mail from "nodemailer/lib/mailer";
 
 // Zmienna przechowująca czas ostatniego wywołania
-const requestCountByIP: { [key: string]: number } = {};
 const IP_REQUEST_LIMIT = 2;
 
 export async function POST(request: NextRequest) {
@@ -13,13 +13,22 @@ export async function POST(request: NextRequest) {
 
   const { email, name, message } = await request.json();
 
-  if (requestCountByIP[ip] >= IP_REQUEST_LIMIT) {
-    return NextResponse.json(
-      { error: "TOO_MANY_REQUESTS_FROM_IP_ERROR" },
-      { status: 429 }, // Zwróć kod 429 Too Many Requests
-    );
+  const checkUserRecordInDB =
+    await sql`SELECT message_count FROM pins WHERE ip_address = ${ip}`;
+
+  if (checkUserRecordInDB.rows.length === 0) {
+    await sql`INSERT INTO pins (ip_address, message_count) VALUES (${ip}, 1)`;
+  } else {
+    if (checkUserRecordInDB.rows[0].message_count >= IP_REQUEST_LIMIT) {
+      return NextResponse.json(
+        { error: "TOO_MANY_REQUESTS_FROM_IP_ERROR" },
+        { status: 429 }, // Zwróć kod 429 Too Many Requests
+      );
+    }
+    await sql`
+    UPDATE pins SET message_count = message_count + 1 WHERE ip_address = ${ip}
+  `;
   }
-  requestCountByIP[ip] = (requestCountByIP[ip] || 0) + 1;
 
   const transport = nodemailer.createTransport({
     service: "gmail",
