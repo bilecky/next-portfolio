@@ -11,6 +11,7 @@ import Splitter from "@/app/utils/Splitter";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import useMediaQuery from "@/app/hooks/useMediaQuery";
 import { useTheme } from "@/app/context/ThemeProvider";
+import { useTranslations } from "next-intl";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -21,6 +22,8 @@ type ProjectPageProps = {
 };
 
 export default function ProjectPage({ params }: ProjectPageProps) {
+  const tProjectPage = useTranslations("SingleProjectPage");
+
   const isMobile = useMediaQuery("(max-width: 768px)");
 
   const { theme } = useTheme();
@@ -34,7 +37,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
     }
   };
 
-  const paramsProject = params.id;
+  const paramsProjectId = params.id;
   const imageElements = imageRefs.current;
   const chooseSelectedColor = theme === "dark" ? "#FBFCF8" : "#222222";
 
@@ -108,126 +111,132 @@ export default function ProjectPage({ params }: ProjectPageProps) {
       // image?.addEventListener("touchend", handleLeave); // Obsługa opuszczenia dotykiem
     });
   });
-  useGSAP(() => {
-    ScrollTrigger.getById("project_description")?.kill();
-    ScrollTrigger.getById("project_description_mobile")?.kill();
+  useGSAP(
+    () => {
+      ScrollTrigger.getById("project_description")?.kill();
+      ScrollTrigger.getById("project_description_mobile")?.kill();
 
-    const mm = gsap.matchMedia();
+      const mm = gsap.matchMedia();
 
-    // Desktop animations (no changes, just as reference)
-    mm.add("(min-width: 768px)", () => {
-      const whiteLine = gsap.timeline({
-        scrollTrigger: {
-          trigger: ".projects_screens",
-          start: "top top",
-          end: "bottom bottom",
-          scrub: 2,
-        },
-      });
-      whiteLine.from(".horizontal_line", {
-        xPercent: -100,
-        opacity: 0,
-        duration: 2,
-        ease: "power2.inOut",
-      });
-      // -----------------------------------
-      const descriptionTl = gsap.timeline({
-        scrollTrigger: {
-          id: "project_description",
-          trigger: ".description_section__left",
-          start: "top 90%",
-          end: "top 40%",
-          scrub: 2,
-        },
-      });
+      // Desktop animations (no changes, just as reference)
+      mm.add("(min-width: 768px)", () => {
+        const whiteLine = gsap.timeline({
+          scrollTrigger: {
+            trigger: ".projects_screens",
+            start: "top top",
+            end: "bottom bottom",
+            scrub: 2,
+          },
+        });
+        whiteLine.from(".horizontal_line", {
+          xPercent: -100,
+          opacity: 0,
+          duration: 2,
+          ease: "power2.inOut",
+        });
+        // -----------------------------------
+        const descriptionTl = gsap.timeline({
+          scrollTrigger: {
+            id: "project_description",
+            trigger: ".description_section__left",
+            start: "top 90%",
+            end: "top 40%",
+            scrub: 2,
+          },
+        });
 
-      descriptionTl.to(".splitted_description .split-char", {
-        color: chooseSelectedColor,
-        stagger: 0.2,
-        duration: 1.5,
-        ease: "power2.inOut",
-      });
+        descriptionTl.to(".splitted_description .split-char", {
+          color: chooseSelectedColor,
+          stagger: 0.2,
+          duration: 1.5,
+          ease: "power2.inOut",
+        });
 
-      const techTl = gsap.timeline({
-        scrollTrigger: {
-          trigger: ".description_section__right",
-          start: "top 90%",
-          end: "bottom 90%",
-          scrub: 2,
-        },
-      });
+        const techTl = gsap.timeline({
+          scrollTrigger: {
+            trigger: ".description_section__right",
+            start: "top 90%",
+            end: "bottom 90%",
+            scrub: 2,
+          },
+        });
 
-      techTl.from(".technology_item", {
-        opacity: 0,
-        stagger: 2,
-        duration: 2.5,
-        ease: "power2.inOut",
-        scale: 0,
-        transformOrigin: "left center",
-      });
-    });
-
-    //MOBILE
-
-    mm.add("(max-width: 767px)", () => {
-      const whiteLine = gsap.timeline({
-        scrollTrigger: {
-          trigger: ".projects_screens",
-          start: "top center", // Start when the section is in the middle of the viewport
-          end: "bottom center", // End when the section is fully in the viewport
-          scrub: 2, // Slower scrub for better control
-        },
-      });
-      whiteLine.from(".horizontal_line", {
-        xPercent: -100,
-        opacity: 0,
-        duration: 0.8, // Slightly faster than desktop but visible
-        ease: "power2.inOut",
-      });
-      // mobile SPLIT CHARS ------------------------------------
-      const descriptionTl = gsap.timeline({
-        scrollTrigger: {
-          id: "project_description_mobile",
-
-          trigger: ".description_section__left",
-          start: "top 90%", // Animacja zaczyna się, gdy element ma 10% widoczności
-          end: "bottom 65%",
-          scrub: 2,
-        },
+        techTl.from(".technology_item", {
+          opacity: 0,
+          stagger: 2,
+          duration: 2.5,
+          ease: "power2.inOut",
+          scale: 0,
+          transformOrigin: "left center",
+        });
       });
 
-      descriptionTl.to(".splitted_description .split-char", {
-        color: chooseSelectedColor,
-        stagger: 0.15, // Faster but still noticeable stagger
-        duration: 1.2, // Shorter duration but visible
-        ease: "power2.inOut",
-      });
-      // MOBILE TECHNOLOGIES
-      const techTl = gsap.timeline({
-        scrollTrigger: {
-          trigger: "description_section__right",
-          start: "top center", // Trigger closer to center for better timing
-          end: "bottom bottom", // End closer to the top for visibility
-          scrub: 2,
-        },
-      });
+      //MOBILE
 
-      techTl.from(".technology_item", {
-        opacity: 0,
-        stagger: 1.5, // Stagger reduced for quicker animations
-        duration: 1.8, // Shortened duration to keep animations within view
-        ease: "power2.inOut",
-        scale: 0.9, // Smaller initial scale for better visibility
-        transformOrigin: "left center",
+      mm.add("(max-width: 767px)", () => {
+        const whiteLine = gsap.timeline({
+          scrollTrigger: {
+            trigger: ".projects_screens",
+            start: "top center", // Start when the section is in the middle of the viewport
+            end: "bottom center", // End when the section is fully in the viewport
+            scrub: 2, // Slower scrub for better control
+          },
+        });
+        whiteLine.from(".horizontal_line", {
+          xPercent: -100,
+          opacity: 0,
+          duration: 0.8, // Slightly faster than desktop but visible
+          ease: "power2.inOut",
+        });
+        // mobile SPLIT CHARS ------------------------------------
+        const descriptionTl = gsap.timeline({
+          scrollTrigger: {
+            id: "project_description_mobile",
+
+            trigger: ".description_section__left",
+            start: "top 90%", // Animacja zaczyna się, gdy element ma 10% widoczności
+            end: "bottom 65%",
+            scrub: 2,
+          },
+        });
+
+        descriptionTl.to(".splitted_description .split-char", {
+          color: chooseSelectedColor,
+          stagger: 0.15, // Faster but still noticeable stagger
+          duration: 1.2, // Shorter duration but visible
+          ease: "power2.inOut",
+        });
+        // MOBILE TECHNOLOGIES
+        const techTl = gsap.timeline({
+          scrollTrigger: {
+            trigger: "description_section__right",
+            start: "top center", // Trigger closer to center for better timing
+            end: "bottom bottom", // End closer to the top for visibility
+            scrub: 2,
+          },
+        });
+
+        techTl.from(".technology_item", {
+          opacity: 0,
+          stagger: 1.5, // Stagger reduced for quicker animations
+          duration: 1.8, // Shortened duration to keep animations within view
+          ease: "power2.inOut",
+          scale: 0.9, // Smaller initial scale for better visibility
+          transformOrigin: "left center",
+        });
       });
-    });
-  }, [theme]);
+    },
+    {
+      dependencies: [tProjectPage, theme], // Zmiana języka spowoduje ponowne uruchomienie
+      revertOnUpdate: true, // Cofnij animacje przed ponownym uruchomieniem
+    },
+  );
 
   return (
     <PageTransition>
       <section className="project_details relative z-10 cursor-default py-40 opacity-0">
         <h1 className="project_details_title mb-24 text-center font-mainHeaderFont text-6xl font-extralight uppercase text-background max-fold:text-5xl md:text-[6rem] lg:text-[8rem] 2xl:text-[8rem] dark:text-mainFontColor">
-          {projects[paramsProject - 1].title}
+          {tProjectPage(`projects.${paramsProjectId}.title`)}
         </h1>
         <div
           ref={containerRef}
@@ -256,12 +265,12 @@ export default function ProjectPage({ params }: ProjectPageProps) {
           <div className="description_wrapper grid gap-14 xl:grid-cols-[5fr_2fr] xl:gap-24">
             <div className="description_section__left">
               <h2 className="description_title py-2 text-xl text-gray-500 dark:text-gray-400">
-                _description
+                _{tProjectPage("description")}
               </h2>
               <p className="description_text pt-5 text-xl text-gray-400 dark:text-gray-500">
                 <Splitter
                   className="splitted_description"
-                  text={projects[paramsProject - 1].description}
+                  text={tProjectPage(`projects.${paramsProjectId}.description`)}
                 />
               </p>
               <div className="button_wrapper inline-block pt-10">
@@ -271,10 +280,10 @@ export default function ProjectPage({ params }: ProjectPageProps) {
                   className="group inline-flex cursor-pointer items-center overflow-hidden rounded-sm border-2 border-background border-opacity-30 bg-transparent px-6 py-4 leading-none text-background transition-all duration-300 dark:border-mainFontColor dark:text-mainFontColor"
                 >
                   <span className="first_text overflow-hidden transition-all duration-300 group-hover:translate-y-[-100%] group-hover:opacity-0">
-                    visit github
+                    {tProjectPage(`projects.${paramsProjectId}.buttonTitle`)}
                   </span>
                   <span className="second_text absolute translate-y-[100%] overflow-hidden whitespace-nowrap opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
-                    visit github
+                    {tProjectPage(`projects.${paramsProjectId}.buttonTitle`)}
                   </span>
                   <RiGithubFill className="ml-3 text-2xl" />
                 </a>
@@ -286,7 +295,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
                 _tech-stack
               </h2>
               <ul className="technology_wrapper flex flex-wrap items-start gap-3 pt-5 xl:flex-col">
-                {projects[paramsProject - 1].technologiesUsed.map(
+                {projects[paramsProjectId - 1].technologiesUsed.map(
                   (item, index) => (
                     <li
                       key={index + "-tech"}
