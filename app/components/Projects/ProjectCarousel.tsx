@@ -183,7 +183,7 @@ const ProjectCarousel = (props: projectCarouselProps) => {
         {/* Kontener dla projektów */}
         <div
           ref={mobileCarouselRef}
-          className="no-scrollbar relative flex h-full w-full items-center overflow-hidden overflow-x-auto lg:flex-col lg:items-end lg:justify-evenly lg:overflow-visible lg:font-extralight lg:uppercase"
+          className="no-scrollbar relative flex h-full w-full items-center overflow-hidden overflow-x-auto lowercase lg:flex-col lg:items-end lg:justify-evenly lg:overflow-visible lg:font-extralight lg:uppercase"
         >
           {projects.map((project, index) => (
             <div

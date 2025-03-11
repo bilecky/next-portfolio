@@ -139,8 +139,8 @@ function Tech({}: Props) {
   return (
     <section className="tech -z-10 py-28 text-background opacity-0 will-change-transform">
       <div className="overview-wrapper container">
-        <div className="overview ml-auto text-right lg:w-3/5 xl:max-w-contentWidth">
-          <h2 className="tech-header font-mainHeaderFont text-mobile uppercase leading-none lg:text-section-header">
+        <div className="overview ml-auto text-right lg:max-w-contentWidth">
+          <h2 className="tech-header lg:text-section-header-lg xl:text-section-header-xl 2xl:text-section-header-2xl font-mainHeaderFont text-mobile uppercase leading-none">
             <Splitter
               className="tech-text will-change-transform"
               text={tStack("title")}

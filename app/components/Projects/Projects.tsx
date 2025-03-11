@@ -34,7 +34,7 @@ type ProjectsProps = {
 const Projects = ({ isIntroComplete }: ProjectsProps) => {
   const monitorModelRef = useRef<THREE.Group>(null);
   const isMobile = useMediaQuery("(max-width: 768px)");
-  const [currentProject, setCurrentProject] = useState<number>(3);
+  const [currentProject, setCurrentProject] = useState<number>(0);
   const { theme } = useTheme();
 
   const tWork = useTranslations("WorkSection");
@@ -148,7 +148,7 @@ const Projects = ({ isIntroComplete }: ProjectsProps) => {
     <section className="projects relative z-10 text-background opacity-0 md:container md:py-28 xl:flex xl:flex-row">
       <div className="overview xl:w-3/5">
         <div className={clsx(isMobile && "container")}>
-          <h2 className="projects-header font-mainHeaderFont text-mobile uppercase leading-none lg:text-section-header">
+          <h2 className="projects-header lg:text-section-header-lg xl:text-section-header-xl 2xl:text-section-header-2xl font-mainHeaderFont text-mobile uppercase leading-none">
             <Splitter
               className="header-text will-change-transform"
               text={tWork("title")}

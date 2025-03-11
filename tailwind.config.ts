@@ -63,7 +63,9 @@ const config: Config = {
       },
       fontSize: {
         mobile: "3.8rem",
-        "section-header": "10rem", // Dodanie niestandardowej wielkości czcionki
+        "section-header-lg": "8rem", // Dodanie niestandardowej wielkości czcionki
+        "section-header-xl": "9rem",
+        "section-header-2xl": "10rem",
       },
     },
   },

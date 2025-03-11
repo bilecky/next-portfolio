@@ -100,7 +100,7 @@ export const projects: Project[] = [
     id: 5,
     title: "pawelbilski.com",
     description:
-      "A feature-rich full-stack application that seamlessly integrates a Django backend with a modern frontend stack. This project exemplifies robust API development and responsive UI design, incorporating RESTful endpoints, user authentication, real-time data visualization, and notification systems. The permission management system enables precise control of access to application features depending on the user's role. Advanced caching and database query optimization ensure short response times even under heavy load. The application offers an extensive API for external developers and comprehensive documentation, enabling easy expansion of functionality by development teams.",
+      "Some kind of inception, right? A feature-rich full-stack application that seamlessly integrates a Django backend with a modern frontend stack. This project exemplifies robust API development and responsive UI design, incorporating RESTful endpoints, user authentication, real-time data visualization, and notification systems. The permission management system enables precise control of access to application features depending on the user's role. Advanced caching and database query optimization ensure short response times even under heavy load. The application offers an extensive API for external developers and comprehensive documentation, enabling easy expansion of functionality by development teams.",
     imagesSrc: [
       "/projectsScreenshots/project5/image-1.png",
       "/projectsScreenshots/project5/image-2.png",
