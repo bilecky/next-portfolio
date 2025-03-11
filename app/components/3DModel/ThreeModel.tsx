@@ -28,7 +28,9 @@ const ThreeModel = forwardRef<THREE.Group, ThreeModelProps>(
     );
 
     // Ładowanie nowej tekstury na ekran
-    const newScreenTexture = useTexture(`/project-${currentProject}.webp`);
+    const newScreenTexture = useTexture(
+      `/projectsScreenshots/project${currentProject + 1}/image-3.png`,
+    );
     // Przypisz teksturę do materiału ekranu (Material.005 w tym wypadku)
     if (materials["Material.001"]) {
       materials["Material.001"].map = newScreenTexture;

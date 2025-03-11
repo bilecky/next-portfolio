@@ -34,7 +34,7 @@ type ProjectsProps = {
 const Projects = ({ isIntroComplete }: ProjectsProps) => {
   const monitorModelRef = useRef<THREE.Group>(null);
   const isMobile = useMediaQuery("(max-width: 768px)");
-  const [currentProject, setCurrentProject] = useState<number>(0);
+  const [currentProject, setCurrentProject] = useState<number>(3);
   const { theme } = useTheme();
 
   const tWork = useTranslations("WorkSection");

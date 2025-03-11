@@ -235,14 +235,14 @@ export default function ProjectPage({ params }: ProjectPageProps) {
   return (
     <PageTransition>
       <section className="project_details relative z-10 cursor-default py-40 opacity-0">
-        <h1 className="project_details_title mb-24 text-center font-mainHeaderFont text-6xl font-extralight uppercase text-background max-fold:text-5xl md:text-[6rem] lg:text-[8rem] 2xl:text-[8rem] dark:text-mainFontColor">
+        <h1 className="project_details_title mb-24 text-center font-mainHeaderFont text-6xl font-extralight uppercase text-background max-fold:text-5xl md:text-[6rem] lg:text-[8rem] xl:px-28 2xl:text-[8rem] dark:text-mainFontColor">
           {tProjectPage(`projects.${paramsProjectId}.title`)}
         </h1>
         <div
           ref={containerRef}
           className="projects_screens flex h-[70vh] w-full flex-col lg:flex-row"
         >
-          {projects.map((item, index) => (
+          {projects[paramsProjectId - 1].imagesSrc.map((itemSrc, index) => (
             <div
               key={index}
               ref={(ref) => setProjectRef(ref, index)}
@@ -251,7 +251,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
             >
               {/* <div className="item_overlay absolute inset-0 z-10 bg-background bg-opacity-20 grayscale-[80%] backdrop-blur-[2px] transition-all duration-1000 ease-in-out hover:grayscale-0 hover:backdrop-blur-0"></div> */}
               <Image
-                src={item.image}
+                src={itemSrc}
                 alt={`Image ${index + 1}`}
                 fill={true}
                 objectFit={isMobile ? "none" : "cover"}
