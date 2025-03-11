@@ -157,8 +157,8 @@ function Tech({}: Props) {
         </div>
       </div>
 
-      <div className="tech-items overflow-hidden whitespace-nowrap py-20">
-        <div className="marquee gsap-marquee flex">
+      <div className="tech-items select-none overflow-hidden whitespace-nowrap py-20">
+        <div className="marquee gsap-marquee flex cursor-grab">
           {technologies.map((tech, index) => {
             return (
               <div
@@ -171,7 +171,7 @@ function Tech({}: Props) {
             );
           })}
         </div>
-        <div className="marquee-reverse gsap-marquee flex">
+        <div className="marquee-reverse gsap-marquee flex cursor-grab">
           {reversedTechnologies.map((tech, index) => {
             return (
               <div
