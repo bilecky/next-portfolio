@@ -12,8 +12,14 @@ const config: Config = {
     container: {
       center: true,
       padding: {
-        DEFAULT: ".5rem",
-        md: "1rem",
+        DEFAULT: "1rem",
+      },
+      screens: {
+        sm: "640px",
+        md: "768px",
+        lg: "1024px",
+        xl: "1280px",
+        "2xl": "1536px",
       },
     },
     extend: {
@@ -22,7 +28,7 @@ const config: Config = {
         contactFormPadding: "2rem",
       },
       maxWidth: {
-        contentWidth: "850px", // Własna szerokość dla tekstu
+        contentWidth: "800px", // Własna szerokość dla tekstu
       },
       keyframes: {
         "modal-open": {

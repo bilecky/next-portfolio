@@ -90,10 +90,10 @@ const Header = ({ locale }: HeaderProps) => {
       <div className="logo group text-xl font-light will-change-transform">
         <Link
           href="/"
-          className="cursor-pointer font-mono transition-colors group-hover:text-gray-400"
+          className="cursor-pointer font-mono transition-colors dark:group-hover:text-gray-400"
         >
           {ismobile ? "p" : "paweł"}
-          <span className="text-gray-400 transition-colors group-hover:text-mainFontColor">
+          <span className="text-gray-400 transition-colors dark:group-hover:text-mainFontColor">
             {ismobile ? "<b>" : "<bilski>"}
           </span>
         </Link>
@@ -157,7 +157,7 @@ const Header = ({ locale }: HeaderProps) => {
               href="https://linkedin.com/in/your-profile"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-xl hover:text-gray-300"
+              className="text-xl transition-colors hover:text-gray-400"
             >
               <RiLinkedinFill />
             </a>
@@ -167,7 +167,7 @@ const Header = ({ locale }: HeaderProps) => {
               href="https://twitter.com/your-profile"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-xl hover:text-gray-300"
+              className="text-xl transition-colors hover:text-gray-400"
             >
               <RiTwitterXFill />
             </a>

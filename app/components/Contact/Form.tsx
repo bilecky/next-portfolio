@@ -102,7 +102,7 @@ const Form = () => {
           name="name"
           placeholder={tPlaceholders("name")}
           className={clsx(
-            "contact_input w-full border-b-2 bg-transparent px-4 py-4 focus:border-b-background focus:outline-none",
+            "contact_input w-full border-b-2 border-b-gray-400 bg-transparent px-4 py-4 focus:border-b-background focus:outline-none dark:border-b-gray-200",
             {
               "border-b-red-500 focus:border-b-red-500": errors.name,
             },
@@ -122,7 +122,7 @@ const Form = () => {
           name="email"
           placeholder={tPlaceholders("email")}
           className={clsx(
-            "contact_input w-full border-b-2 bg-transparent px-4 py-4 focus:border-b-background focus:outline-none",
+            "contact_input w-full border-b-2 border-b-gray-400 bg-transparent px-4 py-4 focus:border-b-background focus:outline-none dark:border-b-gray-200",
             {
               "border-b-red-500 focus:border-b-red-500": errors.email,
             },
@@ -151,7 +151,7 @@ const Form = () => {
           name="message"
           placeholder={tPlaceholders("message")}
           className={clsx(
-            "contact_input w-full resize-none border-b-2 bg-transparent px-4 py-4 focus:border-b-background focus:outline-none",
+            "contact_input w-full resize-none border-b-2 border-b-gray-400 bg-transparent px-4 py-4 focus:border-b-background focus:outline-none dark:border-b-gray-200",
             {
               "border-b-red-500 focus:border-b-red-500": errors.message,
             },
