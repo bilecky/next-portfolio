@@ -17,7 +17,7 @@ const Contact = async () => {
           {tContact("title")}
         </h2>
 
-        <div className="contact_wrapper grid-cols-2 gap-20 pb-2 pt-12 lg:grid">
+        <div className="contact_wrapper py-descriptionPadding grid-cols-2 gap-20 md:pb-2 md:pt-12 lg:grid">
           <div className="contact_description flex flex-col">
             <p className="about_description text-sm lg:text-xl">
               {tContact("paragraph")}

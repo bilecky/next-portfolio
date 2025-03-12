@@ -78,7 +78,7 @@ const Form = () => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="relative flex flex-col gap-12"
+      className="py-contactFormPadding relative flex flex-col gap-12 lg:py-0"
     >
       {isLoading && (
         <div className="absolute inset-0 z-[100] flex items-end justify-center">

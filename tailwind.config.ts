@@ -17,6 +17,10 @@ const config: Config = {
       },
     },
     extend: {
+      padding: {
+        descriptionPadding: "1.25rem",
+        contactFormPadding: "2rem",
+      },
       maxWidth: {
         contentWidth: "850px", // Własna szerokość dla tekstu
       },

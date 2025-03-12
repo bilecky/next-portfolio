@@ -147,7 +147,7 @@ function Tech({}: Props) {
             />
           </h2>
 
-          <p className="tech-description py-4 text-sm will-change-transform lg:text-xl">
+          <p className="tech-description py-descriptionPadding text-sm will-change-transform lg:text-xl">
             {tStack("paragraph1")}
           </p>
 

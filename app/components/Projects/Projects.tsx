@@ -155,7 +155,7 @@ const Projects = ({ isIntroComplete }: ProjectsProps) => {
             />
           </h2>
 
-          <p className="projects-description py-4 text-sm will-change-transform lg:max-w-contentWidth lg:text-xl">
+          <p className="projects-description py-descriptionPadding text-sm will-change-transform lg:max-w-contentWidth lg:text-xl">
             {tWork("paragraph1")}
           </p>
         </div>

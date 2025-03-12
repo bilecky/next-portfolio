@@ -82,11 +82,11 @@ const About = () => {
             />
           </h2>
 
-          <p className="about_description pt-4 text-sm will-change-transform lg:text-xl">
+          <p className="about_description pt-descriptionPadding text-sm will-change-transform lg:text-xl">
             {tAbout("paragraph1")}
           </p>
 
-          <p className="about_description py-4 text-sm will-change-transform lg:text-xl">
+          <p className="about_description py-descriptionPadding text-sm will-change-transform lg:text-xl">
             {tAbout("paragraph2")}
           </p>
           <p className="about_description text-sm will-change-transform lg:text-xl">
