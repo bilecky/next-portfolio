@@ -57,7 +57,7 @@
   },
 
   "SingleProjectPage": {
-    "description": "Description",
+    "description": "description",
     "buttonTitle": "visit github",
 
     "projects": {

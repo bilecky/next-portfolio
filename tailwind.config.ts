@@ -66,6 +66,7 @@ const config: Config = {
         blackSectionText: "#b8b8b8",
       },
       fontSize: {
+        SingleProjectDescriptionFont: ".925rem",
         mobile: "3.8rem",
         "section-header-lg": "8rem", // Dodanie niestandardowej wielkości czcionki
         "section-header-xl": "9rem",

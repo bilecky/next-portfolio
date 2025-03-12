@@ -45,7 +45,7 @@ const GoUpBtn = () => {
   };
 
   return (
-    <div className="goUp glassmorphism-goUpBtn group fixed bottom-5 right-5 z-50 cursor-pointer rounded-md opacity-0 mix-blend-difference shadow-2xl transition-colors hover:bg-secondBackground/90">
+    <div className="goUp glassmorphism-goUpBtn group fixed bottom-5 right-5 z-50 cursor-pointer rounded-sm opacity-0 mix-blend-difference shadow-2xl transition-colors hover:bg-secondBackground/90">
       <a
         href="#header"
         onClick={handleScrollToTop}
