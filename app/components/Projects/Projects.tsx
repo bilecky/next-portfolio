@@ -148,14 +148,14 @@ const Projects = ({ isIntroComplete }: ProjectsProps) => {
     <section className="projects relative z-10 text-background opacity-0 md:container md:py-28 xl:flex xl:flex-row">
       <div className="overview xl:w-3/5">
         <div className={clsx(isMobile && "container")}>
-          <h2 className="projects-header lg:text-section-header-lg xl:text-section-header-xl 2xl:text-section-header-2xl font-mainHeaderFont text-mobile uppercase leading-none">
+          <h2 className="projects-header font-mainHeaderFont text-mobile uppercase leading-none lg:text-section-header-lg xl:text-section-header-xl 2xl:text-section-header-2xl">
             <Splitter
               className="header-text will-change-transform"
               text={tWork("title")}
             />
           </h2>
 
-          <p className="projects-description py-descriptionPadding text-sm will-change-transform lg:max-w-contentWidth lg:text-xl">
+          <p className="projects-description pt-descriptionPadding text-sm will-change-transform lg:max-w-contentWidth lg:py-descriptionPadding lg:text-xl">
             {tWork("paragraph1")}
           </p>
         </div>

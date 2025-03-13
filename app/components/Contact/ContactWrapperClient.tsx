@@ -12,16 +12,12 @@ interface ContactWrapperProps {
 
 const ContactWrapperClient = ({ children }: ContactWrapperProps) => {
   const wrapperRef = useRef<HTMLDivElement>(null);
-  useGSAP(() => {
-    // only fire callbacks when the active state toggles
-    // ScrollTrigger.config({
-    //   ignoreMobileResize: true,
-    // });
-
+  const { contextSafe } = useGSAP(() => {
     ScrollTrigger.refresh();
 
     const techElement = document.querySelector(".tech") as HTMLElement;
     const techHeight = techElement?.offsetHeight || 0;
+
     const master = gsap.timeline({
       scrollTrigger: {
         trigger: ".tech-wrapper",
@@ -29,13 +25,14 @@ const ContactWrapperClient = ({ children }: ContactWrapperProps) => {
         end: "+=250%",
         scrub: 2,
         pin: true,
-        pinSpacing: true, // Zostawiamy true, aby animacja działała
+        pinSpacing: true,
         preventOverlaps: true,
         pinReparent: true,
         refreshPriority: 1,
-        anticipatePin: 1, // Dodanie anticipatePin, aby wygładzić początek/koniec przypinania
+        anticipatePin: 1,
       },
     });
+
     master
       .to(".wrapper", {
         yPercent: -100,
@@ -50,33 +47,40 @@ const ContactWrapperClient = ({ children }: ContactWrapperProps) => {
           if (contactElement) {
             const progress = master.progress();
 
-            contactElement.style.overflowY =
-              progress > 0.99 ? "auto" : "hidden";
-            if (contactElement.style.overflowY === "auto") {
-              contactElement.addEventListener("scroll", () => {
-                const isScrolledToEnd =
-                  contactElement.scrollHeight - contactElement.scrollTop <=
-                  contactElement.clientHeight + 1;
-
-                if (isScrolledToEnd) {
-                  gsap.to(".footer", {
-                    opacity: 1,
-                    duration: 0.4,
-                    ease: "power2.inOut",
-                  });
-                } else {
-                  gsap.to(".footer", {
-                    opacity: 0,
-                    duration: 0.3,
-                    ease: "power2.inOut",
-                  });
-                }
-              });
+            // Dodaj/usuń nasłuchiwanie zdarzeń tylko gdy zmienia się stan
+            if (progress > 0.99) {
+              if (contactElement.style.overflowY !== "auto") {
+                contactElement.style.overflowY = "auto";
+                // Nasłuchiwacz powinien być dodany tylko raz
+                contactElement.addEventListener("scroll", handleScroll);
+              }
+            } else {
+              if (contactElement.style.overflowY !== "hidden") {
+                contactElement.style.overflowY = "hidden";
+                // Usunięcie nasłuchiwacza gdy nie jest potrzebny
+                contactElement.removeEventListener("scroll", handleScroll);
+              }
             }
           }
         },
       });
-  }, []);
+  });
+
+  // Context-safe event handler
+  const handleScroll = contextSafe(() => {
+    const contactElement = wrapperRef.current;
+    if (contactElement) {
+      const isScrolledToEnd =
+        contactElement.scrollHeight - contactElement.scrollTop <=
+        contactElement.clientHeight + 1;
+
+      gsap.to(".footer", {
+        opacity: isScrolledToEnd ? 1 : 0,
+        duration: isScrolledToEnd ? 0.2 : 0.2,
+        ease: "power1.out",
+      });
+    }
+  });
 
   return (
     <section

@@ -12,7 +12,7 @@ const config: Config = {
     container: {
       center: true,
       padding: {
-        DEFAULT: "1rem",
+        DEFAULT: "1.5rem",
       },
       screens: {
         sm: "640px",

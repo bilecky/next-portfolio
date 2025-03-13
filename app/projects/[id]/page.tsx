@@ -235,7 +235,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
   return (
     <PageTransition>
       <section className="project_details relative z-10 cursor-default py-40 opacity-0">
-        <h1 className="project_details_title lg:text-section-header-lg mb-24 text-center font-mainHeaderFont text-[2.2rem] font-extralight uppercase text-background max-fold:text-3xl md:text-[5rem] xl:px-28 2xl:text-[8rem] dark:text-mainFontColor">
+        <h1 className="project_details_title mb-24 px-2 text-center font-mainHeaderFont text-[2.2rem] font-extralight uppercase text-background max-fold:text-3xl md:text-[5rem] lg:text-section-header-lg xl:px-28 2xl:text-[8rem] dark:text-mainFontColor">
           {tProjectPage(`projects.${paramsProjectId}.title`)}
         </h1>
         <div
@@ -261,7 +261,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
         </div>
         <div className="horizontal_line my-20 h-1 w-1/2 bg-gradient-to-r from-black to-transparent dark:from-white dark:to-transparent"></div>
 
-        <div className="description container px-2 xl:max-w-screen-xl">
+        <div className="description container xl:max-w-screen-xl">
           <div className="description_wrapper grid gap-14 xl:grid-cols-[5fr_2fr] xl:gap-24">
             <div className="description_section__left">
               <h2 className="description_title text-2xl text-gray-500 dark:text-gray-400">
