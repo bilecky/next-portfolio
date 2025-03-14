@@ -28,7 +28,7 @@ const config: Config = {
         contactFormPadding: "2rem",
       },
       maxWidth: {
-        contentWidth: "800px", // Własna szerokość dla tekstu
+        contentWidth: "725px", // Własna szerokość dla tekstu
       },
       keyframes: {
         "modal-open": {
