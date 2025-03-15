@@ -32,11 +32,13 @@ export const Modal = ({
     if (isOpen) {
       document.addEventListener("keydown", handleEscape);
       document.body.style.overflow = "hidden"; // Blokujemy scroll na body
+      document.body.setAttribute("data-lenis-prevent", "true"); // Make sure you pass true as string
     }
 
     return () => {
       document.removeEventListener("keydown", handleEscape);
-      document.body.style.overflow = "unset";
+      document.body.style.overflow = "auto";
+      document.body.removeAttribute("data-lenis-prevent");
     };
   }, [isOpen, onClose]);
 

@@ -31,7 +31,6 @@ function Tech({}: Props) {
           start: "top 60%",
           end: "bottom bottom",
           scrub: 3, // Sync the animation with scrolling smoothly,
-          markers: true,
         },
       });
       mainTechLine.set(".tech", { opacity: 1 });

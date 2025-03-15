@@ -19,7 +19,7 @@ const Hero = ({ setIntroComplete }: HeroProps) => {
   const [blockInitialScroll, setBlockInitialScroll] = useState<boolean>(true);
   useEffect(() => {
     if (blockInitialScroll && heroRef.current) {
-      document.body.style.overflow = "hidden"; // standard no-scroll implementation
+      document.body.style.overflowY = "hidden"; // standard no-scroll implementation
       document.body.setAttribute("data-lenis-prevent", "true"); // Make sure you pass true as string
       heroRef.current.style.pointerEvents = "none";
     } else {
