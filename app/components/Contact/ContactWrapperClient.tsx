@@ -5,6 +5,8 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
+import { useTranslations } from "next-intl";
+
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 interface ContactWrapperProps {
   children: React.ReactNode;
@@ -12,59 +14,68 @@ interface ContactWrapperProps {
 
 const ContactWrapperClient = ({ children }: ContactWrapperProps) => {
   const wrapperRef = useRef<HTMLDivElement>(null);
-  const { contextSafe } = useGSAP(() => {
-    ScrollTrigger.refresh();
 
-    const techElement = document.querySelector(".tech") as HTMLElement;
-    const techHeight = techElement?.offsetHeight || 0;
+  const tContact = useTranslations("ContactSection"); // Dostosuj nazwę sekcji
 
-    const master = gsap.timeline({
-      scrollTrigger: {
-        trigger: ".tech-wrapper",
-        start: () => `top+=${techHeight} bottom`,
-        end: "+=250%",
-        scrub: 2,
-        pin: true,
-        pinSpacing: true,
-        preventOverlaps: true,
-        pinReparent: true,
-        refreshPriority: 1,
-        anticipatePin: 1,
-      },
-    });
+  const { contextSafe } = useGSAP(
+    () => {
+      ScrollTrigger.refresh();
 
-    master
-      .to(".wrapper", {
-        yPercent: -100,
-        ease: "none",
-      })
-      .to(".about", {
-        yPercent: -100,
-        ease: "none",
+      const techElement = document.querySelector(".tech") as HTMLElement;
+      const techHeight = techElement?.offsetHeight || 0;
 
-        onUpdate: () => {
-          const contactElement = wrapperRef.current;
-          if (contactElement) {
-            const progress = master.progress();
-
-            // Dodaj/usuń nasłuchiwanie zdarzeń tylko gdy zmienia się stan
-            if (progress > 0.99) {
-              if (contactElement.style.overflowY !== "auto") {
-                contactElement.style.overflowY = "auto";
-                // Nasłuchiwacz powinien być dodany tylko raz
-                contactElement.addEventListener("scroll", handleScroll);
-              }
-            } else {
-              if (contactElement.style.overflowY !== "hidden") {
-                contactElement.style.overflowY = "hidden";
-                // Usunięcie nasłuchiwacza gdy nie jest potrzebny
-                contactElement.removeEventListener("scroll", handleScroll);
-              }
-            }
-          }
+      const master = gsap.timeline({
+        scrollTrigger: {
+          trigger: ".tech-wrapper",
+          start: () => `top+=${techHeight} bottom`,
+          end: "+=250%",
+          scrub: 2,
+          pin: true,
+          pinSpacing: true,
+          preventOverlaps: true,
+          pinReparent: true,
+          refreshPriority: 1,
+          anticipatePin: 1,
         },
       });
-  });
+
+      master
+        .to(".wrapper", {
+          yPercent: -100,
+          ease: "none",
+        })
+        .to(".about", {
+          yPercent: -100,
+          ease: "none",
+
+          onUpdate: () => {
+            const contactElement = wrapperRef.current;
+            if (contactElement) {
+              const progress = master.progress();
+
+              // Dodaj/usuń nasłuchiwanie zdarzeń tylko gdy zmienia się stan
+              if (progress > 0.99) {
+                if (contactElement.style.overflowY !== "auto") {
+                  contactElement.style.overflowY = "auto";
+                  // Nasłuchiwacz powinien być dodany tylko raz
+                  contactElement.addEventListener("scroll", handleScroll);
+                }
+              } else {
+                if (contactElement.style.overflowY !== "hidden") {
+                  contactElement.style.overflowY = "hidden";
+                  // Usunięcie nasłuchiwacza gdy nie jest potrzebny
+                  contactElement.removeEventListener("scroll", handleScroll);
+                }
+              }
+            }
+          },
+        });
+    },
+    {
+      dependencies: [tContact],
+      revertOnUpdate: true,
+    },
+  );
 
   // Context-safe event handler
   const handleScroll = contextSafe(() => {

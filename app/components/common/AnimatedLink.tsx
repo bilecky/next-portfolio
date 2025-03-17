@@ -61,7 +61,7 @@ const AnimatedLink = ({
     if (isMobile) {
       setTimeout(() => {
         runAnimation();
-      }, 650);
+      }, 350);
     } else {
       runAnimation();
     }
