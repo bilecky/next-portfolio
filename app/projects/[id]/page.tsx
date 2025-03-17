@@ -41,8 +41,8 @@ export default function ProjectPage({ params }: ProjectPageProps) {
   const imageElements = imageRefs.current;
   const chooseSelectedColor = theme === "dark" ? "#FBFCF8" : "#222222";
 
-  useGSAP(() => {
-    if (!containerRef.current || !imageElements) return;
+  useGSAP((context, contextSafe) => {
+    if (!containerRef.current || !imageElements || !contextSafe) return;
 
     document.body.classList.add("pointer-events-none");
 
@@ -78,38 +78,54 @@ export default function ProjectPage({ params }: ProjectPageProps) {
         ease: "power2.out",
       });
 
+    const eventHandlers: {
+      element: HTMLDivElement | null;
+      enter: () => void;
+      leave: () => void;
+    }[] = [];
+
     imageElements.forEach((image, index) => {
       gsap.set(imageElements[index], {
         flex: 1,
         filter: "grayscale(80%) blur(2px)",
       });
-      const handleEnter = () => {
+
+      const handleEnter = contextSafe(() => {
         gsap.to(image, {
           duration: 1,
           flexGrow: 10,
           filter: "grayscale(0%) blur(0px)",
           ease: "power2.inOut",
         });
-      };
+      });
 
-      // Funkcja obsługująca animację po opuszczeniu
-      const handleLeave = () => {
+      const handleLeave = contextSafe(() => {
         gsap.to(image, {
           duration: 1,
           flexGrow: 1,
-          filter: "grayscale(80%) blur(2px)", // Przywrócenie początkowego stylu
+          filter: "grayscale(80%) blur(2px)",
           ease: "power2.inOut",
         });
-      };
+      });
 
       // Nasłuchiwacze na zdarzenia myszy
       image?.addEventListener("mouseenter", handleEnter);
       image?.addEventListener("mouseleave", handleLeave);
 
-      // Nasłuchiwacze na zdarzenia dotyku
-      // image?.addEventListener("click", handleEnter); // Obsługa wejścia dotykiem
-      // image?.addEventListener("touchend", handleLeave); // Obsługa opuszczenia dotykiem
+      eventHandlers.push({
+        element: image,
+        enter: handleEnter,
+        leave: handleLeave,
+      });
     });
+
+    return () => {
+      // Usuwamy WSZYSTKIE nasłuchiwacze
+      eventHandlers.forEach((handler) => {
+        handler.element?.removeEventListener("mouseenter", handler.enter);
+        handler.element?.removeEventListener("mouseleave", handler.leave);
+      });
+    };
   });
   useGSAP(
     () => {
