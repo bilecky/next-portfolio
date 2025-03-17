@@ -36,13 +36,6 @@
     text-wrap: balance;
   }
 
-  .no-scrollbar::-webkit-scrollbar {
-    display: none;
-  }
-  .no-scrollbar {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
   .glassmorphism {
     background: rgba(251, 252, 248, 0.7);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);

@@ -16,7 +16,6 @@ const ToggleSwitch = ({
 }: ToggleSwitchProps) => {
   const [isActive, setIsActive] = useState<boolean | null>(null);
 
-  console.log(initialState);
   useEffect(() => {
     setIsActive(initialState);
   }, [initialState]);
@@ -60,7 +59,7 @@ const ToggleSwitch = ({
       "cursor-pointer": !disabled,
     },
     // Focus classes
-    "focus:outline-none focus:ring-1 focus:ring-offset-0 ",
+    "focus:outline-none focus:ring-1 focus:ring-offset-0 focus:ring-gray-900/15 ",
   );
 
   const circleClasses = clsx(
