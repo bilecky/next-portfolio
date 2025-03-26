@@ -6,6 +6,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import { useTranslations } from "next-intl";
+import useMediaQuery from "@/app/hooks/useMediaQuery";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 interface ContactWrapperProps {
@@ -19,23 +20,23 @@ const ContactWrapperClient = ({ children }: ContactWrapperProps) => {
 
   const { contextSafe } = useGSAP(
     () => {
-      ScrollTrigger.refresh();
-
-      const techElement = document.querySelector(".tech") as HTMLElement;
-      const techHeight = techElement?.offsetHeight || 0;
-
       const master = gsap.timeline({
         scrollTrigger: {
           trigger: ".tech-wrapper",
-          start: () => `top+=${techHeight} bottom`,
+          start: () => {
+            const techElement = document.querySelector(".tech") as HTMLElement;
+            const techHeight = techElement?.offsetHeight || 0;
+            return `top+=${techHeight + 1} bottom`;
+          },
           end: "+=250%",
           scrub: 2,
           pin: true,
           pinSpacing: true,
           preventOverlaps: true,
-          pinReparent: true,
-          refreshPriority: 1,
+          // pinReparent: true,
+          refreshPriority: 2,
           anticipatePin: 1,
+          invalidateOnRefresh: true,
         },
       });
 

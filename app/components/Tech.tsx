@@ -31,9 +31,9 @@ function Tech({}: Props) {
           start: "top 60%",
           end: "bottom bottom",
           scrub: 3, // Sync the animation with scrolling smoothly,
+          refreshPriority: 1,
         },
       });
-      mainTechLine.set(".tech", { opacity: 1 });
 
       reuseTexTsplitterFn({
         timeline: mainTechLine,
@@ -137,7 +137,7 @@ function Tech({}: Props) {
   });
 
   return (
-    <section className="tech -z-10 py-28 text-background opacity-0 will-change-transform">
+    <section className="tech -z-10 py-28 text-background will-change-transform">
       <div className="overview-wrapper container">
         <div className="overview ml-auto text-right lg:max-w-contentWidth">
           <h2 className="tech-header font-mainHeaderFont text-mobile uppercase leading-none lg:text-section-header-lg xl:text-section-header-xl 2xl:text-section-header-2xl">
