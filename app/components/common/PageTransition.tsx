@@ -23,7 +23,7 @@ const PageTransition = ({ children }: PageTransitionProps) => {
       .from(transitionRef.current, {
         duration: 2,
         yPercent: -100,
-        ease: "power2.inOut",
+        ease: "power4.in",
       })
       .from(".logo", { opacity: 0, y: -50, duration: 0.4 })
       .from(".white-line", { scaleX: 0, duration: 0.5 })

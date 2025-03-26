@@ -46,7 +46,7 @@ const Hero = ({ setIntroComplete }: HeroProps) => {
       .from(".black-overlay", {
         duration: 2,
         yPercent: -100,
-        ease: "power2.inOut",
+        ease: "power4.in",
       })
       // Animate menu items
       .from(
@@ -59,25 +59,25 @@ const Hero = ({ setIntroComplete }: HeroProps) => {
           ease: "expo.out",
           duration: 1.5,
         },
-        "-=0.5",
+        "-=0.05",
       )
-      .from(".main-header", { opacity: 0, y: 20, duration: 0.5 }, "-=0.7")
-      .from(".subheader", { opacity: 0, y: 20, duration: 0.5 }, "-=0.5")
+      .from(".main-header", { opacity: 0, y: 20, duration: 0.4 }, "-=0.7")
+      .from(".subheader", { opacity: 0, y: 20, duration: 0.4 }, "-=0.4")
       .from(
         ".description",
-        { opacity: 0, y: 20, duration: 0.5, stagger: 0.2 },
-        "-=0.3",
+        { opacity: 0, y: 20, duration: 0.4, stagger: 0.2 },
+        "-=0.1",
       )
-      .from(".logo", { opacity: 0, y: -50, duration: 0.4 })
+      .from(".logo", { opacity: 0, y: -50, duration: 0.3 })
       .from(".white-line", {
         scaleX: 0,
-        duration: 0.5,
+        duration: 0.4,
       })
       .from(".header-nav li", {
         opacity: 0,
         y: -50,
-        duration: 0.4,
-        stagger: 0.3,
+        duration: 0.3,
+        stagger: 0.2,
         ease: "power2.out",
       })
       .to(

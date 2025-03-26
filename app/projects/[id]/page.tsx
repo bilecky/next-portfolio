@@ -57,18 +57,14 @@ export default function ProjectPage({ params }: ProjectPageProps) {
     projectTl.set(".project_details", { opacity: 1 });
 
     projectTl
-      .from(
-        ".project_details_title",
-        {
-          duration: 0.5,
-          y: 250,
-          opacity: 0,
-          delay: 0.5,
-          stagger: 0.1,
-          ease: "power2.out",
-        },
-        "+=0.1",
-      )
+      .from(".project_details_title", {
+        duration: 0.5,
+        y: 250,
+        opacity: 0,
+        delay: 1.5,
+        stagger: 0.1,
+        ease: "power2.out",
+      })
 
       .from(imageElements, {
         duration: 0.5,
@@ -251,7 +247,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
   return (
     <PageTransition>
       <section className="project_details relative z-10 cursor-default py-40 opacity-0">
-        <h1 className="project_details_title mb-24 px-2 text-center font-mainHeaderFont text-[2.2rem] font-extralight uppercase text-background max-fold:text-3xl md:text-[5rem] lg:text-section-header-lg xl:px-28 2xl:text-[8rem] dark:text-mainFontColor">
+        <h1 className="project_details_title mb-14 px-4 text-center font-mainHeaderFont text-[2.2rem] font-extralight uppercase text-background max-fold:text-3xl md:text-[5rem] lg:mb-24 lg:text-section-header-lg xl:px-28 2xl:text-[8rem] dark:text-mainFontColor">
           {tProjectPage(`projects.${paramsProjectId}.title`)}
         </h1>
         <div

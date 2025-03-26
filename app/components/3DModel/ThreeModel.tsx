@@ -43,7 +43,7 @@ const ThreeModel = forwardRef<THREE.Group, ThreeModelProps>(
 
     return (
       <Stage environment={"city"} adjustCamera={false} intensity={0.5}>
-        <Float floatIntensity={0.1} speed={1} rotationIntensity={1}>
+        <Float floatIntensity={0.1} speed={1} rotationIntensity={0.7}>
           {/* Model 3D */}
           <AnimatedLink
             as="group"
