@@ -98,7 +98,7 @@ function Tech({}: Props) {
       // Główny observer do scrollowania
       const marqueeObserver = ScrollTrigger.observe({
         target: ".tech",
-        type: "pointer,touch,wheel",
+        type: "touch,wheel",
         wheelSpeed: 0.5,
         debounce: true,
 
@@ -158,7 +158,7 @@ function Tech({}: Props) {
       </div>
 
       <div className="tech-items select-none overflow-hidden whitespace-nowrap py-20">
-        <div className="marquee gsap-marquee flex cursor-grab">
+        <div className="marquee gsap-marquee flex">
           {technologies.map((tech, index) => {
             return (
               <div
@@ -171,7 +171,7 @@ function Tech({}: Props) {
             );
           })}
         </div>
-        <div className="marquee-reverse gsap-marquee flex cursor-grab">
+        <div className="marquee-reverse gsap-marquee flex">
           {reversedTechnologies.map((tech, index) => {
             return (
               <div

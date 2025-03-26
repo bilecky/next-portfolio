@@ -28,7 +28,7 @@ const Pin = ({ pin }: { pin: UserPin }) => {
         <div
           className="absolute rounded border bg-white p-1 text-xs text-black"
           style={{
-            transform: "translate(50%, -125%)",
+            transform: "translate(-25%, -175%)",
           }}
         >
           {pin.name}{" "}

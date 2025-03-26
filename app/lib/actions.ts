@@ -16,16 +16,17 @@ export async function createPin(pin: UserPin) {
   try {
     // Sprawdź, czy tabela istnieje
     await sql`
-        CREATE TABLE IF NOT EXISTS pins (
-          id TEXT PRIMARY KEY,
-          name TEXT,
-          positionX REAL,
-          positionY REAL,
-          pallette TEXT,
-          ip_address TEXT,
-          message_count INT DEFAULT 0
-        )
-      `;
+  CREATE TABLE IF NOT EXISTS pins (
+    id TEXT PRIMARY KEY,
+    name TEXT,
+    positionX REAL,
+    positionY REAL,
+    pallette TEXT,
+    ip_address TEXT,
+    message_count INT DEFAULT 0,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  )
+`;
 
     const checkIfPinExists = await sql`
       SELECT * FROM pins WHERE name = ${sanitizedName}
