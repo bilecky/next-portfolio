@@ -56,7 +56,7 @@ function Footer() {
     <footer className="relative left-0 top-0 bg-background dark:bg-secondBackground">
       <div
         className={clsx(
-          "footer container absolute bottom-0 left-0 right-0 z-10 h-[4vh] overflow-hidden",
+          "footer container absolute bottom-0 left-0 right-0 z-10 h-[4vh] overflow-hidden landscape:h-[8vh]",
           {
             "opacity-0": isMobile && isHomePage,
             "opacity-1": !isMobile && isHomePage,
