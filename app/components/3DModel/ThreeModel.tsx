@@ -43,7 +43,7 @@ const ThreeModel = forwardRef<THREE.Group, ThreeModelProps>(
 
     return (
       <Stage environment={"city"} adjustCamera={false} intensity={0.5}>
-        <Float floatIntensity={0.1} speed={1} rotationIntensity={0.7}>
+        <Float floatIntensity={0.1} speed={1} rotationIntensity={0.5}>
           {/* Model 3D */}
           <AnimatedLink
             as="group"
@@ -54,7 +54,7 @@ const ThreeModel = forwardRef<THREE.Group, ThreeModelProps>(
               onPointerOver={(e) => (document.body.style.cursor = "pointer")}
               ref={ref}
               position={[0, 0, 0]}
-              rotation={[0, 5, 0]}
+              rotation={[0, 5.05, 0]}
             >
               <primitive object={scene} scale={1.2} />
             </group>
