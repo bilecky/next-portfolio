@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
@@ -62,76 +62,125 @@ function Tech({}: Props) {
     },
   );
 
+  //USEFFECT TO TRACK WINDOW.INNERWIDTH
+
   //TECHNOLOGIES GSAP ANIMATONS
 
   useGSAP(() => {
     document.fonts.ready.then(() => {
-      const firstLoopArr = gsap.utils.toArray(".tech-item");
-      const secondLoopArr = gsap.utils.toArray(".tech-item-reverse");
+      // Utwórz odpowiedni kontekst matchMedia
+      const mm = gsap.matchMedia();
 
-      const tlMarqueLoop = horizontalLoop(firstLoopArr, {
-        speed: 1,
-        repeat: -1,
-      });
-      const tlMarqueReverseLoop = horizontalLoop(secondLoopArr, {
-        repeat: -1,
-        reversed: true,
-        speed: 1,
-      });
+      // Dodaj różne breakpointy
+      mm.add("(min-width: 1024px)", () => {
+        // Kod dla desktopa
+        const firstLoopArr = gsap.utils.toArray(".tech-item");
+        const secondLoopArr = gsap.utils.toArray(".tech-item-reverse");
 
-      // Te tweeny są przygotowane do spowalniania animacji
-      const slowDownFirst = gsap.to(tlMarqueLoop, {
-        timeScale: 0.5, // docelowa prędkość po zwolnieniu
-        duration: 1.5,
-        ease: "power1.in", // łagodniejsze spowalnianie
-        paused: true, // ważne - tween jest zatrzymany i czeka na użycie
-      });
+        const tlMarqueLoop = horizontalLoop(firstLoopArr, {
+          speed: 1,
+          repeat: -1,
+        });
 
-      const slowDownSecond = gsap.to(tlMarqueReverseLoop, {
-        timeScale: -0.5,
-        duration: 1.5,
-        ease: "power1.in", // łagodniejsze spowalnianie
+        const tlMarqueReverseLoop = horizontalLoop(secondLoopArr, {
+          repeat: -1,
+          reversed: true,
+          speed: 1,
+        });
 
-        paused: true,
-      });
+        // Tweeny do spowalniania
+        const slowDownFirst = gsap.to(tlMarqueLoop, {
+          timeScale: 0.5,
+          duration: 1.5,
+          ease: "power1.in",
+          paused: true,
+        });
 
-      // Główny observer do scrollowania
-      const marqueeObserver = ScrollTrigger.observe({
-        target: ".tech",
-        type: "touch,wheel",
-        wheelSpeed: 0.5,
-        debounce: true,
+        const slowDownSecond = gsap.to(tlMarqueReverseLoop, {
+          timeScale: -0.5,
+          duration: 1.5,
+          ease: "power1.in",
+          paused: true,
+        });
 
-        onChangeY(self) {
-          const delta = self.deltaY;
-          const factorOne = delta < 0 ? -1.2 : 1.2; // zmniejszone z 1.5
-          const factorTwo = delta < 0 ? -1.2 : 1.2;
+        // Observer
+        const marqueeObserver = ScrollTrigger.observe({
+          target: ".tech",
+          type: "touch,wheel",
+          wheelSpeed: 0.5,
+          debounce: true,
 
-          // Natychmiast zmieniamy prędkość podczas scrollowania
-          tlMarqueLoop.timeScale(factorOne * 2.5);
-          tlMarqueReverseLoop.timeScale(-factorTwo * 2.5);
+          onChangeY(self) {
+            const delta = self.deltaY;
+            const factorOne = delta < 0 ? -1.2 : 1.2;
+            const factorTwo = delta < 0 ? -1.2 : 1.2;
 
-          // Po każdym scrollu resetujemy i uruchamiamy animację spowalniania
-          slowDownFirst.invalidate().restart();
-          slowDownSecond.invalidate().restart();
-        },
-      });
+            tlMarqueLoop.timeScale(factorOne * 2.5);
+            tlMarqueReverseLoop.timeScale(-factorTwo * 2.5);
 
-      // Observer do zatrzymywania animacji przy wyjściu z sekcji
-      [".wrapper", "footer"].forEach((el) => {
-        ScrollTrigger.create({
-          trigger: el,
-          start: "top bottom",
-          end: "bottom top",
-          toggleActions: "play pause play pause",
-          onToggle: (self) => {
-            if (self.isActive) {
-              marqueeObserver.disable(); // Wyłączamy główny observer
-            } else {
-              marqueeObserver.enable(); // Włączamy główny observer
-            }
+            slowDownFirst.invalidate().restart();
+            slowDownSecond.invalidate().restart();
           },
         });
+
+        // Logika ScrollTrigger dla zatrzymywania
+        [".wrapper", "footer"].forEach((el) => {
+          ScrollTrigger.create({
+            trigger: el,
+            start: "top bottom",
+            end: "bottom top",
+            toggleActions: "play pause play pause",
+            onToggle: (self) => {
+              if (self.isActive) {
+                marqueeObserver.disable();
+              } else {
+                marqueeObserver.enable();
+              }
+            },
+          });
+        });
+
+        // Funkcja czyszcząca
+        return () => {
+          marqueeObserver.kill();
+        };
+      });
+
+      // Konfiguracja dla urządzeń mobilnych
+      mm.add("(max-width: 1023px)", () => {
+        // Alternatywna implementacja dla mobilnych
+        // Może być uproszczona lub inna
+        const firstLoopArr = gsap.utils.toArray(".tech-item");
+        const secondLoopArr = gsap.utils.toArray(".tech-item-reverse");
+
+        // Wolniejsza prędkość dla mobilnych
+        const tlMarqueLoop = horizontalLoop(firstLoopArr, {
+          speed: 0.65,
+          repeat: -1,
+        });
+
+        const tlMarqueReverseLoop = horizontalLoop(secondLoopArr, {
+          repeat: -1,
+          reversed: true,
+          speed: 0.65,
+        });
+
+        // Prostsza implementacja dla mobilnych
+        const marqueeObserver = ScrollTrigger.observe({
+          target: ".tech",
+          type: "touch",
+          debounce: true,
+
+          onChangeY(self) {
+            // Prostsze zachowanie dla mobilnych
+            tlMarqueLoop.timeScale(self.deltaY < 0 ? -1 : 1);
+            tlMarqueReverseLoop.timeScale(self.deltaY < 0 ? 1 : -1);
+          },
+        });
+
+        return () => {
+          marqueeObserver.kill();
+        };
       });
     });
   });
