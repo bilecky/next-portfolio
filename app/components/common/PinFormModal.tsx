@@ -53,12 +53,6 @@ export const PinFormModal = ({
     >
       <form onSubmit={handleSubmit} className="flex flex-col gap-4 p-6">
         <div className="mb-4">
-          <label
-            htmlFor="name"
-            className="mb-2 block text-sm font-medium text-mainFontColor"
-          >
-            Twoje imię
-          </label>
           <input
             id="name"
             type="text"
@@ -80,7 +74,7 @@ export const PinFormModal = ({
           <button
             type="button"
             onClick={onClose}
-            className="rounded-sm border-2 border-gray-200 bg-gray-200 px-4 py-2 text-sm font-medium text-background transition-all duration-300 hover:bg-background hover:text-mainFontColor"
+            className="hover: rounded-sm border-2 border-gray-200 bg-gray-200 px-4 py-2 text-sm font-medium text-background transition-all duration-300 hover:bg-background hover:text-mainFontColor"
           >
             {tPinning("CancelBtn")}
           </button>
