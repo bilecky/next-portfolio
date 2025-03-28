@@ -35,7 +35,7 @@ function Footer() {
       <footer className="relative left-0 top-0">
         <div
           ref={footerRef}
-          className="footer container absolute bottom-0 left-0 right-0 z-10 h-[4vh] overflow-hidden"
+          className="footer container absolute bottom-0 left-0 right-0 z-10 h-auto overflow-hidden"
         >
           <div className="h-[2px] w-full bg-gradient-to-r from-transparent via-black to-transparent dark:via-white"></div>
           <div className={clsx("text-center text-sm font-light", textClasses)}>
