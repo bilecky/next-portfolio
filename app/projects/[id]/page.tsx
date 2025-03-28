@@ -39,7 +39,8 @@ export default function ProjectPage({ params }: ProjectPageProps) {
 
   const paramsProjectId = params.id;
   const imageElements = imageRefs.current;
-  const chooseSelectedColor = theme === "dark" ? "#FBFCF8" : "#222222";
+  const chooseThemeAndPickDescriptionColor =
+    theme === "dark" ? "#FBFCF8" : "#222222";
 
   useGSAP((context, contextSafe) => {
     if (!containerRef.current || !imageElements || !contextSafe) return;
@@ -152,13 +153,13 @@ export default function ProjectPage({ params }: ProjectPageProps) {
             id: "project_description",
             trigger: ".description_section__left",
             start: "top 90%",
-            end: "top 40%",
+            end: "+=450px",
             scrub: 2,
           },
         });
 
         descriptionTl.to(".splitted_description .split-char", {
-          color: chooseSelectedColor,
+          color: chooseThemeAndPickDescriptionColor,
           stagger: 0.2,
           duration: 1.5,
           ease: "power2.inOut",
@@ -207,13 +208,13 @@ export default function ProjectPage({ params }: ProjectPageProps) {
 
             trigger: ".description_section__left",
             start: "top 90%", // Animacja zaczyna się, gdy element ma 10% widoczności
-            end: "bottom 65%",
+            end: "+=750px",
             scrub: 2,
           },
         });
 
         descriptionTl.to(".splitted_description .split-char", {
-          color: chooseSelectedColor,
+          color: chooseThemeAndPickDescriptionColor,
           stagger: 0.15, // Faster but still noticeable stagger
           duration: 1.2, // Shorter duration but visible
           ease: "power2.inOut",
@@ -252,7 +253,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
         </h1>
         <div
           ref={containerRef}
-          className="projects_screens flex h-[70vh] w-full flex-col lg:flex-row"
+          className="projects_screens flex h-[70vh] w-full flex-col xl:flex-row"
         >
           {projects[paramsProjectId - 1].imagesSrc.map((itemSrc, index) => (
             <div
