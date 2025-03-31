@@ -153,7 +153,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
             id: "project_description",
             trigger: ".description_section__left",
             start: "top 90%",
-            end: "+=450px",
+            end: "+=500px",
             scrub: 2,
           },
         });
@@ -253,7 +253,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
         </h1>
         <div
           ref={containerRef}
-          className="projects_screens flex h-[70vh] w-full flex-col xl:flex-row"
+          className="projects_screens flex h-[70vh] w-full flex-col xl:flex-row landscape:flex-row"
         >
           {projects[paramsProjectId - 1].imagesSrc.map((itemSrc, index) => (
             <div
@@ -267,7 +267,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
                 src={itemSrc}
                 alt={`Image ${index + 1}`}
                 fill={true}
-                objectFit={isMobile ? "none" : "cover"}
+                objectFit="cover"
               />
             </div>
           ))}
