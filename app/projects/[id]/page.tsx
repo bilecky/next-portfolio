@@ -30,6 +30,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
 
   const containerRef = useRef<HTMLDivElement>(null);
   const imageRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const descriptionTextRef = useRef<HTMLDivElement>(null);
 
   const setProjectRef = (ref: HTMLDivElement | null, index: number) => {
     if (imageRefs.current) {
@@ -133,6 +134,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
 
       // Desktop animations (no changes, just as reference)
       mm.add("(min-width: 768px)", () => {
+        const descriptionTextHeight = descriptionTextRef.current?.offsetHeight;
         const whiteLine = gsap.timeline({
           scrollTrigger: {
             trigger: ".projects_screens",
@@ -153,7 +155,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
             id: "project_description",
             trigger: ".description_section__left",
             start: "top 90%",
-            end: "+=500px",
+            end: `+=${descriptionTextHeight}px`,
             scrub: 2,
           },
         });
@@ -187,6 +189,8 @@ export default function ProjectPage({ params }: ProjectPageProps) {
       //MOBILE
 
       mm.add("(max-width: 767px)", () => {
+        const descriptionTextHeight = descriptionTextRef.current?.offsetHeight;
+
         const whiteLine = gsap.timeline({
           scrollTrigger: {
             trigger: ".projects_screens",
@@ -208,7 +212,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
 
             trigger: ".description_section__left",
             start: "top 90%", // Animacja zaczyna się, gdy element ma 10% widoczności
-            end: "+=750px",
+            end: `+=${descriptionTextHeight}px`,
             scrub: 2,
           },
         });
@@ -280,7 +284,10 @@ export default function ProjectPage({ params }: ProjectPageProps) {
               <h2 className="description_title text-2xl text-gray-500 dark:text-gray-400">
                 _{tProjectPage("description")}
               </h2>
-              <p className="description_text pt-descriptionPadding text-SingleProjectDescriptionFont text-gray-400 lg:text-xl dark:text-gray-500">
+              <p
+                ref={descriptionTextRef}
+                className="description_text pt-descriptionPadding text-SingleProjectDescriptionFont text-gray-400 lg:text-xl dark:text-gray-500"
+              >
                 <Splitter
                   className="splitted_description"
                   text={tProjectPage(`projects.${paramsProjectId}.description`)}
