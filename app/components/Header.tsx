@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef, useState, useTransition } from "react";
 import Link from "next/link";
-import { RiLinkedinFill, RiTwitterXFill } from "react-icons/ri";
+import { RiLinkedinFill, RiGithubFill } from "react-icons/ri";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import ToggleSwitch from "./common/ToggleSwitch";
@@ -11,7 +11,6 @@ import { PiPaintBrushDuotone } from "react-icons/pi";
 import { Locale } from "@/app/i18n/config";
 import { setUserLocale } from "@/app/lib/locale";
 import { useTheme } from "@/app/context/ThemeProvider";
-import ToggleDarkModeSwitch from "./common/ToggleDarkMode";
 import useMediaQuery from "../hooks/useMediaQuery";
 
 interface HeaderProps {
@@ -169,7 +168,7 @@ const Header = ({ locale }: HeaderProps) => {
               rel="noopener noreferrer"
               className="text-xl transition-colors hover:text-gray-400"
             >
-              <RiTwitterXFill />
+              <RiGithubFill />
             </a>
           </li>
         </ul>

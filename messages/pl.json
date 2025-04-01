@@ -26,22 +26,22 @@
   },
   "ContactSection": {
     "title": "Kontakt",
-    "paragraph": "Niezależnie od tego, czy masz projekt, nad którym chcesz wspólnie pracować, czy po prostu chcesz się spotkać i porozmawiać, jesteś we właściwym miejscu: skontaktujmy się. skontaktujmy się. Zawsze szukamy nowych i ekscytujących projektów i współpracy"
+    "paragraph": "Chcesz porozmawiać o technologiach webowych, masz pytanie dotyczące moich projektów, a może ciekawą ofertę współpracy? Skorzystaj z formularza kontaktowego znajdującego się obok lub skontaktuj się ze mną bezpośrednio pod adresem "
   },
   "AboutSection": {
     "title": "O mnie",
-    "paragraph1": "Jestem programistą frontendowym z ponad 3-letnim doświadczeniem komercyjnym, specjalizującym się w tworzeniu dynamicznych i responsywnych aplikacji internetowych. Z silnym naciskiem na Next.js i React, tworzę wydajne, przyjazne dla użytkownika interfejsy, które są zoptymalizowane pod kątem szybkości i skalowalności. Moja biegłość w TypeScript pozwala mi pisać czysty, łatwy w utrzymaniu kod, zapewniając, że projekty są wydajne i wolne od błędów wykonawczych.",
-    "paragraph2": "Oprócz pracy z nowoczesnymi frameworkami JavaScript, mam duże doświadczenie z WordPressem, co pozwala mi tworzyć niestandardowe strony internetowe / motywy i wtyczki dostosowane do potrzeb klienta. Jestem pasjonatem tworzenia intuicyjnych i atrakcyjnych wizualnie doświadczeń cyfrowych, zawsze mając na uwadze użytkownika końcowego. W trakcie mojej kariery pracowałem nad wieloma projektami, od małych stron biznesowych po złożone aplikacje internetowe, stale doskonaląc swoje umiejętności i będąc na bieżąco z najnowszymi trendami w branży.",
-    "paragraph3": "Jako programista rozwijam się w środowiskach współpracy, w których mogę przyczyniać się do rozwiązywania wyzwań i usprawniania przepływów pracy. Lubię uczyć się nowych technologii i znajdować innowacyjne sposoby na usprawnienie procesów tworzenia stron internetowych, zawsze dążąc do najlepszych wyników zarówno dla klientów, jak i użytkowników."
+    "paragraph1": "Cześć, jestem Paweł, inżynier informatyki z ponad 5-letnim doświadczeniem komercyjnym w IT (w tym 3+ lat jako frontend developer). Moją główną domeną jest nowoczesny frontend, szczególnie w ekosystemie React. Na co dzień tworzę rozwiązania, które skutecznie łączą kreatywne podejście z realnymi potrzebami biznesowymi i doskonałym doświadczeniem użytkownika.",
+    "paragraph2": "Pracując zarówno na etacie, jak i przy projektach freelancerskich, miałem okazję realizować szerokie spektrum zadań – od budowy złożonych interfejsów SPA/SSR, przez integracje z backendem i usługami chmurowymi, po kompleksowe wdrożenia WordPress z niestandardowymi funkcjonalnościami. Wcześniejsze doświadczenia, m.in. w obszarze wsparcia technicznego, nauczyły mnie patrzeć na produkt oczami użytkownika i efektywnie diagnozować problemy, co dziś procentuje w mojej pracy.",
+    "paragraph3": "Stale śledzę dynamiczny rozwój technologii frontendowych. Kluczowe jest dla mnie połączenie wysokiej jakości technicznej – czystego kodu, wydajności i bezpieczeństwa – z doskonałym doświadczeniem użytkownika. Dlatego dbam o nowoczesny design, intuicyjność oraz angażujące interakcje, tworząc aplikacje, które są nie tylko niezawodne i skalowalne, ale także atrakcyjne wizualnie."
   },
   "StackSection": {
     "title": "Stack",
-    "paragraph1": "Moją wiedzę i umiejętności programistyczne opieram na następujących technologiach i frameworkach programistycznych.  Umiem tez do brze    z technologii i wdrożanie ich w swoich projektach. Wierzę, että ciągłe doskonalenie umieńtności jest kluczowe dla sukcesu w branży IT.",
-    "paragraph2": "Jestem otwarty na naukę nowych technologii i wdrażanie ich w swoich projektach. Wierzę, że ciągłe doskonalenie umiejętności jest kluczowe dla sukcesu w branży IT. Jestem otwarty na nauке nowych technologii i wdrażanie ich w swoich projektach. Wierzę, että ciągłe doskonalenie umieńtności jest kluczowe dla sukcesu w branży IT."
+    "paragraph1": "Specjalizuję się w tworzeniu nowoczesnych aplikacji internetowych w ekosystemie React, głównie z Next.js + TypeScript. Poza frontendem pracuję z backendem oraz bazami danych SQL/NoSQL, a w zarządzaniu infrastrukturą, API i autoryzacją wykorzystuję dowolne rozwiązania jak np. Supabase, AWS, Firebase, Vercel.",
+    "paragraph2": "Tworzę również strony i sklepy oparte na WordPress + PHP, dbając o ich bezpieczeństwo, szybkość i SEO. Tworzę customowe bloki dla Gutenberga w React i PHP, a także dedykowane skrypty, pluginy i rozszerzenia, dostosowując WordPress do indywidualnych wymagań projektowych."
   },
   "WorkSection": {
     "title": "Projekty",
-    "paragraph1": "Tutaj możesz znaleźć niektóre z moich ostatnich projektów. Jestem pasjonatem tworzenia intuicyjnych i atrakcyjnych wizualnie doświadczeń cyfrowych, zawsze mając na uwadze użytkownika końcowego. W trakcie mojej kariery pracowałem nad wieloma projektami, od małych stron biznesowych po złożone aplikacje internetowe, stale doskonaląc swoje umiejętności i będąc na bieżąco z najnowszymi trendami w branży."
+    "paragraph1": "Poniżej znajdziesz kilka wybranych projektów, które pokazują moje podejście do tworzenia nowoczesnych aplikacji webowych. Kliknij w interaktywny model, aby poznać szczegóły i użyte technologie. Jeśli chcesz dowiedzieć się więcej o moim doświadczeniu, w tym także o realizacjach komercyjnych, zapraszam do kontaktu."
   },
   "PinSectionForm": {
     "InputName": "Podaj nick",
