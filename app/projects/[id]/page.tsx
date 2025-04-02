@@ -12,6 +12,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import useMediaQuery from "@/app/hooks/useMediaQuery";
 import { useTheme } from "@/app/context/ThemeProvider";
 import { useTranslations } from "next-intl";
+import { TbWorldWww } from "react-icons/tb";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -305,7 +306,11 @@ export default function ProjectPage({ params }: ProjectPageProps) {
                   <span className="second_text absolute translate-y-[100%] overflow-hidden whitespace-nowrap opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
                     {tProjectPage(`projects.${paramsProjectId}.buttonTitle`)}
                   </span>
-                  <RiGithubFill className="ml-3 text-2xl" />
+                  {projects[paramsProjectId - 1].hasGitHubRepo ? (
+                    <RiGithubFill className="ml-3 text-2xl" />
+                  ) : (
+                    <TbWorldWww className="ml-3 text-2xl" />
+                  )}
                 </a>
               </div>
             </div>
