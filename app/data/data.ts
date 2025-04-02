@@ -5,10 +5,12 @@ export type Project = {
   imagesSrc: string[];
   technologiesUsed: string[];
   hasGitHubRepo: boolean;
+  hasOnlineDemo: boolean;
 };
 
 export const projects: Project[] = [
   {
+    hasOnlineDemo: true,
     hasGitHubRepo: true,
     id: 1,
     title: "WorkFlow Pro",
@@ -32,6 +34,7 @@ export const projects: Project[] = [
     ],
   },
   {
+    hasOnlineDemo: true,
     hasGitHubRepo: true,
     id: 2,
     title: "TM Plugin",
@@ -58,6 +61,7 @@ export const projects: Project[] = [
     ],
   },
   {
+    hasOnlineDemo: true,
     hasGitHubRepo: false,
     id: 3,
     title: "Hubra.com.pl",
@@ -87,6 +91,7 @@ export const projects: Project[] = [
     ],
   },
   {
+    hasOnlineDemo: false,
     hasGitHubRepo: true,
     id: 4,
     title: "DevHireNet",
@@ -115,6 +120,7 @@ export const projects: Project[] = [
     ],
   },
   {
+    hasOnlineDemo: true,
     hasGitHubRepo: true,
     id: 5,
     title: "pawelbilski.com",

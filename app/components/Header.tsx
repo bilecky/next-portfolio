@@ -84,9 +84,9 @@ const Header = ({ locale }: HeaderProps) => {
   return (
     <header
       id="header"
-      className="header bg-white-800 container absolute left-0 right-0 z-20 flex w-full items-center justify-between py-5 text-background opacity-0 dark:text-mainFontColor"
+      className="header bg-white-800 container absolute left-0 right-0 z-20 grid w-full grid-cols-3 items-center py-5 text-background opacity-0 dark:text-mainFontColor"
     >
-      <div className="logo group text-xl font-light will-change-transform">
+      <div className="logo group justify-self-start text-xl font-light will-change-transform">
         <Link
           href="/"
           className="cursor-pointer font-mono transition-colors dark:group-hover:text-gray-400"
@@ -100,7 +100,7 @@ const Header = ({ locale }: HeaderProps) => {
 
       <div
         ref={menuContainerRef}
-        className="white-line-container relative mx-4 w-[30%]"
+        className="white-line-container relative mx-4 w-5/6 justify-self-center"
       >
         <button
           aria-label="Otwórz menu"
@@ -149,7 +149,7 @@ const Header = ({ locale }: HeaderProps) => {
           </nav>
         </div>
       </div>
-      <nav className="header-nav will-change-transform">
+      <nav className="header-nav justify-self-end will-change-transform">
         <ul className="flex space-x-6">
           <li>
             <a

@@ -294,24 +294,56 @@ export default function ProjectPage({ params }: ProjectPageProps) {
                   text={tProjectPage(`projects.${paramsProjectId}.description`)}
                 />
               </p>
-              <div className="button_wrapper inline-block pt-10">
-                <a
-                  target="_blank"
-                  href="https://github.com"
-                  className="group inline-flex cursor-pointer items-center overflow-hidden rounded-sm border-2 border-background border-opacity-30 bg-transparent px-6 py-4 leading-none text-background transition-all duration-300 dark:border-mainFontColor dark:text-mainFontColor"
-                >
-                  <span className="first_text overflow-hidden transition-all duration-300 group-hover:translate-y-[-100%] group-hover:opacity-0">
-                    {tProjectPage(`projects.${paramsProjectId}.buttonTitle`)}
-                  </span>
-                  <span className="second_text absolute translate-y-[100%] overflow-hidden whitespace-nowrap opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
-                    {tProjectPage(`projects.${paramsProjectId}.buttonTitle`)}
-                  </span>
-                  {projects[paramsProjectId - 1].hasGitHubRepo ? (
-                    <RiGithubFill className="ml-3 text-2xl" />
-                  ) : (
-                    <TbWorldWww className="ml-3 text-2xl" />
-                  )}
-                </a>
+              <div className="buttons_wrapper flex w-2/4 flex-col gap-5 pt-10 md:mx-auto lg:mx-0 lg:w-auto lg:flex-row">
+                {projects[paramsProjectId - 1].hasOnlineDemo && (
+                  <div className="button_wrapper">
+                    <a
+                      target="_blank"
+                      href="https://github.com"
+                      className="group inline-flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-sm border-2 border-background border-opacity-30 bg-transparent px-6 py-4 leading-none text-background transition-all duration-300 dark:border-mainFontColor dark:text-mainFontColor"
+                    >
+                      <div className="text_container relative">
+                        <span className="first_text block overflow-hidden transition-all duration-300 group-hover:translate-y-[-100%] group-hover:opacity-0">
+                          {tProjectPage(
+                            `projects.${paramsProjectId}.demoButtonTitle`,
+                          )}
+                        </span>
+                        <span className="second_text absolute inset-0 translate-y-[100%] overflow-hidden whitespace-nowrap opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+                          {tProjectPage(
+                            `projects.${paramsProjectId}.demoButtonTitle`,
+                          )}
+                        </span>
+                      </div>
+
+                      <TbWorldWww className="ml-3 text-2xl" />
+                    </a>
+                  </div>
+                )}
+
+                {projects[paramsProjectId - 1].hasGitHubRepo && (
+                  <div className="button_wrapper">
+                    <a
+                      target="_blank"
+                      href="https://github.com"
+                      className="group relative inline-flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-sm border-2 border-background border-opacity-30 bg-transparent px-6 py-4 leading-none text-background transition-all duration-300 dark:border-mainFontColor dark:text-mainFontColor"
+                    >
+                      <div className="text_container relative">
+                        <span className="first_text block overflow-hidden text-center transition-all duration-300 group-hover:translate-y-[-100%] group-hover:opacity-0">
+                          {tProjectPage(
+                            `projects.${paramsProjectId}.githubButtonTitle`,
+                          )}
+                        </span>
+                        <span className="second_text absolute inset-0 flex translate-y-[100%] items-center justify-center overflow-hidden whitespace-nowrap opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+                          {tProjectPage(
+                            `projects.${paramsProjectId}.githubButtonTitle`,
+                          )}
+                        </span>
+                      </div>
+
+                      <RiGithubFill className="ml-3 text-2xl" />
+                    </a>
+                  </div>
+                )}
               </div>
             </div>
 
