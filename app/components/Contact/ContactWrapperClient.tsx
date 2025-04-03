@@ -17,9 +17,18 @@ const ContactWrapperClient = ({ children }: ContactWrapperProps) => {
   const wrapperRef = useRef<HTMLDivElement>(null);
 
   const tContact = useTranslations("ContactSection"); // Dostosuj nazwę sekcji
+  const mm = gsap.matchMedia();
 
   const { contextSafe } = useGSAP(
     () => {
+      mm.add("(max-width: 1023px)", () => {
+        gsap.set(".footer", { opacity: "0" });
+
+        return () => {
+          gsap.set(".footer", { opacity: "1" });
+        };
+      });
+
       const master = gsap.timeline({
         scrollTrigger: {
           trigger: ".tech-wrapper",

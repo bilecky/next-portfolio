@@ -28,6 +28,7 @@ const config: Config = {
         contactFormPadding: "2rem",
       },
       maxWidth: {
+        buttonsMaxWidth: "200px",
         contentWidth: "725px", // Własna szerokość dla tekstu
       },
       keyframes: {

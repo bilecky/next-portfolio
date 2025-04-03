@@ -294,7 +294,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
                   text={tProjectPage(`projects.${paramsProjectId}.description`)}
                 />
               </p>
-              <div className="buttons_wrapper xs:w-2/3 flex flex-col gap-5 pt-10 fold:w-full sm:w-1/2 md:mx-auto md:w-1/2 lg:mx-0 lg:w-auto lg:flex-row">
+              <div className="buttons_wrapper max-w-buttonsMaxWidth flex flex-col gap-5 pt-10 fold:w-full md:mx-auto lg:mx-0 lg:max-w-none lg:flex-row">
                 {projects[paramsProjectId - 1].hasOnlineDemo && (
                   <div className="button_wrapper">
                     <a
