@@ -253,7 +253,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
   return (
     <PageTransition>
       <section className="project_details relative z-10 cursor-default py-40 opacity-0">
-        <h1 className="project_details_title mb-14 px-4 text-center font-mainHeaderFont text-[2.2rem] font-extralight uppercase text-background max-fold:text-3xl md:text-[5rem] lg:mb-24 lg:text-section-header-lg xl:px-28 2xl:text-[8rem] dark:text-mainFontColor">
+        <h1 className="project_details_title container mb-14 text-center font-mainHeaderFont text-[2.2rem] font-extralight uppercase text-background max-fold:text-3xl md:text-[5rem] lg:mb-24 lg:text-section-header-lg 2xl:text-[8rem] dark:text-mainFontColor">
           {tProjectPage(`projects.${paramsProjectId}.title`)}
         </h1>
         <div
@@ -294,7 +294,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
                   text={tProjectPage(`projects.${paramsProjectId}.description`)}
                 />
               </p>
-              <div className="buttons_wrapper flex w-2/4 flex-col gap-5 pt-10 md:mx-auto lg:mx-0 lg:w-auto lg:flex-row">
+              <div className="buttons_wrapper xs:w-2/3 flex flex-col gap-5 pt-10 fold:w-full sm:w-1/2 md:mx-auto md:w-1/2 lg:mx-0 lg:w-auto lg:flex-row">
                 {projects[paramsProjectId - 1].hasOnlineDemo && (
                   <div className="button_wrapper">
                     <a
@@ -348,10 +348,10 @@ export default function ProjectPage({ params }: ProjectPageProps) {
             </div>
 
             <div className="description_section__right">
-              <h2 className="description_title py-2 text-2xl text-gray-500 dark:text-gray-400">
+              <h2 className="description_title text-2xl text-gray-500 dark:text-gray-400">
                 _tech-stack
               </h2>
-              <ul className="technology_wrapper flex flex-wrap items-start gap-3 pt-5 xl:flex-col">
+              <ul className="technology_wrapper flex flex-wrap items-start gap-3 pt-descriptionPadding xl:flex-col">
                 {projects[paramsProjectId - 1].technologiesUsed.map(
                   (item, index) => (
                     <li

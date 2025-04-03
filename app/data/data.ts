@@ -31,6 +31,7 @@ export const projects: Project[] = [
       "Firestore",
       "Firebase Auth",
       "Tailwind CSS",
+      "Redux",
     ],
   },
   {
@@ -115,8 +116,6 @@ export const projects: Project[] = [
       "AWS API Gateway",
       "AWS Amplify",
       "Context",
-      "HTML",
-      "CSS",
     ],
   },
   {

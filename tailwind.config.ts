@@ -61,7 +61,8 @@ const config: Config = {
         mono: ["var(--font-geist-mono)", "monospace"],
       },
       screens: {
-        fold: "345px",
+        fold: "344px",
+        xs: "360px",
       },
       colors: {
         mainFontColor: "#FBFCF8",
