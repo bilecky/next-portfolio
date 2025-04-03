@@ -100,7 +100,7 @@ const Header = ({ locale }: HeaderProps) => {
 
       <div
         ref={menuContainerRef}
-        className="white-line-container relative mx-4 w-5/6 justify-self-center"
+        className="white-line-container w-full justify-self-center"
       >
         <button
           aria-label="Otwórz menu"
@@ -113,7 +113,7 @@ const Header = ({ locale }: HeaderProps) => {
 
         <div
           ref={menuRef}
-          className="menu-container glassmorphism absolute left-1/2 top-12 mx-2 h-0 w-[80vw] -translate-x-1/2 overflow-hidden rounded-md text-background md:left-0 md:right-0 md:top-10 md:mx-auto md:w-[80%] md:-translate-x-0"
+          className="menu-container glassmorphism absolute left-0 right-0 mx-auto h-0 w-4/5 overflow-hidden rounded-md text-background sm:w-1/2 md:w-1/3 lg:w-1/4"
         >
           <nav className="h-full w-full p-5">
             <ul className="dropdown-menu space-y-4">
