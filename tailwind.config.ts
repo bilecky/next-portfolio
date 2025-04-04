@@ -64,6 +64,9 @@ const config: Config = {
       screens: {
         fold: "344px",
         xs: "360px",
+        "landscape-short": {
+          raw: "(orientation: landscape) and (max-height: 800px)",
+        },
       },
       colors: {
         mainFontColor: "#FBFCF8",
