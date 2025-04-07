@@ -13,6 +13,8 @@ import useMediaQuery from "@/app/hooks/useMediaQuery";
 import { useTheme } from "@/app/context/ThemeProvider";
 import { useTranslations } from "next-intl";
 import { TbWorldWww } from "react-icons/tb";
+import { useRouter } from "next/navigation";
+import { useLenis } from "@studio-freight/react-lenis";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -24,9 +26,9 @@ type ProjectPageProps = {
 
 export default function ProjectPage({ params }: ProjectPageProps) {
   const tProjectPage = useTranslations("SingleProjectPage");
+  const lenis = useLenis(); // Uzyskaj instancję Lenis
 
-  const isMobile = useMediaQuery("(max-width: 768px)");
-
+  const router = useRouter();
   const { theme } = useTheme();
 
   const containerRef = useRef<HTMLDivElement>(null);
@@ -43,6 +45,12 @@ export default function ProjectPage({ params }: ProjectPageProps) {
   const imageElements = imageRefs.current;
   const chooseThemeAndPickDescriptionColor =
     theme === "dark" ? "#FBFCF8" : "#222222";
+
+  useEffect(() => {
+    if (lenis) {
+      lenis.scrollTo(0, { immediate: true });
+    }
+  }, [paramsProjectId]);
 
   useGSAP((context, contextSafe) => {
     if (!containerRef.current || !imageElements || !contextSafe) return;
@@ -250,12 +258,29 @@ export default function ProjectPage({ params }: ProjectPageProps) {
     },
   );
 
+  const handleProjectChange = (direction: number) => {
+    const currentIndex = projects.findIndex(
+      (project) => project.id === Number(paramsProjectId),
+    );
+    // Oblicz nowy indeks z uwzględnieniem zapętlenia
+    const newIndex =
+      (currentIndex + direction + projects.length) % projects.length;
+
+    // Pobierz ID nowego projektu i przejdź do niego
+    const nextProjectId = projects[newIndex].id;
+    router.push(`/projects/${nextProjectId}`);
+  };
+
   return (
     <PageTransition>
       <section className="project_details relative z-10 cursor-default py-40 opacity-0">
         <h1 className="project_details_title container mb-14 text-center font-mainHeaderFont text-[2.2rem] font-extralight uppercase text-background max-fold:text-3xl md:text-[5rem] lg:mb-24 lg:text-section-header-lg 2xl:text-[8rem] dark:text-mainFontColor">
           {tProjectPage(`projects.${paramsProjectId}.title`)}
         </h1>
+        <div className="flex justify-center gap-x-4 text-white">
+          <button onClick={() => handleProjectChange(-1)}>Back</button>
+          <button onClick={() => handleProjectChange(1)}>next</button>
+        </div>
         <div
           ref={containerRef}
           className="projects_screens flex h-[70vh] w-full flex-col xl:flex-row landscape:flex-row"
@@ -294,7 +319,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
                   text={tProjectPage(`projects.${paramsProjectId}.description`)}
                 />
               </p>
-              <div className="buttons_wrapper max-w-buttonsMaxWidth flex flex-col gap-5 pt-10 fold:w-full md:mx-auto lg:mx-0 lg:max-w-none lg:flex-row">
+              <div className="buttons_wrapper max-w-buttonsMaxWidth flex flex-col gap-5 pt-10 md:mx-auto lg:mx-0 lg:max-w-none lg:flex-row">
                 {projects[paramsProjectId - 1].hasOnlineDemo && (
                   <div className="button_wrapper">
                     <a
