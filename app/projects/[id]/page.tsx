@@ -6,7 +6,7 @@ import gsap from "gsap";
 import PageTransition from "@/app/components/common/PageTransition";
 import { projects } from "@/app/data/data";
 import Image from "next/image";
-import { RiGithubFill } from "react-icons/ri";
+import { RiArrowTurnBackLine, RiGithubFill } from "react-icons/ri";
 import Splitter from "@/app/utils/Splitter";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import useMediaQuery from "@/app/hooks/useMediaQuery";
@@ -15,6 +15,7 @@ import { useTranslations } from "next-intl";
 import { TbWorldWww } from "react-icons/tb";
 import { useRouter } from "next/navigation";
 import { useLenis } from "@studio-freight/react-lenis";
+import { RiArrowLeftWideLine, RiArrowRightWideLine } from "react-icons/ri";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -274,13 +275,10 @@ export default function ProjectPage({ params }: ProjectPageProps) {
   return (
     <PageTransition>
       <section className="project_details relative z-10 cursor-default py-40 opacity-0">
-        <h1 className="project_details_title container mb-14 text-center font-mainHeaderFont text-[2.2rem] font-extralight uppercase text-background max-fold:text-3xl md:text-[5rem] lg:mb-24 lg:text-section-header-lg 2xl:text-[8rem] dark:text-mainFontColor">
+        <h1 className="project_details_title lg:[6rem] container mb-12 text-center font-mainHeaderFont text-[2.2rem] font-extralight uppercase text-background max-fold:text-3xl md:text-[5rem] lg:mb-20 xl:text-section-header-lg dark:text-mainFontColor">
           {tProjectPage(`projects.${paramsProjectId}.title`)}
         </h1>
-        <div className="flex justify-center gap-x-4 text-white">
-          <button onClick={() => handleProjectChange(-1)}>Back</button>
-          <button onClick={() => handleProjectChange(1)}>next</button>
-        </div>
+
         <div
           ref={containerRef}
           className="projects_screens flex h-[70vh] w-full flex-col xl:flex-row landscape:flex-row"
@@ -304,90 +302,116 @@ export default function ProjectPage({ params }: ProjectPageProps) {
         </div>
         <div className="horizontal_line my-20 h-1 w-1/2 bg-gradient-to-r from-black to-transparent dark:from-white dark:to-transparent"></div>
 
-        <div className="description container xl:max-w-screen-xl">
-          <div className="description_wrapper grid gap-14 xl:grid-cols-[5fr_2fr] xl:gap-24">
-            <div className="description_section__left">
-              <h2 className="description_title text-2xl text-gray-500 dark:text-gray-400">
-                _{tProjectPage("description")}
-              </h2>
-              <p
-                ref={descriptionTextRef}
-                className="description_text pt-descriptionPadding text-SingleProjectDescriptionFont text-gray-400 lg:text-xl dark:text-gray-500"
-              >
-                <Splitter
-                  className="splitted_description"
-                  text={tProjectPage(`projects.${paramsProjectId}.description`)}
-                />
-              </p>
-              <div className="buttons_wrapper max-w-buttonsMaxWidth flex flex-col gap-5 pt-10 md:mx-auto lg:mx-0 lg:max-w-none lg:flex-row">
-                {projects[paramsProjectId - 1].hasOnlineDemo && (
-                  <div className="button_wrapper">
-                    <a
-                      target="_blank"
-                      href="https://github.com"
-                      className="group inline-flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-sm border-2 border-background border-opacity-30 bg-transparent px-6 py-4 leading-none text-background transition-all duration-300 dark:border-mainFontColor dark:text-mainFontColor"
-                    >
-                      <div className="text_container relative">
-                        <span className="first_text block overflow-hidden transition-all duration-300 group-hover:translate-y-[-100%] group-hover:opacity-0">
-                          {tProjectPage(
-                            `projects.${paramsProjectId}.demoButtonTitle`,
-                          )}
-                        </span>
-                        <span className="second_text absolute inset-0 translate-y-[100%] overflow-hidden whitespace-nowrap opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
-                          {tProjectPage(
-                            `projects.${paramsProjectId}.demoButtonTitle`,
-                          )}
-                        </span>
-                      </div>
+        <div className="description_wrapper relative">
+          <div className="navigation_buttons absolute -bottom-20 flex w-full justify-between text-3xl text-background opacity-50 md:justify-center md:gap-x-20 lg:text-4xl 2xl:top-1/2 2xl:-translate-y-1/2 2xl:justify-between 2xl:gap-x-0 2xl:text-section-header-lg 2xl:opacity-40 dark:text-gray-400">
+            <button
+              onClick={() => handleProjectChange(-1)}
+              aria-label="Previous project"
+              className="flex scale-100 transform items-center transition duration-300 hover:scale-90 hover:text-background dark:hover:text-mainFontColor"
+            >
+              <RiArrowLeftWideLine />
+              <span className="font-mono text-lg lg:text-xl 2xl:hidden">
+                previous
+              </span>
+            </button>
+            <button
+              onClick={() => handleProjectChange(1)}
+              aria-label="Next project"
+              className="flex scale-100 transform flex-row-reverse items-center transition duration-300 hover:scale-90 hover:text-background dark:hover:text-mainFontColor"
+            >
+              <RiArrowRightWideLine />
+              <span className="font-mono text-lg lg:text-xl 2xl:hidden">
+                next
+              </span>
+            </button>
+          </div>
+          <div className="description container xl:max-w-screen-xl">
+            <div className="description_wrapper grid gap-14 xl:grid-cols-[5fr_2fr] xl:gap-24">
+              <div className="description_section__left">
+                <h2 className="description_title font-mono text-2xl text-gray-500 dark:text-gray-400">
+                  _{tProjectPage("description")}
+                </h2>
+                <p
+                  ref={descriptionTextRef}
+                  className="description_text pt-descriptionPadding text-SingleProjectDescriptionFont text-gray-400 lg:text-xl dark:text-gray-500"
+                >
+                  <Splitter
+                    className="splitted_description"
+                    text={tProjectPage(
+                      `projects.${paramsProjectId}.description`,
+                    )}
+                  />
+                </p>
+                <div className="buttons_wrapper max-w-buttonsMaxWidth flex flex-col gap-5 pt-10 md:mx-auto lg:mx-0 lg:max-w-none lg:flex-row">
+                  {projects[paramsProjectId - 1].hasOnlineDemo && (
+                    <div className="button_wrapper">
+                      <a
+                        target="_blank"
+                        href="https://github.com"
+                        className="group inline-flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-sm border-2 border-background border-opacity-30 bg-transparent px-6 py-4 leading-none text-background transition-all duration-300 dark:border-mainFontColor dark:text-mainFontColor"
+                      >
+                        <div className="text_container relative">
+                          <span className="first_text block overflow-hidden transition-all duration-300 group-hover:translate-y-[-100%] group-hover:opacity-0">
+                            {tProjectPage(
+                              `projects.${paramsProjectId}.demoButtonTitle`,
+                            )}
+                          </span>
+                          <span className="second_text absolute inset-0 translate-y-[100%] overflow-hidden whitespace-nowrap opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+                            {tProjectPage(
+                              `projects.${paramsProjectId}.demoButtonTitle`,
+                            )}
+                          </span>
+                        </div>
 
-                      <TbWorldWww className="ml-3 text-2xl" />
-                    </a>
-                  </div>
-                )}
+                        <TbWorldWww className="ml-3 text-2xl" />
+                      </a>
+                    </div>
+                  )}
 
-                {projects[paramsProjectId - 1].hasGitHubRepo && (
-                  <div className="button_wrapper">
-                    <a
-                      target="_blank"
-                      href="https://github.com"
-                      className="group relative inline-flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-sm border-2 border-background border-opacity-30 bg-transparent px-6 py-4 leading-none text-background transition-all duration-300 dark:border-mainFontColor dark:text-mainFontColor"
-                    >
-                      <div className="text_container relative">
-                        <span className="first_text block overflow-hidden text-center transition-all duration-300 group-hover:translate-y-[-100%] group-hover:opacity-0">
-                          {tProjectPage(
-                            `projects.${paramsProjectId}.githubButtonTitle`,
-                          )}
-                        </span>
-                        <span className="second_text absolute inset-0 flex translate-y-[100%] items-center justify-center overflow-hidden whitespace-nowrap opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
-                          {tProjectPage(
-                            `projects.${paramsProjectId}.githubButtonTitle`,
-                          )}
-                        </span>
-                      </div>
+                  {projects[paramsProjectId - 1].hasGitHubRepo && (
+                    <div className="button_wrapper">
+                      <a
+                        target="_blank"
+                        href="https://github.com"
+                        className="group relative inline-flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-sm border-2 border-background border-opacity-30 bg-transparent px-6 py-4 leading-none text-background transition-all duration-300 dark:border-mainFontColor dark:text-mainFontColor"
+                      >
+                        <div className="text_container relative">
+                          <span className="first_text block overflow-hidden text-center transition-all duration-300 group-hover:translate-y-[-100%] group-hover:opacity-0">
+                            {tProjectPage(
+                              `projects.${paramsProjectId}.githubButtonTitle`,
+                            )}
+                          </span>
+                          <span className="second_text absolute inset-0 flex translate-y-[100%] items-center justify-center overflow-hidden whitespace-nowrap opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+                            {tProjectPage(
+                              `projects.${paramsProjectId}.githubButtonTitle`,
+                            )}
+                          </span>
+                        </div>
 
-                      <RiGithubFill className="ml-3 text-2xl" />
-                    </a>
-                  </div>
-                )}
+                        <RiGithubFill className="ml-3 text-2xl" />
+                      </a>
+                    </div>
+                  )}
+                </div>
               </div>
-            </div>
 
-            <div className="description_section__right">
-              <h2 className="description_title text-2xl text-gray-500 dark:text-gray-400">
-                _tech-stack
-              </h2>
-              <ul className="technology_wrapper flex flex-wrap items-start gap-3 pt-descriptionPadding xl:flex-col">
-                {projects[paramsProjectId - 1].technologiesUsed.map(
-                  (item, index) => (
-                    <li
-                      key={index + "-tech"}
-                      className="technology_item description_text whitespace-nowrap rounded-3xl border-[1px] border-background border-opacity-30 px-5 py-1 text-center text-lg text-background dark:border-mainFontColor dark:text-mainFontColor"
-                    >
-                      {item}
-                    </li>
-                  ),
-                )}
-              </ul>
+              <div className="description_section__right">
+                <h2 className="description_title font-mono text-2xl text-gray-500 dark:text-gray-400">
+                  _tech-stack
+                </h2>
+                <ul className="technology_wrapper flex flex-wrap items-start gap-3 pt-descriptionPadding xl:flex-col">
+                  {projects[paramsProjectId - 1].technologiesUsed.map(
+                    (item, index) => (
+                      <li
+                        key={index + "-tech"}
+                        className="technology_item description_text whitespace-nowrap rounded-3xl border-[1px] border-background border-opacity-30 px-5 py-1 text-center text-lg text-background dark:border-mainFontColor dark:text-mainFontColor"
+                      >
+                        {item}
+                      </li>
+                    ),
+                  )}
+                </ul>
+              </div>
             </div>
           </div>
         </div>
