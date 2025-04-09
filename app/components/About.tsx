@@ -104,10 +104,10 @@ const About = () => {
               quality={50}
             />
             <div className="pointer-events-none absolute inset-0 border-b-4 border-l-4 border-r-4 border-t-4 border-transparent">
-              <div className="corner-el absolute -left-2 -top-2 -z-10 h-10 w-10 bg-background dark:bg-secondBackground"></div>
-              <div className="corner-el absolute -right-2 -top-2 -z-10 h-10 w-10 bg-background dark:bg-secondBackground"></div>
-              <div className="corner-el absolute -bottom-2 -left-2 -z-10 h-10 w-10 bg-background dark:bg-secondBackground"></div>
-              <div className="corner-el absolute -bottom-2 -right-2 -z-10 h-10 w-10 bg-background dark:bg-secondBackground"></div>
+              <div className="corner-el absolute -left-2 -top-2 -z-10 h-10 w-10 rounded-sm bg-background dark:bg-secondBackground"></div>
+              <div className="corner-el absolute -right-2 -top-2 -z-10 h-10 w-10 rounded-sm bg-background dark:bg-secondBackground"></div>
+              <div className="corner-el absolute -bottom-2 -left-2 -z-10 h-10 w-10 rounded-sm bg-background dark:bg-secondBackground"></div>
+              <div className="corner-el absolute -bottom-2 -right-2 -z-10 h-10 w-10 rounded-sm bg-background dark:bg-secondBackground"></div>
             </div>
           </div>
         </div>

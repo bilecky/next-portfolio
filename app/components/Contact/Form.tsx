@@ -78,7 +78,7 @@ const Form = () => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="py-contactFormPadding relative flex flex-col gap-12 lg:py-0"
+      className="relative flex flex-col gap-12 py-contactFormPadding lg:py-0"
     >
       {isLoading && (
         <div className="absolute inset-0 z-[100] flex items-end justify-center">
@@ -168,7 +168,7 @@ const Form = () => {
         <button
           type="submit"
           className={clsx(
-            "group inline-flex w-auto cursor-pointer items-center overflow-hidden rounded-sm border-2 border-background bg-background px-6 py-4 leading-none text-mainFontColor transition-all duration-300 hover:bg-mainFontColor hover:text-background",
+            "group inline-flex w-auto cursor-pointer items-center overflow-hidden rounded-sm border-2 border-background bg-background px-6 py-4 leading-none text-mainFontColor transition-all duration-300 hover:bg-transparent hover:text-background",
             {
               "cursor-not-allowed opacity-50": isLoading,
             },
