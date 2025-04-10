@@ -13,13 +13,13 @@ const Contact = async () => {
   return (
     <ContactWrapperClient>
       <div className="container relative py-20 lg:py-28">
-        <h2 className="contact_header text-center font-mainHeaderFont text-mobile uppercase leading-none tracking-wide text-background lg:text-section-header-lg xl:text-section-header-xl 2xl:text-section-header-2xl">
+        <h2 className="contact_header max-fold:text-fold-text text-center font-mainHeaderFont text-mobile uppercase leading-none tracking-wide text-background lg:text-section-header-lg xl:text-section-header-xl 2xl:text-section-header-2xl">
           {tContact("title")}
         </h2>
 
         <div className="contact_wrapper grid-cols-2 gap-20 py-descriptionPadding md:pb-2 md:pt-12 lg:grid">
           <div className="contact_description flex flex-col">
-            <p className="about_description text-sm lg:text-xl">
+            <p className="about_description text-center text-sm lg:text-left lg:text-xl">
               {tContact("paragraph")}
               <a
                 href="mailto:kontakt@pawelbilski.com"

@@ -62,7 +62,7 @@ const config: Config = {
         mono: ["var(--font-geist-mono)", "monospace"],
       },
       screens: {
-        fold: "344px",
+        "max-fold": { max: "344px" },
         xs: "360px",
         "landscape-short": {
           raw: "(orientation: landscape) and (max-height: 800px)",
@@ -77,6 +77,7 @@ const config: Config = {
         blackSectionText: "#b8b8b8",
       },
       fontSize: {
+        "fold-text": "3rem",
         SingleProjectDescriptionFont: ".925rem",
         mobile: "3.8rem",
         "section-header-lg": "8rem", // Dodanie niestandardowej wielkości czcionki

@@ -275,7 +275,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
   return (
     <PageTransition>
       <section className="project_details relative z-10 cursor-default py-40 opacity-0">
-        <h1 className="project_details_title lg:[6rem] container mb-12 text-center font-mainHeaderFont text-[2.2rem] font-extralight uppercase text-background max-fold:text-3xl md:text-[5rem] lg:mb-20 xl:text-section-header-lg dark:text-mainFontColor">
+        <h1 className="project_details_title lg:[6rem] max-fold:text-3xl container mb-12 text-center font-mainHeaderFont text-[2.2rem] font-extralight uppercase text-background md:text-[5rem] lg:mb-20 xl:text-section-header-lg dark:text-mainFontColor">
           {tProjectPage(`projects.${paramsProjectId}.title`)}
         </h1>
 
@@ -311,7 +311,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
             >
               <RiArrowLeftWideLine />
               <span className="font-mono text-lg lg:text-xl 2xl:hidden">
-                previous
+                {tProjectPage("previousProjectTitle")}
               </span>
             </button>
             <button
@@ -321,7 +321,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
             >
               <RiArrowRightWideLine />
               <span className="font-mono text-lg lg:text-xl 2xl:hidden">
-                next
+                {tProjectPage("nextProjectTitle")}
               </span>
             </button>
           </div>
@@ -342,7 +342,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
                     )}
                   />
                 </p>
-                <div className="buttons_wrapper max-w-buttonsMaxWidth flex flex-col gap-5 pt-10 md:mx-auto lg:mx-0 lg:max-w-none lg:flex-row">
+                <div className="buttons_wrapper flex max-w-buttonsMaxWidth flex-col gap-5 pt-10 md:mx-auto lg:mx-0 lg:max-w-none lg:flex-row">
                   {projects[paramsProjectId - 1].hasOnlineDemo && (
                     <div className="button_wrapper">
                       <a

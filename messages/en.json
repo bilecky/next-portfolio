@@ -59,7 +59,8 @@
   "SingleProjectPage": {
     "description": "description",
     "buttonTitle": "visit github",
-
+    "previousProjectTitle": "previous ",
+    "nextProjectTitle": "next ",
     "projects": {
       "1": {
         "title": "WorkFlow Pro",

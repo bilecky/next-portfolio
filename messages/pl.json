@@ -58,8 +58,9 @@
 
   "SingleProjectPage": {
     "description": "o-projekcie",
-
     "buttonTitle": "Visit",
+    "previousProjectTitle": "poprzedni",
+    "nextProjectTitle": "następny",
     "projects": {
       "1": {
         "title": "WorkFlow Pro",
