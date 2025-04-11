@@ -16,7 +16,7 @@
     "messageMaxLength": "Wiadomość może mieć maksymalnie 500 znaków",
     "successMessage": "Wiadomość została wysłana",
     "DEFAULT_API_ROUTE_MAILER_ERROR": "Wystąpił nieoczekiwany błąd",
-    "TOO_MANY_REQUESTS_FROM_IP_ERROR": "Wysłałeś za dużo zapytań z tego adresu"
+    "TOO_MANY_REQUESTS_FROM_IP_ERROR": "Wysłałeś za dużo zapytań "
   },
   "FormPlaceholders": {
     "name": "Imię",
@@ -53,7 +53,7 @@
     "PIN_ALREADY_EXISTS": "Pin o tej nazwie już istnieje",
     "PIN_CONTAINS_FORBIDDEN_WORDS": "Nazwa pinu zawiera niedozwolone słowa",
     "UNKNOWN_ERROR": "Wystąpił nieoczekiwany błąd",
-    "PIN_ALREADY_ADDED_BY_IP": "Już dodałeś pin z tego adresu"
+    "PIN_ALREADY_ADDED_BY_IP": "Już dodałeś swój pin"
   },
 
   "SingleProjectPage": {
@@ -88,7 +88,7 @@
       },
       "5": {
         "title": "pawelbilski.com",
-        "description": "Projekt pawelbilski.com to nowa wersja mojego portfolio, które zaprojektowałem i wdrożyłem od podstaw, ze szczególnym naciskiem na nowoczesne rozwiązania  i dbałość o detale wizualne oraz interaktywne. Celem było stworzenie nie tylko informacyjnej wizytówki, ale także dynamicznej i angażującej aplikacji. Odpowiadałem za cały proces jej powstawania – od koncepcji, przez design (UI/UX), aż po implementację full-stack w ramach ekosystemu Next.js. Witryna została zbudowana przy użyciu Next.js (App Router) i TypeScript, w pełni wykorzystując jego możliwości, takie jak renderowanie po stronie serwera (SSR), Server Actions (np. do obsługi interaktywnej sekcji 'pinning') oraz API Routes (np. dla formularza kontaktowego zintegrowanego z Nodemailer). Kluczowym elementem projektu jest zaawansowane wykorzystanie biblioteki GSAP, zwłaszcza modułu ScrollTrigger, do stworzenia płynnych, powiązanych z przewijaniem animacji, w tym efektów scrollowania sekcji oraz dynamicznych Marquees. Szczególnym wyzwaniem technicznym i czasowym była implementacja interaktywnego modelu 3D przy użyciu React Three Fiber (R3F) i biblioteki Drei, co wymagało optymalizacji i precyzyjnego zarządzania animacją obiektu 3D po interakcji użytkownika. Interaktywna sekcja 'pinning' pozwala odwiedzającym zostawić pin, który jest zapisywany i odczytywany z bazy danych Vercel Postgres. Do stylowania użyłem Tailwind CSS. Strona jest w pełni responsywna (RWD), wspiera wielojęzyczność (i18n) oraz oferuje przełącznik trybu ciemnego/jasnego (obie funkcjonalności oparte o cookies/localStorage). Wdrożyłem również podstawowe zabezpieczenia przed botami oparte na adresie IP przy formularzu kontaktowym i dodawaniu pinów. Ten projekt demonstruje praktyczne zastosowanie technologii wymienionych w stacku, łącząc estetykę z wydajnością interfejsu użytkownika. Obejmuje integrację frontendu z backendem i bazą danych oraz rozwiązywanie złożonych problemów implementacyjnych, takich jak zaawansowane animacje czy renderowanie grafiki 3D w przeglądarce.",
+        "description": "pawelbilski.com to nowa wersja mojego portfolio, które zaprojektowałem i wdrożyłem od podstaw, ze szczególnym naciskiem na nowoczesne rozwiązania  i dbałość o detale wizualne oraz interaktywne. Celem było stworzenie nie tylko informacyjnej wizytówki, ale także dynamicznej i angażującej aplikacji. Odpowiadałem za cały proces jej powstawania – od koncepcji, przez design (UI/UX), aż po implementację full-stack w ramach ekosystemu Next.js. Witryna została zbudowana przy użyciu Next.js (App Router) i TypeScript, w pełni wykorzystując jego możliwości, takie jak renderowanie po stronie serwera (SSR), Server Actions (np. do obsługi interaktywnej sekcji 'pinning') oraz API Routes (np. dla formularza kontaktowego zintegrowanego z Nodemailer). Kluczowym elementem projektu jest zaawansowane wykorzystanie biblioteki GSAP, zwłaszcza modułu ScrollTrigger, do stworzenia płynnych, powiązanych z przewijaniem animacji, w tym efektów scrollowania sekcji oraz dynamicznych Marquees. Szczególnym wyzwaniem technicznym i czasowym była implementacja interaktywnego modelu 3D przy użyciu React Three Fiber (R3F) i biblioteki Drei, co wymagało optymalizacji i precyzyjnego zarządzania animacją obiektu 3D po interakcji użytkownika. Interaktywna sekcja 'pinning' pozwala odwiedzającym zostawić pin, który jest zapisywany i odczytywany z bazy danych Vercel Postgres. Do stylowania użyłem Tailwind CSS. Strona jest w pełni responsywna (RWD), wspiera wielojęzyczność (i18n) oraz oferuje przełącznik trybu ciemnego/jasnego (obie funkcjonalności oparte o cookies/localStorage). Wdrożyłem również podstawowe zabezpieczenia przed botami oparte na adresie IP przy formularzu kontaktowym i dodawaniu pinów. Ten projekt demonstruje praktyczne zastosowanie technologii wymienionych w stacku, łącząc estetykę z wydajnością interfejsu użytkownika. Obejmuje integrację frontendu z backendem i bazą danych oraz rozwiązywanie złożonych problemów implementacyjnych, takich jak logika aplikacji,  zaawansowane animacje czy renderowanie grafiki 3D w przeglądarce.",
         "demoButtonTitle": "zobacz demo",
         "githubButtonTitle": "odwiedź github"
       }

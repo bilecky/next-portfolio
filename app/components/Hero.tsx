@@ -6,6 +6,7 @@ import Splitter from "../utils/Splitter";
 import gsap from "gsap";
 import { reuseHeaderLineAnimation } from "../utils/ReusableGSAPAnimations";
 import { useTranslations } from "next-intl";
+import { useLenis } from "@studio-freight/react-lenis";
 
 gsap.registerPlugin(useGSAP);
 
@@ -14,6 +15,8 @@ interface HeroProps {
 }
 const Hero = ({ setIntroComplete }: HeroProps) => {
   const t = useTranslations("Hero");
+
+  const lenis = useLenis();
 
   const heroRef = useRef<HTMLElement>(null);
   const [blockInitialScroll, setBlockInitialScroll] = useState<boolean>(true);
@@ -114,7 +117,11 @@ const Hero = ({ setIntroComplete }: HeroProps) => {
         <nav className="max-fold:text-fold-text relative z-0 flex font-mainHeaderFont text-6xl font-[400] tracking-wide md:text-[5rem] lg:text-[8rem] 2xl:text-[10.5rem]">
           <ul className="nav nav-hero select-none space-y-2 uppercase">
             <li className="flex">
-              <div className="splitter-wrapper group inline-block cursor-pointer transition-colors hover:text-gray-400">
+              <a
+                onClick={() => lenis?.scrollTo("#projects")}
+                href="#projects"
+                className="splitter-wrapper group inline-block cursor-pointer transition-colors hover:text-gray-400"
+              >
                 <div className="nav_item flex items-center">
                   <span className="mr-0 inline-block h-0 w-[0.2rem] bg-gray-400 transition-all duration-300 group-hover:mr-7 group-hover:h-[40px] md:group-hover:h-[55px] lg:w-[0.6rem] lg:group-hover:h-[80px] xl:group-hover:h-[90px]"></span>
                   <Splitter
@@ -122,10 +129,14 @@ const Hero = ({ setIntroComplete }: HeroProps) => {
                     text={t("MenuItem1")}
                   />
                 </div>
-              </div>
+              </a>
             </li>
             <li className="flex items-center justify-start">
-              <div className="splitter-wrapper group inline-block cursor-pointer transition-colors hover:text-gray-400">
+              <a
+                onClick={() => lenis?.scrollTo("#stack")}
+                href="#stack"
+                className="splitter-wrapper group inline-block cursor-pointer transition-colors hover:text-gray-400"
+              >
                 <div className="nav_item flex items-center">
                   <span className="mr-0 inline-block h-0 w-[0.2rem] bg-gray-400 transition-all duration-300 group-hover:mr-7 group-hover:h-[40px] md:group-hover:h-[55px] lg:w-[0.6rem] lg:group-hover:h-[80px] xl:group-hover:h-[90px]"></span>
                   <Splitter
@@ -133,11 +144,15 @@ const Hero = ({ setIntroComplete }: HeroProps) => {
                     text={t("MenuItem2")}
                   />
                 </div>
-              </div>
+              </a>
             </li>
 
             <li className="flex items-center justify-start">
-              <div className="splitter-wrapper group inline-block cursor-pointer transition-colors hover:text-gray-400">
+              <a
+                onClick={() => lenis?.scrollTo("#about")}
+                href="#about"
+                className="splitter-wrapper group inline-block cursor-pointer transition-colors hover:text-gray-400"
+              >
                 <div className="nav_item flex items-center">
                   <span className="mr-0 inline-block h-0 w-[0.2rem] bg-gray-400 transition-all duration-300 group-hover:mr-7 group-hover:h-[40px] md:group-hover:h-[55px] lg:w-[0.6rem] lg:group-hover:h-[80px] xl:group-hover:h-[90px]"></span>
                   <Splitter
@@ -145,11 +160,15 @@ const Hero = ({ setIntroComplete }: HeroProps) => {
                     text={t("MenuItem3")}
                   />
                 </div>
-              </div>
+              </a>
             </li>
 
             <li className="flex items-center justify-start">
-              <div className="splitter-wrapper group inline-block cursor-pointer transition-colors hover:text-gray-400">
+              <a
+                onClick={() => lenis?.scrollTo(document.body.scrollHeight)}
+                href="#contact"
+                className="splitter-wrapper group inline-block cursor-pointer transition-colors hover:text-gray-400"
+              >
                 <div className="nav_item flex items-center">
                   <span className="mr-0 inline-block h-0 w-[0.2rem] bg-gray-400 transition-all duration-300 group-hover:mr-7 group-hover:h-[40px] md:group-hover:h-[55px] lg:w-[0.6rem] lg:group-hover:h-[80px] xl:group-hover:h-[90px]"></span>
                   <Splitter
@@ -157,7 +176,7 @@ const Hero = ({ setIntroComplete }: HeroProps) => {
                     text={t("MenuItem4")}
                   />
                 </div>
-              </div>
+              </a>
             </li>
           </ul>
         </nav>

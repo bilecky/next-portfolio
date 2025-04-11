@@ -153,7 +153,7 @@ const Header = ({ locale }: HeaderProps) => {
         <ul className="flex space-x-6">
           <li>
             <a
-              href="https://linkedin.com/in/your-profile"
+              href="https://www.linkedin.com/in/pawel-bilski"
               target="_blank"
               rel="noopener noreferrer"
               className="text-xl transition-colors hover:text-gray-400"
@@ -163,7 +163,7 @@ const Header = ({ locale }: HeaderProps) => {
           </li>
           <li>
             <a
-              href="https://twitter.com/your-profile"
+              href="https://github.com/bilecky"
               target="_blank"
               rel="noopener noreferrer"
               className="text-xl transition-colors hover:text-gray-400"

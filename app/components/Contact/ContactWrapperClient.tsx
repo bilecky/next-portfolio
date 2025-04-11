@@ -105,6 +105,7 @@ const ContactWrapperClient = ({ children }: ContactWrapperProps) => {
 
   return (
     <section
+      id="contact"
       ref={wrapperRef}
       className="contact no-scrollbar panel z-5 relative col-start-1 col-end-2 row-start-2 row-end-2 h-screen w-full bg-thirdBackground will-change-transform dark:bg-secondBackground"
     >

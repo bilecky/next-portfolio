@@ -186,7 +186,10 @@ function Tech({}: Props) {
   });
 
   return (
-    <section className="tech -z-10 py-28 text-background will-change-transform">
+    <section
+      id="stack"
+      className="tech -z-10 py-28 text-background will-change-transform"
+    >
       <div className="overview-wrapper container">
         <div className="overview ml-auto text-right lg:max-w-contentWidth">
           <h2 className="tech-header max-fold:text-fold-text font-mainHeaderFont text-mobile uppercase leading-none lg:text-section-header-lg xl:text-section-header-xl 2xl:text-section-header-2xl">

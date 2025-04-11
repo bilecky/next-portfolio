@@ -32,7 +32,7 @@ function Footer() {
   // Stopka dla podstron /projects/*
   if (isProjectsPage) {
     return (
-      <footer className="relative left-0 top-0">
+      <footer id="footer" className="relative left-0 top-0">
         <div
           ref={footerRef}
           className="footer container absolute bottom-0 left-0 right-0 z-10 h-auto overflow-hidden"
@@ -41,10 +41,7 @@ function Footer() {
           <div className={clsx("text-center text-sm font-light", textClasses)}>
             <p className="py-2">
               © {currentYear} | by
-              <a href="https://github.com/krzysztofzyszkowski">
-                {" "}
-                Paweł Bilski{" "}
-              </a>
+              <a href="https://github.com/bilecky"> Paweł Bilski </a>
             </p>
           </div>
         </div>
