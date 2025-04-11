@@ -16,7 +16,7 @@
     "messageMaxLength": "Wiadomość może mieć maksymalnie 500 znaków",
     "successMessage": "Wiadomość została wysłana",
     "DEFAULT_API_ROUTE_MAILER_ERROR": "Wystąpił nieoczekiwany błąd",
-    "TOO_MANY_REQUESTS_FROM_IP_ERROR": "Wysłałeś za dużo zapytań z tego adresu IP."
+    "TOO_MANY_REQUESTS_FROM_IP_ERROR": "Wysłałeś za dużo zapytań z tego adresu"
   },
   "FormPlaceholders": {
     "name": "Imię",
@@ -26,7 +26,7 @@
   },
   "ContactSection": {
     "title": "Kontakt",
-    "paragraph": "Chcesz porozmawiać o technologiach webowych, masz pytanie dotyczące moich projektów, a może ciekawą ofertę współpracy? Skorzystaj z formularza kontaktowego znajdującego się obok lub skontaktuj się ze mną bezpośrednio pod adresem "
+    "paragraph": "Chcesz porozmawiać o technologiach webowych, masz pytanie dotyczące moich projektów, a może ciekawą ofertę współpracy? Skorzystaj z formularza kontaktowego znajdującego się obok lub skontaktuj się ze mną bezpośrednio pod adresem: "
   },
   "AboutSection": {
     "title": "O mnie",
@@ -53,7 +53,7 @@
     "PIN_ALREADY_EXISTS": "Pin o tej nazwie już istnieje",
     "PIN_CONTAINS_FORBIDDEN_WORDS": "Nazwa pinu zawiera niedozwolone słowa",
     "UNKNOWN_ERROR": "Wystąpił nieoczekiwany błąd",
-    "PIN_ALREADY_ADDED_BY_IP": "Już dodałeś pin z tego adresu IP"
+    "PIN_ALREADY_ADDED_BY_IP": "Już dodałeś pin z tego adresu"
   },
 
   "SingleProjectPage": {

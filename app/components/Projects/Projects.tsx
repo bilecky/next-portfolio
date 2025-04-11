@@ -121,7 +121,6 @@ const Projects = ({ isIntroComplete }: ProjectsProps) => {
             start: "10% top", // Rozpocznij, gdy 10% sekcji hero dotknie górnej krawędzi
             end: "bottom 10%", // Zakończ, gdy dolna krawędź hero znajdzie się na 10% od góry
             scrub: 3, // Płynna synchronizacja ze scrollem
-            markers: true, // Markery do debugowania
           },
         });
 
@@ -153,7 +152,6 @@ const Projects = ({ isIntroComplete }: ProjectsProps) => {
             start: "20% top", // Inny punkt startu dla desktopu
             end: "bottom 20%", // Inny punkt zakończenia
             scrub: 2, // Szybsza reakcja na scroll w wersji desktopowej
-            markers: true,
           },
         });
 
