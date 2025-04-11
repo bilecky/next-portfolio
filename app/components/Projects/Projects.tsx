@@ -111,32 +111,71 @@ const Projects = ({ isIntroComplete }: ProjectsProps) => {
       //   duration: 10,
       // });
 
-      const herodissapear = gsap.timeline({
-        scrollTrigger: {
-          trigger: ".projects", // Make sure this class exists on the element
-          start: "top 80%", // Rozpocznij, gdy górna krawędź sekcji dotknie dolnej krawędzi widoku
-          end: "bottom bottom",
-          scrub: 3, // Sync the animation with scrolling smoothly
-        },
+      const mm = gsap.matchMedia();
+
+      // Animacja dla wersji mobilnej (max-width: 767px)
+      mm.add("(max-width: 767px)", () => {
+        const herodissapearMobile = gsap.timeline({
+          scrollTrigger: {
+            trigger: ".hero", // Sekcja, która wyzwala trigger
+            start: "10% top", // Rozpocznij, gdy 10% sekcji hero dotknie górnej krawędzi
+            end: "bottom 10%", // Zakończ, gdy dolna krawędź hero znajdzie się na 10% od góry
+            scrub: 3, // Płynna synchronizacja ze scrollem
+            markers: true, // Markery do debugowania
+          },
+        });
+
+        herodissapearMobile.to(".section-left", {
+          opacity: 0,
+          ease: "sine.inOut",
+          x: 500, // Przesunięcie w prawo o 500px
+          duration: 0.5,
+        });
+
+        herodissapearMobile.to(
+          ".nav-hero li",
+          {
+            opacity: 0,
+            ease: "sine.inOut",
+            duration: 0.5,
+            stagger: -0.1, // Elementy znikają kolejno w odwrotnej kolejności
+            x: -500, // Przesunięcie w lewo o 500px
+          },
+          0, // Rozpoczęcie w tym samym czasie co poprzednia animacja
+        );
       });
 
-      herodissapear.to(".section-left", {
-        opacity: 0,
-        ease: "power3.inOut",
-        x: 500,
-        duration: 0.5,
-      });
-      herodissapear.to(
-        ".nav-hero li",
-        {
+      // Animacja dla wersji desktopowej (min-width: 768px)
+      mm.add("(min-width: 768px)", () => {
+        const herodissapearDesktop = gsap.timeline({
+          scrollTrigger: {
+            trigger: ".hero",
+            start: "20% top", // Inny punkt startu dla desktopu
+            end: "bottom 20%", // Inny punkt zakończenia
+            scrub: 2, // Szybsza reakcja na scroll w wersji desktopowej
+            markers: true,
+          },
+        });
+
+        herodissapearDesktop.to(".section-left", {
           opacity: 0,
-          ease: "power3.inOut",
+          ease: "sine.inOut",
+          x: 500, // Przesunięcie w prawo o 500px
           duration: 0.5,
-          stagger: -0.1,
-          x: -500,
-        },
-        0,
-      );
+        });
+
+        herodissapearDesktop.to(
+          ".nav-hero li",
+          {
+            opacity: 0,
+            ease: "sine.inOut",
+            duration: 0.5,
+            stagger: -0.1, // Elementy znikają kolejno w odwrotnej kolejności
+            x: -500, // Przesunięcie w lewo o 500px
+          },
+          0, // Rozpoczęcie w tym samym czasie co poprzednia animacja
+        );
+      });
     },
     {
       dependencies: [tWork], // Zmiana języka spowoduje ponowne uruchomienie

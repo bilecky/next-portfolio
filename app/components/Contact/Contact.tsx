@@ -38,7 +38,7 @@ const Contact = async () => {
           </div>
         </div>
 
-        <div className="absolute bottom-2 right-4 hidden space-x-8 xl:flex">
+        <div className="social-buttons-footer-visibility:flex absolute bottom-2 right-4 hidden space-x-8">
           <a
             className="group flex items-center text-lg text-gray-400 transition-all duration-300 hover:-rotate-12 hover:text-background" // Usunięto hover:-rotate-12, zmieniono transition-all na transition-colors, dodano duration, zmieniono kolor hover dla przykładu
             href="https://www.linkedin.com"

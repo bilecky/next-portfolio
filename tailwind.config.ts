@@ -67,6 +67,9 @@ const config: Config = {
         "landscape-short": {
           raw: "(orientation: landscape) and (max-height: 800px)",
         },
+        "social-buttons-footer-visibility": {
+          raw: "(orientation: landscape) and (min-height: 921px) and (min-width: 1280px)",
+        },
       },
       colors: {
         mainFontColor: "#FBFCF8",
