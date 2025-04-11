@@ -343,11 +343,11 @@ export default function ProjectPage({ params }: ProjectPageProps) {
                   />
                 </p>
                 <div className="buttons_wrapper flex max-w-buttonsMaxWidth flex-col gap-5 pt-10 md:mx-auto lg:mx-0 lg:max-w-none lg:flex-row">
-                  {projects[paramsProjectId - 1].hasOnlineDemo && (
+                  {projects[paramsProjectId - 1].demoLink && (
                     <div className="button_wrapper">
                       <a
                         target="_blank"
-                        href="https://github.com"
+                        href={projects[paramsProjectId - 1].demoLink}
                         className="group inline-flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-sm border-2 border-background border-opacity-30 bg-transparent px-6 py-4 leading-none text-background transition-all duration-300 dark:border-mainFontColor dark:text-mainFontColor"
                       >
                         <div className="text_container relative">
@@ -368,11 +368,11 @@ export default function ProjectPage({ params }: ProjectPageProps) {
                     </div>
                   )}
 
-                  {projects[paramsProjectId - 1].hasGitHubRepo && (
+                  {projects[paramsProjectId - 1].githubLink && (
                     <div className="button_wrapper">
                       <a
                         target="_blank"
-                        href="https://github.com"
+                        href={projects[paramsProjectId - 1].githubLink}
                         className="group relative inline-flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-sm border-2 border-background border-opacity-30 bg-transparent px-6 py-4 leading-none text-background transition-all duration-300 dark:border-mainFontColor dark:text-mainFontColor"
                       >
                         <div className="text_container relative">

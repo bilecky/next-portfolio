@@ -4,14 +4,14 @@ export type Project = {
   description: string;
   imagesSrc: string[];
   technologiesUsed: string[];
-  hasGitHubRepo: boolean;
-  hasOnlineDemo: boolean;
+  githubLink?: string;
+  demoLink?: string;
 };
 
 export const projects: Project[] = [
   {
-    hasOnlineDemo: true,
-    hasGitHubRepo: true,
+    githubLink: "https://github.com/bilecky/workflow-pro-app",
+    demoLink: "https://bilecky.github.io/workflow-pro-app/#/",
     id: 1,
     title: "WorkFlow Pro",
     description:
@@ -35,8 +35,8 @@ export const projects: Project[] = [
     ],
   },
   {
-    hasOnlineDemo: true,
-    hasGitHubRepo: true,
+    githubLink: "https://github.com/bilecky/next-team-members-plugin",
+    demoLink: "https://next-team-members-plugin.vercel.app/",
     id: 2,
     title: "TM Plugin",
     description:
@@ -62,8 +62,7 @@ export const projects: Project[] = [
     ],
   },
   {
-    hasOnlineDemo: true,
-    hasGitHubRepo: false,
+    demoLink: "https://hubra.com.pl/",
     id: 3,
     title: "Hubra.com.pl",
     description:
@@ -92,8 +91,7 @@ export const projects: Project[] = [
     ],
   },
   {
-    hasOnlineDemo: false,
-    hasGitHubRepo: true,
+    githubLink: "https://github.com/bilecky/devhirenet",
     id: 4,
     title: "DevHireNet",
     description:
@@ -119,8 +117,8 @@ export const projects: Project[] = [
     ],
   },
   {
-    hasOnlineDemo: true,
-    hasGitHubRepo: true,
+    githubLink: "https://github.com/bilecky/next-portfolio",
+    demoLink: "https://pawelbilski.com/",
     id: 5,
     title: "pawelbilski.com",
     description:
