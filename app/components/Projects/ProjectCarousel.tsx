@@ -142,6 +142,7 @@ const ProjectCarousel = (props: projectCarouselProps) => {
     // console.log("klik");
 
     if (!monitorModelRef.current) return;
+    gsap.killTweensOf(monitorModelRef.current.rotation);
     singleProjectTl.set(monitorModelRef.current?.rotation, {
       x: 0,
       y: 5.05,
