@@ -155,6 +155,8 @@ const ProjectCarousel = (props: projectCarouselProps) => {
           index > currentProject
             ? `-=${Math.PI * 2 * 2}`
             : `+=${Math.PI * 2 * 2}`,
+        x: 0,
+        z: 0,
         duration: 1,
         ease: "power2.inOut",
       })
