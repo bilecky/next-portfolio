@@ -53,7 +53,6 @@ const ThreeModel = forwardRef<THREE.Group, ThreeModelProps>(
               onPointerOut={(e) => (document.body.style.cursor = "default")}
               onPointerOver={(e) => (document.body.style.cursor = "pointer")}
               ref={ref}
-              position={[0, 0, 0]}
               rotation={[0, 5.05, 0]}
             >
               <primitive object={scene} scale={1.2} />

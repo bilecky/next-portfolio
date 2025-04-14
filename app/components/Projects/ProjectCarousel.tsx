@@ -148,7 +148,6 @@ const ProjectCarousel = (props: projectCarouselProps) => {
       y: 5.05,
       z: 0,
     });
-
     singleProjectTl
       .to(monitorModelRef.current.rotation, {
         y:
