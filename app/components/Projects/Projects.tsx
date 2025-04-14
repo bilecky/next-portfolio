@@ -208,8 +208,6 @@ const Projects = ({ isIntroComplete }: ProjectsProps) => {
                   ref={monitorModelRef}
                   currentProject={currentProject}
                 />
-                <AdaptiveDpr pixelated />
-                <Preload all />
               </Canvas>
             )}
           </div>
