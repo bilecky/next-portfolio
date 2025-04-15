@@ -60,8 +60,6 @@ const Projects = ({ isIntroComplete }: ProjectsProps) => {
       },
     });
 
-    // Opóźnienie zmiany tła
-
     bgArea.fromTo(
       [".main", ".black-overlay"],
       { backgroundColor: bgColor },

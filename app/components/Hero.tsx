@@ -34,7 +34,6 @@ const Hero = ({ setIntroComplete }: HeroProps) => {
 
   useGSAP(() => {
     const introTl = gsap.timeline({
-      delay: 0.2,
       onComplete: () => {
         setIntroComplete(true);
         setBlockInitialScroll(false);
@@ -48,6 +47,7 @@ const Hero = ({ setIntroComplete }: HeroProps) => {
       .set([".hero", ".header"], { opacity: 1 })
 
       .from(".black-overlay", {
+        delay: 0.1,
         duration: 1.5,
         yPercent: -100,
         ease: "power4.inOut",
@@ -97,8 +97,8 @@ const Hero = ({ setIntroComplete }: HeroProps) => {
       ref={heroRef}
       className="hero container flex h-auto w-full flex-col py-40 font-mainFont text-background opacity-0 md:flex-row-reverse md:items-end lg:h-screen lg:py-20 landscape-short:h-auto dark:text-mainFontColor"
     >
-      <div className="white-overlay opacity-1 absolute left-0 top-0 h-screen w-full bg-background dark:bg-secondBackground"></div>
-      <div className="black-overlay absolute left-0 top-0 h-screen w-full will-change-transform"></div>
+      <div className="white-overlay opacity-1 absolute inset-0 z-0 h-screen w-full bg-background dark:bg-secondBackground"></div>
+      <div className="black-overlay absolute inset-0 h-screen w-full will-change-transform"></div>
       {/* ABOUT SECTION */}
       <div className="section-left relative z-0 md:text-right lg:w-[30%]">
         <h1 className="gsap-group-hero main-header mb-3 text-xl uppercase will-change-transform">
