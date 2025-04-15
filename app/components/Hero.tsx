@@ -7,6 +7,7 @@ import gsap from "gsap";
 import { reuseHeaderLineAnimation } from "../utils/ReusableGSAPAnimations";
 import { useTranslations } from "next-intl";
 import { useLenis } from "@studio-freight/react-lenis";
+import { blockScroll } from "../utils/helperFunctions";
 
 gsap.registerPlugin(useGSAP);
 
@@ -20,20 +21,20 @@ const Hero = ({ setIntroComplete }: HeroProps) => {
 
   const heroRef = useRef<HTMLElement>(null);
   const [blockInitialScroll, setBlockInitialScroll] = useState<boolean>(true);
+
   useEffect(() => {
     if (blockInitialScroll && heroRef.current) {
-      document.body.style.overflowY = "hidden"; // standard no-scroll implementation
-      document.body.setAttribute("data-lenis-prevent", "true"); // Make sure you pass true as string
+      blockScroll(true);
       heroRef.current.style.pointerEvents = "none";
     } else {
-      document.body.style.overflow = "auto";
-      document.body.removeAttribute("data-lenis-prevent");
+      blockScroll(false);
       if (heroRef.current) heroRef.current.style.pointerEvents = "auto";
     }
   }, [blockInitialScroll]);
 
   useGSAP(() => {
     const introTl = gsap.timeline({
+      delay: 0.2,
       onComplete: () => {
         setIntroComplete(true);
         setBlockInitialScroll(false);
@@ -44,12 +45,12 @@ const Hero = ({ setIntroComplete }: HeroProps) => {
     // Animate overlay
     introTl
       // we're taking header section from HEADER component to be opacity like others from hero section
-      .set([".hero", ".header"], { opacity: 1, duration: 1 })
+      .set([".hero", ".header"], { opacity: 1 })
 
       .from(".black-overlay", {
-        duration: 2,
+        duration: 1.5,
         yPercent: -100,
-        ease: "power4.in",
+        ease: "power4.inOut",
       })
       // Animate menu items
       .from(
@@ -74,13 +75,13 @@ const Hero = ({ setIntroComplete }: HeroProps) => {
       .from(".logo", { opacity: 0, y: -50, duration: 0.3 })
       .from(".white-line", {
         scaleX: 0,
-        duration: 0.4,
+        duration: 0.3,
       })
       .from(".header-nav li", {
         opacity: 0,
         y: -50,
         duration: 0.3,
-        stagger: 0.2,
+        stagger: 0.1,
         ease: "power2.out",
       })
       .to(
@@ -96,8 +97,8 @@ const Hero = ({ setIntroComplete }: HeroProps) => {
       ref={heroRef}
       className="hero container flex h-auto w-full flex-col py-40 font-mainFont text-background opacity-0 md:flex-row-reverse md:items-end lg:h-screen lg:py-20 landscape-short:h-auto dark:text-mainFontColor"
     >
-      <div className="white-overlay opacity-1 absolute inset-0 z-0 bg-background dark:bg-secondBackground"></div>
-      <div className="black-overlay absolute inset-0 will-change-transform"></div>
+      <div className="white-overlay opacity-1 absolute left-0 top-0 h-screen w-full bg-background dark:bg-secondBackground"></div>
+      <div className="black-overlay absolute left-0 top-0 h-screen w-full will-change-transform"></div>
       {/* ABOUT SECTION */}
       <div className="section-left relative z-0 md:text-right lg:w-[30%]">
         <h1 className="gsap-group-hero main-header mb-3 text-xl uppercase will-change-transform">

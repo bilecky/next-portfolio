@@ -103,3 +103,13 @@ export const containsForbiddenWords = (text: string): boolean => {
 };
 
 export const currentYear = new Date().getFullYear();
+
+export const blockScroll = (boolean: boolean) => {
+  if (boolean) {
+    document.body.style.overflowY = "hidden";
+    document.body.setAttribute("data-lenis-prevent", "true");
+  } else {
+    document.body.style.overflow = "auto";
+    document.body.removeAttribute("data-lenis-prevent");
+  }
+};

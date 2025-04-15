@@ -51,20 +51,14 @@ export default function ProjectPage({ params }: ProjectPageProps) {
     if (lenis) {
       lenis.scrollTo(0, { immediate: true });
     }
-  }, [paramsProjectId]);
+  }, [paramsProjectId, lenis]);
 
   useGSAP((context, contextSafe) => {
     if (!containerRef.current || !imageElements || !contextSafe) return;
 
-    document.body.classList.add("pointer-events-none");
+    // document.body.classList.add("pointer-events-none");
 
-    const projectTl = gsap.timeline({
-      onComplete: () => {
-        setTimeout(() => {
-          document.body.classList.remove("pointer-events-none");
-        }, 500);
-      },
-    });
+    const projectTl = gsap.timeline();
 
     projectTl.set(".project_details", { opacity: 1 });
 
@@ -73,7 +67,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
         duration: 0.5,
         y: 250,
         opacity: 0,
-        delay: 1.5,
+        delay: 1.1,
         stagger: 0.1,
         ease: "power2.out",
       })
