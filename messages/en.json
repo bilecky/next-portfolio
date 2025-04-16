@@ -93,5 +93,10 @@
         "githubButtonTitle": "visit github"
       }
     }
+  },
+  "404": {
+    "StandardDescription": "The page you're looking for doesn't exist",
+    "StandardButton": "homepage",
+    "ProjectNotFound": "The project you're looking for doesn't exist"
   }
 }

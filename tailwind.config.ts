@@ -60,6 +60,7 @@ const config: Config = {
         mainHeaderFont: ["var(--font-power-grotesk)", "sans-serif"],
         mainFont: ["var(--font-geist-sans)", "sans-serif"],
         mono: ["var(--font-geist-mono)", "monospace"],
+        doto: ["var(--font-doto)", "sans-serif"],
       },
       screens: {
         "max-fold": { max: "344px" },

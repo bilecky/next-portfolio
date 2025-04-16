@@ -93,5 +93,10 @@
         "githubButtonTitle": "odwiedź github"
       }
     }
+  },
+  "404": {
+    "StandardDescription": "Podana strona nie istnieje",
+    "StandardButton": "strona główna",
+    "ProjectNotFound": "Podany projekt nie istnieje"
   }
 }

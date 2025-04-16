@@ -16,6 +16,7 @@ import { TbWorldWww } from "react-icons/tb";
 import { useRouter } from "next/navigation";
 import { useLenis } from "@studio-freight/react-lenis";
 import { RiArrowLeftWideLine, RiArrowRightWideLine } from "react-icons/ri";
+import { notFound } from "next/navigation";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -46,6 +47,10 @@ export default function ProjectPage({ params }: ProjectPageProps) {
   const imageElements = imageRefs.current;
   const chooseThemeAndPickDescriptionColor =
     theme === "dark" ? "#FBFCF8" : "#222222";
+
+  if (!projects[paramsProjectId - 1] || isNaN(paramsProjectId)) {
+    notFound();
+  }
 
   useEffect(() => {
     if (lenis) {
