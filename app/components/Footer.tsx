@@ -70,7 +70,7 @@ function Footer() {
         <div className="text-secondary text-center text-sm font-light">
           <p className="py-2">
             © {currentYear} | by
-            <a href="https://github.com/krzysztofzyszkowski"> Paweł Bilski </a>
+            <a href="https://pawelbilski.com"> Paweł Bilski </a>
           </p>
         </div>
       </div>
