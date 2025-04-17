@@ -1,6 +1,7 @@
 // app/api/pins/route.ts
 import { NextResponse } from "next/server";
 import { sql } from "@vercel/postgres";
+import { UserPin } from "@/app/components/Contact/PinningComponent";
 
 export const dynamic = "force-dynamic";
 
@@ -8,7 +9,7 @@ export async function GET() {
   try {
     const data = await sql`SELECT * FROM pins`;
 
-    const pins = data.rows.map((pin) => ({
+    const pins: UserPin[] = data.rows.map((pin ) => ({
       id: pin.id,
       name: pin.name,
       position: { x: pin.positionx, y: pin.positiony },
