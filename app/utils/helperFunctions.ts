@@ -109,7 +109,7 @@ export const blockScroll = (boolean: boolean) => {
     document.body.style.overflowY = "hidden";
     document.body.setAttribute("data-lenis-prevent", "true");
   } else {
-    document.body.style.overflow = "auto";
+    document.body.style.overflowY = "auto"; // zmień na overflowY dla spójności
     document.body.removeAttribute("data-lenis-prevent");
   }
 };

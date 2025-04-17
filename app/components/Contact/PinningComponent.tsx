@@ -7,6 +7,7 @@ import { PinFormModal } from "@/app/components/common/PinFormModal";
 import { fetchPins } from "@/app/lib/data";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
+import { useLenis } from "@studio-freight/react-lenis";
 
 export interface UserPin {
   id: string;
@@ -31,7 +32,12 @@ const PinningComponent = ({ fetchedPins }: { fetchedPins: UserPin[] }) => {
     const rect = e.currentTarget.getBoundingClientRect();
     const xPercent = ((e.clientX - rect.left) / rect.width) * 100;
     const yPercent = ((e.clientY - rect.top) / rect.height) * 100;
-    setColor(`#${Math.floor(Math.random() * 16777215).toString(16)}`);
+    setColor(
+      `#${Math.floor(Math.random() * 177)
+        .toString(16)
+        .padStart(2, "0")
+        .repeat(3)}`,
+    );
 
     // Sprawdzamy, czy istnieje już pin w tej pozycji
     const isDuplicate = pins.some(
@@ -52,8 +58,6 @@ const PinningComponent = ({ fetchedPins }: { fetchedPins: UserPin[] }) => {
   const handleAddPin = async (name: string) => {
     setLoading(true);
 
-    //   const ip = await getClientIP();
-    //JUTRO SOBIE OGARNIJ TO POZYSKIWANIE IP ZEBY NIE BYLO SPAMU
     const newPin = {
       id: name,
       name,
@@ -80,7 +84,10 @@ const PinningComponent = ({ fetchedPins }: { fetchedPins: UserPin[] }) => {
 
   return (
     <>
-      <div className="user_pinning_wrapper mt-auto flex min-h-52 w-full flex-grow flex-col pt-8">
+      <div
+        id="user_pinning_wrapper"
+        className="user_pinning_wrapper mt-auto flex min-h-52 w-full flex-grow flex-col pt-8"
+      >
         <div
           onClick={handleClick}
           className="user_pinning magicpattern relative w-full flex-grow cursor-pointer rounded-sm"

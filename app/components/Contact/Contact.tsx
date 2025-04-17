@@ -6,8 +6,17 @@ import { getTranslations } from "next-intl/server";
 import { FiArrowRight, FiArrowUpRight } from "react-icons/fi";
 import { SiMaildotru } from "react-icons/si";
 
+export const dynamic = "force-dynamic";
+
 const Contact = async () => {
-  const pins = await fetchPins();
+  const res = await fetch(
+    "https://next-portfolio-beta-ecru.vercel.app/api/pins",
+    {
+      cache: "no-store",
+    },
+  );
+  const pins = await res.json();
+
   const tContact = await getTranslations("ContactSection");
 
   return (

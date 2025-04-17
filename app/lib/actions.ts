@@ -1,7 +1,6 @@
 "use server";
 
 import { sql } from "@vercel/postgres";
-import { revalidatePath } from "next/cache";
 import { UserPin } from "../components/Contact/PinningComponent";
 import {
   containsForbiddenWords,
@@ -71,20 +70,10 @@ export async function createPin(pin: UserPin) {
         VALUES (${pin.id}, ${sanitizedName}, ${pin.position.x}, ${pin.position.y}, ${pin.pallette}, ${ipAddress})
       `;
 
-    revalidatePath("/");
     return { success: true, data: pin };
   } catch (error) {
     console.error("Database Error/pawel:", error);
 
     return { success: false, code: "UNKNOWN_ERROR" };
   }
-}
-
-export async function getClientIP() {
-  const headers = await import("next/headers").then((mod) => mod.headers());
-  const forwardedFor = headers.get("x-forwarded-for");
-  const ip = forwardedFor
-    ? forwardedFor.split(",")[0]
-    : headers.get("x-real-ip");
-  return ip || "unknown";
 }

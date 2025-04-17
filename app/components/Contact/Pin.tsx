@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { PiPushPinFill } from "react-icons/pi";
+import { RiMapPinUserFill } from "react-icons/ri";
 import { UserPin } from "./PinningComponent";
 
 const Pin = ({ pin }: { pin: UserPin }) => {
@@ -18,7 +18,7 @@ const Pin = ({ pin }: { pin: UserPin }) => {
         transform: "translate(-25%, -50%)",
       }}
     >
-      <PiPushPinFill
+      <RiMapPinUserFill
         className="pin text-lg md:text-xl"
         style={{
           color: pin.pallette,
