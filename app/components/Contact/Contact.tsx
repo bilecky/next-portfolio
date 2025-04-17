@@ -11,6 +11,7 @@ const Contact = async () => {
   const timestamp = Date.now(); // dodaje aktualny timestamp
   const res = await fetch(`${API_URL}/api/pins?t=${timestamp}`, {
     cache: "no-store",
+    method: "GET",
   });
   const pins = await res.json();
 
