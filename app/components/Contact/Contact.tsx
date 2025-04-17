@@ -8,7 +8,8 @@ export const dynamic = "force-dynamic";
 
 const Contact = async () => {
   const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
-  const res = await fetch(`${API_URL}/api/pins`, {
+  const timestamp = Date.now(); // dodaje aktualny timestamp
+  const res = await fetch(`${API_URL}/api/pins?t=${timestamp}`, {
     cache: "no-store",
   });
   const pins = await res.json();
