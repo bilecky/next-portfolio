@@ -9,7 +9,7 @@ export async function GET() {
   try {
     const data = await sql`SELECT * FROM pins`;
 
-    const pins: UserPin[] = data.rows.map((pin ) => ({
+    const pins: UserPin[] = data.rows.map((pin) => ({
       id: pin.id,
       name: pin.name,
       position: { x: pin.positionx, y: pin.positiony },
