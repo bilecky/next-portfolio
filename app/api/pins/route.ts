@@ -16,7 +16,11 @@ export async function GET() {
       pallette: pin.pallette,
     }));
 
-    return NextResponse.json(pins);
+    return NextResponse.json(pins, {
+      headers: {
+        "Cache-Control": "no-store, max-age=0, must-revalidate",
+      },
+    });
   } catch (error) {
     console.error("Database Error:", error);
     return NextResponse.json(
