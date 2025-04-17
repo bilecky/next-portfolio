@@ -1,10 +1,8 @@
 import PinningComponent from "./PinningComponent";
-import { fetchPins } from "@/app/lib/data";
 import ContactWrapperClient from "./ContactWrapperClient";
 import Form from "./Form";
 import { getTranslations } from "next-intl/server";
-import { FiArrowRight, FiArrowUpRight } from "react-icons/fi";
-import { SiMaildotru } from "react-icons/si";
+import { FiArrowUpRight } from "react-icons/fi";
 
 export const dynamic = "force-dynamic";
 

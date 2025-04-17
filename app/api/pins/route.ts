@@ -2,6 +2,8 @@
 import { NextResponse } from "next/server";
 import { sql } from "@vercel/postgres";
 
+export const dynamic = "force-dynamic";
+
 export async function GET() {
   try {
     const data = await sql`SELECT * FROM pins`;
