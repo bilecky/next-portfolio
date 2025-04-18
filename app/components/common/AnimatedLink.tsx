@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import gsap from "gsap";
 import clsx from "clsx";
-import { useLenis } from "@studio-freight/react-lenis";
+import { useLenis } from "lenis/react";
 
 type AnimatedLinkProps = {
   href: string;

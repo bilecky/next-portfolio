@@ -13,7 +13,7 @@ import { useTheme } from "@/app/context/ThemeProvider";
 import { useTranslations } from "next-intl";
 import { TbWorldWww } from "react-icons/tb";
 import { useRouter } from "next/navigation";
-import { useLenis } from "@studio-freight/react-lenis";
+import { useLenis } from "lenis/react";
 import { RiArrowLeftWideLine, RiArrowRightWideLine } from "react-icons/ri";
 import { notFound } from "next/navigation";
 
@@ -273,7 +273,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
   return (
     <PageTransition>
       <section className="project_details relative z-10 cursor-default py-40 opacity-0">
-        <h1 className="project_details_title lg:[6rem] max-fold:text-3xl container mb-12 text-center font-mainHeaderFont text-[2.2rem] font-extralight uppercase text-background md:text-[5rem] lg:mb-20 xl:text-section-header-lg dark:text-mainFontColor">
+        <h1 className="project_details_title lg:[6rem] container mb-12 text-center font-mainHeaderFont text-[2.2rem] font-extralight uppercase text-background md:text-[5rem] lg:mb-20 xl:text-section-header-lg max-fold:text-3xl dark:text-mainFontColor">
           {tProjectPage(`projects.${paramsProjectId}.title`)}
         </h1>
 

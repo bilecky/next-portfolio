@@ -39,7 +39,6 @@ const PageTransition = ({ children }: PageTransitionProps) => {
       .set(".header", { opacity: 1, duration: 1 })
 
       .from(transitionRef.current, {
-        delay: 0.2,
         duration: 1.5,
         yPercent: -100,
         ease: "power4.inOut",

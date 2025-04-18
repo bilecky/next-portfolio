@@ -1,12 +1,12 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
 import Splitter from "../utils/Splitter";
 import gsap from "gsap";
 import { reuseHeaderLineAnimation } from "../utils/ReusableGSAPAnimations";
 import { useTranslations } from "next-intl";
-import { useLenis } from "@studio-freight/react-lenis";
+import { useLenis } from "lenis/react";
 import { blockScroll } from "../utils/helperFunctions";
 
 gsap.registerPlugin(useGSAP);
@@ -40,14 +40,11 @@ const Hero = ({ setIntroComplete }: HeroProps) => {
       },
     });
 
-    // Animate  overlay
-    // Animate overlay
     introTl
-      // we're taking header section from HEADER component to be opacity like others from hero section
-      .set([".hero", ".header"], { opacity: 1 })
+
+      .set([heroRef.current, ".header"], { opacity: 1 })
 
       .from(".black-overlay", {
-        delay: 0.25,
         duration: 1.5,
         yPercent: -100,
         ease: "power4.inOut",
@@ -90,7 +87,7 @@ const Hero = ({ setIntroComplete }: HeroProps) => {
           onStart: reuseHeaderLineAnimation,
         },
       );
-  }, []);
+  });
 
   return (
     <section
@@ -115,7 +112,7 @@ const Hero = ({ setIntroComplete }: HeroProps) => {
 
       {/* NAV */}
       <div className="section-right pt-10 md:flex-grow lg:pt-0">
-        <nav className="max-fold:text-fold-text relative z-0 flex font-mainHeaderFont text-6xl font-[400] tracking-wide md:text-[5rem] lg:text-[8rem] 2xl:text-[10.5rem]">
+        <nav className="relative z-0 flex font-mainHeaderFont text-6xl font-[400] tracking-wide md:text-[5rem] lg:text-[8rem] 2xl:text-[10.5rem] max-fold:text-fold-text">
           <ul className="nav nav-hero select-none space-y-2 uppercase">
             <li className="flex">
               <a

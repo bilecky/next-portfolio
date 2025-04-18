@@ -5,7 +5,7 @@ import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { TfiAngleDoubleUp } from "react-icons/tfi";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useLenis } from "@studio-freight/react-lenis";
+import { useLenis } from "lenis/react";
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 const GoUpBtn = () => {

@@ -1,13 +1,10 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Pin from "./Pin";
 import { createPin } from "@/app/lib/actions";
 import { PinFormModal } from "@/app/components/common/PinFormModal";
-import { fetchPins } from "@/app/lib/data";
-import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
-import { useLenis } from "@studio-freight/react-lenis";
 
 export interface UserPin {
   id: string;

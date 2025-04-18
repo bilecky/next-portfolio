@@ -48,7 +48,7 @@ const Projects = ({ isIntroComplete }: ProjectsProps) => {
     // ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
 
     const bgColor = theme === "dark" ? "#222222" : "#FBFCF8";
-    const endColor = theme === "dark" ? "#FBFCF8" : "#BDFF0F";
+    const endColor = theme === "dark" ? "#FBFCF8" : "#a6aba5";
     ScrollTrigger.getById("bgScrollTrigger")?.kill();
     const bgArea = gsap.timeline({
       scrollTrigger: {
@@ -186,7 +186,7 @@ const Projects = ({ isIntroComplete }: ProjectsProps) => {
     >
       <div className="overview xl:w-3/5">
         <div className={clsx(isMobile && "container")}>
-          <h2 className="max-fold:text-fold-text projects-header font-mainHeaderFont text-mobile uppercase leading-none lg:text-section-header-lg xl:text-section-header-xl 2xl:text-section-header-2xl">
+          <h2 className="projects-header font-mainHeaderFont text-mobile uppercase leading-none lg:text-section-header-lg xl:text-section-header-xl 2xl:text-section-header-2xl max-fold:text-fold-text">
             <Splitter
               className="header-text will-change-transform"
               text={tWork("title")}

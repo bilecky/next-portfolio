@@ -6,7 +6,6 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import { useTranslations } from "next-intl";
-import useMediaQuery from "@/app/hooks/useMediaQuery";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 interface ContactWrapperProps {
@@ -33,9 +32,9 @@ const ContactWrapperClient = ({ children }: ContactWrapperProps) => {
         scrollTrigger: {
           trigger: ".tech-wrapper",
           start: () => {
-            const techElement = document.querySelector(".tech") as HTMLElement;
+            const techElement = document.querySelector(".stack") as HTMLElement;
             const techHeight = techElement?.offsetHeight || 0;
-            return `top+=${techHeight + 1} bottom`;
+            return `top+=${techHeight} bottom`;
           },
           end: "+=250%",
           scrub: 2,

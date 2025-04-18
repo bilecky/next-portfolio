@@ -1,20 +1,19 @@
 "use client";
 import React, { useRef, useEffect, PropsWithChildren } from "react";
-import { ReactLenis } from "@studio-freight/react-lenis";
+import { ReactLenis } from "lenis/react";
 import gsap from "gsap";
 
 const Lenis = ({ children }: PropsWithChildren) => {
   const lenisRef = useRef(null);
 
   useEffect(() => {
-    function update(time: number) {
-      lenisRef.current?.lenis?.raf(time * 1000); // Synchronizacja z GSAP
+    function update(time) {
+      lenisRef.current?.lenis?.raf(time * 1000);
     }
 
-    gsap.ticker.add(update); // Dodanie Lenis do GSAP ticker
-    return () => {
-      gsap.ticker.remove(update); // Usunięcie po odmontowaniu
-    };
+    gsap.ticker.add(update);
+
+    return () => gsap.ticker.remove(update);
   }, []);
 
   return (
