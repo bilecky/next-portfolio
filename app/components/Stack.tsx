@@ -67,6 +67,25 @@ function Stack({}: Props) {
 
   useGSAP(
     () => {
+      const setupScrollTriggerToggler = (observer: Observer) => {
+        // Logika ScrollTrigger dla zatrzymywania
+        [".wrapper", ".footer"].forEach((el) => {
+          ScrollTrigger.create({
+            trigger: el,
+            start: "top bottom",
+            end: "bottom top",
+            toggleActions: "play pause play pause",
+            onToggle: (self) => {
+              if (self.isActive) {
+                observer.disable();
+              } else {
+                observer.enable();
+              }
+            },
+          });
+        });
+      };
+
       document.fonts.ready.then(() => {
         // Utwórz odpowiedni kontekst matchMedia
         const mm = gsap.matchMedia();
@@ -123,22 +142,7 @@ function Stack({}: Props) {
             },
           });
 
-          // Logika ScrollTrigger dla zatrzymywania
-          [".wrapper", "footer"].forEach((el) => {
-            ScrollTrigger.create({
-              trigger: el,
-              start: "top bottom",
-              end: "bottom top",
-              toggleActions: "play pause play pause",
-              onToggle: (self) => {
-                if (self.isActive) {
-                  marqueeObserver.disable();
-                } else {
-                  marqueeObserver.enable();
-                }
-              },
-            });
-          });
+          setupScrollTriggerToggler(marqueeObserver);
 
           // Funkcja czyszcząca
           return () => {
@@ -177,6 +181,8 @@ function Stack({}: Props) {
               tlMarqueReverseLoop.timeScale(self.deltaY < 0 ? 1 : -1);
             },
           });
+
+          setupScrollTriggerToggler(marqueeObserver);
 
           return () => {
             marqueeObserver.kill();
@@ -221,7 +227,7 @@ function Stack({}: Props) {
                 className="tech-item flex items-center justify-center text-7xl font-extrabold uppercase will-change-transform lg:text-[11rem]"
               >
                 {tech}
-                <span className="tech-item-separator mx-4 h-5 w-5 bg-gray-400"></span>
+                <span className="tech-item-separator mx-4 h-5 w-5 bg-gray-500 dark:bg-gray-400"></span>
               </div>
             );
           })}
@@ -234,7 +240,7 @@ function Stack({}: Props) {
                 className="tech-item-reverse flex items-center justify-center text-7xl font-extrabold uppercase will-change-transform lg:text-[11rem]"
               >
                 {tech}
-                <span className="tech-item-separator mx-4 h-5 w-5 bg-gray-400"></span>
+                <span className="tech-item-separator mx-4 h-5 w-5 bg-gray-500 dark:bg-gray-400"></span>{" "}
               </div>
             );
           })}

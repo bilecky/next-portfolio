@@ -135,7 +135,7 @@ const Header = ({ locale }: HeaderProps) => {
                 <div className="lg:text-LG flex items-center justify-between">
                   <div className="flex items-center justify-center space-x-3">
                     <PiPaintBrushDuotone className="text-xl" />
-                    <span>light / dark</span>
+                    <span>light / mono</span>
                   </div>
                   <div>
                     <ToggleSwitch

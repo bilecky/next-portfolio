@@ -34,7 +34,7 @@ const ContactWrapperClient = ({ children }: ContactWrapperProps) => {
           start: () => {
             const techElement = document.querySelector(".stack") as HTMLElement;
             const techHeight = techElement?.offsetHeight || 0;
-            return `top+=${techHeight} bottom`;
+            return `top+=${techHeight + 1} bottom`;
           },
           end: "+=250%",
           scrub: 2,

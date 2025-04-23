@@ -53,21 +53,21 @@ const Hero = ({ setIntroComplete }: HeroProps) => {
       .from(
         "nav .split-char",
         {
-          x: -100,
+          x: -200,
           rotationX: 360,
           opacity: 0,
           stagger: 0.05,
           ease: "expo.out",
           duration: 1.5,
         },
-        "-=0.05",
+        "-=0.1",
       )
-      .from(".main-header", { opacity: 0, y: 20, duration: 0.4 }, "-=0.7")
-      .from(".subheader", { opacity: 0, y: 20, duration: 0.4 }, "-=0.4")
+      .from(".main-header", { opacity: 0, y: 20, duration: 0.4 }, "-=1")
+      .from(".subheader", { opacity: 0, y: 20, duration: 0.4 }, "-=0.75")
       .from(
         ".description",
         { opacity: 0, y: 20, duration: 0.4, stagger: 0.2 },
-        "-=0.1",
+        "-=0.5",
       )
       .from(".logo", { opacity: 0, y: -50, duration: 0.3 })
       .from(".white-line", {
