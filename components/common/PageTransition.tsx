@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { reuseHeaderLineAnimation } from "../../utils/ReusableGSAPAnimations";
-import { blockScroll } from "@/app/utils/helperFunctions";
+import { blockScroll } from "../../utils/helperFunctions";
 
 type PageTransitionProps = {
   children: React.ReactNode;
