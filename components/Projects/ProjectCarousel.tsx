@@ -138,11 +138,9 @@ const ProjectCarousel = (props: projectCarouselProps) => {
   }, [currentProject, isMobile]);
 
   const handleProjectClick = (index: number) => {
-    const singleProjectTl = gsap.timeline();
-    // console.log("klik");
+    const singleProjectTl = gsap.timeline({ overwrite: "auto" });
 
     if (!monitorModelRef.current) return;
-    gsap.killTweensOf(monitorModelRef.current.rotation);
     singleProjectTl.set(monitorModelRef.current?.rotation, {
       x: 0,
       y: 5.05,
@@ -159,7 +157,7 @@ const ProjectCarousel = (props: projectCarouselProps) => {
         duration: 1,
         ease: "power2.inOut",
       })
-      .to({}, { onStart: () => setCurrentProject(index) }, "-=.7");
+      .call(setCurrentProject, [index], "-=.7");
   };
 
   return (

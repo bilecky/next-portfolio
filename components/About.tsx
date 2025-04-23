@@ -1,21 +1,22 @@
 "use client";
-import React, { Suspense } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Splitter from "../utils/Splitter";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
+import { useRef } from "react";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 const About = () => {
   const tAbout = useTranslations("AboutSection");
+  const aboutRef = useRef<HTMLDivElement>(null);
   useGSAP(
     () => {
       const mainAboutLn = gsap.timeline({
         scrollTrigger: {
-          trigger: ".overview_section",
+          trigger: aboutRef.current,
           start: "top 75%",
           scrub: 2,
           end: "+=80%",
@@ -67,6 +68,7 @@ const About = () => {
       });
     },
     {
+      scope: aboutRef,
       dependencies: [tAbout], // Zmiana języka spowoduje ponowne uruchomienie
       revertOnUpdate: true, // Cofnij animacje przed ponownym uruchomieniem
     },
@@ -74,11 +76,12 @@ const About = () => {
   return (
     <section className="about panel absolute top-0 z-10 col-start-1 col-end-2 row-start-1 row-end-2 min-h-screen w-full overflow-hidden bg-secondBackground py-20 shadow-xl will-change-transform lg:py-36 dark:bg-background">
       <div
+        ref={aboutRef}
         id="about"
         className="about_wrapper container box-border grid max-h-full grid-cols-1 place-items-center gap-10 text-background xl:grid-cols-2 dark:text-blackSectionText"
       >
         <div className="overview_section relative text-mobile">
-          <h2 className="about_header max-fold:text-fold-text font-mainHeaderFont uppercase leading-none tracking-wide text-background lg:text-section-header-lg xl:text-section-header-xl 2xl:text-section-header-2xl dark:text-mainFontColor">
+          <h2 className="about_header font-mainHeaderFont uppercase leading-none tracking-wide text-background lg:text-section-header-lg xl:text-section-header-xl 2xl:text-section-header-2xl max-fold:text-fold-text dark:text-mainFontColor">
             <Splitter
               className="will-change-transform"
               text={tAbout("title")}
