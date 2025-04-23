@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import PageTransition from "@/app/components/common/PageTransition";
+import PageTransition from "@/components/common/PageTransition";
 import { projects } from "@/app/data/data";
 import Image from "next/image";
 import { RiGithubFill } from "react-icons/ri";

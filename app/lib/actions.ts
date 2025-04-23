@@ -1,11 +1,11 @@
 "use server";
 
 import { sql } from "@vercel/postgres";
-import { UserPin } from "../components/Contact/PinningComponent";
+import { UserPin } from "../../components/Contact/PinningComponent";
 import {
   containsForbiddenWords,
   sanitizePinName,
-} from "../utils/helperFunctions";
+} from "../../utils/helperFunctions";
 import { headers } from "next/headers";
 
 export async function createPin(pin: UserPin) {

@@ -1,34 +1,34 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import Header from "./components/Header";
-import CursorFollower from "./components/common/CursorFollower";
-import Footer from "./components/Footer";
-import GoUpBtn from "./components/common/GoUpBtn";
-import Lenis from "./components/common/Lenis";
+import Header from "../components/Header";
+import CursorFollower from "../components/common/CursorFollower";
+import Footer from "../components/Footer";
+import GoUpBtn from "../components/common/GoUpBtn";
+import Lenis from "../components/common/Lenis";
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages } from "next-intl/server";
-import { ThemeProvider } from "./context/ThemeProvider";
+import { ThemeProvider } from "../context/ThemeProvider";
 
 const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
+  src: "../fonts/GeistVF.woff",
   variable: "--font-geist-sans",
   weight: "100 900",
 });
 const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
+  src: "../fonts/GeistMonoVF.woff",
   variable: "--font-geist-mono",
   weight: "100 900",
 });
 
 const powerGrotesk = localFont({
-  src: "./fonts/PowerGrotesk-Regular.woff",
+  src: "../fonts/PowerGrotesk-Regular.woff",
   variable: "--font-power-grotesk",
   weight: "100 200 300 400 500 600 700 800 900",
 });
 
 const doto = localFont({
-  src: "./fonts/Doto-VariableFont_ROND,wght.ttf",
+  src: "../fonts/Doto-VariableFont_ROND,wght.ttf",
   variable: "--font-doto",
   weight: "100 200 300 400 500 600 700 800 900",
 });

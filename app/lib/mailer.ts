@@ -1,5 +1,5 @@
 import { error } from "console";
-import { contactFormData } from "../components/Contact/Form";
+import { contactFormData } from "../../components/Contact/Form";
 
 export async function sendEmail(data: contactFormData) {
   const apiEndPoint = "/api/email";

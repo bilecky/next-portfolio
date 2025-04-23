@@ -1,6 +1,6 @@
 "use client";
 
-import React, { Suspense, useState, useRef } from "react";
+import React, { useState, useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import Splitter from "../../utils/Splitter";
 import gsap from "gsap";
@@ -13,16 +13,10 @@ import {
 } from "../../utils/ReusableGSAPAnimations";
 import { Canvas } from "@react-three/fiber";
 import ThreeModel from "../3DModel/ThreeModel";
-import {
-  AdaptiveDpr,
-  AdaptiveEvents,
-  Loader,
-  Preload,
-} from "@react-three/drei";
 import * as THREE from "three";
-import useMediaQuery from "@/app/hooks/useMediaQuery";
+import useMediaQuery from "../../hooks/useMediaQuery";
 import clsx from "clsx";
-import { useTheme } from "@/app/context/ThemeProvider";
+import { useTheme } from "../../context/ThemeProvider";
 import { useTranslations } from "next-intl";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);

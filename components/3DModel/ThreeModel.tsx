@@ -11,8 +11,8 @@ import {
   useTexture,
 } from "@react-three/drei";
 import * as THREE from "three";
-import { projects } from "@/app/data/data";
-import AnimatedLink from "@/app/components/common/AnimatedLink";
+import { projects } from "../../data/data";
+import AnimatedLink from "@/components/common/AnimatedLink";
 
 useGLTF.preload("/computer_monitor_low-poly/scene-transformed.glb");
 

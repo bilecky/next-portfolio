@@ -1,7 +1,7 @@
 // app/api/pins/route.ts
 import { NextResponse } from "next/server";
 import { sql } from "@vercel/postgres";
-import { UserPin } from "@/app/components/Contact/PinningComponent";
+import { UserPin } from "@/components/Contact/PinningComponent";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;

@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Pin from "./Pin";
 import { createPin } from "@/app/lib/actions";
-import { PinFormModal } from "@/app/components/common/PinFormModal";
+import { PinFormModal } from "@/components/common/PinFormModal";
 import { useTranslations } from "next-intl";
 
 export interface UserPin {

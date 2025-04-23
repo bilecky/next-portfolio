@@ -1,7 +1,7 @@
-import Stack from "./components/Stack";
-import About from "./components/About";
-import Contact from "./components/Contact/Contact";
-import WaitForModel from "./components/WaitForModel";
+import Stack from "../components/Stack";
+import About from "../components/About";
+import Contact from "../components/Contact/Contact";
+import WaitForModel from "../components/WaitForModel";
 
 export default function Home() {
   return (

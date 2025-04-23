@@ -1,7 +1,7 @@
 "use client";
 
-import Hero from "@/app/components/Hero";
-import Projects from "@/app/components/Projects/Projects";
+import Hero from "@/components/Hero";
+import Projects from "@/components/Projects/Projects";
 import { useEffect, useState } from "react";
 import { useLenis } from "lenis/react";
 

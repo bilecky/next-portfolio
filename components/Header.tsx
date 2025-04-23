@@ -10,7 +10,7 @@ import { LiaLanguageSolid } from "react-icons/lia";
 import { PiPaintBrushDuotone } from "react-icons/pi";
 import { Locale } from "@/app/i18n/config";
 import { setUserLocale } from "@/app/lib/locale";
-import { useTheme } from "@/app/context/ThemeProvider";
+import { useTheme } from "../context/ThemeProvider";
 import useMediaQuery from "../hooks/useMediaQuery";
 
 interface HeaderProps {

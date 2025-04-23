@@ -1,12 +1,12 @@
 "use client";
 
 import { useGSAP } from "@gsap/react";
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { projects } from "../../data/data";
 import gsap from "gsap";
 import clsx from "clsx";
-import useMediaQuery from "@/app/hooks/useMediaQuery";
+import useMediaQuery from "../../hooks/useMediaQuery";
 import { Group } from "three";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
