@@ -29,10 +29,11 @@ function Stack({}: Props) {
       const mainTechLine = gsap.timeline({
         scrollTrigger: {
           trigger: stackRef.current, // Make sure this class exists on the element
-          start: "top 60%",
+          start: "top 70%",
           end: "bottom bottom",
           scrub: 3, // Sync the animation with scrolling smoothly,
           refreshPriority: 1,
+          markers: true,
         },
       });
 
@@ -47,6 +48,7 @@ function Stack({}: Props) {
         selector: ".tech-description",
         options: {
           stagger: 1,
+          delay: 1,
         },
       });
 

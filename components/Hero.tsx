@@ -45,7 +45,7 @@ const Hero = ({ setIntroComplete }: HeroProps) => {
       .set([heroRef.current, ".header"], { opacity: 1 })
 
       .from(".black-overlay", {
-        duration: 1.5,
+        duration: 1.75,
         yPercent: -100,
         ease: "power4.inOut",
       })
