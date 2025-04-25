@@ -22,7 +22,7 @@ A new version of my personal portfolio built with Next.js and TypeScript. The si
 - Responsive design (RWD)
 - Dark / light mode toggle (based on localStorage)
 - Language switcher with i18n + cookie persistence
-- Basic IP-based bot protection for forms
+- Basic IP-based bot protection for forms & pinning
 
 ## 📦 Deployment
 
