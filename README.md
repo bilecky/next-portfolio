@@ -16,11 +16,11 @@ A new version of my personal portfolio built with Next.js and TypeScript. The si
 ## ✨ Features
 
 - Smooth scroll-linked animations (GSAP + ScrollTrigger)
-- Interactive 3D model with user-controlled animation (R3F)
-- "Pin a thought" section – pins saved to Postgres DB
+- Interactive 3D model animation (R3F, DREI)
+- "Pin" section – pins saved to Postgres DB
 - Contact form via API Route + Nodemailer
 - Responsive design (RWD)
-- Dark / light mode toggle (based on localStorage)
+- Dark / light mode toggle (based on localStorage + Tailwind)
 - Language switcher with i18n + cookie persistence
 - Basic IP-based bot protection for forms & pinning
 
