@@ -4,7 +4,6 @@ import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-
 import { useTranslations } from "next-intl";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
@@ -35,6 +34,7 @@ const ContactWrapperClient = ({ children }: ContactWrapperProps) => {
           start: () => {
             const techElement = document.querySelector(".stack") as HTMLElement;
             const techHeight = techElement?.offsetHeight || 0;
+            console.log(techHeight);
             return `top+=${techHeight + 1} bottom`;
           },
           end: "+=250%",
@@ -81,15 +81,7 @@ const ContactWrapperClient = ({ children }: ContactWrapperProps) => {
           },
         });
 
-      const handleLoad = () => {
-        ScrollTrigger.getById("master-gsap-tl")?.refresh();
-      };
-
-      window.addEventListener("load", handleLoad);
-
-      return () => {
-        window.removeEventListener("load", handleLoad);
-      };
+      ScrollTrigger.refresh(true);
     },
     {
       dependencies: [tContact],
