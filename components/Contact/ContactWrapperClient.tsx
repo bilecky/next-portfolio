@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -81,14 +81,15 @@ const ContactWrapperClient = ({ children }: ContactWrapperProps) => {
             }
           },
         });
-
-      ScrollTrigger.refresh(true);
     },
     {
-      dependencies: [tContact, pathname],
+      dependencies: [tContact],
       revertOnUpdate: true,
     },
   );
+  useEffect(() => {
+    ScrollTrigger.refresh(true);
+  }, [pathname]);
 
   // Context-safe event handler
   const handleScroll = contextSafe(() => {
