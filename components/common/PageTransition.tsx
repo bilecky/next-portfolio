@@ -36,7 +36,7 @@ const PageTransition = ({ children }: PageTransitionProps) => {
     });
 
     pageTl
-      .set(".header", { opacity: 1, duration: 1 })
+      .set([".header", transitionRef.current], { opacity: 1 })
 
       .from(transitionRef.current, {
         duration: 1.75,
@@ -69,7 +69,7 @@ const PageTransition = ({ children }: PageTransitionProps) => {
       <div className="white-overlay opacity-1 absolute left-0 top-0 h-screen w-full bg-background dark:bg-secondBackground"></div>
       <div
         ref={transitionRef}
-        className="page-transition absolute left-0 top-0 h-screen w-full bg-secondBackground dark:bg-background"
+        className="page-transition absolute left-0 top-0 h-screen w-full bg-secondBackground opacity-0 will-change-transform dark:bg-background"
       />
       {children}
     </div>

@@ -71,7 +71,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
         duration: 0.5,
         y: 250,
         opacity: 0,
-        delay: 1.1,
+        delay: 1.4,
         stagger: 0.1,
         ease: "power2.out",
       })

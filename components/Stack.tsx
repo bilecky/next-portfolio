@@ -33,7 +33,6 @@ function Stack({}: Props) {
           end: "bottom bottom",
           scrub: 3, // Sync the animation with scrolling smoothly,
           refreshPriority: 1,
-          markers: true,
         },
       });
 

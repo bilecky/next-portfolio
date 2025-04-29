@@ -31,9 +31,11 @@ const ContactWrapperClient = ({ children }: ContactWrapperProps) => {
       const master = gsap.timeline({
         scrollTrigger: {
           trigger: ".tech-wrapper",
+          id: "master-gsap-tl",
           start: () => {
             const techElement = document.querySelector(".stack") as HTMLElement;
             const techHeight = techElement?.offsetHeight || 0;
+            console.log(techHeight);
             return `top+=${techHeight + 1} bottom`;
           },
           end: "+=250%",
@@ -79,6 +81,16 @@ const ContactWrapperClient = ({ children }: ContactWrapperProps) => {
             }
           },
         });
+
+      const handleLoad = () => {
+        ScrollTrigger.getById("master-gsap-tl")?.refresh();
+      };
+
+      window.addEventListener("load", handleLoad);
+
+      return () => {
+        window.removeEventListener("load", handleLoad);
+      };
     },
     {
       dependencies: [tContact],
