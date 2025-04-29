@@ -5,6 +5,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useTranslations } from "next-intl";
+import { usePathname } from "next/navigation";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 interface ContactWrapperProps {
@@ -13,6 +14,7 @@ interface ContactWrapperProps {
 
 const ContactWrapperClient = ({ children }: ContactWrapperProps) => {
   const wrapperRef = useRef<HTMLDivElement>(null);
+  const pathname = usePathname();
 
   const tContact = useTranslations("ContactSection"); // Dostosuj nazwę sekcji
   const mm = gsap.matchMedia();
@@ -34,7 +36,6 @@ const ContactWrapperClient = ({ children }: ContactWrapperProps) => {
           start: () => {
             const techElement = document.querySelector(".stack") as HTMLElement;
             const techHeight = techElement?.offsetHeight || 0;
-            console.log(techHeight);
             return `top+=${techHeight + 1} bottom`;
           },
           end: "+=250%",
@@ -84,7 +85,7 @@ const ContactWrapperClient = ({ children }: ContactWrapperProps) => {
       ScrollTrigger.refresh(true);
     },
     {
-      dependencies: [tContact],
+      dependencies: [tContact, pathname],
       revertOnUpdate: true,
     },
   );
