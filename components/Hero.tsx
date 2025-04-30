@@ -42,7 +42,7 @@ const Hero = ({ setIntroComplete }: HeroProps) => {
 
     introTl
 
-      .set([heroRef.current, ".header", ".black-overlay"], { opacity: 1 })
+      .set([".header", ".black-overlay"], { opacity: 1 })
 
       .from(".black-overlay", {
         duration: 1.75,
@@ -92,7 +92,7 @@ const Hero = ({ setIntroComplete }: HeroProps) => {
   return (
     <section
       ref={heroRef}
-      className="hero container flex h-auto w-full flex-col py-40 font-mainFont text-background opacity-0 md:flex-row-reverse md:items-end lg:h-screen lg:py-20 landscape-short:h-auto dark:text-mainFontColor"
+      className="hero container flex h-auto w-full flex-col py-40 font-mainFont text-background md:flex-row-reverse md:items-end lg:h-screen lg:py-20 landscape-short:h-auto dark:text-mainFontColor"
     >
       <div className="white-overlay opacity-1 absolute inset-0 z-0 h-screen w-full bg-background dark:bg-secondBackground"></div>
       <div className="black-overlay absolute left-0 top-0 h-screen w-full opacity-0 will-change-transform"></div>

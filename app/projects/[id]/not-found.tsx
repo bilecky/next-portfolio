@@ -1,4 +1,4 @@
-import { NextPage } from "next";
+import { Metadata, NextPage } from "next";
 import { getTranslations } from "next-intl/server";
 import Link from "next/link";
 import { RiArrowGoBackFill } from "react-icons/ri";
@@ -7,9 +7,9 @@ const NotFound: NextPage = async () => {
   const tNotFound = await getTranslations("404");
 
   return (
-    <div className="flex h-screen items-center justify-center bg-background text-mainFontColor landscape:items-start">
+    <div className="flex min-h-screen items-center justify-center bg-background text-mainFontColor landscape:items-start">
       <div className="w-full text-center">
-        <h1 className="font-doto text-[35vw] font-extrabold leading-none landscape-short:text-[15vw]">
+        <h1 className="text-dynamic-35vw-textSize font-doto font-extrabold leading-none landscape-short:text-[15vw]">
           404
         </h1>
         <div className="my-6">

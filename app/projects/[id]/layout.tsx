@@ -1,3 +1,4 @@
+import { projects } from "@/data/data";
 import { getTranslations } from "next-intl/server";
 import { Metadata } from "next/types";
 
@@ -13,6 +14,14 @@ export async function generateMetadata({
 }: ProjectLayoutProps): Promise<Metadata> {
   const paramsProjectId = params.id;
   const tProjectPage = await getTranslations("SingleProjectPage");
+  const tNotFound = await getTranslations("404");
+
+  if (!projects[paramsProjectId - 1] || isNaN(paramsProjectId)) {
+    return {
+      title: "404 - Paweł Bilski",
+      description: tNotFound("ProjectNotFound"),
+    };
+  }
   return {
     title:
       tProjectPage(`projects.${paramsProjectId}.title`) + " - Paweł Bilski",
