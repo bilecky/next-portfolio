@@ -20,6 +20,7 @@ const Hero = ({ setIntroComplete }: HeroProps) => {
   const lenis = useLenis();
 
   const heroRef = useRef<HTMLElement>(null);
+  const blackOverlayRef = useRef<HTMLDivElement>(null);
   const [blockInitialScroll, setBlockInitialScroll] = useState<boolean>(true);
 
   useEffect(() => {
@@ -42,9 +43,9 @@ const Hero = ({ setIntroComplete }: HeroProps) => {
 
     introTl
 
-      .set([".header", ".black-overlay"], { opacity: 1 })
+      .set([".header", blackOverlayRef.current], { opacity: 1 })
 
-      .from(".black-overlay", {
+      .from(blackOverlayRef.current, {
         duration: 1.75,
         yPercent: -100,
         ease: "power4.inOut",
@@ -95,7 +96,10 @@ const Hero = ({ setIntroComplete }: HeroProps) => {
       className="hero container flex h-auto w-full flex-col py-40 font-mainFont text-background md:flex-row-reverse md:items-end lg:h-screen lg:py-20 landscape-short:h-auto dark:text-mainFontColor"
     >
       <div className="white-overlay opacity-1 absolute inset-0 z-0 h-screen w-full bg-background dark:bg-secondBackground"></div>
-      <div className="black-overlay absolute left-0 top-0 h-screen w-full opacity-0 will-change-transform"></div>
+      <div
+        ref={blackOverlayRef}
+        className="black-overlay absolute left-0 top-0 h-screen w-full opacity-0 will-change-transform"
+      ></div>
       {/* ABOUT SECTION */}
       <div className="section-left relative z-0 md:text-right lg:w-[30%]">
         <h1 className="gsap-group-hero main-header mb-3 text-xl uppercase will-change-transform">
