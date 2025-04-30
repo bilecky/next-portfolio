@@ -42,6 +42,7 @@ const PageTransition = ({ children }: PageTransitionProps) => {
         duration: 1.75,
         yPercent: -100,
         ease: "power4.inOut",
+        force3D: true,
       })
 
       .from(".logo", { opacity: 0, y: -50, duration: 0.3 })

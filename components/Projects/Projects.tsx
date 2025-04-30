@@ -33,33 +33,30 @@ const Projects = ({ isIntroComplete }: ProjectsProps) => {
 
   const tWork = useTranslations("WorkSection");
 
-  useGSAP(() => {
-    // const lightBgColor = "#FBFCF8";
-    // const lightEndColor = "#BDFF0F";
+  useGSAP(
+    () => {
+      const bgColor = theme === "dark" ? "#222222" : "#FBFCF8";
+      const endColor = theme === "dark" ? "#FBFCF8" : "#a6aba5";
+      const bgArea = gsap.timeline({
+        scrollTrigger: {
+          id: "bgScrollTrigger",
+          trigger: ".scroll-area",
+          start: "top top",
+          end: "bottom bottom",
+          scrub: 2,
+        },
+      });
 
-    // const darkBgColor = "#222222";
-    // const darkEndColor = "#FBFCF8";
-    // ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+      if (!isIntroComplete) return;
 
-    const bgColor = theme === "dark" ? "#222222" : "#FBFCF8";
-    const endColor = theme === "dark" ? "#FBFCF8" : "#a6aba5";
-    ScrollTrigger.getById("bgScrollTrigger")?.kill();
-    const bgArea = gsap.timeline({
-      scrollTrigger: {
-        id: "bgScrollTrigger",
-        trigger: ".scroll-area", // Upewnij się, że ta klasa istnieje na elemencie
-        start: "top top",
-        end: "bottom bottom",
-        scrub: 2,
-      },
-    });
-
-    bgArea.fromTo(
-      [".main", ".black-overlay"],
-      { backgroundColor: bgColor },
-      { backgroundColor: endColor, overwrite: "auto", ease: "power3.inOut" },
-    );
-  }, [theme]);
+      bgArea.fromTo(
+        [".main", ".black-overlay"],
+        { backgroundColor: bgColor },
+        { backgroundColor: endColor, overwrite: "auto", ease: "power3.inOut" },
+      );
+    },
+    { dependencies: [theme, isIntroComplete], revertOnUpdate: true },
+  );
 
   useGSAP(
     () => {
