@@ -16,7 +16,6 @@ import ThreeModel from "../3DModel/ThreeModel";
 import * as THREE from "three";
 import useMediaQuery from "../../hooks/useMediaQuery";
 import clsx from "clsx";
-import { useTheme } from "../../context/ThemeProvider";
 import { useTranslations } from "next-intl";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
@@ -29,34 +28,8 @@ const Projects = ({ isIntroComplete }: ProjectsProps) => {
   const monitorModelRef = useRef<THREE.Group>(null);
   const isMobile = useMediaQuery("(max-width: 768px)");
   const [currentProject, setCurrentProject] = useState<number>(0);
-  const { theme } = useTheme();
 
   const tWork = useTranslations("WorkSection");
-
-  useGSAP(
-    () => {
-      const bgColor = theme === "dark" ? "#222222" : "#FBFCF8";
-      const endColor = theme === "dark" ? "#FBFCF8" : "#a6aba5";
-      const bgArea = gsap.timeline({
-        scrollTrigger: {
-          id: "bgScrollTrigger",
-          trigger: ".scroll-area",
-          start: "top top",
-          end: "bottom bottom",
-          scrub: 2,
-        },
-      });
-
-      if (!isIntroComplete) return;
-
-      bgArea.fromTo(
-        [".main", ".black-overlay"],
-        { backgroundColor: bgColor },
-        { backgroundColor: endColor, overwrite: "auto", ease: "power3.inOut" },
-      );
-    },
-    { dependencies: [theme, isIntroComplete], revertOnUpdate: true },
-  );
 
   useGSAP(
     () => {

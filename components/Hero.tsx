@@ -8,6 +8,8 @@ import { reuseHeaderLineAnimation } from "../utils/ReusableGSAPAnimations";
 import { useTranslations } from "next-intl";
 import { useLenis } from "lenis/react";
 import { blockScroll } from "../utils/helperFunctions";
+import { useTheme } from "@/context/ThemeProvider";
+import clsx from "clsx";
 
 gsap.registerPlugin(useGSAP);
 
@@ -19,9 +21,12 @@ const Hero = ({ setIntroComplete }: HeroProps) => {
 
   const lenis = useLenis();
 
+  const { theme } = useTheme();
+
   const heroRef = useRef<HTMLElement>(null);
   const blackOverlayRef = useRef<HTMLDivElement>(null);
   const [blockInitialScroll, setBlockInitialScroll] = useState<boolean>(true);
+  const [isMounted, setIsMounted] = useState<boolean>(false);
 
   useEffect(() => {
     if (blockInitialScroll && heroRef.current) {
@@ -41,12 +46,11 @@ const Hero = ({ setIntroComplete }: HeroProps) => {
       },
     });
 
+    introTl.set([".header", blackOverlayRef.current, heroRef.current], {
+      opacity: 1,
+    });
+
     introTl
-
-      .set([".header", blackOverlayRef.current, heroRef.current], {
-        opacity: 1,
-      })
-
       .from(blackOverlayRef.current, {
         duration: 1.75,
         yPercent: -100,
@@ -93,12 +97,19 @@ const Hero = ({ setIntroComplete }: HeroProps) => {
       );
   });
 
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
   return (
     <section
       ref={heroRef}
       className="hero container flex h-auto w-full flex-col py-40 font-mainFont text-background opacity-0 md:flex-row-reverse md:items-end lg:h-screen lg:py-20 landscape-short:h-auto dark:text-mainFontColor"
     >
-      {/* <div className="white-overlay absolute inset-0 z-0 h-screen w-full bg-background dark:bg-secondBackground"></div> */}
+      {isMounted && theme === "light" && (
+        <div className="white-overlay absolute inset-0 z-0 h-screen w-full bg-background dark:bg-secondBackground"></div>
+      )}
+
       <div
         ref={blackOverlayRef}
         className="black-overlay absolute left-0 top-0 h-screen w-full bg-secondBackground opacity-0 will-change-transform dark:bg-background"
