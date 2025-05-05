@@ -88,7 +88,9 @@ const ContactWrapperClient = ({ children }: ContactWrapperProps) => {
     },
   );
   useEffect(() => {
-    ScrollTrigger.refresh(true);
+    requestAnimationFrame(() => {
+      ScrollTrigger.refresh(true);
+    });
   }, [pathname]);
 
   // Context-safe event handler

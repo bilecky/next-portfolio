@@ -17,6 +17,7 @@ import * as THREE from "three";
 import useMediaQuery from "../../hooks/useMediaQuery";
 import clsx from "clsx";
 import { useTranslations } from "next-intl";
+import { PropagateLoader } from "react-spinners";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -165,7 +166,13 @@ const Projects = ({ isIntroComplete }: ProjectsProps) => {
         <div className="model3d relative h-[29rem] w-full overflow-visible md:h-[40rem] xl:h-[32rem]">
           <div className="absolute -top-10 z-10 h-[29rem] w-full overflow-visible sm:h-[32rem] md:h-[50rem] lg:-top-28 lg:h-[60rem] xl:-top-40 xl:h-[55rem] 2xl:-left-12 2xl:-top-52 2xl:h-[60rem]">
             {isIntroComplete && (
-              <Suspense fallback={null}>
+              <Suspense
+                fallback={
+                  <div className="absolute inset-0 z-[100] flex items-center justify-center">
+                    <PropagateLoader size={20} color="#212121" />
+                  </div>
+                }
+              >
                 <Canvas camera={{ position: [0, 0, 5] }}>
                   <ThreeModel
                     ref={monitorModelRef}
