@@ -46,14 +46,14 @@ const Hero = ({ setIntroComplete }: HeroProps) => {
       },
     });
 
-    introTl.set([".header", blackOverlayRef.current, heroRef.current], {
+    introTl.set([".header", heroRef.current], {
       opacity: 1,
     });
 
     introTl
-      .from(blackOverlayRef.current, {
+      .to(blackOverlayRef.current, {
+        y: "0%",
         duration: 1.75,
-        yPercent: -100,
         ease: "power4.inOut",
         force3D: true,
       })
@@ -112,7 +112,7 @@ const Hero = ({ setIntroComplete }: HeroProps) => {
 
       <div
         ref={blackOverlayRef}
-        className="black-overlay absolute left-0 top-0 h-screen w-full bg-secondBackground opacity-0 will-change-transform dark:bg-background"
+        className="black-overlay absolute left-0 top-0 h-screen w-full translate-y-[-100%] transform-gpu bg-secondBackground will-change-transform dark:bg-background"
       ></div>
       {/* ABOUT SECTION */}
       <div className="section-left relative z-0 md:text-right lg:w-[30%]">
