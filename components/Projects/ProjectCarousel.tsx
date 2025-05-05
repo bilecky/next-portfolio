@@ -192,7 +192,7 @@ const ProjectCarousel = (props: projectCarouselProps) => {
               className={clsx(
                 index !== currentProject && "bg-secondBackground",
                 // Style mobilne
-                "relative z-10 mx-2 flex cursor-pointer items-center whitespace-nowrap rounded-full border-[1px] border-none px-6 py-3 will-change-transform dark:border-background",
+                "relative z-10 mx-2 flex cursor-pointer items-center whitespace-nowrap rounded-full border-[1px] border-transparent px-6 py-3 will-change-transform dark:border-background",
                 index === currentProject && "bg-background text-mainFontColor",
                 // Style desktopowe
                 "lg:border-none lg:bg-transparent lg:px-8 lg:py-4 lg:hover:text-gray-500",

@@ -9,6 +9,7 @@ import Lenis from "../components/common/Lenis";
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages } from "next-intl/server";
 import { ThemeProvider } from "../context/ThemeProvider";
+import { Analytics } from "@vercel/analytics/react";
 
 const geistSans = localFont({
   src: "../fonts/GeistVF.woff",
@@ -79,6 +80,7 @@ export default async function RootLayout({
             <Footer />
           </ThemeProvider>
         </Lenis>
+        <Analytics />
       </body>
     </html>
   );
