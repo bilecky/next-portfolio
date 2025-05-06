@@ -162,9 +162,9 @@ const Projects = ({ isIntroComplete }: ProjectsProps) => {
             {tWork("paragraph1")}
           </p>
         </div>
-        {/* lg:h-[60vh] xl:h-[85vh] 2xl:-bottom-72 2xl:-left-20 2xl:h-[105vh] 2xl:w-[110%] */}
-        <div className="model3d relative h-[29rem] w-full overflow-visible md:h-[40rem] xl:h-[32rem]">
-          <div className="absolute -top-10 z-10 h-[29rem] w-full overflow-visible sm:h-[32rem] md:h-[50rem] lg:-top-28 lg:h-[60rem] xl:-top-40 xl:h-[55rem] 2xl:-left-12 2xl:-top-52 2xl:h-[60rem]">
+        {/* prettier ignore */}
+        <div className="model3d relative h-[23rem] w-full overflow-visible md:h-[40rem] xl:h-[32rem] xs:h-[29rem]">
+          <div className="absolute -top-10 z-10 h-[23rem] w-full overflow-visible sm:h-[32rem] md:h-[50rem] lg:-top-28 lg:h-[60rem] xl:-top-40 xl:h-[55rem] 2xl:-left-12 2xl:-top-52 2xl:h-[60rem] xs:h-[29rem]">
             {isIntroComplete && (
               <Suspense
                 fallback={

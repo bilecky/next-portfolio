@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import defaultTheme from "tailwindcss/defaultTheme";
 
 const config: Config = {
   darkMode: "selector", // Wybieramy strategię selektora, aby ręcznie kontrolować tryb ciemny
@@ -9,6 +10,10 @@ const config: Config = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    screens: {
+      xs: "360px",
+      ...defaultTheme.screens,
+    },
     container: {
       center: true,
       padding: {
@@ -63,8 +68,8 @@ const config: Config = {
         doto: ["var(--font-doto)", "sans-serif"],
       },
       screens: {
-        "max-fold": { max: "344px" },
         xs: "360px",
+        "max-fold": { max: "344px" },
         "landscape-short": {
           raw: "(orientation: landscape) and (max-height: 800px)",
         },

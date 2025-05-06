@@ -74,7 +74,7 @@ const About = () => {
     },
   );
   return (
-    <section className="about panel absolute top-0 z-10 col-start-1 col-end-2 row-start-1 row-end-2 min-h-screen w-full overflow-hidden bg-secondBackground py-20 shadow-xl will-change-transform lg:py-36 dark:bg-background">
+    <section className="about panel absolute top-0 z-10 col-start-1 col-end-2 row-start-1 row-end-2 w-full overflow-hidden bg-secondBackground py-20 shadow-xl will-change-transform lg:py-36 dark:bg-background">
       <div
         ref={aboutRef}
         id="about"

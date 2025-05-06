@@ -53,7 +53,7 @@ const Hero = ({ setIntroComplete }: HeroProps) => {
     introTl
       .to(blackOverlayRef.current, {
         y: "0%",
-        duration: 1.75,
+        duration: 1.5,
         ease: "power4.inOut",
         force3D: true,
       })
@@ -66,16 +66,16 @@ const Hero = ({ setIntroComplete }: HeroProps) => {
           opacity: 0,
           stagger: 0.05,
           ease: "expo.out",
-          duration: 1.5,
+          duration: 1.4,
         },
         "-=0.1",
       )
-      .from(".main-header", { opacity: 0, y: 20, duration: 0.4 }, "-=1")
-      .from(".subheader", { opacity: 0, y: 20, duration: 0.4 }, "-=0.75")
+      .from(".main-header", { opacity: 0, y: 20, duration: 0.4 }, "-=0.75")
+      .from(".subheader", { opacity: 0, y: 20, duration: 0.4 }, "-=0.5")
       .from(
         ".description",
         { opacity: 0, y: 20, duration: 0.4, stagger: 0.2 },
-        "-=0.5",
+        "-=0.25",
       )
       .from(".logo", { opacity: 0, y: -50, duration: 0.3 })
       .from(".white-line", {
@@ -104,7 +104,7 @@ const Hero = ({ setIntroComplete }: HeroProps) => {
   return (
     <section
       ref={heroRef}
-      className="hero container flex h-auto w-full flex-col py-40 font-mainFont text-background opacity-0 md:flex-row-reverse md:items-end lg:h-screen lg:py-20 landscape-short:h-auto dark:text-mainFontColor"
+      className="hero container flex h-auto w-full flex-col py-40 font-mainFont text-background opacity-0 md:h-screen md:flex-row-reverse md:items-center md:py-20 xl:items-end landscape-short:h-auto dark:text-mainFontColor"
     >
       {isMounted && theme === "light" && (
         <div className="white-overlay absolute inset-0 z-0 h-screen w-full bg-background dark:bg-secondBackground"></div>
@@ -115,7 +115,7 @@ const Hero = ({ setIntroComplete }: HeroProps) => {
         className="black-overlay absolute left-0 top-0 h-screen w-full translate-y-[-100%] transform-gpu bg-secondBackground will-change-transform dark:bg-background"
       ></div>
       {/* ABOUT SECTION */}
-      <div className="section-left relative z-0 md:text-right lg:w-[30%]">
+      <div className="section-left relative z-0 block md:hidden md:text-right lg:w-[30%] xl:block">
         <h1 className="gsap-group-hero main-header mb-3 text-xl uppercase will-change-transform">
           PAWEŁ BILSKI
         </h1>
@@ -130,7 +130,7 @@ const Hero = ({ setIntroComplete }: HeroProps) => {
 
       {/* NAV */}
       <div className="section-right pt-10 md:flex-grow lg:pt-0">
-        <nav className="relative z-0 flex font-mainHeaderFont text-6xl font-[400] tracking-wide md:text-[5rem] lg:text-[8rem] 2xl:text-[10.5rem] max-fold:text-fold-text">
+        <nav className="relative z-0 flex font-mainHeaderFont text-6xl font-[400] tracking-wide sm:text-[6rem] md:text-[7.5rem] lg:text-[8.5rem] xl:text-[9rem] 2xl:text-[10.5rem] max-fold:text-fold-text">
           <ul className="nav nav-hero select-none space-y-2 uppercase">
             <li className="flex">
               <a
