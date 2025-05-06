@@ -183,10 +183,15 @@ const Form = () => {
           <RiMailSendFill className="ml-3" />
         </button>
         {formMessage?.status === "success" && (
-          <span className="ml-4 text-green-600">{formMessage.message}</span>
+          <span className="block py-2 text-red-500 lg:inline lg:p-4">
+            {formMessage.message}
+          </span>
         )}
+
         {formMessage?.status === "error" && (
-          <span className="ml-4 text-red-500">{formMessage.message}</span>
+          <span className="block py-2 text-red-500 lg:inline lg:p-4">
+            {formMessage.message}
+          </span>
         )}
       </div>
     </form>
