@@ -62,8 +62,7 @@ const About = () => {
 
       imageWrapperTimeline.from(".image_wrapper", {
         rotateX: 90,
-        duration: 3,
-        ease: "ease-in",
+        duration: 1.5,
         opacity: 0,
       });
     },

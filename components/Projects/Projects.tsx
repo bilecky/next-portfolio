@@ -147,7 +147,7 @@ const Projects = ({ isIntroComplete }: ProjectsProps) => {
   return (
     <section
       id="projects"
-      className="projects relative z-10 text-background opacity-0 md:container md:py-28 xl:flex xl:flex-row"
+      className="projects relative z-10 text-background opacity-0 md:container md:py-24 xl:flex xl:flex-row"
     >
       <div className="overview xl:w-3/5">
         <div className={clsx(isMobile && "container")}>

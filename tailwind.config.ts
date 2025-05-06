@@ -74,7 +74,7 @@ const config: Config = {
           raw: "(orientation: landscape) and (max-height: 800px)",
         },
         "social-buttons-footer-visibility": {
-          raw: "(orientation: landscape) and (min-height: 921px) and (min-width: 1280px)",
+          raw: "(orientation: landscape) and (min-height: 900px) and (min-width: 1280px)",
         },
       },
       colors: {

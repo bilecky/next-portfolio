@@ -100,7 +100,7 @@ const ProjectCarousel = (props: projectCarouselProps) => {
           ease: "power3.out",
           stagger: 0.2, // Projekty będą się pojawiać jeden po drugim z odstępem 0.2s
         },
-        "-=2", // Rozpocznij tę animację nieco wcześniej
+        "-=1.65", // Rozpocznij tę animację nieco wcześniej
       );
     });
   }, []);
@@ -161,7 +161,7 @@ const ProjectCarousel = (props: projectCarouselProps) => {
   };
 
   return (
-    <div className="carousel md:pt-20 xl:w-2/5 xl:pt-0">
+    <div className="carousel md:pt-20 lg:py-8 xl:w-2/5">
       <div className="relative flex h-full w-full lg:flex-row-reverse">
         {/* Linia dla wersji desktop */}
         <div className="main-line absolute hidden h-full w-1.5 bg-gray-300 lg:block">

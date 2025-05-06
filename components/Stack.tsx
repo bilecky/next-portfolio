@@ -198,7 +198,7 @@ function Stack({}: Props) {
     <section
       ref={stackRef}
       id="stack"
-      className="stack -z-10 py-28 text-background will-change-transform"
+      className="stack -z-10 py-24 text-background will-change-transform"
     >
       <div className="overview-wrapper container">
         <div className="overview ml-auto text-right lg:max-w-contentWidth">

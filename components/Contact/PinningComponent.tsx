@@ -83,7 +83,7 @@ const PinningComponent = ({ fetchedPins }: { fetchedPins: UserPin[] }) => {
     <>
       <div
         id="user_pinning_wrapper"
-        className="user_pinning_wrapper mt-auto flex min-h-52 w-full flex-grow flex-col pt-8"
+        className="user_pinning_wrapper mt-auto flex min-h-56 w-full flex-grow flex-col pt-8"
       >
         <div
           onClick={handleClick}
