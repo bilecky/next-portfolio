@@ -161,29 +161,17 @@ const ProjectCarousel = (props: projectCarouselProps) => {
   };
 
   return (
-    <div className="carousel md:pt-20 lg:py-8 xl:w-2/5">
+    <div className="carousel md:pt-20 xl:w-2/5 xl:py-8">
       <div className="relative flex h-full w-full lg:flex-row-reverse">
-        {/* Linia dla wersji desktop */}
         <div className="main-line absolute hidden h-full w-1.5 bg-gray-300 lg:block">
           <div
             ref={lineRef}
             className="item-line absolute left-0 top-0 w-1.5 bg-background"
           ></div>
         </div>
-
-        {/* Overlay dla wersji mobilnej */}
-        {/* <div
-          style={{
-            background:
-              "linear-gradient(90deg, rgba(251,252,248,1) 0%, rgba(251,252,248,0.25) 3%, rgba(251,252,248,0) 50%, rgba(251,252,248,0.25) 97%, rgba(251,252,248,1) 100%)",
-          }}
-          className="pointer-events-none absolute left-0 top-0 z-20 h-full w-full lg:hidden"
-        ></div> */}
-
-        {/* Kontener dla projektów */}
         <div
           ref={mobileCarouselRef}
-          className="no-scrollbar relative flex h-full w-full items-center overflow-hidden overflow-x-auto lowercase lg:flex-col lg:items-end lg:justify-evenly lg:overflow-visible lg:font-extralight lg:uppercase"
+          className="projects_container no-scrollbar relative flex h-full w-full items-center overflow-hidden overflow-x-auto lowercase xl:flex-col xl:items-end xl:justify-evenly xl:overflow-visible xl:font-extralight xl:uppercase"
         >
           {projects.map((project, index) => (
             <div
@@ -195,13 +183,15 @@ const ProjectCarousel = (props: projectCarouselProps) => {
                 "relative z-10 mx-2 flex cursor-pointer items-center whitespace-nowrap rounded-full border-[1px] border-transparent px-6 py-3 will-change-transform dark:border-background",
                 index === currentProject && "bg-background text-mainFontColor",
                 // Style desktopowe
-                "lg:border-none lg:bg-transparent lg:px-8 lg:py-4 lg:hover:text-gray-500",
-                index === currentProject && "lg:text-gray-600",
+                "xl:border-none xl:bg-transparent xl:px-8 xl:py-4 xl:hover:text-gray-500",
+                index === currentProject && "xl:text-gray-600",
               )}
               ref={(el) => setProjectRef(el, index)}
               onClick={() => handleProjectClick(index)}
             >
-              <h3 className="lg:text-right lg:text-4xl">{project.title}</h3>
+              <h3 className="lg:text-2xl xl:text-right xl:text-4xl">
+                {project.title}
+              </h3>
             </div>
           ))}
         </div>

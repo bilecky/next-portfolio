@@ -130,7 +130,7 @@ const Hero = ({ setIntroComplete }: HeroProps) => {
 
       {/* NAV */}
       <div className="section-right pt-10 md:flex-grow lg:pt-0">
-        <nav className="relative z-0 flex font-mainHeaderFont text-6xl font-[400] tracking-wide sm:text-[6rem] md:text-[7.5rem] lg:text-[8.5rem] xl:text-[9rem] 2xl:text-[10.5rem] max-fold:text-fold-text">
+        <nav className="relative z-0 flex font-mainHeaderFont text-6xl font-[400] tracking-wide sm:text-[6rem] md:text-[7.5rem] lg:text-[8.5rem] xl:text-[9rem] 2xl:text-[10.5rem] max-fold:text-fold-text landscape-short:text-[6rem]">
           <ul className="nav nav-hero select-none space-y-2 uppercase">
             <li className="flex">
               <a
