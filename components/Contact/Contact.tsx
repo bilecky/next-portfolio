@@ -24,9 +24,9 @@ const Contact = async () => {
           {tContact("title")}
         </h2>
 
-        <div className="contact_wrapper grid-cols-2 gap-20 py-descriptionPadding md:pb-2 md:pt-12 xl:grid">
+        <div className="contact_wrapper ultra-tall-screen:block grid-cols-2 gap-20 py-descriptionPadding md:pb-2 md:pt-12 xl:grid">
           <div className="contact_description flex flex-col">
-            <p className="about_description text-center text-sm lg:text-left lg:text-xl">
+            <p className="about_description ultra-tall-screen:text-center text-center text-sm xl:text-left xl:text-xl">
               {tContact("paragraph")}
               <a
                 href="mailto:kontakt@pawelbilski.com"

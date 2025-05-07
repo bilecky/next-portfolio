@@ -21,7 +21,7 @@ const ContactWrapperClient = ({ children }: ContactWrapperProps) => {
 
   const { contextSafe } = useGSAP(
     () => {
-      mm.add("(max-width: 1023px)", () => {
+      mm.add("(max-width: 1280px)", () => {
         gsap.set(".footer", { opacity: "0" });
 
         return () => {

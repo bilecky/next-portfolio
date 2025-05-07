@@ -163,7 +163,7 @@ const ProjectCarousel = (props: projectCarouselProps) => {
   return (
     <div className="carousel md:pt-20 xl:w-2/5 xl:py-8">
       <div className="relative flex h-full w-full lg:flex-row-reverse">
-        <div className="main-line absolute hidden h-full w-1.5 bg-gray-300 lg:block">
+        <div className="main-line absolute hidden h-full w-1.5 bg-gray-300 xl:block">
           <div
             ref={lineRef}
             className="item-line absolute left-0 top-0 w-1.5 bg-background"

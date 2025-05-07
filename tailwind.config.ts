@@ -69,12 +69,15 @@ const config: Config = {
       },
       screens: {
         xs: "360px",
+        "ultra-tall-screen": {
+          raw: "(min-height: 1600px)",
+        },
         "max-fold": { max: "344px" },
         "landscape-short": {
           raw: "(orientation: landscape) and (max-height: 800px)",
         },
         "social-buttons-footer-visibility": {
-          raw: "(orientation: landscape) and (min-height: 900px) and (min-width: 1280px)",
+          raw: "(orientation: landscape) and (min-height: 876px) and (min-width: 1280px)",
         },
       },
       colors: {

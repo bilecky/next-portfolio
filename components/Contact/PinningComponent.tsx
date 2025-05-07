@@ -83,7 +83,7 @@ const PinningComponent = ({ fetchedPins }: { fetchedPins: UserPin[] }) => {
     <>
       <div
         id="user_pinning_wrapper"
-        className="user_pinning_wrapper mt-auto flex aspect-square h-full w-full flex-col pt-8 md:aspect-[3/2] xl:aspect-auto"
+        className="user_pinning_wrapper ultra-tall-screen:aspect-[3/2] mt-auto flex aspect-square h-full w-full flex-col pt-8 md:aspect-[3/2] xl:aspect-auto"
       >
         <div
           onClick={handleClick}
