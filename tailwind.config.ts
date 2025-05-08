@@ -70,7 +70,7 @@ const config: Config = {
       screens: {
         xs: "360px",
         "ultra-tall-screen": {
-          raw: "(min-height: 1600px)",
+          raw: "(min-height: 1440px)",
         },
         "max-fold": { max: "344px" },
         "landscape-short": {
