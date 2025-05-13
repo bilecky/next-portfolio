@@ -20,7 +20,7 @@ const About = () => {
 
           start: "top 80%",
           scrub: 2,
-          end: "+=80%",
+          end: "+=85%",
           // refreshPriority: 2, // Ensures this is refreshed after the parent trigger
         },
       });
@@ -47,15 +47,15 @@ const About = () => {
             opacity: 0,
             ease: "back.out",
           },
-          "-=.3",
+          "-=1",
         );
 
       // New timeline for the image_wrapper inside image_section
       const imageWrapperTimeline = gsap.timeline({
         scrollTrigger: {
           trigger: ".image_section", // Trigger when .image_section is in view
-          start: "top 90%", // Adjust the start value as needed
-          end: "center 40%", // End when the section leaves the viewport
+          start: "top 80%", // Adjust the start value as needed
+          end: "center 50%", // End when the section leaves the viewport
           scrub: 2,
           // refreshPriority: 1, // Ensures this is refreshed after the parent trigger
         },

@@ -87,11 +87,12 @@ const Projects = ({ isIntroComplete }: ProjectsProps) => {
           },
         });
 
-        herodissapearMobile.to(".section-left", {
+        herodissapearMobile.to(".gsap-group-hero", {
           opacity: 0,
           ease: "sine.inOut",
           x: 500, // Przesunięcie w prawo o 500px
           duration: 0.5,
+          stagger: -0.1,
         });
 
         herodissapearMobile.to(
@@ -118,11 +119,12 @@ const Projects = ({ isIntroComplete }: ProjectsProps) => {
           },
         });
 
-        herodissapearDesktop.to(".section-left", {
+        herodissapearDesktop.to(".gsap-group-hero", {
           opacity: 0,
           ease: "sine.inOut",
           x: 500, // Przesunięcie w prawo o 500px
           duration: 0.5,
+          stagger: -0.1, // Elementy znikają kolejno w odwrotnej kolejności
         });
 
         herodissapearDesktop.to(

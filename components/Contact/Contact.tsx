@@ -19,7 +19,7 @@ const Contact = async () => {
 
   return (
     <ContactWrapperClient>
-      <div className="container relative py-24">
+      <div className="container relative py-20 xl:pt-0">
         <h2 className="contact_header text-center font-mainHeaderFont text-mobile uppercase leading-none tracking-wide text-background lg:text-section-header-lg xl:text-section-header-xl 2xl:text-section-header-2xl max-fold:text-fold-text">
           {tContact("title")}
         </h2>
