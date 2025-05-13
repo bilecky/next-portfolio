@@ -18,17 +18,6 @@ function Footer() {
 
   const textClasses = "text-background dark:text-secondBackground";
 
-  useGSAP(
-    () => {
-      // Jeśli nie jesteśmy na stronie głównej, upewnij się, że stopka jest widoczna
-      if (!isHomePage) {
-        gsap.set(footerRef.current, { opacity: 1 });
-      }
-      // Nie potrzebujemy już ręcznego czyszczenia, useGSAP zrobi to za nas
-    },
-    { dependencies: [pathname, isHomePage], scope: footerRef },
-  );
-
   // Stopka dla podstron /projects/*
   if (isProjectsPage) {
     return (
@@ -51,15 +40,7 @@ function Footer() {
 
   return (
     <footer className="relative left-0 top-0 bg-background dark:bg-secondBackground">
-      <div
-        className={clsx(
-          "footer container absolute bottom-0 left-0 right-0 z-10 h-auto overflow-hidden",
-          {
-            "opacity-0": isMobile && isHomePage,
-            "opacity-1": !isMobile && isHomePage,
-          },
-        )}
-      >
+      <div className="footer container absolute bottom-0 left-0 right-0 z-10 h-auto overflow-hidden">
         <div
           className="h-[2px] w-full"
           style={{

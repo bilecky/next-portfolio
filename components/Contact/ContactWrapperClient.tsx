@@ -19,67 +19,28 @@ const ContactWrapperClient = ({ children }: ContactWrapperProps) => {
   const tContact = useTranslations("ContactSection"); // Dostosuj nazwę sekcji
   const mm = gsap.matchMedia();
 
-  const { contextSafe } = useGSAP(
+  useGSAP(
     () => {
-      mm.add("(max-width: 1280px)", () => {
-        gsap.set(".footer", { opacity: "0" });
-
-        return () => {
-          gsap.set(".footer", { opacity: "1" });
-        };
+      // Pin first section
+      ScrollTrigger.create({
+        trigger: ".stack",
+        start: "bottom bottom",
+        end: "+=100%",
+        pin: true,
+        pinSpacing: false,
       });
 
-      const master = gsap.timeline({
+      gsap.to(".scrolling-container .about", {
+        yPercent: -100,
+        ease: "none",
         scrollTrigger: {
-          trigger: ".tech-wrapper",
-          id: "master-gsap-tl",
-          start: () => {
-            const techElement = document.querySelector(".stack") as HTMLElement;
-            const techHeight = techElement?.offsetHeight || 0;
-            return `top+=${techHeight + 1} bottom`;
-          },
-          end: "+=250%",
-          scrub: 2,
+          trigger: ".scrolling-container",
+          start: "top top",
+          end: "+=100%",
+          scrub: true,
           pin: true,
-          preventOverlaps: true,
-          // pinReparent: true,
-          refreshPriority: 2,
-          anticipatePin: 1,
-          invalidateOnRefresh: true,
         },
       });
-
-      master
-        .to(".wrapper", {
-          yPercent: -100,
-          ease: "none",
-        })
-        .to(".about", {
-          yPercent: -100,
-          ease: "none",
-
-          onUpdate: () => {
-            const contactElement = wrapperRef.current;
-            if (contactElement) {
-              const progress = master.progress();
-
-              // Dodaj/usuń nasłuchiwanie zdarzeń tylko gdy zmienia się stan
-              if (progress > 0.99) {
-                if (contactElement.style.overflowY !== "auto") {
-                  contactElement.style.overflowY = "auto";
-                  // Nasłuchiwacz powinien być dodany tylko raz
-                  contactElement.addEventListener("scroll", handleScroll);
-                }
-              } else {
-                if (contactElement.style.overflowY !== "hidden") {
-                  contactElement.style.overflowY = "hidden";
-                  // Usunięcie nasłuchiwacza gdy nie jest potrzebny
-                  contactElement.removeEventListener("scroll", handleScroll);
-                }
-              }
-            }
-          },
-        });
     },
     {
       dependencies: [tContact],
@@ -93,26 +54,12 @@ const ContactWrapperClient = ({ children }: ContactWrapperProps) => {
   }, [pathname]);
 
   // Context-safe event handler
-  const handleScroll = contextSafe(() => {
-    const contactElement = wrapperRef.current;
-    if (contactElement) {
-      const isScrolledToEnd =
-        contactElement.scrollHeight - contactElement.scrollTop <=
-        contactElement.clientHeight + 1;
-
-      gsap.to(".footer", {
-        opacity: isScrolledToEnd ? 1 : 0,
-        duration: isScrolledToEnd ? 0.2 : 0.2,
-        ease: "power1.out",
-      });
-    }
-  });
 
   return (
     <section
       id="contact"
       ref={wrapperRef}
-      className="contact no-scrollbar panel z-5 relative col-start-1 col-end-2 row-start-2 row-end-2 h-screen w-full bg-thirdBackground will-change-transform dark:bg-secondBackground"
+      className="contact no-scrollbar panel relative z-[1] flex min-h-full w-full items-center justify-center bg-thirdBackground will-change-transform dark:bg-secondBackground"
     >
       {children}
     </section>
