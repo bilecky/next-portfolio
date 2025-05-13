@@ -17,7 +17,6 @@ const ContactWrapperClient = ({ children }: ContactWrapperProps) => {
   const pathname = usePathname();
 
   const tContact = useTranslations("ContactSection"); // Dostosuj nazwę sekcji
-  const mm = gsap.matchMedia();
 
   useGSAP(
     () => {
@@ -33,12 +32,14 @@ const ContactWrapperClient = ({ children }: ContactWrapperProps) => {
       gsap.to(".scrolling-container .about", {
         yPercent: -100,
         ease: "none",
+
         scrollTrigger: {
           trigger: ".scrolling-container",
           start: "top top",
           end: "+=100%",
           scrub: true,
           pin: true,
+          preventOverlaps: true,
         },
       });
     },

@@ -17,7 +17,8 @@ const About = () => {
       const mainAboutLn = gsap.timeline({
         scrollTrigger: {
           trigger: aboutRef.current,
-          start: "top 75%",
+
+          start: "top 80%",
           scrub: 2,
           end: "+=80%",
           // refreshPriority: 2, // Ensures this is refreshed after the parent trigger
@@ -53,8 +54,8 @@ const About = () => {
       const imageWrapperTimeline = gsap.timeline({
         scrollTrigger: {
           trigger: ".image_section", // Trigger when .image_section is in view
-          start: "top 55%", // Adjust the start value as needed
-          end: "center top", // End when the section leaves the viewport
+          start: "top 90%", // Adjust the start value as needed
+          end: "center 40%", // End when the section leaves the viewport
           scrub: 2,
           // refreshPriority: 1, // Ensures this is refreshed after the parent trigger
         },
@@ -73,9 +74,11 @@ const About = () => {
     },
   );
   return (
-    <section className="about absolute left-0 right-0 top-0 z-[2] flex min-h-screen w-full items-center justify-center bg-secondBackground py-20 shadow-xl will-change-transform lg:py-36 dark:bg-background">
+    <section
+      ref={aboutRef}
+      className="about absolute left-0 right-0 top-0 z-[2] flex min-h-screen w-full items-center justify-center bg-secondBackground py-20 shadow-xl will-change-transform lg:py-36 dark:bg-background"
+    >
       <div
-        ref={aboutRef}
         id="about"
         className="about_wrapper container box-border grid max-h-full grid-cols-1 place-items-center gap-10 text-background xl:grid-cols-2 dark:text-blackSectionText"
       >

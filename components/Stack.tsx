@@ -68,23 +68,6 @@ function Stack({}: Props) {
 
   useGSAP(
     () => {
-      const setupScrollTriggerToggler = (observer: Observer) => {
-        // Logika ScrollTrigger dla zatrzymywania
-        ScrollTrigger.create({
-          trigger: stackRef.current,
-          start: "top bottom",
-          end: "bottom top",
-          toggleActions: "play pause play pause",
-          onToggle: (self) => {
-            if (self.isActive) {
-              observer.enable();
-            } else {
-              observer.disable();
-            }
-          },
-        });
-      };
-
       document.fonts.ready.then(() => {
         // Utwórz odpowiedni kontekst matchMedia
         const mm = gsap.matchMedia();
@@ -141,8 +124,6 @@ function Stack({}: Props) {
             },
           });
 
-          setupScrollTriggerToggler(marqueeObserver);
-
           // Funkcja czyszcząca
           return () => {
             marqueeObserver.kill();
@@ -180,8 +161,6 @@ function Stack({}: Props) {
               tlMarqueReverseLoop.timeScale(self.deltaY < 0 ? 1 : -1);
             },
           });
-
-          setupScrollTriggerToggler(marqueeObserver);
 
           return () => {
             marqueeObserver.kill();
