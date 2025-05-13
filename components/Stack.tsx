@@ -70,20 +70,18 @@ function Stack({}: Props) {
     () => {
       const setupScrollTriggerToggler = (observer: Observer) => {
         // Logika ScrollTrigger dla zatrzymywania
-        [".wrapper", ".footer"].forEach((el) => {
-          ScrollTrigger.create({
-            trigger: el,
-            start: "top bottom",
-            end: "bottom top",
-            toggleActions: "play pause play pause",
-            onToggle: (self) => {
-              if (self.isActive) {
-                observer.disable();
-              } else {
-                observer.enable();
-              }
-            },
-          });
+        ScrollTrigger.create({
+          trigger: stackRef.current,
+          start: "top bottom",
+          end: "bottom top",
+          toggleActions: "play pause play pause",
+          onToggle: (self) => {
+            if (self.isActive) {
+              observer.enable();
+            } else {
+              observer.disable();
+            }
+          },
         });
       };
 
