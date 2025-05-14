@@ -21,11 +21,7 @@ import { PropagateLoader } from "react-spinners";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
-type ProjectsProps = {
-  isIntroComplete: boolean;
-};
-
-const Projects = ({ isIntroComplete }: ProjectsProps) => {
+const Projects = () => {
   const monitorModelRef = useRef<THREE.Group>(null);
   const isMobile = useMediaQuery("(max-width: 768px)");
   const [currentProject, setCurrentProject] = useState<number>(0);
@@ -167,22 +163,20 @@ const Projects = ({ isIntroComplete }: ProjectsProps) => {
         {/* prettier ignore */}
         <div className="model3d relative h-[23rem] w-full overflow-visible md:h-[40rem] xl:h-[32rem] xs:h-[29rem]">
           <div className="absolute -top-10 z-10 h-[23rem] w-full overflow-visible sm:h-[32rem] md:h-[50rem] lg:-top-28 lg:h-[60rem] xl:-top-40 xl:h-[55rem] 2xl:-left-12 2xl:-top-52 2xl:h-[60rem] xs:h-[29rem]">
-            {isIntroComplete && (
-              <Suspense
-                fallback={
-                  <div className="absolute inset-0 z-[100] flex items-center justify-center">
-                    <PropagateLoader size={20} color="#212121" />
-                  </div>
-                }
-              >
-                <Canvas camera={{ position: [0, 0, 5] }}>
-                  <ThreeModel
-                    ref={monitorModelRef}
-                    currentProject={currentProject}
-                  />
-                </Canvas>
-              </Suspense>
-            )}
+            <Suspense
+              fallback={
+                <div className="absolute inset-0 z-[100] flex items-center justify-center">
+                  <PropagateLoader size={20} color="#212121" />
+                </div>
+              }
+            >
+              <Canvas camera={{ position: [0, 0, 5] }}>
+                <ThreeModel
+                  ref={monitorModelRef}
+                  currentProject={currentProject}
+                />
+              </Canvas>
+            </Suspense>
           </div>
         </div>
       </div>

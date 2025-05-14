@@ -14,12 +14,6 @@ import * as THREE from "three";
 import { projects } from "../../data/data";
 import AnimatedLink from "@/components/common/AnimatedLink";
 
-useGLTF.preload("/computer_monitor_low-poly/scene-transformed.glb");
-
-projects.forEach((_, index) => {
-  useTexture.preload(`/projectsScreenshots/project${index + 1}/image-3.png`);
-});
-
 type ThreeModelProps = {
   currentProject: number;
 };

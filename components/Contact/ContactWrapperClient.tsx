@@ -22,7 +22,7 @@ const ContactWrapperClient = ({ children }: ContactWrapperProps) => {
     () => {
       // Pin first section
       ScrollTrigger.create({
-        trigger: ".stack",
+        trigger: ".scroll-area",
         start: "bottom bottom",
         end: "+=100%",
         pin: true,

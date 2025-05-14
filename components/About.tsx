@@ -12,15 +12,17 @@ gsap.registerPlugin(useGSAP, ScrollTrigger);
 const About = () => {
   const tAbout = useTranslations("AboutSection");
   const aboutRef = useRef<HTMLDivElement>(null);
+
+  const mm = gsap.matchMedia();
   useGSAP(
     () => {
       const mainAboutLn = gsap.timeline({
         scrollTrigger: {
           trigger: aboutRef.current,
 
-          start: "top 80%",
+          start: "top 70%",
           scrub: 2,
-          end: "+=85%",
+          end: "+=75%",
           // refreshPriority: 2, // Ensures this is refreshed after the parent trigger
         },
       });
@@ -47,24 +49,37 @@ const About = () => {
             opacity: 0,
             ease: "back.out",
           },
-          "-=1",
+          "-=1.5",
         );
 
-      // New timeline for the image_wrapper inside image_section
-      const imageWrapperTimeline = gsap.timeline({
-        scrollTrigger: {
-          trigger: ".image_section", // Trigger when .image_section is in view
-          start: "top 80%", // Adjust the start value as needed
-          end: "center 50%", // End when the section leaves the viewport
-          scrub: 2,
-          // refreshPriority: 1, // Ensures this is refreshed after the parent trigger
-        },
+      mm.add("(min-width: 768px)", () => {
+        gsap.from(".image_wrapper", {
+          y: 100,
+          opacity: 0,
+          duration: 1.2,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: ".image_section",
+            start: "top 60%",
+            end: "center 55%",
+            scrub: 1.5,
+            markers: true,
+          },
+        });
       });
-
-      imageWrapperTimeline.from(".image_wrapper", {
-        rotateX: 90,
-        duration: 1.5,
-        opacity: 0,
+      mm.add("(max-width: 767px)", () => {
+        gsap.from(".image_wrapper", {
+          y: 100,
+          opacity: 0,
+          duration: 0.8,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: ".image_section",
+            start: "top bottom",
+            end: "top 20%",
+            scrub: 0.5,
+          },
+        });
       });
     },
     {
@@ -102,7 +117,7 @@ const About = () => {
           </p>
         </div>
         <div className="image_section">
-          <div className="image_wrapper relative will-change-transform">
+          <div className="image_wrapper relative grayscale will-change-transform">
             <Image
               src="/profile-picture.jpeg"
               alt="Description of image"
@@ -112,10 +127,10 @@ const About = () => {
               quality={50}
             />
             <div className="pointer-events-none absolute inset-0 border-b-4 border-l-4 border-r-4 border-t-4 border-transparent">
-              <div className="corner-el absolute -left-2 -top-2 -z-10 h-10 w-10 rounded-sm bg-background dark:bg-secondBackground"></div>
-              <div className="corner-el absolute -right-2 -top-2 -z-10 h-10 w-10 rounded-sm bg-background dark:bg-secondBackground"></div>
-              <div className="corner-el absolute -bottom-2 -left-2 -z-10 h-10 w-10 rounded-sm bg-background dark:bg-secondBackground"></div>
-              <div className="corner-el absolute -bottom-2 -right-2 -z-10 h-10 w-10 rounded-sm bg-background dark:bg-secondBackground"></div>
+              <div className="corner-el absolute -left-[6px] -top-[6px] -z-10 h-10 w-10 rounded-sm bg-background dark:bg-secondBackground"></div>
+              <div className="corner-el absolute -right-[6px] -top-[6px] -z-10 h-10 w-10 rounded-sm bg-background dark:bg-secondBackground"></div>
+              <div className="corner-el absolute -bottom-[6px] -left-[6px] -z-10 h-10 w-10 rounded-sm bg-background dark:bg-secondBackground"></div>
+              <div className="corner-el absolute -bottom-[6px] -right-[6px] -z-10 h-10 w-10 rounded-sm bg-background dark:bg-secondBackground"></div>
             </div>
           </div>
         </div>

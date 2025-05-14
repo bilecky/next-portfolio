@@ -89,6 +89,7 @@ const config: Config = {
         blackSectionText: "#b8b8b8",
       },
       fontSize: {
+        "dynamic-loader-textSize": "clamp(4rem, 15vw, 20rem)",
         "dynamic-35vw-textSize": "clamp(1rem, 35vw, 42.5rem)",
         "fold-text": "3rem",
         SingleProjectDescriptionFont: ".925rem",
