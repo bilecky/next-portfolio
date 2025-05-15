@@ -83,6 +83,7 @@ const config: Config = {
       colors: {
         mainFontColor: "#FBFCF8",
         background: "#222222",
+        loaderColor: "#646464",
         secondBackground: "#FBFCF8",
         thirdBackground: "#a6aba5",
         // foreground: "var(--foreground)",

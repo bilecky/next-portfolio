@@ -63,20 +63,19 @@ const About = () => {
             start: "top 60%",
             end: "center 55%",
             scrub: 1.5,
-            markers: true,
           },
         });
       });
       mm.add("(max-width: 767px)", () => {
         gsap.from(".image_wrapper", {
-          y: 100,
+          y: 125,
           opacity: 0,
           duration: 0.8,
           ease: "power2.out",
           scrollTrigger: {
             trigger: ".image_section",
-            start: "top bottom",
-            end: "top 20%",
+            start: "top 90%",
+            end: "top 1%",
             scrub: 0.5,
           },
         });

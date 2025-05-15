@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
 import Splitter from "../utils/Splitter";
 import gsap from "gsap";
@@ -28,10 +28,6 @@ const Hero = () => {
   const timelineRef = useRef<gsap.core.Timeline | null>(null);
   const [isIntroComplete, setIsIntroComplete] = useState<boolean>(false);
 
-  const [isSessionStorage, setisSessionStorage] = useState<
-    typeof window.sessionStorage | null
-  >();
-
   useEffect(() => {
     if (blockInitialScroll && heroRef.current) {
       blockScroll(true);
@@ -43,21 +39,42 @@ const Hero = () => {
   }, [blockInitialScroll]);
 
   useGSAP(() => {
+    gsap.set([".header", heroRef.current, ".app-loader"], {
+      opacity: 1,
+    });
+
+    const sessionFirstIntro = sessionStorage.getItem("introComplete");
+
+    if (sessionFirstIntro) {
+      setIsIntroComplete(true);
+      setBlockInitialScroll(false);
+      timelineRef.current?.progress(1).kill();
+      gsap.to(
+        {},
+        {
+          onStart: reuseHeaderLineAnimation,
+        },
+      );
+      gsap.set(blackOverlayRef.current, { y: "0%" });
+      gsap.set(".app-loader", { opacity: 0, xPercent: 0 });
+
+      return;
+    }
+
     const introTl = gsap.timeline({
       paused: true,
       onComplete: () => {
         setIsIntroComplete(true);
         setBlockInitialScroll(false);
+        sessionStorage.setItem("introComplete", "true");
       },
     });
-    introTl.set([".header", heroRef.current], {
-      opacity: 1,
-    });
+
     introTl
       .to(".app-loader", {
         opacity: 0,
         duration: 1,
-        ease: "power4.inOut",
+        ease: "back.inOut(1)",
         xPercent: 100,
       })
       .to(blackOverlayRef.current, {
@@ -162,6 +179,7 @@ const Hero = () => {
         { backgroundColor: endColor, overwrite: "auto", ease: "power3.inOut" },
       );
     },
+
     { dependencies: [theme, isIntroComplete], revertOnUpdate: true },
   );
 
@@ -170,7 +188,7 @@ const Hero = () => {
       <Loader onFinish={handleLoadingComplete} />
       <section
         ref={heroRef}
-        className="hero ultra-tall-screen:items-center container flex h-auto w-full flex-col py-40 font-mainFont text-background opacity-0 md:h-screen md:flex-row-reverse md:items-center md:py-20 xl:items-end landscape-short:h-auto dark:text-mainFontColor"
+        className="hero container flex h-auto w-full flex-col py-40 font-mainFont text-background opacity-0 md:h-screen md:flex-row-reverse md:items-center md:py-20 xl:items-end ultra-tall-screen:items-center landscape-short:h-auto dark:text-mainFontColor"
       >
         {isMounted && theme === "light" && (
           <div className="white-overlay opacity-1 absolute inset-0 z-0 h-screen w-full bg-background dark:bg-secondBackground"></div>
