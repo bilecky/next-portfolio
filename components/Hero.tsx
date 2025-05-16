@@ -56,7 +56,7 @@ const Hero = () => {
         },
       );
       gsap.set(blackOverlayRef.current, { y: "0%" });
-      gsap.set(".app-loader", { opacity: 0, xPercent: 0 });
+      gsap.set(".app-loader", { opacity: 0 });
 
       return;
     }

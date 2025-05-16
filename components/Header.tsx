@@ -106,7 +106,7 @@ const Header = ({ locale }: HeaderProps) => {
           aria-label="Otwórz menu"
           type="button"
           onClick={handleToggle}
-          className="white-line relative block h-full w-full cursor-pointer p-5"
+          className="white-line relative block h-full w-full cursor-pointer p-2"
         >
           <div className="pulse-line dark:white-header-line black-header-line h-[3px] w-full will-change-transform"></div>
         </button>
@@ -118,7 +118,7 @@ const Header = ({ locale }: HeaderProps) => {
           <nav className="h-full w-full p-5">
             <ul className="dropdown-menu space-y-4">
               <li>
-                <div className="lg:text-LG flex items-center justify-between">
+                <div className="flex items-center justify-between">
                   <div className="flex items-center justify-center space-x-3">
                     <LiaLanguageSolid className="text-xl" />
                     <span>pl / en</span>
@@ -132,7 +132,7 @@ const Header = ({ locale }: HeaderProps) => {
                 </div>
               </li>
               <li>
-                <div className="lg:text-LG flex items-center justify-between">
+                <div className="flex items-center justify-between">
                   <div className="flex items-center justify-center space-x-3">
                     <PiPaintBrushDuotone className="text-xl" />
                     <span>light / mono</span>
