@@ -15,11 +15,7 @@ function Splitter(props: Props) {
   return (
     <>
       {words.map((word, index) => (
-        <span
-          key={index}
-          className={clsx("split-word", className)}
-          style={{ whiteSpace: "nowrap" }}
-        >
+        <span key={index} className={clsx("split-word inline-flex", className)}>
           {Array.from(word).map((character, charIndex) => (
             <span key={charIndex} className="split-char inline-block">
               {character}

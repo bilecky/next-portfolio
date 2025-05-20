@@ -17,7 +17,7 @@ const NotFound: NextPage = async () => {
   return (
     <div className="flex min-h-screen items-center justify-center bg-secondBackground text-background landscape:items-start">
       <div className="w-full text-center">
-        <h1 className="text-dynamic-35vw-textSize font-doto font-extrabold leading-none landscape-short:text-[15vw]">
+        <h1 className="font-doto text-dynamic-35vw-textSize font-extrabold leading-none landscape-short:text-[15vw]">
           404
         </h1>
         <div className="my-6">
