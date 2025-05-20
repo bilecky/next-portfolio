@@ -52,17 +52,19 @@ export default function ProjectPage({ params }: ProjectPageProps) {
   }
 
   useEffect(() => {
-    if (lenis) {
-      lenis.scrollTo(0, { immediate: true });
-    } else {
-      window.scrollTo(0, 0);
-    }
+    const timeoutId = setTimeout(() => {
+      if (lenis) {
+        lenis.scrollTo(0, { immediate: true });
+      } else {
+        window.scrollTo(0, 0);
+      }
+    }, 0);
+
+    return () => clearTimeout(timeoutId);
   }, [paramsProjectId, lenis]);
 
   useGSAP((context, contextSafe) => {
     if (!containerRef.current || !imageElements || !contextSafe) return;
-
-    // document.body.classList.add("pointer-events-none");
 
     const projectTl = gsap.timeline();
 
