@@ -10,6 +10,7 @@ import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages } from "next-intl/server";
 import { ThemeProvider } from "../context/ThemeProvider";
 import { Analytics } from "@vercel/analytics/react";
+import Script from "next/script";
 
 const geistSans = localFont({
   src: "../fonts/GeistVF.woff",
@@ -66,6 +67,11 @@ export default async function RootLayout({
 
   return (
     <html lang={locale} suppressHydrationWarning>
+      <head>
+        <Script id="scroll-restoration" strategy="beforeInteractive">
+          {`if ('scrollRestoration' in history) history.scrollRestoration = 'manual';`}
+        </Script>
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${powerGrotesk.variable} ${doto.variable} flex flex-col`}
       >
