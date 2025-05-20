@@ -54,6 +54,8 @@ export default function ProjectPage({ params }: ProjectPageProps) {
   useEffect(() => {
     if (lenis) {
       lenis.scrollTo(0, { immediate: true });
+    } else {
+      window.scrollTo(0, 0);
     }
   }, [paramsProjectId, lenis]);
 
