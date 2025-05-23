@@ -152,6 +152,7 @@ export const technologies: string[] = [
   "Next.js",
   "React",
   "TypeScript",
+  "AI Tools",
   "Redux",
   "JavaScript",
   "GIT",
@@ -163,4 +164,5 @@ export const technologies: string[] = [
   "AWS",
   "GSAP",
   "Tailwind",
+  "Linux",
 ];
