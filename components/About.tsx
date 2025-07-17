@@ -14,6 +14,9 @@ const About = () => {
   const aboutRef = useRef<HTMLDivElement>(null);
 
   const mm = gsap.matchMedia();
+
+  useGSAP(() => {});
+
   useGSAP(
     () => {
       const mainAboutLn = gsap.timeline({
@@ -116,7 +119,7 @@ const About = () => {
           </p>
         </div>
         <div className="image_section">
-          <div className="image_wrapper relative grayscale transition-all duration-300 will-change-transform hover:grayscale-[0.25]">
+          <div className="image_wrapper relative">
             <Image
               src="/profile-picture.jpg"
               alt="Description of image"
