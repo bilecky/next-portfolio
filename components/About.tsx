@@ -116,14 +116,14 @@ const About = () => {
           </p>
         </div>
         <div className="image_section">
-          <div className="image_wrapper relative grayscale will-change-transform">
+          <div className="image_wrapper relative grayscale transition-all duration-300 will-change-transform hover:grayscale-[0.25]">
             <Image
-              src="/profile-picture.jpeg"
+              src="/profile-picture.jpg"
               alt="Description of image"
               width={400}
               height={800}
               className="block shadow-lg"
-              quality={50}
+              quality={75}
             />
             <div className="pointer-events-none absolute inset-0 border-b-4 border-l-4 border-r-4 border-t-4 border-transparent">
               <div className="corner-el absolute -left-[6px] -top-[6px] -z-10 h-10 w-10 rounded-sm bg-background dark:bg-secondBackground"></div>
