@@ -1,7 +1,6 @@
 import Stack from "../components/Stack";
 import About from "../components/About";
 import Contact from "../components/Contact/Contact";
-import WaitForModel from "../components/WaitForModel";
 import Hero from "@/components/Hero";
 import Projects from "@/components/Projects/Projects";
 

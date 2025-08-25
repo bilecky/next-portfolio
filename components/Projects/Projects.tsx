@@ -50,25 +50,6 @@ const Projects = () => {
         timeline: leftSectionArea,
         selector: ".projects-description",
       });
-      // const model3dTimeline = gsap.timeline({
-      //   scrollTrigger: {
-      //     trigger: ".projects",
-      //     start: "top 20%",
-      //     end: "bottom bottom",
-      //     scrub: 3,
-      //   },
-      // });
-
-      // leftSectionArea.from(".model3d", {
-      //   opacity: 0,
-      //   ease: "none",
-      // });
-
-      // textArea.from(".project_details", {
-      //   opacity: 0,
-      //   ease: "back.out",
-      //   duration: 10,
-      // });
 
       const mm = gsap.matchMedia();
 
