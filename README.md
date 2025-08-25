@@ -27,3 +27,5 @@ A new version of my personal portfolio built with Next.js and TypeScript. The si
 ## 📦 Deployment
 
 Live version: [https://pawelbilski.com](https://pawelbilski.com)  
+
+> ⚠️ Currently a **test version** running on production
