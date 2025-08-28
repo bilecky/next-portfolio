@@ -4,21 +4,8 @@ import Form from "./Form";
 import { getTranslations } from "next-intl/server";
 import { FiArrowUpRight } from "react-icons/fi";
 
-export const dynamic = "force-dynamic";
-
 const Contact = async () => {
-  const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
-  const timestamp = Date.now();
-  const res = await fetch(`${API_URL}/api/pins?t=${timestamp}`, {
-    cache: "no-store",
-    method: "GET",
-    
-  });
-  const pins = await res.json();
-
   const tContact = await getTranslations("ContactSection");
-  
-  
 
   return (
     <ContactWrapperClient>
@@ -40,7 +27,7 @@ const Contact = async () => {
               .
             </p>
 
-            <PinningComponent fetchedPins={pins} />
+            <PinningComponent />
           </div>
 
           <div className="contact_form">

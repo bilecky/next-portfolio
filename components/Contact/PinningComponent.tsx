@@ -1,10 +1,13 @@
 "use client";
 
+import { useEffect } from "react";
 import React, { useState } from "react";
 import Pin from "./Pin";
 import { createPin } from "@/app/lib/actions";
 import { PinFormModal } from "@/components/common/PinFormModal";
 import { useTranslations } from "next-intl";
+
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
 
 export interface UserPin {
   id: string;
@@ -12,7 +15,7 @@ export interface UserPin {
   position: { x: number; y: number };
   pallette: string;
 }
-const PinningComponent = ({ fetchedPins }: { fetchedPins: UserPin[] }) => {
+const PinningComponent = () => {
   const tPinning = useTranslations("PinSectionForm");
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -21,7 +24,7 @@ const PinningComponent = ({ fetchedPins }: { fetchedPins: UserPin[] }) => {
     y: number;
   } | null>(null);
   const [color, setColor] = useState("#000000");
-  const [pins, setPins] = useState<UserPin[]>(fetchedPins);
+  const [pins, setPins] = useState<UserPin[] | []>([]);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -79,11 +82,21 @@ const PinningComponent = ({ fetchedPins }: { fetchedPins: UserPin[] }) => {
     }
   };
 
+  useEffect(() => {
+    const fetchPins = async () => {
+      const res = await fetch(`${API_URL}/api/pins`);
+      const data = await res.json();
+      setPins(data);
+    };
+
+    fetchPins();
+  }, []);
+
   return (
     <>
       <div
         id="user_pinning_wrapper"
-        className="user_pinning_wrapper ultra-tall-screen:aspect-[2/1] mt-auto flex aspect-square h-full w-full flex-col pt-8 md:aspect-[3/2] xl:aspect-auto"
+        className="user_pinning_wrapper mt-auto flex aspect-square h-full w-full flex-col pt-8 md:aspect-[3/2] xl:aspect-auto ultra-tall-screen:aspect-[2/1]"
       >
         <div
           onClick={handleClick}
