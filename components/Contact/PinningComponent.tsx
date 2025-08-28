@@ -7,8 +7,6 @@ import { createPin } from "@/app/lib/actions";
 import { PinFormModal } from "@/components/common/PinFormModal";
 import { useTranslations } from "next-intl";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
-
 export interface UserPin {
   id: string;
   name: string;
@@ -84,7 +82,7 @@ const PinningComponent = () => {
 
   useEffect(() => {
     const fetchPins = async () => {
-      const res = await fetch(`${API_URL}/api/pins`);
+      const res = await fetch("/api/pins");
       const data = await res.json();
       setPins(data);
     };
